@@ -1,0 +1,23 @@
+{% extends 'test-base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>회원가입</h2>
+<form action="{% url 'accounts:signup' %}" method="POST">
+    {% csrf_token %}
+
+    <p>아이디: <input type="text" name="username"></p>
+    <p>비밀번호: <input type="password" name="password"></p>
+    <p>비밀번호 확인: <input type="password" name="confirm"></p>
+    <p>닉네임: <input type="text" name="nickname"></p>
+    <p>대학교: <input type="text" name="university"></p>
+    <p>주소: <input type="text" name="address"></p>
+    <p>전화번호: <input type="text" name="phone_number"></p>
+
+    <input type="submit" value="회원가입">
+</form>
+
+{% if error %}
+<p style="color: red;">{{ error }}</p>
+{% endif %}
+{% endblock %}
