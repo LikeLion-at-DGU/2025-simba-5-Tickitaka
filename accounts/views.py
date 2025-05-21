@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import auth
 from .models import User
 from django.contrib.auth import logout
+from django.http import JsonResponse
+
 
 def signup(request):
     if request.method == 'POST':
@@ -52,3 +54,9 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('main:mainpage')  # 로그아웃 후 이동할 페이지
+
+
+def check_nickname(request):
+    nickname = request.GET.get('nickname', '')
+    is_taken = User.objects.filter(nickname=nickname).exists()
+    return JsonResponse({'is_taken': is_taken})
