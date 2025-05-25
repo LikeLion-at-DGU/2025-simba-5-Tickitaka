@@ -1,37 +1,33 @@
 /*signup.css*/
+
 .contentFrameSignup_sw{
 
+    padding-top: 94px;
     width: 343px;
-    height: 473px;
-
-    padding-top: 40px;
+    height: 671px;
     display: flex;
-    gap:24px;
+    gap:70px;
     margin:0 auto;
     flex-direction: column;
     align-items: flex-start;
-     
+    
     justify-content: space-between;
   
 }
-
-.headerFrameSignup_sw{
-
+.exceptButtonFrame_sw{
     width: 343px;
-    height: 40px;
-
+    height: 557px;
+    gap: 24px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-.headerFrameSignup_sw{
-    width: 343px;
-    height: 40px;
+    align-items: flex-start;
     
 }
+
 .titleSignup_sw{
 
+    width: 343px;
+    height: 29px;
     display: flex;
     justify-content: center;
 
@@ -41,6 +37,9 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .divideTopLineSignup_sw{
@@ -49,7 +48,7 @@
     height: 1px;
     background-color: #2A2A2A;
 }
-    
+
 .allInputsFrameSignup_sw{
     width: 343px;
 
@@ -60,7 +59,7 @@ gap: 15px;
 }
 .inputFrameSignup_sw{
     width: 343px;
-    height: 68px;
+   
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -78,8 +77,12 @@ gap: 15px;
     font-weight: 500;
     line-height: normal;
 }
+.inputButtonWrapperSignup_sw{
+     position: relative;
+  width: 100%;
+}
 .inputBoxSignup_sw{
-  all:unset;
+    all:unset;
     box-sizing: border-box;
     width: 343px;
     height: 48px;
@@ -89,17 +92,84 @@ gap: 15px;
     border-radius: 6px;
     border: 1px solid #D9D9D9;
     background: #FFF;
+    color: #2A2A2A;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
 }
+
+.inputBtnBoxSignup_sw{
+      all:unset;
+    box-sizing: border-box;
+    width: 343px;
+    height: 48px;
+    padding: 12px 16px;
+    padding-right: 90px; /* 버튼 들어갈 공간 */
+
+    align-items: start;
+    display: flex;
+    border-radius: 6px;
+    border: 1px solid #D9D9D9;
+    background: #FFF;
+    color: #2A2A2A;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+}
+.inputBoxSignup_sw::placeholder{
+    color: #999;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.checkButtonSignup_sw{
+    all: unset;
+    position: absolute;
+  top: 0;
+  right: 0;
+  height: 48px;
+  border-radius: 0px 6px 6px 0px;
+  background: #025397;
+  color: #FFF;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  cursor: pointer;
+  z-index: 1;
+}
+.checkButtonSignup_sw:disabled {
+  background-color: #999 !important;
+  cursor: not-allowed;
+}
+.inputDescriptionSignup_sw{
+    color: #8A8A8A;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
 .nextButtonSignup_sw{
       all: unset;
     cursor: pointer;
-    width: 323px;
-    height: 27px;
-    padding: 10px;
-    margin-top: 159px;
+    box-sizing: border-box;
+    width: 343px;
+    height: 44px;
+    padding: 15px 153px;
     border-radius: 6px;
     
-    background: #081F5C;
+    background: #025397;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,6 +181,14 @@ gap: 15px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    
+}
 
+/* 오류났을 떄 */
+.inputError_sw {
+  border: 1px solid #C75352 !important;
+  color: #C75352 !important;
+}
+
+.textError_sw {
+  color: #C75352 !important;
 }
