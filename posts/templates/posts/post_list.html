@@ -5,8 +5,16 @@
     <div class="post-list-container_sy">
 
         <div class="post-list-header_sy">
-            <h1 class="post-list-title_sy">거래 목록</h1>
-            <button class="time-boost_sy">1.5배</button>
+            <div class="post-list-first-header_sy">
+                <div class="go-back-btn_sy">
+                    <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.29277 5.79301L5.94977 0.136013L7.36377 1.55001L2.41377 6.50001L7.36377 11.45L5.94977 12.864L0.29277 7.20701C0.105299 7.01949 -1.66893e-05 6.76518 -1.66893e-05 6.50001C-1.66893e-05 6.23485 0.105299 5.98054 0.29277 5.79301Z" fill="black"/>
+                    </svg>
+                </div>
+                <h1 class="post-list-title_sy">거래 목록</h1>
+            </div>
+            
+            <button class="time-boost-btn_sy">1.5배</button>
             <div class="post-list-navbar_sy">
                 <div class="dropdown_sy">
                     <div id="selectedBuilding_sy" class="dropdown-button_sy" onclick="toggleDropdown()">{{ post.university_id }} ▼</div>
@@ -31,7 +39,7 @@
         <div class="post-list_sy">
             <div class="post-container_sy">
                 <div class="post-image_sy">
-                    <img src="{{ post.image_url }}" alt="post image">
+                    <img src="{% static 'images/test.png' %}" alt="테스트 이미지">
                 </div>
                 <div class="post-item_sy">
                     <h2 class="post-title_sy">{{ post.title }}</h2>
