@@ -1,12 +1,13 @@
 {% extends 'test-base.html' %} {% load static %}  {% block content %}
 
 <link rel="stylesheet" href="{% static 'css/signup.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
 
 <div class="contentFrameSignup_sw">
     <div class="exceptButtonFrame_sw">
         <div class="titleSignup_sw">회원가입</div>
         <div class="divideTopLineSignup_sw"></div>
-        <form class="allInputsFrameSignup_sw" method="post" id="signupinfo">
+        <form class="allInputsFrameSignup_sw" method="post" id="signupinfo" action="{% url 'accounts:signup2' %}">
             {% csrf_token %}
             <div class="inputFrameSignup_sw">
                 <label class="inputTitleSignup_sw" for="nameInputSignup_sw">이름</label>
@@ -21,7 +22,7 @@
                 <label class="inputTitleSignup_sw" for="idInputSignup_sw">아이디</label>
                     <div class="inputButtonWrapperSignup_sw">
                         <input class="inputBtnBoxSignup_sw" id="idInputSignup_sw" type= "text" name="user_id_signup_sw" placeholder="아이디를 입력해주세요" >
-                        <button class="checkButtonSignup_sw">중복확인</button>
+                        <button class="checkButtonSignup_sw" type="button">중복확인</button>
                     </div>
                     <small class="inputDescriptionSignup_sw">4자 이상 ~ 16자 이하로 입력해주세요</small>
             </div>
@@ -33,11 +34,11 @@
             <div class="inputFrameSignup_sw">
                 <label class="inputTitleSignup_sw" for="pwCheckInputSignup_sw">비밀번호 재확인</label>
                 <input class="inputBoxSignup_sw" id="pwCheckInputSignup_sw" type= "password" name="password" placeholder="비밀번호를 한번 더 입력해주세요" >
-                 <small class="inputDescriptionSignup_sw" id="pwCheckError" style="display: none;"></small>
+                <small class="inputDescriptionSignup_sw" id="pwCheckError_sw" style="display: none;"></small>
             </div>
         </form>
     </div>
-    <button class="nextButtonSignup_sw" type="submit" form="signupinfo" oneclick="location.href='/signup2'">다음</button>
+    <button class="nextButtonSignup_sw" type="button" id="nextBtnSignup">다음</button>
 </div>
 
 {% endblock %}
