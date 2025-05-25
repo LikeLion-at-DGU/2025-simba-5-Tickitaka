@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from .models import User
+from .models import Profile
 from django.contrib.auth import logout
 from django.http import JsonResponse
+from .models import Profile #대대적인 수정
 
 
 def signup(request):
