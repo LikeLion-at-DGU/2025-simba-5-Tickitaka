@@ -15,7 +15,7 @@ def signup(request):
 
             # 전화번호가 숫자 11자리인지 검사
             if not request.POST['phone_number'].isdigit() or len(request.POST['phone_number']) != 11:
-                return render(request, 'accounts/test-signup.html', {'error': '전화번호는 하이픈 없이 입력해주세요.'})
+                return render(request, 'accounts/test-signup.html', {'error': '전화번호는 "00000000000"로 입력해주세요.'})
             
             user = User.objects.create_user(
                 username=request.POST['username'],
