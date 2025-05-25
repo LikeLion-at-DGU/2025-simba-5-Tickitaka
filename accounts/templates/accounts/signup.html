@@ -1,0 +1,46 @@
+{% extends 'test-base.html' %} {% load static %}  {% block content %}
+
+<link rel="stylesheet" href="{% static 'css/signup.css' %}"/>
+
+<div class="pageFrameSignup_sw">
+    
+
+    <div class="contentFrameSignup_sw">
+        <div class="headerFrameSignup_sw">
+            <div class="titleSignup_sw">회원가입</div>
+            <div class="divideTopLineSignup_sw"></div>
+        </div>
+        <form class="allInputsFrameSignup_sw" method="post">
+             {% csrf_token %}
+            <div class="inputFrameSignup_sw">
+                <label class="inputTitleSignup_sw" for="nameInputSignup_sw">이름</label>
+                <input class="inputBoxSignup_sw" id="nameInputSignup_sw" type= "text" name="user_id_signup_sw" placeholder="이름을 입력해주세요" >
+            </div>
+             <div class="inputFrameSignup_sw">
+                <label class="inputTitleSignup_sw" for="phoneNumberInputSignup_sw">전화번호</label>
+                <input class="inputBoxSignup_sw" id="phoneNumberInputSignup_sw" type= "text" name="user_id_signup_sw" placeholder="전화번호를 입력해주세요" >
+            </div>
+             <div class="inputFrameSignup_sw">
+                <label class="inputTitleSignup_sw" for="idInputSignup_sw">아이디</label>
+                <input class="inputBoxSignup_sw" id="idInputSignup_sw" type= "text" name="user_id_signup_sw" placeholder="아이디를 입력해주세요" >
+            </div>
+             <div class="inputFrameSignup_sw">
+                <label class="inputTitleSignup_sw" for="pwInputSignup_sw">비밀번호</label>
+                <input class="inputBoxSignup_sw" id="pwInputSignup_sw" type= "password" name="user_id_signup_sw" placeholder="비밀번호를 입력해주세요" >
+            </div>
+             <div class="inputFrameSignup_sw">
+                <label class="inputTitleSignup_sw" for="pwCheckInputSignup_sw">비밀번호 확인</label>
+                <input class="inputBoxSignup_sw" id="pwCheckInputSignup_sw" type= "password" name="user_id_signup_sw" placeholder="비밀번호를 한번 더 입력해주세요" >
+            </div>
+            
+            <button class="nextButtonSignup_sw" type="submit">다음</button>
+
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<!-- js 파일 -->
+<script src="{% static 'js/signup.js' %}"></script>
+
+{% endblock %}
