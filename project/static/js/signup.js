@@ -77,7 +77,7 @@ idInput.addEventListener("input", function () {
 
   // 비밀번호 재확인 검사
   const pwCheckInput = document.getElementById("pwCheckInputSignup_sw");
-  const pwCheckDescription = document.getElementById("pwCheckError");
+  const pwCheckDescription = document.getElementById("pwCheckError_sw");
 
   pwCheckInput.addEventListener("input", function () {
     const pwValue = pwInput.value;
@@ -101,3 +101,33 @@ idInput.addEventListener("input", function () {
     }
   });
 });
+
+//모든 값이 입력되면 이동
+document.addEventListener('DOMContentLoaded', () => {
+  const nextBtn = document.getElementById('nextBtnSignup');
+
+  nextBtn.addEventListener('click', () => {
+    const name = document.getElementById('nameInputSignup_sw').value.trim();
+    const phone = document.getElementById('phoneNumberInputSignup_sw').value.trim();
+    const userId = document.getElementById('idInputSignup_sw').value.trim();
+    const pw = document.getElementById('pwInputSignup_sw').value;
+    const pwCheck = document.getElementById('pwCheckInputSignup_sw').value;
+
+    // 간단한 유효성 검사
+    if (!name || !phone || !userId || !pw || !pwCheck) {
+      alert('모든 항목을 입력해주세요.');
+      return;
+    }
+
+    if (pw !== pwCheck) {
+      const error = document.getElementById('pwCheckError');
+      error.style.display = 'block';
+      error.innerText = '비밀번호가 일치하지 않습니다.';
+      return;
+    }
+
+    // 모두 유효하면 form 제출
+    document.getElementById('signupinfo').submit();
+  });
+});
+
