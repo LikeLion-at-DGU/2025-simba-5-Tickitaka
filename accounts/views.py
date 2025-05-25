@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from .models import User
+from .models import Profile
 from django.contrib.auth import logout
 from django.http import JsonResponse
+from .models import Profile #대대적인 수정
 
 
 def signup(request):
@@ -32,7 +33,9 @@ def signup(request):
             return render(request, 'accounts/signup.html', {'error': '비밀번호가 일치하지 않습니다.'})
     
     return render(request, 'accounts/signup.html')
-    
+
+def signup2(request):
+    return render(request, 'accounts/signup2.html')   
 
 
 def login_view(request):
