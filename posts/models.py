@@ -1,19 +1,33 @@
 from django.db import models
-from django.contrib.auth.models import User
+from accounts.models import Profile
+from main.models import University, Building
 
-# Create your models here.
 class Post(models.Model):
-     title = models.CharField(max_length=200)
-     # content = models.TextField()
-     # # 미디어 설정 필요
-     # #image = models.ImageField(upload_to='post_images/', blank=True, null=True)
-     # location = models.CharField(max_length=100) 
-     # tickit = models.IntegerField(help_text="5분 단위, 예: 5, 10, 15, ...")
-     # deadline = models.DateTimeField()
+     title = models.CharField(max_length=100)
+     content = models.TextField()
+     image = models.CharField(max_length=255, blank=True, null=True)
+     building = models.CharField(max_length=50)
+     amounts = models.IntegerField()
+     deadline = models.DateTimeField()
+     status = models.CharField(max_length=20, choices=[
+          ('waiting', '헬퍼찾는중'),
+          ('chatting', '채팅중'),
+          ('in_progress', '거래중'),
+          ('done', '거래완료'),
+     ])
+     saved_count = models.IntegerField(default=0)
+     master = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='master_posts')
+     helper = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='helper_posts')
+     university = models.ForeignKey(University, on_delete=models.CASCADE)
+     timestamp = models.DateTimeField(auto_now_add=True)
+     burning = models.IntegerField(choices=[(0, 'default'), (1, 'burning')], default=0)
 
-     # master = models.ForeignKey(User, on_delete=models.CASCADE, related_name='master_posts')
-     # helper = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='helper_posts')
+class Saved(models.Model):
+     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+     timestamp = models.DateTimeField(auto_now_add=True)
 
+<<<<<<< HEAD
      # STATUS_CHOICES = [
      #      ('WAITING', '헬퍼 찾는 중'),
      #      ('Chatting', '채팅 중'),
@@ -23,6 +37,15 @@ class Post(models.Model):
      # status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='WAITING')
      # created_at = models.DateTimeField(auto_now_add=True)
      # save = models.ManyToManyField()
+=======
+class ChatRoom(models.Model):
+     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+     master = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='chat_master')
+     helper = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='chat_helper')
+>>>>>>> 13dca4e4d6602f22629a79ebfc0285719d81ac64
 
-     # def __str__(self):
-     #      return f"{self.title} ({self.status})"
+class Comment(models.Model):
+     content = models.TextField()
+     timestamp = models.DateTimeField(auto_now_add=True)
+     chatroom = models.ForeignKey(ChatRoom, on_delete=models.CASCADE)
+     writer = models.ForeignKey(Profile, on_delete=models.CASCADE)
