@@ -11,11 +11,11 @@ def signup(request):
             
             # university가 '대학교'로 끝나는지 검사
             if not request.POST['university'].endswith('대학교'):
-                return render(request, 'accounts/test-signup.html', {'error': '학교명은 "00대학교"로 입력해주세요.'})
+                return render(request, 'accounts/signup.html', {'error': '학교명은 "00대학교"로 입력해주세요.'})
 
             # 전화번호가 숫자 11자리인지 검사
             if not request.POST['phone_number'].isdigit() or len(request.POST['phone_number']) != 11:
-                return render(request, 'accounts/test-signup.html', {'error': '전화번호는 하이픈 없이 입력해주세요.'})
+                return render(request, 'accounts/signup.html', {'error': '전화번호는 하이픈 없이 입력해주세요.'})
             
             user = User.objects.create_user(
                 username=request.POST['username'],
@@ -29,9 +29,9 @@ def signup(request):
             return redirect('main:mainpage')  # 로그인 후 이동할 페이지
         
         else:
-            return render(request, 'accounts/test-signup.html', {'error': '비밀번호가 일치하지 않습니다.'})
+            return render(request, 'accounts/signup.html', {'error': '비밀번호가 일치하지 않습니다.'})
     
-    return render(request, 'accounts/test-signup.html')
+    return render(request, 'accounts/signup.html')
     
 
 
@@ -46,9 +46,9 @@ def login_view(request):
             auth.login(request, user)
             return redirect('main:mainpage')  # 로그인 성공 시 이동
         else:
-            return render(request, 'accounts/test-login.html', {'error': '아이디 또는 비밀번호가 틀렸습니다.'})
+            return render(request, 'accounts/login.html', {'error': '아이디 또는 비밀번호가 틀렸습니다.'})
 
-    return render(request, 'accounts/test-login.html')
+    return render(request, 'accounts/login.html')
 
 
 def logout_view(request):
