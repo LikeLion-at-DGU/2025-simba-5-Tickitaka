@@ -33,7 +33,9 @@ def signup(request):
             return render(request, 'accounts/signup.html', {'error': '비밀번호가 일치하지 않습니다.'})
     
     return render(request, 'accounts/signup.html')
-    
+
+def signup2(request):
+    return render(request, 'accounts/signup2.html')   
 
 
 def login_view(request):
