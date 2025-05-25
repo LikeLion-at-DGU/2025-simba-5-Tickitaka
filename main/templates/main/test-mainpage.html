@@ -1,0 +1,56 @@
+{% extends 'test-base.html' %}
+{% block content %}
+
+<style>
+    .main-container {
+        max-width: 600px;
+        margin: 60px auto;
+        text-align: center;
+        font-family: sans-serif;
+    }
+
+    .welcome {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .btn-group {
+        margin-top: 30px;
+    }
+
+    .btn-group a {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 0 10px;
+        background-color: #0a1a52;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+    }
+
+    .btn-group a:hover {
+        background-color: #1e2e6e;
+    }
+</style>
+
+<div class="main-container">
+    <div class="welcome">
+        {% if user.is_authenticated %}
+        {{ user.username }}님 환영합니다! 👋
+        {% else %}
+        로그인되지 않은 상태입니다.
+        {% endif %}
+    </div>
+
+    <div class="btn-group">
+        {% if user.is_authenticated %}
+        <a href="{% url 'accounts:logout' %}">로그아웃</a>
+        {% else %}
+        <a href="{% url 'accounts:login' %}">로그인</a>
+        <a href="{% url 'accounts:signup' %}">회원가입</a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

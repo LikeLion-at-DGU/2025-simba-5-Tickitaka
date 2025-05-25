@@ -1,0 +1,64 @@
+{% extends 'test-base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>회원가입</h2>
+<form action="{% url 'accounts:signup' %}" method="POST">
+    {% csrf_token %}
+
+    <p>아이디: <input type="text" name="username"></p>
+    <p>비밀번호: <input type="password" name="password"></p>
+    <p>비밀번호 확인: <input type="password" name="confirm"></p>
+    <p>
+        닉네임: <input type="text" id="nickname" name="nickname">
+        <button type="button" onclick="checkNickname()">중복확인</button>
+    </p>
+    <p id="nickname-check-result" style="color: green;"></p>
+    <p>대학교: <input type="text" name="university"></p>
+    <p>주소: <input type="text" name="address"></p>
+    <p>전화번호: <input type="text" name="phone_number"></p>
+
+    <input type="submit" value="회원가입">
+</form>
+
+<script>
+    function checkNickname() {
+        const nicknameInput = document.getElementById("nickname");
+
+        // 요소가 존재하지 않을 때
+        if (!nicknameInput) {
+            alert("닉네임 입력란을 찾을 수 없습니다.");
+            return;
+        }
+
+        const nickname = nicknameInput.value.trim();
+
+        // 값이 비었을 때
+        if (!nickname) {
+            alert("닉네임을 입력하세요.");
+            return;
+        }
+
+        fetch(`/accounts/check_nickname/?nickname=${encodeURIComponent(nickname)}`)
+            .then(response => response.json())
+            .then(data => {
+                const result = document.getElementById("nickname-check-result");
+                if (data.is_taken) {
+                    result.style.color = "red";
+                    result.innerText = "이미 사용 중인 닉네임입니다.";
+                } else {
+                    result.style.color = "green";
+                    result.innerText = "사용 가능한 닉네임입니다.";
+                }
+            })
+            .catch(error => {
+                console.error("에러 발생:", error);
+            });
+    }
+</script>
+
+
+{% if error %}
+<p style="color: red;">{{ error }}</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'test-base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>로그인</h2>
+<form action="{% url 'accounts:login' %}" method="POST">
+    {% csrf_token %}
+
+    <p>아이디: <input type="text" name="username"></p>
+    <p>비밀번호: <input type="password" name="password"></p>
+
+    <input type="submit" value="로그인">
+</form>
+
+{% if error %}
+<p style="color: red;">{{ error }}</p>
+{% endif %}
+{% endblock %}
