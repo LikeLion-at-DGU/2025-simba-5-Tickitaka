@@ -1,3 +1,4 @@
+<!-- signup2.html -->
 {% extends 'test-base.html' %} {% load static %}  {% block content %}
 
 <link rel="stylesheet" href="{% static 'css/signup.css' %}"/>
@@ -7,7 +8,7 @@
         <div class="exceptButtonFrame_sw">
             <div class="titleSignup_sw">회원가입</div>
             <div class="divideTopLineSignup_sw"></div>
-            <form class="allInputsFrameSignup_sw" method="post" id="signupinfo">
+            <form class="allInputsFrameSignup_sw" method="post" id="signupinfo" action="{% url 'accounts:signup2' %}">
                 {% csrf_token %}
                 <div class="inputFrameSignup_sw">
                     <label class="inputTitleSignup_sw" for="nicknameInputSignup_sw">닉네임</label>
