@@ -1,6 +1,7 @@
-{% extends 'test-base.html' %} {% load static %}  {% block content %}
-<link rel="stylesheet" href="{% static 'css/post_list.css' %}"/>
+{% extends 'test-base.html' %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/post_list.css' %}" />
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+
 <body>
     <div class="post-list-container_sy">
 
@@ -8,7 +9,9 @@
             <div class="post-list-first-header_sy">
                 <div class="go-back-btn_sy">
                     <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.29277 5.79301L5.94977 0.136013L7.36377 1.55001L2.41377 6.50001L7.36377 11.45L5.94977 12.864L0.29277 7.20701C0.105299 7.01949 -1.66893e-05 6.76518 -1.66893e-05 6.50001C-1.66893e-05 6.23485 0.105299 5.98054 0.29277 5.79301Z" fill="black"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0.29277 5.79301L5.94977 0.136013L7.36377 1.55001L2.41377 6.50001L7.36377 11.45L5.94977 12.864L0.29277 7.20701C0.105299 7.01949 -1.66893e-05 6.76518 -1.66893e-05 6.50001C-1.66893e-05 6.23485 0.105299 5.98054 0.29277 5.79301Z"
+                            fill="black" />
                     </svg>
                 </div>
                 <h1 class="post-list-title_sy">거래 목록</h1>
@@ -18,14 +21,17 @@
             </div>
             <div class="post-list-navbar_sy">
                 <div class="dropdown_sy">
-                    <div id="selectedBuilding_sy" class="dropdown-button_sy" onclick="toggleDropdown()">동국대<!-- {{ post.university_id }}-->
+                    <div id="selectedBuilding_sy" class="dropdown-button_sy" onclick="toggleDropdown()">
+                        동국대<!-- {{ post.university_id }}-->
                         <svg width="13" height="8" viewBox="0 0 13 8" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.65703 7.38911L2.67029e-05 1.73212L1.41403 0.318115L6.36403 5.26812L11.314 0.318115L12.728 1.73212L7.07103 7.38911C6.8835 7.57659 6.62919 7.6819 6.36403 7.6819C6.09886 7.6819 5.84455 7.57659 5.65703 7.38911Z" fill="black"/>
-                        </svg> 
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M5.65703 7.38911L2.67029e-05 1.73212L1.41403 0.318115L6.36403 5.26812L11.314 0.318115L12.728 1.73212L7.07103 7.38911C6.8835 7.57659 6.62919 7.6819 6.36403 7.6819C6.09886 7.6819 5.84455 7.57659 5.65703 7.38911Z"
+                                fill="black" />
+                        </svg>
                     </div>
                     <div id="buildingDropdown_sy" class="dropdown-content_sy">
                         {% for building in building %}
-                            <div onclick="selectBuilding('{{ post.building }}')">{{ post.building }}</div>
+                        <div onclick="selectBuilding('{{ post.building }}')">{{ post.building }}</div>
                         {% endfor %}
                     </div>
                 </div>
@@ -50,17 +56,23 @@
                     <h2 class="post-title_sy">사물함에서 책 좀 가져다 주세요 지금 신공 3층입니다ㅠㅠ<!-- {{ post.title }}--></h2>
                     <div class="post-first-info_sy">
                         <div class="post-liked_sy">
-                            <svg width="10" height="13" viewBox="0 0 10 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.625 12.125V2.125C0.625 1.78125 0.7475 1.48708 0.9925 1.2425C1.2375 0.997917 1.53167 0.875417 1.875 0.875H8.125C8.46875 0.875 8.76313 0.9975 9.00813 1.2425C9.25313 1.4875 9.37542 1.78167 9.375 2.125V12.125L5 10.25L0.625 12.125Z" fill="#959393"/>
+                            <svg width="10" height="13" viewBox="0 0 10 13" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.625 12.125V2.125C0.625 1.78125 0.7475 1.48708 0.9925 1.2425C1.2375 0.997917 1.53167 0.875417 1.875 0.875H8.125C8.46875 0.875 8.76313 0.9975 9.00813 1.2425C9.25313 1.4875 9.37542 1.78167 9.375 2.125V12.125L5 10.25L0.625 12.125Z"
+                                    fill="#959393" />
                             </svg>
-                            <p class="post-liked-count_sy">20<!-- {{ post.saved_count }}--></p>   
+                            <p class="post-liked-count_sy">20<!-- {{ post.saved_count }}--></p>
                         </div>
                         <div class="post-second-info-sy">
                             <div class="post-time_sy">
-                                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.5 0C9.18678 0 7.88642 0.258658 6.67317 0.761205C5.45991 1.26375 4.35752 2.00035 3.42893 2.92893C1.55357 4.8043 0.5 7.34784 0.5 10C0.5 12.6522 1.55357 15.1957 3.42893 17.0711C4.35752 17.9997 5.45991 18.7362 6.67317 19.2388C7.88642 19.7413 9.18678 20 10.5 20C13.1522 20 15.6957 18.9464 17.5711 17.0711C19.4464 15.1957 20.5 12.6522 20.5 10C20.5 8.68678 20.2413 7.38642 19.7388 6.17317C19.2362 4.95991 18.4997 3.85752 17.5711 2.92893C16.6425 2.00035 15.5401 1.26375 14.3268 0.761205C13.1136 0.258658 11.8132 0 10.5 0ZM14.7 14.2L9.5 11V5H11V10.2L15.5 12.9L14.7 14.2Z" fill="#2A2A2A"/>
+                                <svg width="21" height="20" viewBox="0 0 21 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10.5 0C9.18678 0 7.88642 0.258658 6.67317 0.761205C5.45991 1.26375 4.35752 2.00035 3.42893 2.92893C1.55357 4.8043 0.5 7.34784 0.5 10C0.5 12.6522 1.55357 15.1957 3.42893 17.0711C4.35752 17.9997 5.45991 18.7362 6.67317 19.2388C7.88642 19.7413 9.18678 20 10.5 20C13.1522 20 15.6957 18.9464 17.5711 17.0711C19.4464 15.1957 20.5 12.6522 20.5 10C20.5 8.68678 20.2413 7.38642 19.7388 6.17317C19.2362 4.95991 18.4997 3.85752 17.5711 2.92893C16.6425 2.00035 15.5401 1.26375 14.3268 0.761205C13.1136 0.258658 11.8132 0 10.5 0ZM14.7 14.2L9.5 11V5H11V10.2L15.5 12.9L14.7 14.2Z"
+                                        fill="#2A2A2A" />
                                 </svg>
-                                <p class="post-time-text_sy">+60분 <!-- {{ post.accounts }}--></p>                               
+                                <p class="post-time-text_sy">+60분 <!-- {{ post.accounts }}--></p>
                             </div>
                             <div class="post-location_sy">정보문화관<!-- {{ post.building }} --></div>
                             <div class="post-deadline_sy">15:40<!-- {{ post.deadline }} -->까지</div>
@@ -77,17 +89,23 @@
                     <h2 class="post-title_sy">사물함에서 책 좀 가져다 주세요 지금 신공 3층입니다ㅠㅠ<!-- {{ post.title }}--></h2>
                     <div class="post-first-info_sy">
                         <div class="post-liked_sy">
-                            <svg width="10" height="13" viewBox="0 0 10 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.625 12.125V2.125C0.625 1.78125 0.7475 1.48708 0.9925 1.2425C1.2375 0.997917 1.53167 0.875417 1.875 0.875H8.125C8.46875 0.875 8.76313 0.9975 9.00813 1.2425C9.25313 1.4875 9.37542 1.78167 9.375 2.125V12.125L5 10.25L0.625 12.125Z" fill="#959393"/>
+                            <svg width="10" height="13" viewBox="0 0 10 13" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.625 12.125V2.125C0.625 1.78125 0.7475 1.48708 0.9925 1.2425C1.2375 0.997917 1.53167 0.875417 1.875 0.875H8.125C8.46875 0.875 8.76313 0.9975 9.00813 1.2425C9.25313 1.4875 9.37542 1.78167 9.375 2.125V12.125L5 10.25L0.625 12.125Z"
+                                    fill="#959393" />
                             </svg>
-                            <p class="post-liked-count_sy">20<!-- {{ post.saved_count }}--></p>   
+                            <p class="post-liked-count_sy">20<!-- {{ post.saved_count }}--></p>
                         </div>
                         <div class="post-second-info-sy">
                             <div class="post-time_sy">
-                                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.5 0C9.18678 0 7.88642 0.258658 6.67317 0.761205C5.45991 1.26375 4.35752 2.00035 3.42893 2.92893C1.55357 4.8043 0.5 7.34784 0.5 10C0.5 12.6522 1.55357 15.1957 3.42893 17.0711C4.35752 17.9997 5.45991 18.7362 6.67317 19.2388C7.88642 19.7413 9.18678 20 10.5 20C13.1522 20 15.6957 18.9464 17.5711 17.0711C19.4464 15.1957 20.5 12.6522 20.5 10C20.5 8.68678 20.2413 7.38642 19.7388 6.17317C19.2362 4.95991 18.4997 3.85752 17.5711 2.92893C16.6425 2.00035 15.5401 1.26375 14.3268 0.761205C13.1136 0.258658 11.8132 0 10.5 0ZM14.7 14.2L9.5 11V5H11V10.2L15.5 12.9L14.7 14.2Z" fill="#2A2A2A"/>
+                                <svg width="21" height="20" viewBox="0 0 21 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10.5 0C9.18678 0 7.88642 0.258658 6.67317 0.761205C5.45991 1.26375 4.35752 2.00035 3.42893 2.92893C1.55357 4.8043 0.5 7.34784 0.5 10C0.5 12.6522 1.55357 15.1957 3.42893 17.0711C4.35752 17.9997 5.45991 18.7362 6.67317 19.2388C7.88642 19.7413 9.18678 20 10.5 20C13.1522 20 15.6957 18.9464 17.5711 17.0711C19.4464 15.1957 20.5 12.6522 20.5 10C20.5 8.68678 20.2413 7.38642 19.7388 6.17317C19.2362 4.95991 18.4997 3.85752 17.5711 2.92893C16.6425 2.00035 15.5401 1.26375 14.3268 0.761205C13.1136 0.258658 11.8132 0 10.5 0ZM14.7 14.2L9.5 11V5H11V10.2L15.5 12.9L14.7 14.2Z"
+                                        fill="#2A2A2A" />
                                 </svg>
-                                <p class="post-time-text_sy">+60분 <!-- {{ post.accounts }}--></p>                               
+                                <p class="post-time-text_sy">+60분 <!-- {{ post.accounts }}--></p>
                             </div>
                             <div class="post-location_sy">정보문화관<!-- {{ post.building }} --></div>
                             <div class="post-deadline_sy">15:40<!-- {{ post.deadline }} -->까지</div>
@@ -96,10 +114,9 @@
                 </div>
             </div>
 
-            
         </div>
 
-        
+
 
     </div>
 </body>
