@@ -1,18 +1,21 @@
 /* login.css */
-/*login.css*/
+.page_sw{
+    display: flex;
+width: 390px;
+padding: 32px 16px 360px 16px;
+flex-direction: column;
+align-items: center;
+}
 .pageFrameLogin_sw{
 
     width: 343px;
     height: 452px;
-    padding-top: 94px;
     gap: 24px;
     display: flex;
     margin:0 auto;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
-    /*로그인~구분선, 
-    Tickit~로그인*/
   
 }
 
@@ -43,7 +46,7 @@
    
     width:343px;
     height: 341px;
-
+    gap:32px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
