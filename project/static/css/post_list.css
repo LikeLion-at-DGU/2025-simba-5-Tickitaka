@@ -1,103 +1,270 @@
 body {
-    margin: 0;
-    padding: 0;
+    font-family: 'Pretendard', sans-serif;
 }
 
 .post-list-container_sy {
-    padding: 20px;
-    max-width: 1024px;
-    margin: 0 auto;
+    padding-top: 36px;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
-.post-location_sy {
-    margin-bottom: 10px;
+.post-list-header_sy {
+    margin-bottom: 16px;
+    position: fixed;
+
 }
 
-.post-location-name_sy {
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.post-category_sy {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    font-size: 14px;
-}
-
-.checked-category_sy {
+.post-list-first-header_sy {
     display: flex;
     align-items: center;
+    gap: 128px;
+    margin-bottom: 24px;
 }
 
-.selected-category_sy {
+.post-list-title_sy {
+    color: #2A2A2A;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.go-back-btn_sy svg {
+    cursor: pointer;
+    width: 7.364px;
+    height: 12.728px;
+    flex-shrink: 0;
+    aspect-ratio: 7.36/12.73;
+}
+
+.time-boost-btn_sy {
     display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+}
+
+.time-boost-btn_sy button {
+    display: flex;
+    width: 51px;
+    height: 24px;
+    padding: 10px;
+    justify-content: center;
     align-items: center;
     gap: 10px;
-    color: gray;
+    color: #FFF;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border-radius: 30px;
+    background: #025397;
 }
 
-.selected-category_sy p:first-child {
-    font-weight: bold;
-    color: black;
+.post-list-navbar_sy {
+    display: flex;
+    align-items: center;
+    gap: 124px;
+    align-self: stretch;
 }
 
-.line_sy {
+.dropdown_sy {
+    position: relative;
+}
+
+.dropdown-button_sy {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.dropdown-button_sy svg {
+    width: 7.364px;
+    height: 12.728px;
+    fill: #000;
+}
+
+.dropdown-content_sy {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    top: 30px;
+    z-index: 10;
+    width: 120px;
+}
+
+.dropdown-content_sy.show {
+    display: block;
+}
+
+.dropdown-content_sy div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-content_sy div:hover {
+    background-color: #f0f0f0;
+}
+
+.category-line_sy {
     width: 1px;
-    height: 20px;
-    background-color: #dddddd88;
+    height: 11px;
+    background-color: black;
+}
+
+.list-category_sy {
+    display: flex;
+    align-items: center;
+    gap:4px;
+}
+
+.list-category_sy p {
+    color: var(--S-N-3, #999);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.header-line {
+    width: 358px;
+    height: 0.5px;
+    background: #666;
+    margin: 24px 0;
 }
 
 .post-list_sy {
-    display: grid;
-    grid-template-columns: repeat(2, 2fr) !important;
-    gap: 20px;
-    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 159px;
 }
 
-.post-item_sy {
-    border: 1px solid #ddd;
+.post-container_sy {
+    display: flex;
+    padding: 23px 16px;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 6px;
+    background: #FAFAFA;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+    align-items: center;
+    gap: 18px;
+}
+
+.post-image_sy {
+    display: flex;
+    align-items: stretch;
+    aspect-ratio: 1 / 1;
     border-radius: 8px;
+    background: #025397;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .post-image_sy img {
     width: 100%;
-    height: 140px;
+    height: 100%;
     object-fit: cover;
-    background-color: #aaa;
+    display: block;
+    vertical-align: top;
+    line-height: 0;
+}
+
+.post-item_sy {
+    display: flex;
+    width: 208px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 23px;
+    flex-shrink: 0;
 }
 
 .post-title_sy {
+    color: #000000;
+    font-family: Pretendard;
     font-size: 16px;
-    margin: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    align-self: stretch;
+    align-items: flex-end;
 }
 
-.about-post_sy {
+.post-first-info_sy {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 10px 10px 10px;
-    font-size: 14px;
-    color: #555;
+    flex-direction: column;
+    align-items: flex-end;
+    align-self: stretch;
 }
 
-.post-time_sy {
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.post-status_sy {
-    background-color: #eee;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 12px;
+.post-liked_sy svg {
+    width: 15px;
+    height: 15px;
+    aspect-ratio:1/1;
 }
 
 .post-liked_sy {
+    color: #959393;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
     display: flex;
+    gap:3px;
     align-items: center;
-    gap: 4px;
+}
+
+.post-second-info-sy {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 12px;
+    align-self: stretch;
+}
+.post-time_sy {
+    display: flex;
+    flex-direction: row;
+    gap:3px;
+    align-items: center;
+}
+.post-time_sy svg {
+    width: 24px;
+    height: 24px;
+    aspect-ratio: 1/1;
+}
+
+.post-time-text_sy {
+    color: #2A2A2A;
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.post-location_sy{
+    color: #959393;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.post-deadline_sy {
+    color: #959393;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
