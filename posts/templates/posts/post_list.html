@@ -1,11 +1,6 @@
-<!-- templates/posts/post_list_simple.html -->
-<!DOCTYPE html>
-<html lang="ko">
-
-<head>
-    <meta charset="UTF-8">
-    <title>최신 게시글</title>
-</head>
+{% extends 'test-base.html' %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/post_list.css' %}" />
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
 
 <body>
     <div class="post-list-container_sy">
@@ -119,15 +114,15 @@
                 </div>
             </div>
 
-
         </div>
 
 
 
     </div>
-    {% empty %}
-    <p>게시글이 없습니다.</p>
-    {% endfor %}
 </body>
 
-</html>
+{% endblock %}
+{% block scripts %}
+<script src="{% static '/js/post_list.js' %}"></script>
+
+{% endblock %}
