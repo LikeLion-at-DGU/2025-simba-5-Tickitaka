@@ -10,6 +10,7 @@ body {
 
 .post-list-header_sy {
     margin-bottom: 16px;
+    position: fixed;
 
 }
 
@@ -41,6 +42,7 @@ body {
 .time-boost-btn_sy {
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 8px;
 }
 
 .time-boost-btn_sy button {
@@ -64,7 +66,7 @@ body {
 .post-list-navbar_sy {
     display: flex;
     align-items: center;
-    gap: 134px;
+    gap: 124px;
     align-self: stretch;
 }
 
@@ -77,6 +79,12 @@ body {
     border-radius: 8px;
     font-size: 14px;
     cursor: pointer;
+}
+
+.dropdown-button_sy svg {
+    width: 7.364px;
+    height: 12.728px;
+    fill: #000;
 }
 
 .dropdown-content_sy {
@@ -105,17 +113,18 @@ body {
 
 .category-line_sy {
     width: 1px;
-    height: 14px;
+    height: 11px;
     background-color: black;
 }
 
 .list-category_sy {
-    width: 155.272px;
     display: flex;
+    align-items: center;
+    gap:4px;
 }
 
 .list-category_sy p {
-    color: #025397;
+    color: var(--S-N-3, #999);
     text-align: center;
     font-family: Pretendard;
     font-size: 12px;
@@ -134,7 +143,8 @@ body {
 .post-list_sy {
     display: flex;
     flex-direction: column;
-    gap:24px;
+    gap: 16px;
+    padding-top: 159px;
 }
 
 .post-container_sy {
@@ -145,7 +155,7 @@ body {
     align-self: stretch;
     border-radius: 6px;
     background: #FAFAFA;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
     align-items: center;
     gap: 18px;
 }
@@ -155,7 +165,7 @@ body {
     align-items: stretch;
     aspect-ratio: 1 / 1;
     border-radius: 8px;
-    background: #5E5E5E;
+    background: #025397;
     overflow: hidden;
 }
 
@@ -164,11 +174,9 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
-    /* ✅ inline 문제 제거 */
     vertical-align: top;
-    /* ✅ 아래쪽 틈 제거 */
     line-height: 0;
-    /* ✅ 폰트 기준 정렬 여백 제거 */ }
+}
 
 .post-item_sy {
     display: flex;
