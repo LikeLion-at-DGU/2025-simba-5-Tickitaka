@@ -2,45 +2,51 @@
 
 <link rel="stylesheet" href="{% static 'css/signup.css' %}"/>
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
-
-<div class="contentFrameSignup_sw">
-    <div class="exceptButtonFrame_sw">
-        <div class="titleSignup_sw">회원가입</div>
-        <div class="divideTopLineSignup_sw"></div>
-        <form class="allInputsFrameSignup_sw" method="post" id="signupinfo">
-            {% csrf_token %}
-            <div class="inputFrameSignup_sw">
-                <label class="inputTitleSignup_sw" for="nicknameInputSignup_sw">닉네임</label>
-                    <div class="inputButtonWrapperSignup_sw">
-                        <input class="inputBtnBoxSignup_sw" id="idInputSignup_sw" type= "text" name="nickname" placeholder="닉네임을 입력해주세요" >
-                        <button class="checkButtonSignup_sw">중복확인</button>
-                    </div>
-                    <small class="inputDescriptionSignup_sw">닉네임은 한글, 숫자, 영문으로 4~8자 이내로 입력해주세요</small>
-            </div>
-            <div class="inputFrameSignup_sw">
-                <label class="inputTitleSignup_sw" for="schoolInputSignup_sw">학교명</label>
-                <input class="inputBoxSignup_sw" id="schoolInputSignup_sw" type= "text" name="university" placeholder="학교 이름을 입력해주세요" >
+<div class="displaySize_sw">
+    <div class="contentFrameSignup_sw">
+        <div class="exceptButtonFrame_sw">
+            <div class="titleSignup_sw">회원가입</div>
+            <div class="divideTopLineSignup_sw"></div>
+            <form class="allInputsFrameSignup_sw" method="post" id="signupinfo">
+                {% csrf_token %}
+                <div class="inputFrameSignup_sw">
+                    <label class="inputTitleSignup_sw" for="nicknameInputSignup_sw">닉네임</label>
+                        <div class="inputButtonWrapperSignup_sw">
+                            <input class="inputBtnBoxSignup_sw" id="nicknameInputSignup_sw" type= "text" name="nickname" placeholder="닉네임을 입력해주세요" >
+                            <button class="checkButtonSignup_sw" id="checkButtonSignup1_sw" type="button" disabled>중복확인</button>
+                        </div>
+                        <small class="inputDescriptionSignup_sw">닉네임은 한글, 숫자, 영문으로 4~8자 이내로 입력해주세요</small>
+                </div>
+                <div class="inputFrameSignup_sw">
+                    <label class="inputTitleSignup_sw" for="schoolInputSignup_sw">학교명</label>
+                    <input class="inputBoxSignup_sw" id="schoolInputSignup_sw" type= "text" name="university" placeholder="학교 이름을 입력해주세요" >
+                </div>
                 <small class="inputDescriptionSignup_sw">학교 전체 이름을 입력해주세요</small>
-            </div>
-            <div class="inputFrameSignup_sw">
-                <label class="inputTitleSignup_sw" for="emailInputSignup_sw">이메일</label>
-                <input class="inputBoxSignup_sw" id="emailCheckInputSignup_sw" type= "email" name="address" placeholder="ex) likelion@dgu.ac.kr" >
-                <small class="inputDescriptionSignup_sw">학교메일을 입력해주세요</small>
-            </div>
-            <div class="inputFrameSignup_sw">
-                    <div class="inputButtonWrapperSignup_sw">
-                        <input class="inputBtnBoxSignup_sw" id="checkInputSignup_sw" type= "text" name="user_check_signup_sw" placeholder="인증번호를 입력하세요" >
-                        <button class="checkButtonSignup_sw">인증하기</button>
-                    </div>
-            </div>
-        </form>
-    </div>
-    <button class="nextButtonSignup_sw" type="submit" form="signupinfo">다음</button>
-</div>
 
+                <div class="inputFrameSignup_sw">
+                    <label class="inputTitleSignup_sw" for="emailInputSignup_sw">이메일</label>
+                        <div class="inputButtonWrapperSignup_sw">
+                            <input class="inputBoxSignup_sw" id="emailCheckInputSignup_sw" type= "email" name="address" placeholder="ex) likelion@dgu.ac.kr" >
+                            <button class="checkButtonSignup_sw" id="checkButtonSignup3_sw" type="button">인증하기</button>
+                        </div>
+                        <small class="inputDescriptionSignup_sw">학교메일을 입력해주세요</small>
+                </div>
+                <div class="inputFrameSignup_sw">
+                        <div class="inputButtonWrapperSignup_sw">
+                            <input class="inputBtnBoxSignup_sw" id="checkInputSignup_sw" type= "text" name="user_check_signup_sw" placeholder="인증번호를 입력하세요" >
+                            <button class="checkButtonSignup_sw" id="checkButtonSignup2_sw" type="button">확인</button>
+                        </div>
+                        <small class="inputDescriptionSignup_sw" id="codeErrorMsg" style="display: none;"></small>
+
+                </div>
+            </form>
+        </div>
+        <button class="nextButtonSignup_sw" id="nextButtonSignup_sw" type="submit" form="signupinfo">완료</button>
+    </div>
+</div>
 {% endblock %}
 {% block scripts %}
 <!-- js 파일 -->
-<script src="{% static 'js/signup.js' %}"></script>
+<script src="{% static 'js/signup2.js' %}"></script>
 
 {% endblock %}
