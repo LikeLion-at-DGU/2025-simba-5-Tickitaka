@@ -1,18 +1,21 @@
 /* login.css */
-.page_sw{
+.displaySize_sw{
     display: flex;
 width: 390px;
-padding: 32px 16px 360px 16px;
+height: 844px;
+margin: 0 auto;
 flex-direction: column;
 align-items: center;
 }
+
 .pageFrameLogin_sw{
 
     width: 343px;
     height: 452px;
     gap: 24px;
     display: flex;
-    margin:0 auto;
+     margin-top: 36px;
+    margin-bottom: 356px;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
