@@ -30,18 +30,19 @@
                         </svg>
                     </div>
                     <div id="buildingDropdown_sy" class="dropdown-content_sy">
-                        {% for building in building %}
-                        <div onclick="selectBuilding('{{ post.building }}')">{{ post.building }}</div>
+                        {% for b in buildings %}
+                            <div onclick="selectBuilding('{{ b.id }}')">{{ b.name }}</div>
                         {% endfor %}
                     </div>
                 </div>
                 <div class="list-category_sy">
-                    <p class="latest-category_sy">최신순</p>
+                    <a href="?sort=latest" class="latest-category_sy {% if selected_sort == 'latest' %}active{% endif %}">최신순</a>
                     <div class="category-line_sy"></div>
-                    <p class="deadline-category_sy">마감임박순</p>
+                    <a href="?sort=deadline" class="deadline-category_sy {% if selected_sort == 'deadline' %}active{% endif %}">마감임박순</a>
                     <div class="category-line_sy"></div>
-                    <p class="transaction-category_sy">거래시간순</p>
+                    <a href="?sort=amounts" class="transaction-category_sy {% if selected_sort == 'amounts' %}active{% endif %}">거래시간순</a>
                 </div>
+                
             </div>
             <div class="header-line"></div>
         </div>

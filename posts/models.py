@@ -5,7 +5,6 @@ from main.models import University, Building
 class Post(models.Model):
      title = models.CharField(max_length=100)
      content = models.TextField()
-     image = models.CharField(max_length=255, blank=True, null=True)
      building = models.ForeignKey(Building, on_delete=models.CASCADE)
      amounts = models.IntegerField()
      deadline = models.DateTimeField()
@@ -21,6 +20,11 @@ class Post(models.Model):
      university = models.ForeignKey(University, on_delete=models.CASCADE)
      timestamp = models.DateTimeField(auto_now_add=True)
      burning = models.IntegerField(choices=[(0, 'default'), (1, 'burning')], default=0)
+     private_info = models.TextField(blank=True, null=True)
+
+class PostImage(models.Model):
+     post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='images', null=True, blank=True)
+     image = models.ImageField(upload_to='post_imgs/')
 
 class Saved(models.Model):
      user = models.ForeignKey(Profile, on_delete=models.CASCADE)
