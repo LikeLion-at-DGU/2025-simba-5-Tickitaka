@@ -3,7 +3,7 @@ from .models import Post, Building
 from django.utils.timezone import now
 from django.contrib.auth.decorators import login_required
 
-@login_required
+# @login_required
 def post_list(request):
      user_profile = request.user.profile
      buildings = Building.objects.filter(university=user_profile.university)
@@ -44,7 +44,7 @@ def post_list(request):
           'burning_flag': burning_flag,
      })
 
-@login_required
+# @login_required
 def post_detail(request):
      post_id = request.GET.get('id')
      post = get_object_or_404(Post, id=post_id)
