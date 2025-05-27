@@ -13,7 +13,7 @@
 .post-list-first-header_sy {
     display: flex;
     align-items: center;
-    gap: 110px;
+    gap: 130px;
     margin-bottom: 24px;
 }
 
@@ -49,14 +49,20 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    color: #FFF;
+    color: #000000;
     font-family: Pretendard;
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
     border-radius: 30px;
-    background: #025397;
+    background: #ffffff;
+    border: 0.5px solid var(--N-3, #8A8A8A);
+}
+
+.time-boost-btn_sy button.selected_sy {
+    background-color: #025397;
+    color: white;
 }
 
 .post-list-navbar_sy {
