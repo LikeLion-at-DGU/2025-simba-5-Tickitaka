@@ -62,8 +62,8 @@
 .post-list-navbar_sy {
     display: flex;
     align-items: center;
-    gap: 124px;
     align-self: stretch;
+    justify-content: space-between;
 }
 
 .dropdown_sy {
@@ -121,6 +121,10 @@
     display: flex;
     align-items: center;
     gap:4px;
+}
+
+.list-category_sy a.active {
+    color: #025397;
 }
 
 .list-category_sy p {
