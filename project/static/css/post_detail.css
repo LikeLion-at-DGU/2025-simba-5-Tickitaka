@@ -161,7 +161,7 @@
     aspect-ratio:1/1;
 }
 
-.status-btn_sy {
+.status-button_sy {
     display: flex;
     padding: 5px;
     justify-content: center;
@@ -175,6 +175,21 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+}
+
+.status-blue_sy {
+    background: #025397;
+    color: #FFF;
+}
+
+.status-red_sy {
+    background: #C75352;
+    color: #FFF;
+}
+
+.status-green_sy {
+    background: #0E851A;
+    color: #FFF;
 }
 
 .post-detail-location_sy {
@@ -261,3 +276,45 @@
     font-weight: 500;
     line-height: normal;
 }
+
+.call-btn_sy.disabled {
+    background-color: #666;
+    cursor: not-allowed; 
+}
+
+
+/*.manage-btn-wrapper_sy {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.manage-btn_sy {
+    background-color: #29477c;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.manage-btn_sy:disabled {
+    background-color: #c4c4c4;
+    cursor: not-allowed;
+}
+
+.call-btn_sy {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.call-btn_sy.disabled {
+    background-color: #c4c4c4;
+    cursor: not-allowed;
+} */
