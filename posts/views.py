@@ -50,6 +50,7 @@ def post_detail(request, id):
      return render(request, 'posts/post_detail.html', {
           'post': post
      })
+
 #@login_required
 def post_create(request):
     if request.method == 'POST':
