@@ -1,3 +1,4 @@
+// signup.js
 document.addEventListener("DOMContentLoaded", () => {
   // 요소 가져오기
   const nextBtn = document.getElementById("nextButtonSignup_sw");
@@ -16,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // 버튼 초기 비활성화(css에서 색이랑 클릭도 바꿈)
   nextBtn.disabled = true;
   checkButton.disabled = true;
+  //아이디 중복확인
+  let idAvailable = false;
 
   // 유효성 검사 함수
   function validateForm() {
@@ -38,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const isAllFilled = name && phone && userId && pw && pwCheck;
 
     // 버튼 활성화 조건
-    if (isAllFilled && isPhoneValid && isIdValid && isPwValid && isPwMatch) {
+    if (isAllFilled && isPhoneValid && isIdValid && isPwValid && isPwMatch && idAvailable) {
       nextBtn.disabled = false;
     } else {
       nextBtn.disabled = true;
@@ -63,6 +66,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // 아이디 유효성 검사
   idInput.addEventListener("input", function () {
     const value = idInput.value;
+    idAvailable = false;
+    //아이디 입력 바뀌면 다시 초기화 
+    checkButton.disabled = false; 
+    idInput.classList.remove("inputSuccess_sw");
+    idDescription.classList.remove("textSuccess_sw");
     if (value === "") {
       idInput.classList.remove("inputError_sw");
       idDescription.classList.remove("textError_sw");
@@ -85,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //아이디 겹치면 다시 입력하라고 하기
 checkButton.addEventListener("click", function () {
   const username = idInput.value.trim();
-
+  //길이가 잘못되면
   if (username.length < 4 || username.length > 16) {
     idInput.classList.remove("inputSuccess_sw");
     idDescription.classList.remove("textSuccess_sw");
@@ -108,10 +116,13 @@ checkButton.addEventListener("click", function () {
         idInput.classList.add("inputError_sw");
         idDescription.classList.add("textError_sw");
         idDescription.innerText = "이미 사용 중인 아이디입니다.";
+        idAvailable = false; 
       } else {
-        idInput.classList.remove("inputError_sw");
-        idDescription.classList.remove("textError_sw");
+        idInput.classList.add("inputSuccess_sw");      // 초록 테두리
+        idDescription.classList.add("textSuccess_sw"); // 초록 글씨
         idDescription.innerText = "사용 가능한 아이디입니다!";
+        idAvailable = true;
+        checkButton.disabled = true; //버튼 비활성화
       }
     })
     .catch(() => {

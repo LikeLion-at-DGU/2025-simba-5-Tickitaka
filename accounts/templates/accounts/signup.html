@@ -1,3 +1,4 @@
+<!-- signup.html -->
 {% extends 'test-base.html' %} {% load static %}  {% block content %}
 
 <link rel="stylesheet" href="{% static 'css/signup.css' %}"/>
@@ -8,11 +9,11 @@
         <div class="exceptButtonFrame_sw">
             <div class="titleSignup_sw">회원가입</div>
             <div class="divideTopLineSignup_sw"></div>
-            <form class="allInputsFrameSignup_sw" method="post" id="signupinfo" action="{% url 'accounts:signup2' %}">
+            <form class="allInputsFrameSignup_sw" method="post" id="signupinfo" action="{% url 'accounts:signup' %}">
                 {% csrf_token %}
                 <div class="inputFrameSignup_sw">
                     <label class="inputTitleSignup_sw" for="nameInputSignup_sw">이름</label>
-                    <input class="inputBoxSignup_sw" id="nameInputSignup_sw" type= "text" placeholder="이름을 입력해주세요" >
+                    <input class="inputBoxSignup_sw" id="nameInputSignup_sw" type= "text" name="name" placeholder="이름을 입력해주세요" >
                 </div>
                 <div class="inputFrameSignup_sw">
                     <label class="inputTitleSignup_sw" for="phoneNumberInputSignup_sw">전화번호</label>
@@ -34,12 +35,12 @@
                 </div>
                 <div class="inputFrameSignup_sw">
                     <label class="inputTitleSignup_sw" for="pwCheckInputSignup_sw">비밀번호 재확인</label>
-                    <input class="inputBoxSignup_sw" id="pwCheckInputSignup_sw" type= "password" name="password" placeholder="비밀번호를 한번 더 입력해주세요" >
+                    <input class="inputBoxSignup_sw" id="pwCheckInputSignup_sw" type= "password" placeholder="비밀번호를 한번 더 입력해주세요" >
                     <small class="inputDescriptionSignup_sw" id="pwCheckError_sw" style="display: none;"></small>
                 </div>
             </form>
         </div>
-        <button class="nextButtonSignup_sw" type="button" id="nextButtonSignup_sw">다음</button>
+        <button class="nextButtonSignup_sw" type="submit" form="signupinfo"id="nextButtonSignup_sw">다음</button>
     </div>
 </div>
 {% endblock %}

@@ -7,9 +7,9 @@ from django.contrib.auth.models import User
 
 def signup(request):
     if request.method == 'POST':
-        name = request.POST.get('username')
+        name = request.POST.get('name')
         phone = request.POST.get('phone_number')
-        username = request.POST.get('name')  # 실제 로그인용 아이디
+        username = request.POST.get('username')  # username name 수정함
         password = request.POST.get('password')
 
         request.session['signup_info'] = {
