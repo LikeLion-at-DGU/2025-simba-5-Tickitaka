@@ -1,7 +1,12 @@
 //  post_create.js
-
 document.addEventListener("DOMContentLoaded", function () {
-  const input = document.getElementById("calendarInput");
+  document.getElementById("f2_inputCreate_sw").addEventListener("input", checkSubmitButton);
+  document.getElementById("f3_inputCreate_sw").addEventListener("input", checkSubmitButton);
+  document.getElementById("f5_dropdownPlaceCreate_sw").addEventListener("change", checkSubmitButton);
+  document.getElementById("f5_calenderCreate_sw").addEventListener("change", checkSubmitButton);
+  document.getElementById("f6_requireTimeCreate_sw").addEventListener("blur", checkSubmitButton);
+
+  const input = document.getElementById("f5_calenderCreate_sw");
   input.value = "";
   flatpickr(input, {
     enableTime: true,
@@ -12,6 +17,10 @@ document.addEventListener("DOMContentLoaded", function () {
     allowInput: false,
     clickOpens: true
   });
+
+  checkSubmitButton(); // flatpickr 바깥에 따로 호출
+});
+
 
   //  1. 사진 업로드 및 미리보기 기능
   const uploadInput = document.getElementById("photoUpload");
@@ -25,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const reader = new FileReader();
     reader.onload = function (e) {
-      const wrapper = document.createElement("div");
+      const wrapper = document.createElement("div");//이미지 삭제 버튼 감싸기
       wrapper.className = "f1_previewImageWrapperCreate_sw";
       wrapper.innerHTML = `
         <img src="${e.target.result}" class="f1_previewImageCreate_sw" />
@@ -71,31 +80,87 @@ document.addEventListener("DOMContentLoaded", function () {
     checkSubmitButton();
   });
 
-  //  5. 1.5배 버튼 기능
-  const boostBtn = document.querySelector(".f7_buttonCreate_sw");
+  //  5. 1.5배 버튼 기능  
+  
   let boostApplied = false;
+  let originalTime = null;
+  document.addEventListener("DOMContentLoaded", function () {
+  const timeInput = document.getElementById("f6_requireTimeCreate_sw");
+  const boostBtn = document.querySelector(".f7_buttonCreate_sw");
+
+
   boostBtn.addEventListener("click", () => {
-    const val = parseInt(timeInput.value);
-    if (!val || val % 10 !== 0) return alert("먼저 올바른 소요 시간을 입력하세요.");
-    if (!boostApplied) {
-      timeInput.value = Math.round(val * 1.5);
-      boostApplied = true;
-      boostBtn.style.backgroundColor = "#025397";
-      boostBtn.style.color = "#fff";
+    const currentVal = parseInt(timeInput.value);
+
+    if (boostApplied) {
+      // boost 해제는 무조건 허용
+      timeInput.value = originalTime;
+      originalTime = null;
+      boostApplied = false;
+      boostBtn.style.backgroundColor = "";
+      boostBtn.style.color = "";
+      checkSubmitButton();
+      return;
     }
+
+    // boost 적용할 때만 유효성 검사
+    if (isNaN(currentVal) || currentVal % 10 !== 0) {
+      alert("먼저 올바른 소요 시간을 입력하세요. (10분 단위)");
+      return;
+    }
+
+    // boost 적용
+    originalTime = currentVal;
+    timeInput.value = Math.round(currentVal * 1.5);
+    boostApplied = true;
+    boostBtn.style.backgroundColor = "#025397";
+    boostBtn.style.color = "#fff";
+
     checkSubmitButton();
   });
+});
+
 
   //  6. 작성완료 버튼 활성화 조건
-  const submitBtn = document.querySelector(".buttonFrameCreate_sw");
-  function checkSubmitButton() {
-    if (imageCount > 0 && boostApplied) {
-      submitBtn.style.opacity = 1;
-      submitBtn.style.pointerEvents = "auto";
-    } else {
-      submitBtn.style.opacity = 0.5;
-      submitBtn.style.pointerEvents = "none";
-    }
+const submitBtn = document.querySelector(".buttonFrameCreate_sw");
+
+function checkSubmitButton() {
+  const titleInput = document.getElementById("f2_inputCreate_sw");
+  const descInput = document.getElementById("f3_inputCreate_sw");
+  const locationInput = document.getElementById("f5_dropdownPlaceCreate_sw");
+  const deadlineInput = document.getElementById("f5_calenderCreate_sw");
+  const reqtimeInput = document.getElementById("f6_requireTimeCreate_sw");
+
+  const timeValue = parseInt(reqtimeInput.value);
+const isValidTime = !isNaN(timeValue) && (boostApplied || timeValue % 10 === 0);
+
+  const hasTitle = titleInput.value.trim().length > 0;
+  const hasDesc = descInput.value.trim().length > 0;
+  const hasLocation = locationInput.value.trim().length > 0;
+  const hasDeadline = deadlineInput.value.trim().length > 0;
+
+  const allValid = hasTitle && hasDesc && hasLocation && hasDeadline && isValidTime;
+
+ if (allValid) {
+  submitBtn.style.background = "#025397";
+  submitBtn.style.color = "#fff";
+  submitBtn.style.pointerEvents = "auto";
+  submitBtn.style.opacity = 1;
+} else {
+  submitBtn.style.background = "#666";
+  submitBtn.style.color = "#fff";
+  submitBtn.style.pointerEvents = "none";
+  submitBtn.style.opacity = 0.5;
+}
+
+}
+
+timeInput.addEventListener("input", checkSubmitButton);  //  실시간 감지
+timeInput.addEventListener("blur", () => {
+  const val = parseInt(timeInput.value);
+  if (val % 10 !== 0) {
+    alert("10분 단위로 입력해주세요.");
+    timeInput.value = "";
   }
   checkSubmitButton();
 });
