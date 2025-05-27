@@ -15,7 +15,7 @@ class Profile(models.Model):
     followings = models.TextField(blank=True, null=True)
     university = models.ForeignKey(University, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=20, blank=True, null=True)
-    image = models.CharField(max_length=255, blank=True, null=True)
+    image = models.ImageField(upload_to="prof_img/", blank=True, null=True)
 
     def __str__(self):
         return self.nickname if self.nickname else self.name
