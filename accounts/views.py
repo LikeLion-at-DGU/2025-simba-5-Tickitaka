@@ -7,9 +7,9 @@ from django.contrib.auth.models import User
 
 def signup(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
+        name = request.POST.get('name') # 사용자 실명
         phone = request.POST.get('phone_number')
-        username = request.POST.get('username')  # username name 수정함
+        username = request.POST.get('username')  # 아이디
         password = request.POST.get('password')
 
         request.session['signup_info'] = {
@@ -37,20 +37,28 @@ def signup2(request):
 
         university, created = University.objects.get_or_create(name=university_name)
 
-        user = Profile.objects.create_user(
+        #  1. User 생성
+        user = User.objects.create_user(
             username=info['username'],
             password=info['password'],
-            name=info['name'],
-            phone_number=info['phone'],
-            nickname=nickname,
-            email=email,
-            university=university
         )
+        user.first_name = info['name']
+        user.save()
 
-        login(request, user)
-        return redirect('main:mainpage')
+        #  2. 연결된 Profile 수정
+        profile = user.profile
+        profile.phone_number = info['phone']
+        profile.nickname = nickname
+        profile.email = email
+        profile.university = university
+        profile.save()
 
-    return render(request, 'accounts/signup2.html')
+        return redirect('accounts:login')
+
+    else:
+        # GET 요청일 때 학교 리스트 넘겨주기
+        universities = University.objects.all()
+        return render(request, 'accounts/signup2.html', {'universities': universities})
 
 def login_view(request):
     if request.method == 'POST':

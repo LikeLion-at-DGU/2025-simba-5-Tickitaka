@@ -48,7 +48,15 @@
                                 </svg>
                                 <p>{{ post.deadline }}까지</p>
                             </div>
-                            <button class="status-btn_sy">{{ post.status }}</button>
+                            <div class="status-button_sy">
+                                {% if post.status == "거래중" %}
+                                    <button class="status-blue_sy">거래전/button>
+                                {% elif post.status == "채팅중" %}
+                                    <button class="status-red_sy">채팅중</button>
+                                {% elif post.status == "거래완료" %}
+                                    <button class="status-green_sy">거래완료</button>
+                                {% endif %}
+                            </div>
                         </div>
                         
                         <div class="post-detail-location_sy">
@@ -77,7 +85,25 @@
                         </svg>  
                         <p class="post-liked-count_sy">{{ post.saved_count }}</p>   
                     </div>
-                    <button class="call-btn_sy">콜!</button>
+                    {% if user == post.master_id %}
+                        <div class="manage-btn-wrapper_sy">
+                            {# 작성자일 경우: 수정/삭제 버튼 #}
+                            {% if post.status == "거래중" %}
+                            <button class="edit-btn_sy">수정하기</button>
+                            <button class="delete-btn_sy">삭제하기</button>
+                            {% else %}
+                            <button class="edit-btn_sy" disabled>수정하기</button>
+                            <button class="edit-btn_sy" disabled>삭제하기</button>
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        {# 작성자가 아닌 일반 사용자 #}
+                        {% if post.status == "거래중" %}
+                        <button class="call-btn_sy">콜!</button>
+                        {% else %}
+                        <button class="call-btn_sy disabled" disabled>콜!</button>
+                        {% endif %}
+                    {% endif %}
                 </div>
             </div>   
         </div>       
