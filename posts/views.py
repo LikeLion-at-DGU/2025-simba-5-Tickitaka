@@ -3,7 +3,7 @@ from .models import Post, Building
 from django.utils.timezone import now
 from django.contrib.auth.decorators import login_required
 
-#@login_required
+@login_required
 def post_list(request):
      user_profile = request.user.profile
      buildings = Building.objects.filter(university=user_profile.university)
@@ -44,11 +44,22 @@ def post_list(request):
           'burning_flag': burning_flag,
      })
 
-#@login_required
-def post_detail(request):
-     post_id = request.GET.get('id')
-     post = get_object_or_404(Post, id=post_id)
-
+@login_required
+def post_detail(request, id):
+     post = get_object_or_404(Post, id=id)
      return render(request, 'posts/post_detail.html', {
           'post': post
      })
+
+@login_required
+def post_create(request):
+    if request.method == 'POST':
+        # 작성 처리
+        pass
+
+    user_profile = request.user.profile
+    buildings = Building.objects.filter(university=user_profile.university)
+
+    return render(request, 'posts/post_create.html', {
+        'buildings': buildings
+    })
