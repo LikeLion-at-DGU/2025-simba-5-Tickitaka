@@ -51,10 +51,15 @@ def post_detail(request, id):
           'post': post
      })
 
-#@login_required
+@login_required
 def post_create(request):
     if request.method == 'POST':
-        # 폼 처리 로직은 아직 없음. 일단 템플릿만 보여줘
+        # 작성 처리
         pass
 
-    return render(request, 'posts/post_create.html')
+    user_profile = request.user.profile
+    buildings = Building.objects.filter(university=user_profile.university)
+
+    return render(request, 'posts/post_create.html', {
+        'buildings': buildings
+    })

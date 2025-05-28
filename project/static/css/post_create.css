@@ -394,16 +394,24 @@ line-height: normal;
      cursor: pointer;
 }
 .buttonFrameCreate_sw{
+    all: unset;
+    width: 358px;
+    height: 39px;
     display: flex;
-    padding: 10px;
+    
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    align-self: stretch;
+    
     border-radius: 6px;
     background: #025397;
     color: white;
     cursor: pointer;
+    color: #FFF;
+font-family: "Pretendard Variable";
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
 }
 /* 미리보기 박스 */
 .f1_previewImageWrapperCreate_sw {
@@ -422,23 +430,8 @@ line-height: normal;
 }
 /* 삭제 버튼 */
 .f1_deletePreviewButtonCreate_sw {
-  position: absolute;
-  top: -9px;
-  right: -9px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background-color: #8A8A8A;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0;
-  z-index: 10; /* 가려질 걱정 없게 */
+width: 18px;
+height: 18px;
+flex-shrink: 0;
 }
 
-.f1_deletePreviewButtonCreate_sw svg {
-  width: 10px;
-  height: 10px;
-}

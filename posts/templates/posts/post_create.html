@@ -5,7 +5,11 @@
 
 <link rel="stylesheet" href="{% static 'css/post_create.css' %}"/>
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+
+<form method="post" action="{% url 'posts:post_create' %}"  enctype="multipart/form-data">
+
 <div class="allFrameCreate_sw">
+     {% csrf_token %}
     <div class="contentsFrameCreate_sw">
         <div class="f1_frameCreate_sw">
             <div class="f1_titleFrameCreate_sw">
@@ -21,8 +25,7 @@
             </div>
             <div class="f1_photosFrameCreate_sw">
                 <!-- 숨겨진 파일 업로드 input -->
-                <input type="file" id="photoUpload" accept="image/*" style="display: none;" />
-
+                <input type="file" id="photoUpload" name="images" accept="image/*" style="display: none;" />
                 <!-- 사용자에게 보이는 부분: 사진 아이콘 -->
                 <label for="photoUpload" class="f1_photoCreate_sw">
                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="23" viewBox="0 0 26 23" fill="none">
@@ -34,45 +37,49 @@
         </div>
         <div class="f2_frameCreate_sw">
             <label class="f234_titleCreate_sw">제목</label>
-            <textarea class="f2_inputCreate_sw"></textarea>
+            <textarea class="f2_inputCreate_sw" id="f2_inputCreate_sw" name="title"></textarea>
             <div class="f234_wordCountCreate_sw">0/30</div>
         </div>
         <div class="f3_frameCreate_sw">
             <label class="f234_titleCreate_sw">설명</label>
-            <textarea class="f3_inputCreate_sw"></textarea>
+            <textarea class="f3_inputCreate_sw" id="f3_inputCreate_sw" name="content"></textarea>
             <small class="f234_wordCountCreate_sw">0/500</small>
         </div>
         <div class="f4_frameCreate_sw">
             <label class="f234_titleCreate_sw">개인 정보</label>
-            <textarea class="f4_inputCreate_sw" placeholder="민감한 정보는 거래가 시작되면 전달됩니다"></textarea>
+            <textarea class="f4_inputCreate_sw" id="f4_inputCreate_sw" type="text" name="pritvate_info" placeholder="민감한 정보는 거래가 시작되면 전달됩니다"></textarea>
             <small class="f234_wordCountCreate_sw">0/100</small>
         </div>
         <div class="f5_frameCreate_sw">
             <div class="f5_wrapperCreate_sw"> 
                 <label class="f5_titleCreate_sw">거래 위치</label>
-                <select class="f5_dropdownPlaceCreate_sw">
+                <select class="f5_dropdownPlaceCreate_sw" id="f5_dropdownPlaceCreate_sw" name="building">
                     <option value="" disabled selected>전체</option>
+                    {% for building in buildings %}
+                    <option value="{{ building.id }}">{{ building.name }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="f5_wrapperCreate_sw"> 
                 <label class="f5_titleCreate_sw">거래글 마감 시간</label>
-                <input class="f5_calenderCreate_sw" type="text" id="calendarInput" placeholder="시간을 선택하세요" readonly>
+                <input class="f5_calenderCreate_sw" id="f5_calenderCreate_sw" name="deadline" type="text" placeholder="시간을 선택하세요" readonly>
             </div>
         </div>
         <div class="f6_frameCreate_sw">
             <label class="f234_titleCreate_sw">소요 시간</label>
             <div class="f6_wrapperCreate_sw"> 
-                <input class="f6_requireTimeCreate_sw" placeholder="10분 단위로 입력해주세요">
+                <input class="f6_requireTimeCreate_sw" id="f6_requireTimeCreate_sw" name="amounts" placeholder="10분 단위로 입력해주세요">
                 <div class="f6_minuteText_sw">분</div>
             </div>
         </div>
         <div class="f7_frameCreate_sw">
             <small class="f7_descriptionCreate_sw">더 빠른 거래를 원한다면?</small>
-            <button class="f7_buttonCreate_sw">1.5배</button>
+            <button class="f7_buttonCreate_sw" type="button" name="burning">1.5배</button>
         </div>
     </div>
-    <div class="buttonFrameCreate_sw">작성완료</div>
+    <button type="submit" class="buttonFrameCreate_sw">작성완료</button>
 </div>
+</form>
 
 
 {% endblock %}
