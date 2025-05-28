@@ -1,3 +1,11 @@
+.post-detail-container_sy {
+    width: 390px;
+    height: 844px;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
 .post-detail-header_sy {
     display: flex;
     justify-content: space-between;
@@ -120,7 +128,7 @@
 .post-time-text_sy {
     color: #000;
     font-family: Pretendard;
-    font-size: 24px;
+    font-size: 22px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -136,7 +144,7 @@
 .third-detail_sy {
     display: flex;
     align-items: center;
-    gap: 228px;
+    justify-content: space-between;
     align-self: stretch;
 }
 

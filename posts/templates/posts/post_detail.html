@@ -27,7 +27,7 @@
                     <div class="profile-image_sy">
                         <img src="{{ accounts.image.url }}" alt="profile image">
                     </div>
-                    <div class="user-name_sy">{{ post.master_id }}</div>
+                    <div class="user-name_sy">{{ post.master_id.nickname }}</div>
                 </div>
 
                 <div class="line_sy"></div>
@@ -36,7 +36,7 @@
 
                     <div class="first-detail_sy">
                         <P class="post-title_sy">{{ post.title }}</P>
-                        <p class="post-time-text_sy">{{ post.accounts }}분</p>
+                        <p class="post-time-text_sy">{{ post.amounts }}분</p>
                     </div>
 
                     <div class="second-detail_sy">
@@ -46,11 +46,11 @@
                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M8.99995 16.5C8.06245 16.5 7.18445 16.322 6.36595 15.966C5.54745 15.61 4.83495 15.1287 4.22845 14.5222C3.62195 13.9157 3.1407 13.2032 2.7847 12.3847C2.4287 11.5662 2.25045 10.688 2.24995 9.74995C2.24945 8.81195 2.4277 7.93395 2.7847 7.11595C3.1417 6.29795 3.6227 5.58545 4.2277 4.97845C4.8327 4.37145 5.5452 3.8902 6.3652 3.5347C7.1852 3.1792 8.06345 3.00095 8.99995 2.99995C9.93645 2.99895 10.8147 3.1772 11.6347 3.5347C12.4547 3.8922 13.1672 4.37345 13.7722 4.97845C14.3772 5.58345 14.8584 6.29595 15.216 7.11595C15.5735 7.93595 15.7514 8.81395 15.7499 9.74995C15.7484 10.686 15.5704 11.5642 15.216 12.3847C14.8615 13.2052 14.3802 13.9177 13.7722 14.5222C13.1642 15.1267 12.4517 15.608 11.6347 15.966C10.8177 16.324 9.93945 16.502 8.99995 16.5ZM11.0999 12.9L12.15 11.85L9.74995 9.44995V5.99995H8.24995V10.05L11.0999 12.9ZM4.19995 1.76245L5.24995 2.81245L2.06245 5.99995L1.01245 4.94995L4.19995 1.76245ZM13.7999 1.76245L16.9874 4.94995L15.9374 5.99995L12.75 2.81245L13.7999 1.76245Z" fill="black"/>
                                 </svg>
-                                <p>{{ post.deadline }}까지</p>
+                                <p>{{ post.deadline|date:"m/d H:i" }}까지</p>
                             </div>
                             <div class="status-button_sy">
-                                {% if post.status == "거래중" %}
-                                    <button class="status-blue_sy">거래전/button>
+                                {% if post.status == "waiting" %}
+                                    <button class="status-blue_sy">거래전</button>
                                 {% elif post.status == "채팅중" %}
                                     <button class="status-red_sy">채팅중</button>
                                 {% elif post.status == "거래완료" %}
@@ -85,7 +85,7 @@
                         </svg>  
                         <p class="post-liked-count_sy">{{ post.saved_count }}</p>   
                     </div>
-                    {% if user == post.master_id %}
+                    {% if user.id == post.master_id %}
                         <div class="manage-btn-wrapper_sy">
                             {# 작성자일 경우: 수정/삭제 버튼 #}
                             {% if post.status == "거래중" %}

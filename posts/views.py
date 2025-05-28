@@ -18,8 +18,14 @@ def post_list(request):
      )
 
      # 건물 필터
-     if building_id  and building_id != 'all': # 빌딩 아이디 all인 경우 모든 posts 넘김
-          posts = posts.filter(building__id = building_id)
+     selected_building_name = None
+     if building_id and building_id != 'all':
+          posts = posts.filter(building__id=building_id)
+          try:
+               selected_building = Building.objects.get(id=building_id)
+               selected_building_name = selected_building.name
+          except Building.DoesNotExist:
+               selected_building_name = None
 
      # 버닝 필터
      if burning_flag == '1':
@@ -42,6 +48,7 @@ def post_list(request):
           'selected_building_id': building_id,
           'selected_sort': sort_option,
           'burning_flag': burning_flag,
+          'selected_building_name': selected_building_name
      })
 
 @login_required
