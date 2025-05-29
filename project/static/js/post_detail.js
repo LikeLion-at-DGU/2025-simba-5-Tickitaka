@@ -9,10 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!liked) {
             likeCountText.textContent = originalCount + 1;
             likeIcon.style.stroke = "black";
+            likeIcon.style.fill = "black";
             liked = true;
         } else {
             likeCountText.textContent = originalCount;
-            likeIcon.style.stroke = "white";
+            likeIcon.style.stroke = "black";
+            likeIcon.style.fill = "none";
             liked = false;
         }
     });

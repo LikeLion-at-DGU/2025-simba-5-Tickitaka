@@ -20,12 +20,14 @@
 
         <div class="post-detail-content_sy">
             <div class="post-detail-image_sy">
-                <img src="{{ post.image.url }}" alt="post image">
+                <!--<img src="{{ post.image.url }}" alt="post image">-->
+                <img src="{% static 'images/test2.png' %}" alt="테스트 이미지">  
             </div>
             <div class="post-detail-item_sy">
                 <div class="user-info_sy">
                     <div class="profile-image_sy">
-                        <img src="{{ accounts.image.url }}" alt="profile image">
+                        <!--<img src="{{ accounts.image.url }}" alt="profile image">-->
+                        <img src="{% static 'images/test2.png' %}" alt="테스트 이미지">                        
                     </div>
                     <div class="user-name_sy">{{ post.master_id.nickname }}</div>
                 </div>
@@ -51,9 +53,9 @@
                             <div class="status-button_sy">
                                 {% if post.status == "waiting" %}
                                     <button class="status-blue_sy">거래전</button>
-                                {% elif post.status == "채팅중" %}
-                                    <button class="status-red_sy">채팅중</button>
-                                {% elif post.status == "거래완료" %}
+                                {% elif post.status == "chatting" or post.status == "in_progress" %}
+                                    <button class="status-red_sy">거래중</button>
+                                {% elif post.status == "done" %}
                                     <button class="status-green_sy">거래완료</button>
                                 {% endif %}
                             </div>
@@ -88,7 +90,7 @@
                     {% if user.id == post.master_id %}
                         <div class="manage-btn-wrapper_sy">
                             {# 작성자일 경우: 수정/삭제 버튼 #}
-                            {% if post.status == "거래중" %}
+                            {% if post.status == "waiting" %}
                             <button class="edit-btn_sy">수정하기</button>
                             <button class="delete-btn_sy">삭제하기</button>
                             {% else %}
@@ -98,7 +100,7 @@
                         </div>
                     {% else %}
                         {# 작성자가 아닌 일반 사용자 #}
-                        {% if post.status == "거래중" %}
+                        {% if post.status == "waiting" %}
                         <button class="call-btn_sy">콜!</button>
                         {% else %}
                         <button class="call-btn_sy disabled" disabled>콜!</button>
