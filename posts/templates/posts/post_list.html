@@ -31,18 +31,21 @@
                     </div>
                     <div id="buildingDropdown_sy" class="dropdown-content_sy">
                         {% for b in buildings %}
-                            <div onclick="selectBuilding('{{ b.id }}', '{{ b.name }}')">{{ b.name }}</div>
+                        <div onclick="selectBuilding('{{ b.id }}', '{{ b.name }}')">{{ b.name }}</div>
                         {% endfor %}
                     </div>
                 </div>
                 <div class="list-category_sy">
-                    <a href="?sort=latest" class="latest-category_sy {% if selected_sort == 'latest' %}active{% endif %}">최신순</a>
+                    <a href="?sort=latest"
+                        class="latest-category_sy {% if selected_sort == 'latest' %}active{% endif %}">최신순</a>
                     <div class="category-line_sy"></div>
-                    <a href="?sort=deadline" class="deadline-category_sy {% if selected_sort == 'deadline' %}active{% endif %}">마감임박순</a>
+                    <a href="?sort=deadline"
+                        class="deadline-category_sy {% if selected_sort == 'deadline' %}active{% endif %}">마감임박순</a>
                     <div class="category-line_sy"></div>
-                    <a href="?sort=amounts" class="transaction-category_sy {% if selected_sort == 'amounts' %}active{% endif %}">거래시간순</a>
+                    <a href="?sort=amounts"
+                        class="transaction-category_sy {% if selected_sort == 'amounts' %}active{% endif %}">거래시간순</a>
                 </div>
-                
+
             </div>
             <div class="header-line"></div>
         </div>
@@ -52,17 +55,17 @@
             {% for post in posts %}
             <div class="post-container_sy">
                 <div class="post-image_sy">
-                    <img src="{% static 'images/test2.png' %}" alt="테스트 이미지"> 
+                    <img src="{% static 'images/test2.png' %}" alt="테스트 이미지">
                     <!--<img src="{{ post.image.url }}" alt="post image">-->
                 </div>
                 <div class="post-item_sy">
                     <h2 class="post-title_sy">{{ post.title }}</h2>
                     <div class="post-first-info_sy">
-                            <div class="post-location_sy">{{ selected_building_name }}</div>
+                        <div class="post-location_sy">{{ post.building.name }}</div>
                         <div class="post-second-info-sy">
                             <div class="post-time_sy">
-                                <svg class="{% if post.burning == 1 %}boosted-icon_sy{% endif %}" width="21" height="20" viewBox="0 0 21 20" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
+                                <svg class="{% if post.burning == 1 %}boosted-icon_sy{% endif %}" width="21" height="20"
+                                    viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M10.5 0C9.18678 0 7.88642 0.258658 6.67317 0.761205C5.45991 1.26375 4.35752 2.00035 3.42893 2.92893C1.55357 4.8043 0.5 7.34784 0.5 10C0.5 12.6522 1.55357 15.1957 3.42893 17.0711C4.35752 17.9997 5.45991 18.7362 6.67317 19.2388C7.88642 19.7413 9.18678 20 10.5 20C13.1522 20 15.6957 18.9464 17.5711 17.0711C19.4464 15.1957 20.5 12.6522 20.5 10C20.5 8.68678 20.2413 7.38642 19.7388 6.17317C19.2362 4.95991 18.4997 3.85752 17.5711 2.92893C16.6425 2.00035 15.5401 1.26375 14.3268 0.761205C13.1136 0.258658 11.8132 0 10.5 0ZM14.7 14.2L9.5 11V5H11V10.2L15.5 12.9L14.7 14.2Z"
                                         fill="#2A2A2A" />
