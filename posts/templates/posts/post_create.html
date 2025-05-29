@@ -14,8 +14,8 @@
         <div class="f1_frameCreate_sw">
             <div class="f1_titleFrameCreate_sw">
                 <div class="f1_titleBoxCreate_sw">
-                    <button class="f1_closeButtonCreate_sw">
-                        <svg width="13px" height="13px" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <button class="f1_closeButtonCreate_sw" type="button">
+                        <svg  xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M1.59648 0.760661C1.42135 0.591514 1.18679 0.497919 0.943324 0.500035C0.699855 0.502151 0.466958 0.599808 0.294793 0.771972C0.122629 0.944137 0.0249717 1.17703 0.022856 1.4205C0.0207403 1.66397 0.114335 1.89853 0.283482 2.07366L5.19841 6.98859L0.283482 11.9035C0.194794 11.9892 0.124053 12.0916 0.0753877 12.2049C0.0267222 12.3182 0.00110646 12.4401 3.50598e-05 12.5634C-0.00103634 12.6867 0.0224581 12.8089 0.0691475 12.923C0.115837 13.0372 0.184786 13.1408 0.271972 13.228C0.359158 13.3152 0.462835 13.3842 0.576953 13.4309C0.691071 13.4775 0.813345 13.501 0.93664 13.5C1.05994 13.4989 1.18178 13.4733 1.29507 13.4246C1.40836 13.3759 1.51082 13.3052 1.59648 13.2165L6.51141 8.30159L11.4263 13.2165C11.6015 13.3857 11.836 13.4793 12.0795 13.4771C12.323 13.475 12.5559 13.3774 12.728 13.2052C12.9002 13.033 12.9978 12.8001 13 12.5567C13.0021 12.3132 12.9085 12.0786 12.7393 11.9035L7.82441 6.98859L12.7393 2.07366C12.9085 1.89853 13.0021 1.66397 13 1.4205C12.9978 1.17703 12.9002 0.944137 12.728 0.771972C12.5559 0.599808 12.323 0.502151 12.0795 0.500035C11.836 0.497919 11.6015 0.591514 11.4263 0.760661L6.51141 5.67559L1.59648 0.760661Z" fill="#2A2A2A"/>
                         </svg>
                     </button>
@@ -53,12 +53,18 @@
         <div class="f5_frameCreate_sw">
             <div class="f5_wrapperCreate_sw"> 
                 <label class="f5_titleCreate_sw">거래 위치</label>
-                <select class="f5_dropdownPlaceCreate_sw" id="f5_dropdownPlaceCreate_sw" name="building">
-                    <option value="" disabled selected>전체</option>
+                <div class="f5_textSvgWrapperCreate_sw">
+                    <select class="f5_dropdownPlaceCreate_sw" id="f5_dropdownPlaceCreate_sw" name="building">
+                    <option value="" disabled selected class="f5_dropdownPlaceTextCreate_sw">전체</option>
                     {% for building in buildings %}
                     <option value="{{ building.id }}">{{ building.name }}</option>
                     {% endfor %}
-                </select>
+                    </select>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="8" viewBox="0 0 13 8" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M5.929 7.38911L0.271999 1.73212L1.686 0.318115L6.636 5.26812L11.586 0.318115L13 1.73212L7.343 7.38911C7.15547 7.57659 6.90116 7.6819 6.636 7.6819C6.37084 7.6819 6.11653 7.57659 5.929 7.38911Z" fill="#2A2A2A"/>
+</svg>
+                </div>
+               
             </div>
             <div class="f5_wrapperCreate_sw"> 
                 <label class="f5_titleCreate_sw">거래글 마감 시간</label>
