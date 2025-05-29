@@ -67,22 +67,18 @@ def post_create(request):
      if request.method == 'POST':
           title = request.POST.get('title')
           content = request.POST.get('content')
-          private_info = request.POST.get('private_info')  # ← 오타 수정됨
-          building_name = request.POST.get('building')  # 이름 기준으로 넘어옴
+          private_info = request.POST.get('private_info') 
           deadline_str = request.POST.get('deadline')
           amounts = request.POST.get('amounts')
           burning = 1 if request.POST.get('burning') == '1' else 0
+          building_id = request.POST.get('building')
+          building = get_object_or_404(Building, id=building_id, university=user_profile.university)
 
-          # 🔹 building name → id 변환
-          building = get_object_or_404(Building, name=building_name, university=user_profile.university)
-
-          # 🔹 마감 시간 파싱
           try:
                deadline = datetime.fromisoformat(deadline_str)
           except ValueError:
-               deadline = now()  # fallback 처리 (또는 에러 반환)
+               deadline = now()
 
-          # 🔹 Post 생성
           post = Post.objects.create(
                title=title,
                content=content,
@@ -97,13 +93,13 @@ def post_create(request):
                burning=burning
           )
 
-          # 🔹 이미지 처리
           for img in request.FILES.getlist('images'):
                PostImage.objects.create(post=post, image=img)
 
-          return redirect('posts:post_list')
+          return redirect('posts:post_list')  # 생성 후 리스트 페이지로 리다이렉트
 
+     # GET 요청 → 글 작성 폼
      buildings = Building.objects.filter(university=user_profile.university)
-     return render(request, 'posts/post_lis.html', {
+     return render(request, 'posts/post_create.html', {
           'buildings': buildings
      })
