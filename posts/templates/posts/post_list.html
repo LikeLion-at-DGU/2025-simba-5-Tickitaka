@@ -58,15 +58,7 @@
                 <div class="post-item_sy">
                     <h2 class="post-title_sy">{{ post.title }}</h2>
                     <div class="post-first-info_sy">
-                        <div class="post-liked_sy">
-                            <svg width="10" height="13" viewBox="0 0 10 13" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0.625 12.125V2.125C0.625 1.78125 0.7475 1.48708 0.9925 1.2425C1.2375 0.997917 1.53167 0.875417 1.875 0.875H8.125C8.46875 0.875 8.76313 0.9975 9.00813 1.2425C9.25313 1.4875 9.37542 1.78167 9.375 2.125V12.125L5 10.25L0.625 12.125Z"
-                                    fill="#959393" />
-                            </svg>
-                            <p class="post-liked-count_sy">{{ post.saved_count }}</p>
-                        </div>
+                            <div class="post-location_sy">{{ selected_building_name }}</div>
                         <div class="post-second-info-sy">
                             <div class="post-time_sy">
                                 <svg class="{% if post.burning == 1 %}boosted-icon_sy{% endif %}" width="21" height="20" viewBox="0 0 21 20" fill="none"
@@ -79,7 +71,6 @@
                                     +{{ post.amounts }}분
                                 </p>
                             </div>
-                            <div class="post-location_sy">{{ selected_building_name }}</div>
                             <div class="post-deadline_sy">{{ post.deadline|date:"m/d H:i" }}까지</div>
                         </div>
                     </div>

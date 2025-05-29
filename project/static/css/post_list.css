@@ -234,7 +234,7 @@
     align-items: flex-end;
     align-self: stretch;
 }
-
+/*
 .post-liked_sy svg {
     width: 15px;
     height: 15px;
@@ -252,13 +252,13 @@
     gap:3px;
     align-items: center;
 }
+*/
 
 .post-second-info-sy {
     display: flex;
-    justify-content: center;
     align-items: flex-end;
-    gap: 12px;
     align-self: stretch;
+    justify-content: space-between;
 }
 .post-time_sy {
     display: flex;
