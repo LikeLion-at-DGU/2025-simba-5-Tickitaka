@@ -1,3 +1,11 @@
+.post-detail-container_sy {
+    width: 390px;
+    height: 844px;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
 .post-detail-header_sy {
     display: flex;
     justify-content: space-between;
@@ -120,7 +128,7 @@
 .post-time-text_sy {
     color: #000;
     font-family: Pretendard;
-    font-size: 24px;
+    font-size: 22px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -136,7 +144,7 @@
 .third-detail_sy {
     display: flex;
     align-items: center;
-    gap: 228px;
+    justify-content: space-between;
     align-self: stretch;
 }
 
@@ -167,8 +175,6 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    background: #0E851A;
-    color: #FFF;
     text-align: center;
     font-family: "Pretendard Variable";
     font-size: 12px;
@@ -180,16 +186,19 @@
 .status-blue_sy {
     background: #025397;
     color: #FFF;
+    padding: 5px;
 }
 
 .status-red_sy {
     background: #C75352;
     color: #FFF;
+    padding: 5px;
 }
 
 .status-green_sy {
     background: #0E851A;
     color: #FFF;
+    padding: 5px;
 }
 
 .post-detail-location_sy {
@@ -228,12 +237,10 @@
 }
 
 .post-detail-footer_sy {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 18px;
-    padding: 16px 32px;
-    padding-left: 24px;
-    justify-content: center;
+    padding: 16px 16px;
+    justify-content: space-around;
 }
 
 .post-liked_sy {
@@ -282,39 +289,25 @@
     cursor: not-allowed; 
 }
 
-
-/*.manage-btn-wrapper_sy {
+.manage-btn-wrapper_sy {
     display: flex;
-    gap: 12px;
-    justify-content: center;
+    align-items: center;
+    gap: 27px;
 }
 
 .manage-btn_sy {
-    background-color: #29477c;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    padding: 10px 20px;
-    font-size: 14px;
+    display: flex;
+    width: 132px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    background: #025397;
     cursor: pointer;
 }
 
 .manage-btn_sy:disabled {
-    background-color: #c4c4c4;
+    background-color: #666;
     cursor: not-allowed;
 }
-
-.call-btn_sy {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    padding: 10px 20px;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.call-btn_sy.disabled {
-    background-color: #c4c4c4;
-    cursor: not-allowed;
-} */
