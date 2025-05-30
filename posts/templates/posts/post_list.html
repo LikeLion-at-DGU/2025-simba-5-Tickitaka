@@ -22,7 +22,11 @@
             <div class="post-list-navbar_sy">
                 <div class="dropdown_sy">
                     <div id="selectedBuilding_sy" class="dropdown-button_sy" onclick="toggleDropdown()">
-                        {{ selected_building_name }}
+                        {% if selected_building_name %}
+                            {{ selected_building_name }}
+                        {% else %}
+                            {{ request.user.profile.university.name }}
+                        {% endif %}
                         <svg width="13" height="8" viewBox="0 0 13 8" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                 d="M5.65703 7.38911L2.67029e-05 1.73212L1.41403 0.318115L6.36403 5.26812L11.314 0.318115L12.728 1.73212L7.07103 7.38911C6.8835 7.57659 6.62919 7.6819 6.36403 7.6819C6.09886 7.6819 5.84455 7.57659 5.65703 7.38911Z"
@@ -30,17 +34,18 @@
                         </svg>
                     </div>
                     <div id="buildingDropdown_sy" class="dropdown-content_sy">
+                        <div onclick="selectBuilding('all', '{{ user_profile.university.name }}')">{{ user_profile.university.name }}(전체)</div>
                         {% for b in buildings %}
                             <div onclick="selectBuilding('{{ b.id }}', '{{ b.name }}')">{{ b.name }}</div>
                         {% endfor %}
                     </div>
                 </div>
                 <div class="list-category_sy">
-                    <a href="?sort=latest" class="latest-category_sy {% if selected_sort == 'latest' %}active{% endif %}">최신순</a>
+                    <a href="?sort=latest{% if selected_building_id %}&building_id={{ selected_building_id }}{% endif %}" class="latest-category_sy {% if selected_sort == 'latest' %}active{% endif %}">최신순</a>
                     <div class="category-line_sy"></div>
-                    <a href="?sort=deadline" class="deadline-category_sy {% if selected_sort == 'deadline' %}active{% endif %}">마감임박순</a>
+                    <a href="?sort=deadline{% if selected_building_id %}&building_id={{ selected_building_id }}{% endif %}" class="deadline-category_sy {% if selected_sort == 'deadline' %}active{% endif %}">마감임박순</a>
                     <div class="category-line_sy"></div>
-                    <a href="?sort=amounts" class="transaction-category_sy {% if selected_sort == 'amounts' %}active{% endif %}">거래시간순</a>
+                    <a href="?sort=amounts{% if selected_building_id %}&building_id={{ selected_building_id }}{% endif %}" class="transaction-category_sy {% if selected_sort == 'amounts' %}active{% endif %}">거래시간순</a>
                 </div>
                 
             </div>

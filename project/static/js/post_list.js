@@ -6,7 +6,7 @@ function selectBuilding(buildingId, buildingName) {
     const url = new URL(window.location.href);
     url.searchParams.set("building_id", buildingId);
     window.location.href = url.toString(); 
-    document.getElementById("selectedBuilding_sy").innerText = buildingName + ' ▼';
+    document.getElementById("selectedBuilding_sy").innerText = buildingName;
     document.getElementById("buildingDropdown_sy").classList.remove("show");
 }
 
