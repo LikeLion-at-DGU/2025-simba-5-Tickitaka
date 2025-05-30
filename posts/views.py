@@ -1,7 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
+from accounts.models import Profile
 from .models import Post, Building
 from django.utils.timezone import now
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
 
 @login_required
 def post_list(request):
@@ -60,13 +62,44 @@ def post_detail(request, id):
 
 @login_required
 def post_create(request):
-    if request.method == 'POST':
-        # 작성 처리
-        pass
+     user_profile = request.user.profile
 
-    user_profile = request.user.profile
-    buildings = Building.objects.filter(university=user_profile.university)
+     if request.method == 'POST':
+          title = request.POST.get('title')
+          content = request.POST.get('content')
+          private_info = request.POST.get('private_info') 
+          deadline_str = request.POST.get('deadline')
+          amounts = request.POST.get('amounts')
+          burning = 1 if request.POST.get('burning') == '1' else 0
+          building_id = request.POST.get('building')
+          building = get_object_or_404(Building, id=building_id, university=user_profile.university)
 
-    return render(request, 'posts/post_create.html', {
-        'buildings': buildings
-    })
+          try:
+               deadline = datetime.fromisoformat(deadline_str)
+          except ValueError:
+               deadline = now()
+
+          post = Post.objects.create(
+               title=title,
+               content=content,
+               private_info=private_info,
+               building=building,
+               amounts=int(amounts),
+               deadline=deadline,
+               status='waiting',
+               saved_count=0,
+               master=user_profile,
+               university=user_profile.university,
+               burning=burning
+          )
+
+          for img in request.FILES.getlist('images'):
+               PostImage.objects.create(post=post, image=img)
+
+          return redirect('posts:post_list')  # 생성 후 리스트 페이지로 리다이렉트
+
+     # GET 요청 → 글 작성 폼
+     buildings = Building.objects.filter(university=user_profile.university)
+     return render(request, 'posts/post_create.html', {
+          'buildings': buildings
+     })
