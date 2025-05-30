@@ -171,7 +171,7 @@
 
 .status-button_sy {
     display: flex;
-    padding: 5px;
+    padding: 5px 0px;
     justify-content: center;
     align-items: center;
     gap: 10px;
