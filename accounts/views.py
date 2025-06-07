@@ -1,3 +1,5 @@
+import random
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
@@ -27,6 +29,10 @@ def signup2(request):
         info = request.session.get('signup_info')
         if not info:
             return redirect('accounts:signup')
+        
+        # 이메일 인증 체크
+        if not request.session.get('email_verified'):
+            return render(request, 'accounts/signup2.html', {'error': '이메일 인증을 완료해주세요.'})
 
         nickname = request.POST.get('nickname')
         university_name = request.POST.get('university')
@@ -104,3 +110,48 @@ def check_username(request):
 
     # 결과를 JSON 형태로 응답 (프론트엔드에서 true면 중복된 아이디라는 뜻)
     return JsonResponse({'is_taken': is_taken})
+
+
+def get_university_domains(request):
+    universities = University.objects.all()
+    data = {u.name: u.email_domain for u in universities if u.email_domain}
+    return JsonResponse(data)
+
+
+def send_verification_code(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+
+        if not email:
+            return JsonResponse({'success': False, 'error': '이메일이 없습니다.'})
+
+        # 인증코드 생성
+        code = str(random.randint(100000, 999999))
+
+        # 세션에 저장
+        request.session['email_verification_code'] = code
+        request.session['email_to_verify'] = email
+
+        # 이메일 발송
+        send_mail(
+            '학교 이메일 인증번호',
+            f'인증번호는 {code} 입니다.',
+            'your_project_email@example.com',  # 보내는 이메일 (설정 필요)
+            [email],
+            fail_silently=False,
+        )
+
+        return JsonResponse({'success': True})
+    
+
+def verify_code(request):
+    if request.method == 'POST':
+        code = request.POST.get('code')
+        session_code = request.session.get('email_verification_code')
+        
+        if code == session_code:
+            request.session['email_verified'] = True
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'error': '인증번호가 일치하지 않습니다.'})
+

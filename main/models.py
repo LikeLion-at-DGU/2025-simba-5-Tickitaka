@@ -5,6 +5,7 @@ class Event(models.Model):
 
 class University(models.Model):
     name = models.CharField(max_length=100)
+    email_domain = models.CharField(max_length=100)  # 예: 'dgu.ac.kr'
 
 class Building(models.Model):
     name = models.CharField(max_length=100)
