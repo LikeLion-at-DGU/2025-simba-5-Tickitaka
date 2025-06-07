@@ -12,5 +12,8 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('check_nickname/', views.check_nickname, name='check_nickname'),
     path('check_username/', views.check_username, name='check_username'),
+    path('send_verification_code/', views.send_verification_code, name='send_verification_code'),
+    path('verify_code/', views.verify_code, name='verify_code'),
+    path('api/university-domains/', views.get_university_domains, name='university_domains'),
 ]
 
