@@ -103,3 +103,49 @@ def post_create(request):
      return render(request, 'posts/post_create.html', {
           'buildings': buildings
      })
+
+
+def post_update(request, id):
+     post = get_object_or_404(Post, id=id, master=request.user.profile)
+
+     if request.method == 'POST':
+          post.title = request.POST.get('title')
+          post.content = request.POST.get('content')
+          post.private_info = request.POST.get('private_info')
+          post.amounts = int(request.POST.get('amounts'))
+          post.burning = 1 if request.POST.get('burning') == '1' else 0
+
+          deadline_str = request.POST.get('deadline')
+          try:
+               post.deadline = datetime.fromisoformat(deadline_str)
+          except ValueError:
+               post.deadline = now()
+
+          building_id = request.POST.get('building')
+          post.building = get_object_or_404(Building, id=building_id, university=request.user.profile.university)
+
+          post.save()
+
+          # 기존 이미지 유지 + 새 이미지만 추가
+          for img in request.FILES.getlist('images'):
+               PostImage.objects.create(post=post, image=img)
+
+          return redirect('posts:post_detail', id=post.id)
+
+     buildings = Building.objects.filter(university=request.user.profile.university)
+     return render(request, 'posts/post_update.html', {
+          'post': post,
+          'buildings': buildings,
+     })
+
+@login_required
+def post_delete(request, id):
+     post = get_object_or_404(Post, id=id, master=request.user.profile)
+
+     if request.method == 'POST':
+          post.delete()
+          return redirect('posts:post_list')
+
+     return render(request, 'posts/post_confirm_delete.html', {
+          'post': post
+     })
