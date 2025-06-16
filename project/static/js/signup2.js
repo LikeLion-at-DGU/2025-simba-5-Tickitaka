@@ -48,15 +48,22 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             body: new URLSearchParams({ email }),
         })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
-                    alert('인증번호가 발송되었습니다. 메일함을 확인해주세요.');
-                } else {
-                    alert('오류 발생: ' + data.error);
+            .then((response) => response.text())
+            .then((text) => {
+                try {
+                    const data = JSON.parse(text);
+                    if (data.success) {
+                        alert('인증번호가 발송되었습니다. 메일함을 확인해주세요.');
+                    } else {
+                        alert('오류 발생: ' + data.error);
+                    }
+                } catch (e) {
+                    console.error('JSON 파싱 실패:', text);
+                    alert('서버 응답 형식이 올바르지 않습니다.');
                 }
             })
-            .catch(() => {
+            .catch((err) => {
+                console.error(err);
                 alert('서버와의 통신 중 문제가 발생했습니다.');
             });
     });

@@ -1,4 +1,5 @@
 import random
+from django.conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -140,8 +141,10 @@ def send_verification_code(request):
             [email],
             fail_silently=False,
         )
-
         return JsonResponse({'success': True})
+
+    # POST 외에는 명시적으로 오류 반환
+    return JsonResponse({'success': False, 'error': 'POST 요청이 필요합니다.'}, status=405)
     
 
 def verify_code(request):
