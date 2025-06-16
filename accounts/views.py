@@ -136,7 +136,7 @@ def send_verification_code(request):
         send_mail(
             '학교 이메일 인증번호',
             f'인증번호는 {code} 입니다.',
-            'your_project_email@example.com',  # 보내는 이메일 (설정 필요)
+            settings.DEFAULT_FROM_EMAIL,  # 또는 settings.EMAIL_HOST_USER
             [email],
             fail_silently=False,
         )
