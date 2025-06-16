@@ -137,5 +137,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # 또는 학교 SMTP
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'suhyeonkvvon@gmail.com'
-EMAIL_HOST_PASSWORD = 'cpzilyydfprutchp'
+EMAIL_HOST_USER = 'sisicallcallnow@gmail.com'
+EMAIL_HOST_PASSWORD = 'zqdalxkkcfffdwjt'
