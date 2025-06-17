@@ -4,6 +4,11 @@ from accounts.models import *
 from posts.models import *
 from chats.models import *
 
+
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib import messages
+
 # Create your views here.
 def mainpage(request):
     return render(request, 'main/test-mainpage.html')
@@ -95,3 +100,5 @@ def saved_posts(request):
 #     return render(request, 'main/friend_list.html', {
 #         'friend_profiles': friend_profiles
 #     })
+
+
