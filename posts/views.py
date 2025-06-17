@@ -192,7 +192,6 @@ def call_post(request, post_id):
      post.helper = user_profile
      post.status = 'chatting'
      post.save()
-
      ChatRoom.objects.create(post=post, master=post.master, helper=user_profile)
 
      return redirect('chat:room', room_id=post.id)  # 채팅방 페이지로 이동
