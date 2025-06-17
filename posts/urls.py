@@ -9,6 +9,6 @@ urlpatterns = [
     path('post_create/', post_create, name='post_create'),
     path('post_update/<int:id>', post_update, name='post_update'),
     path('post_delete/<int:id>', post_delete, name='post_delete'),  
-    path('posts/<int:post_id>/saved/', toggle_saved, name='toggle_saved'),
-    path('posts/<int:post_id>/call/', call_post, name='call_post'),
+    path('/<int:post_id>/saved/', toggle_saved, name='toggle_saved'),
+    path('/<int:post_id>/call/', call_post, name='call_post'),
 ]

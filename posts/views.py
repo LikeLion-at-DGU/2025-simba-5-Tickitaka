@@ -16,7 +16,6 @@ def post_list(request):
      building_id = request.GET.get('building_id')  # 드롭다운 선택 파라미터
      sort_option = request.GET.get('sort', 'latest')  # 기본 정렬은 최신순
      burning_flag = request.GET.get('burning')  # '1'이면 버닝 게시글만
-     saved_post_ids = Saved.objects.filter(user=user_profile).values_list('post_id', flat=True)
 
      posts = Post.objects.filter(
           university=user_profile.university,
@@ -47,7 +46,6 @@ def post_list(request):
           posts = posts.order_by('-amounts')
      else:
           posts = posts.order_by('-timestamp')  # 예외 시 기본 적용
-
      
      return render(request, 'posts/post_list.html', {
           'posts': posts,
@@ -61,8 +59,10 @@ def post_list(request):
 @login_required
 def post_detail(request, id):
      post = get_object_or_404(Post, id=id)
+     is_saved = Saved.objects.filter(user=request.user.profile, post=post).exists()
      return render(request, 'posts/post_detail.html', {
-          'post': post
+          'post': post,
+          'is_saved': is_saved,
      })
 
 @login_required
