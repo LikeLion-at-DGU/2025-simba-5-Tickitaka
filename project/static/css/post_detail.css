@@ -295,7 +295,8 @@
     gap: 27px;
 }
 
-.manage-btn_sy {
+.edit-btn_sy,
+.delete-btn_sy {
     display: flex;
     width: 132px;
     padding: 10px;
@@ -304,6 +305,7 @@
     gap: 10px;
     border-radius: 6px;
     background: #025397;
+    color:#FFF;
     cursor: pointer;
 }
 

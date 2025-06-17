@@ -11,6 +11,8 @@
 .post-list-header_sy {
     margin-bottom: 16px;
     position: fixed;
+    height: 120px;
+    z-index: 1000;
 }
 
 .post-list-first-header_sy {
@@ -119,14 +121,12 @@
     padding: 10px;
     cursor: pointer;
     color: #2A2A2A;
-    
-        text-align: center;
-        /* caption */
-        font-family: Pretendard;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
 .dropdown-content_sy div:hover {
