@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from accounts.models import Profile
-from .models import Post, Building
+from django.http import JsonResponse
 from django.utils.timezone import now
-from django.contrib.auth.decorators import login_required
 from datetime import datetime
+from django.views.decorators.http import require_POST
+
+from django.contrib.auth.decorators import login_required
+
+from accounts.models import Profile
+from .models import *
 
 @login_required
 def post_list(request):
@@ -12,6 +16,7 @@ def post_list(request):
      building_id = request.GET.get('building_id')  # 드롭다운 선택 파라미터
      sort_option = request.GET.get('sort', 'latest')  # 기본 정렬은 최신순
      burning_flag = request.GET.get('burning')  # '1'이면 버닝 게시글만
+     saved_post_ids = Saved.objects.filter(user=user_profile).values_list('post_id', flat=True)
 
      posts = Post.objects.filter(
           university=user_profile.university,
@@ -149,3 +154,45 @@ def post_delete(request, id):
      return render(request, 'posts/post_confirm_delete.html', {
           'post': post
      })
+
+
+@login_required
+@require_POST
+def toggle_saved(request, post_id):
+     user_profile = request.user.profile
+     post = get_object_or_404(Post, id=post_id)
+
+     saved, created = Saved.objects.get_or_create(user=user_profile, post=post)
+
+     if not created:
+          # 이미 찜한 상태면 제거
+          saved.delete()
+
+     # saved_count 업데이트
+     post.saved_count = Saved.objects.filter(post=post).count()
+     post.save()
+
+     # 찜 후 다시 post_detail로 리다이렉트
+     return redirect('posts:post_detail', id=post.id)
+
+
+# 콜 기능 (헬퍼 지정 + 채팅방 생성)
+@login_required
+@require_POST
+def call_post(request, post_id):
+     user_profile = request.user.profile
+     post = get_object_or_404(Post, id=post_id)
+
+     if post.master == user_profile or post.helper or post.status != 'waiting':
+          return render(request, 'posts/post_detail.html', {
+               'post': post,
+               'error': '콜할 수 없는 게시글입니다.'
+          })
+
+     post.helper = user_profile
+     post.status = 'chatting'
+     post.save()
+
+     ChatRoom.objects.create(post=post, master=post.master, helper=user_profile)
+
+     return redirect('chat:room', room_id=post.id)  # 채팅방 페이지로 이동
