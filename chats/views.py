@@ -9,7 +9,7 @@ from django.views.decorators.http import require_POST
 def chat_room(request, room_id):
     chatroom = get_object_or_404(ChatRoom, id=room_id)
 
-    # 🚨 접근 권한 확인: 현재 사용자가 master 또는 helper인지 확인
+    # 접근 권한 확인: 현재 사용자가 master 또는 helper인지 확인
     user_profile = request.user.profile
 
     if chatroom.master != user_profile and chatroom.helper != user_profile:
@@ -18,11 +18,15 @@ def chat_room(request, room_id):
     post = chatroom.post
     comments = Comment.objects.filter(chatroom=chatroom).order_by('timestamp')
 
-    return render(request, 'chats/test-chat_room.html', {
+    # 상대방 opponent 지정
+    opponent = chatroom.helper if chatroom.master == user_profile else chatroom.master
+
+    return render(request, 'chats/chat_room.html', {
         'chatroom': chatroom,
         'post': post,
         'comments': comments,
         'me': user_profile,
+        'opponent': opponent,
     })
 
 
@@ -56,9 +60,10 @@ def fetch_chats(request, room_id):
 
     comments = Comment.objects.filter(chatroom=chatroom).order_by('timestamp')
 
-    return render(request, 'chats/test-chat_room.html', {
+    return render(request, 'chats/chat_room.html', {
         'chatroom': chatroom,
         'post': chatroom.post,
         'comments': comments,
         'me': user_profile,
+        'opponent': opponent,
     })
