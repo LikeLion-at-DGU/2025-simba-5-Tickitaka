@@ -1,5 +1,6 @@
 <!-- post_create.html -->
 {% extends 'test-base.html' %} {% load static %} {% block content %}
+<!-- 달력 css 링크임 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
@@ -7,7 +8,7 @@
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
 
 <form method="post" action="{% url 'posts:post_create' %}" enctype="multipart/form-data">
-
+<div class="pageAlignCreate_sw">
     <div class="allFrameCreate_sw">
         {% csrf_token %}
         <div class="contentsFrameCreate_sw">
@@ -41,7 +42,7 @@
             </div>
             <div class="f2_frameCreate_sw">
                 <label class="f234_titleCreate_sw">제목</label>
-                <textarea class="f2_inputCreate_sw" id="f2_inputCreate_sw" name="title"></textarea>
+                <input type="text" class="f2_inputCreate_sw" id="f2_inputCreate_sw" name="title"/>
                 <div class="f234_wordCountCreate_sw">0/30</div>
             </div>
             <div class="f3_frameCreate_sw">
@@ -51,7 +52,7 @@
             </div>
             <div class="f4_frameCreate_sw">
                 <label class="f234_titleCreate_sw">개인 정보</label>
-                <textarea class="f4_inputCreate_sw" id="f4_inputCreate_sw" type="text" name="pritvate_info"
+                <textarea class="f4_inputCreate_sw" id="f4_inputCreate_sw" type="text" name="private_info"
                     placeholder="민감한 정보는 거래가 시작되면 전달됩니다"></textarea>
                 <small class="f234_wordCountCreate_sw">0/100</small>
             </div>
@@ -93,6 +94,7 @@
             </div>
         </div>
         <button type="submit" class="buttonFrameCreate_sw">작성완료</button>
+    </div>
     </div>
 </form>
 
