@@ -110,6 +110,10 @@ def post_create(request):
      })
 
 
+def edit(request, id):
+     edit_post = Post.objects.get(pk=id)
+     return render(request, 'posts/post_edit.html', {"post": edit_post})
+
 def post_update(request, id):
      post = get_object_or_404(Post, id=id, master=request.user.profile)
 
