@@ -90,7 +90,7 @@ let originalTime = null;
 document.addEventListener('DOMContentLoaded', function () {
     const timeInput = document.getElementById('f6_requireTimeCreate_sw');
     const boostBtn = document.querySelector('.f7_buttonCreate_sw');
-    const burningInput = document.getElementById('is_burning');
+    const burningInput = document.getElementById('burning');
 
     boostBtn.addEventListener('click', () => {
         const currentVal = parseInt(timeInput.value);
