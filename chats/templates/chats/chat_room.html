@@ -22,7 +22,8 @@
             <div class="tradeTitleTextFrameChatroom_sw">
                 <div class="tradeTitleTextChatroom_sw">{{post.title}}</div>
                 <div class="tradeTitleButtonsFrameChatroom_sw">
-                    <button class="buttonChatroom_sw">거래 신청</button>
+                    <button class="buttonChatroom_sw">거래 요청</button>
+                    <button class="buttonChatroom_sw">거래 취소</button>
                     <button class="buttonChatroom_sw">완료 요청</button>
                 </div>
             </div>
@@ -38,8 +39,14 @@
             <p>거래를 원하시면 메뉴에서 거래를 확정해주세요.</p>
         </div>
         <!-- 채팅 버블이 뜨는 곳 -->
-        <div>
-
+        <div id="chatbox_sw">
+        {% for comment in comments %}
+            {% if comment.writer == me %}
+                <div class="chat-message me">{{ comment.content }} ({{ comment.timestamp|date:"H:i" }})</div>
+            {% else %}
+                <div class="chat-message other">{{ comment.writer.nickname }}: {{ comment.content }} ({{ comment.timestamp|date:"H:i" }})</div>
+            {% endif %}
+        {% endfor %}
         </div>
 
     </div>
@@ -48,28 +55,29 @@
 
 <!-- 여기부터 채팅 입력창이고 고정 -->
     <div class="chatWriteFrameChatroom_sw">
-        <button class="iconWriteChatroom_sw">
+        <button id="photoBtn_sw" class="iconPhotoChatroom_sw" >
             <img src="{% static 'images/photoicon.svg' %}" alt="사진아이콘">
         </button>
-        <div class="chatInputWrapperChatroom_sw">
-                <textarea class="chatInputChatroom_sw" placeholder="메시지 보내기"></textarea>
-                <button class="iconRefreshChatroom_sw">
-                    <img src="{% static 'images/reloadicon.svg' %}" alt="새로고침아이콘">
-                </button>
-        </div>
-        <button class="iconWriteChatroom_sw">
-            <img src="{% static 'images/airplaneicon.svg' %}" alt="전송아이콘">
-        </button>
+    
+        <form method="POST" action="{% url 'chats:submit_chat' chatroom.id %}" class="chatInputWrapperChatroom_sw">
+            {% csrf_token %}
+            <textarea name="content" class="chatInputChatroom_sw" placeholder="메시지 보내기" id="commentinput_sw"></textarea>
+            <button type="submit" id="sendBtn_sw" class="iconSendChatroom_sw">
+                <img src="{% static 'images/airplaneicon.svg' %}" alt="전송아이콘">
+            </button>
+        </form>   
+        
+       
     </div>
 </div>
 <!-- 여기서부터 민감정보 모달 -->
 
-<div class="modalBackdropChatroom_sw" id="modalBackdrop_sw" style="display: none;"></div>
+<div  id="modalBackdrop_sw" class="modalBackdropChatroom_sw" style="display: none;"></div>
 
 <div class="modalChatroom_sw" id="sensitiveModal_sw" style="display: none;">
     <div class="modalTitleBoxChatroom_sw">
         <p class="modalTitleChatroom_sw">민감정보</p>
-        <button class="modalBtnChatroom_sw"id="closeModal_sw">
+        <button id="closeModalBtn_sw" class="modalBtnChatroom_sw">
             <img src="{% static 'images/xicon.svg' %}" alt="엑스아이콘">
         </button>
     </div>
