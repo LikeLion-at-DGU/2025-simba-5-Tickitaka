@@ -34,7 +34,7 @@
                         </svg>
                     </div>
                     <div id="buildingDropdown_sy" class="dropdown-content_sy">
-                        <div onclick="selectBuilding('all', '{{ user_profile.university.name }}')">{{ user_profile.university.name }}(전체)</div>
+                        <div onclick="selectBuilding('all', '{{ user_profile.university.name }}')">{{ user_profile.university.name }}전체</div>
                         {% for b in buildings %}
                         <div onclick="selectBuilding('{{ b.id }}', '{{ b.name }}')">{{ b.name }}</div>
                         {% endfor %}

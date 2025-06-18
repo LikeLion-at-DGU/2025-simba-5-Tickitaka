@@ -6,13 +6,15 @@
     height: 844px;
     display: flex;
     margin: 0 auto;
+    overflow: hidden;
 }
 
 .post-list-header_sy {
     margin-bottom: 16px;
     position: fixed;
-    height: 120px;
-    z-index: 1000;
+    height: 180px;
+    background-color: #ffffff;
+    width: 358px;
 }
 
 .post-list-first-header_sy {
@@ -175,7 +177,11 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding-top: 180px;
+    overflow-y: auto;
+    height: calc(100vh - 216px);
+    margin-top: 180px;
+    position: static;
+
 }
 
 .post-container_sy {
