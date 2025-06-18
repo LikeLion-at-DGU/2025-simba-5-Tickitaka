@@ -14,12 +14,14 @@
                 </svg>
             </div>
             <div class="complain-btn_sy">
+                {% comment %}
                 <!--<a href="{% url 'posts:report_post' post.id %}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="..." fill="#C75352" />
                     </svg>
                     <p>신고하기</p>
                 </a>-->
+                {% endcomment %}
             </div>
         </div>
 
@@ -99,13 +101,18 @@
                 <div class="line_sy"></div>
 
                 <div class="post-detail-footer_sy">
-                    <form class="post-liked_sy" data-post-id="{{ post.id }}">
+                    <form method="POST" action="{% url 'posts:toggle_saved' post.id %}" class="post-liked_sy">
                         {% csrf_token %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="21" viewBox="0 0 16 21" fill="none">
-                            <path d="M15.5 1V19.749L8.19238 16.7051L8 16.625L7.80762 16.7051L0.5 19.749V1H15.5Z" stroke="black" />
-                        </svg>
+                        <button type="submit" style="all:unset; cursor:pointer;">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                width="16" height="21" viewBox="0 0 16 21"
+                                fill="{% if is_saved %}black{% else %}none{% endif %}" stroke="black">
+                                <path d="M15.5 1V19.749L8.19238 16.7051L8 16.625L7.80762 16.7051L0.5 19.749V1H15.5Z"/>
+                            </svg>
+                        </button>
                         <p class="post-liked-count_sy">{{ post.saved_count }}</p>
                     </form>
+                    
                     {% if user.id == post.master_id %}
                     <div class="manage-btn-wrapper_sy">
                         {# 작성자일 경우: 수정/삭제 버튼 #}

@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+/**document.addEventListener("DOMContentLoaded", function () {
     const likeIcon = document.querySelector(".post-liked_sy svg");
     const likeCountText = document.querySelector(".post-liked-count_sy");
 
@@ -18,4 +18,4 @@ document.addEventListener("DOMContentLoaded", function () {
             liked = false;
         }
     });
-});
+});**/
