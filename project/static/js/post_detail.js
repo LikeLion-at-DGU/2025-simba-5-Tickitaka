@@ -19,3 +19,33 @@
         }
     });
 });**/
+
+let currentIndex = 0;
+
+function updateCarousel() {
+    const track = document.querySelector('.carousel-track_sy');
+    const images = document.querySelectorAll('.carousel-image_sy');
+
+    if (images.length === 0 || !track) return;
+
+    const offset = -currentIndex * 100;
+    track.style.transform = `translateX(${offset}%)`;
+}
+
+function prevImage() {
+    const images = document.querySelectorAll('.carousel-image_sy');
+    if (images.length === 0) return;
+
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateCarousel();
+}
+
+function nextImage() {
+    const images = document.querySelectorAll('.carousel-image_sy');
+    if (images.length === 0) return;
+
+    currentIndex = (currentIndex + 1) % images.length;
+    updateCarousel();
+}
+
+document.addEventListener("DOMContentLoaded", updateCarousel);
