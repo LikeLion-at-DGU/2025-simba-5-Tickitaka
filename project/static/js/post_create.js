@@ -29,8 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let imageCount = 0;
   uploadInput.addEventListener("change", function (e) {
-    const file = e.target.files[0];
-    if (!file || imageCount >= 3) return;
+    const files = Array.from(e.target.files);
+    for(const file of files){
+    if (!file || imageCount >= 3) break;
 
     const reader = new FileReader();
     reader.onload = function (e) {
@@ -58,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
       checkSubmitButton();
     };
     reader.readAsDataURL(file);
-    
+  }
   });
 
   //  2. 글자 수 실시간 표시 및 제한
