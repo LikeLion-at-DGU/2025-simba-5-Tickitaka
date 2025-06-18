@@ -10,7 +10,7 @@
         </button>
         <div class="profileNicknameChatroom_sw">
             <img class="profileImgChatroom_sw" src="{% static 'images/defaultprofile.svg' %}" alt="프로필사진">
-            <div class="nicknameChatroom_sw">{{post.master.nickname}}</div>
+            <div class="nicknameChatroom_sw">{{opponent.nickname}}</div>
         </div>
         <button class="sirenChatroom_sw">
                 <img class="sireniconChatroom_sw" src="{% static 'images/siren.svg' %}" alt="신고아이콘">
@@ -27,6 +27,8 @@
                 </div>
             </div>
     </div>
+
+<!-- 여기부터 스크롤 -->
     <div class="chatBubblesFrameChatroom_sw">
         <div class="firstDescriptionBubbleChatroom_sw">
             <p>채팅창은 30초에 한번씩 새로고침 됩니다.</p>
@@ -35,10 +37,13 @@
         <div class="secondDescriptionBubbleChatroom_sw">
             <p>거래를 원하시면 메뉴에서 거래를 확정해주세요.</p>
         </div>
+        <!-- 채팅 버블이 뜨는 곳 -->
+
     </div>
 
+<!-- 여기까지 스크롤 -->
 
-
+<!-- 여기부터 채팅 입력창이고 고정 -->
     <div class="chatWriteFrameChatroom_sw">
         <button class="iconWriteChatroom_sw">
             <img src="{% static 'images/photoicon.svg' %}" alt="사진아이콘">
@@ -54,8 +59,11 @@
         </button>
     </div>
 </div>
- <!-- style="display: none;" -->
-<div class="modalChatroom_sw" id="sensitiveModal_sw" >
+<!-- 여기서부터 민감정보 모달 -->
+
+<div class="modalBackdropChatroom_sw" id="modalBackdrop_sw" style="display: none;"></div>
+
+<div class="modalChatroom_sw" id="sensitiveModal_sw" style="display: none;">
     <div class="modalTitleBoxChatroom_sw">
         <p class="modalTitleChatroom_sw">민감정보</p>
         <button class="modalBtnChatroom_sw"id="closeModal_sw">
@@ -65,9 +73,9 @@
     <div class="modalTextBoxChatroom_sw">
         <p class="modalTextChatroom_sw">{{post.private_info}}</p>
     </div>
-    
 </div>
-
+<!-- 여기까지 모달 -->
+ 
 {% endblock %}
 {% block scripts %}
 <!-- js 파일 -->

@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
       checkSubmitButton();
     };
     reader.readAsDataURL(file);
-    uploadInput.value = "";//동일 파일 재선택 가능
+    
   });
 
   //  2. 글자 수 실시간 표시 및 제한

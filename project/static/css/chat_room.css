@@ -151,6 +151,7 @@ line-height: normal;
 .chatBubblesFrameChatroom_sw{
 display: flex;
 width: 363px;
+height: auto;
 flex-direction: column;
 align-items: flex-start;
 gap: 16px;
@@ -251,6 +252,12 @@ gap: 16px;
     aspect-ratio: 1/1;
 }
 .modalChatroom_sw{
+    position: fixed;        /* 추가 */
+    top: 50%;              /* 가운데 */
+    left: 50%;              /* 가운데 정렬 */
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+
     width: 358px;
     height: 121px;
     border-radius: 6px;
@@ -270,6 +277,7 @@ gap: 16px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+
     color: #000;
     text-align: center;
     /* H1 */
@@ -280,11 +288,14 @@ gap: 16px;
     line-height: normal;
 }
 .modalBtnChatroom_sw{
-    position: absolute;
-     margin-left: auto;
-     width: 24px;
-     height: 24px;
-     padding: 12px;
+ position: absolute;
+    right: 12px;
+    top: 50%;
+    
+    transform: translateY(-50%);
+    padding: 10px;
+    background: none;
+    border: none;
 }
 .modalTextBoxChatroom_sw{
    
@@ -306,4 +317,14 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 width: 326px;
+}
+/*  */
+.modalBackdropChatroom_sw {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4); /* 어두운 반투명 */
+    z-index: 999;
 }
