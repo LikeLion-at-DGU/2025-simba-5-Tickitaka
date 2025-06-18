@@ -1,15 +1,56 @@
+
 {% extends 'test-base.html' %}
 {% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/report.css' %}">
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+
 <div class="report-container_sy">
-    <h2> 게시글을 신고합니다</h2>
-    <form method="POST">
+    <div class="report-header_sy">
+        <div class="go-back-btn_sy" onclick="history.back()">
+            <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M0.29277 5.79301L5.94977 0.136013L7.36377 1.55001L2.41377 6.50001L7.36377 11.45L5.94977 12.864L0.29277 7.20701C0.105299 7.01949 -1.66893e-05 6.76518 -1.66893e-05 6.50001C-1.66893e-05 6.23485 0.105299 5.98054 0.29277 5.79301Z"
+                    fill="black" />
+            </svg>
+        </div>
+        <h1 class="report-title_sy">신고하기</h1>
+    </div>
+    
+    <form method="POST" class="report-content_sy" id="reportForm">
         {% csrf_token %}
-        <textarea name="reason" placeholder="신고 사유를 입력해주세요" required></textarea>
-        <br>
-        <button type="submit">신고 제출</button>
-        {% comment %} <a href="{% url 'posts:post_detail' post.id %}">취소</a>{% endcomment %}
+        <div class="report-f1_sy">
+            <label for="title" class="report-f1-text_sy">제목</label>
+            <input 
+                type="text" 
+                class="report-f1-input_sy" 
+                id="title" 
+                name="title" 
+                placeholder="신고 제목을 입력해주세요"
+                maxlength="30"
+                required
+            />
+            <div class="report-f1-count_sy" id="titleCount">0/30</div>
+        </div>
+        
+        <div class="report-f2_sy">
+            <label for="content" class="report-f2-text_sy">설명</label>
+            <textarea 
+                class="report-f2-input_sy" 
+                id="content" 
+                name="content"
+                placeholder="신고 사유를 자세히 설명해주세요"
+                maxlength="500"
+                required
+            ></textarea>
+            <div class="report-f2-count_sy" id="contentCount">0/500</div>
+        </div>
+        
+        <button type="submit" id="submitBtn">전송</button>
     </form>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/report.js' %}"></script>
 {% endblock %}
