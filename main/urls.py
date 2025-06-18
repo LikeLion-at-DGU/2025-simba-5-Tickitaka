@@ -5,6 +5,7 @@ app_name = 'main'
 
 urlpatterns = [
     path('', mainpage, name='mainpage'),
+    #path('report/<int:post_id>/', report_post, name='report_post'),
     # path('home/', home, name = 'home'),
     # path('edit_profile/', edit_profile, name='edit_profile'),
     # path('time_history/', time_history, name='time_history'),

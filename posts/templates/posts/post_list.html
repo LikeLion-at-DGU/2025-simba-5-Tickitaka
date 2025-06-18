@@ -61,8 +61,13 @@
             <a href="{% url 'posts:post_detail' post.id %}?{{ request.GET.urlencode }}">
                 <div class="post-container_sy">
                     <div class="post-image_sy">
-                        <img src="{% static 'images/test2.png' %}" alt="테스트 이미지"> 
-                        <!--<img src="{{ post.image.url }}" alt="post image">-->
+                        {% with post.images.all|first as image %}
+                            {% if image %}
+                                <img src="{{ image.image.url }}" alt="post image">
+                            {% else %}
+                                <img src="{% static 'images/test2.png' %}" alt="기본 이미지">
+                            {% endif %}
+                        {% endwith %}
                     </div>
                     <div class="post-item_sy">
                         <h2 class="post-title_sy">{{ post.title }}</h2>
