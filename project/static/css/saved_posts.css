@@ -186,3 +186,17 @@ a {
     font-weight: 400;
     line-height: normal;
 }
+
+.saved-posts-description {
+    color: #959393;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+}
