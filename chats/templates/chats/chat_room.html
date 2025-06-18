@@ -1,88 +1,6 @@
-<!DOCTYPE html>
-<html lang="ko">
+<!-- chat_room.html -->
+{% extends 'test-base.html' %} {% load static %} {% block content %}
 
-<<<<<<< HEAD
-<head>
-    <meta charset="UTF-8">
-    <title>채팅방</title>
-    <style>
-        body { font-family: sans-serif; margin: 20px; }
-        .chat-header { border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 10px; }
-        .chat-box { height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; background-color: #f9f9f9; margin-bottom: 10px; }
-        .chat-message.me { text-align: right; background-color: #d0ebff; margin: 5px 0; padding: 8px; border-radius: 10px; display: inline-block; max-width: 70%; }
-        .chat-message.other { text-align: left; background-color: #eee; margin: 5px 0; padding: 8px; border-radius: 10px; display: inline-block; max-width: 70%; }
-        .chat-input { display: flex; flex-direction: column; gap: 8px; }
-        .chat-input input[type="text"] { padding: 6px; width: 100%; }
-        .private-info { background-color: #fffbe6; border: 1px solid #aaa; padding: 10px; margin-top: 20px; border-radius: 8px; }
-    </style>
-</head>
-
-<body>
-
-    <div class="chat-header">
-        <h3>채팅방 - {{ post.title }}</h3>
-        <p>건물: {{ post.building.name }} / 작성자: {{ post.master.nickname }}</p>
-    </div>
-
-    <div id="chat-box" class="chat-box">
-        {% for c in comments %}
-            {% if c.writer == me %}
-                <div class="chat-message me">
-                    나: {{ c.content }}
-                    {% if c.image %}
-                        <div><img src="{{ c.image.url }}" style="max-width: 150px; margin-top:5px;"></div>
-                    {% endif %}
-                    <span style="font-size: 0.8em;">({{ c.timestamp|date:"H:i" }})</span>
-                </div>
-            {% else %}
-                <div class="chat-message other">
-                    {{ c.writer.nickname }}: {{ c.content }}
-                    {% if c.image %}
-                        <div><img src="{{ c.image.url }}" style="max-width: 150px; margin-top:5px;"></div>
-                    {% endif %}
-                    <span style="font-size: 0.8em;">({{ c.timestamp|date:"H:i" }})</span>
-                </div>
-            {% endif %}
-        {% empty %}
-            <p>아직 채팅이 없습니다.</p>
-        {% endfor %}
-    </div>
-
-    <!-- ✅ 하단 입력 폼 (사진 업로드 가능) -->
-    <form method="POST" enctype="multipart/form-data" action="{% url 'chats:submit_chat' chatroom.id %}" class="chat-input">
-        {% csrf_token %}
-        <input type="text" name="content" placeholder="메시지를 입력하세요">
-        <input type="file" name="image" accept="image/*">
-        <button type="submit">보내기</button>
-    </form>
-
-    <button onclick="refreshChat()">🔄 새로고침</button>
-
-    {% if post.status == 'in_progress' or post.status == 'done' %}
-        <div class="private-info">
-            <strong>📦 민감정보</strong><br>
-            {{ post.private_info }}
-        </div>
-    {% endif %}
-
-    <script>
-        function refreshChat() {
-            fetch(window.location.href)
-                .then(response => response.text())
-                .then(html => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-                    const newBox = doc.querySelector('#chat-box');
-                    document.querySelector('#chat-box').innerHTML = newBox.innerHTML;
-                });
-        }
-        setInterval(refreshChat, 30000);
-    </script>
-
-</body>
-
-</html>
-=======
 <link rel="stylesheet" href="{% static 'css/chat_room.css' %}" />
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
 <div class="pageAlignChatroom_sw">
@@ -163,4 +81,3 @@
 <!-- js 파일 -->
 <script src="{% static 'js/chat_room.js' %}"></script>
 {% endblock %}
->>>>>>> 26ed4cb3a72d634a3c3f99b38bd48e81fe6544af
