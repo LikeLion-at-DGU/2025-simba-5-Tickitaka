@@ -52,6 +52,7 @@ def submit_chat(request, room_id):
     Comment.objects.create(chatroom=chatroom, writer=user_profile, content=content, image=image)
 
     return redirect('chats:chat_room', room_id=room_id)
+    return redirect('chats:chat_room', room_id=room_id)
 
 
 @login_required
