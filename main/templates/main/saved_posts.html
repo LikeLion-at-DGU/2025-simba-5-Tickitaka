@@ -3,65 +3,68 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/saved_posts.css' %}" />
-
-<div class="liked-post-container_sy">
-    <div class="liked-post-header_sy">
-        <div class="go-back-btn_sy">
-            <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M0.29277 5.79301L5.94977 0.136013L7.36377 1.55001L2.41377 6.50001L7.36377 11.45L5.94977 12.864L0.29277 7.20701C0.105299 7.01949 -1.66893e-05 6.76518 -1.66893e-05 6.50001C-1.66893e-05 6.23485 0.105299 5.98054 0.29277 5.79301Z"
-                    fill="black" />
-            </svg>
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+<body>
+    <div class="liked-post-container_sy">
+        <div class="liked-post-header_sy">
+            <div class="go-back-btn_sy">
+                <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M0.29277 5.79301L5.94977 0.136013L7.36377 1.55001L2.41377 6.50001L7.36377 11.45L5.94977 12.864L0.29277 7.20701C0.105299 7.01949 -1.66893e-05 6.76518 -1.66893e-05 6.50001C-1.66893e-05 6.23485 0.105299 5.98054 0.29277 5.79301Z"
+                        fill="black" />
+                </svg>
+            </div>
+            <h1 class="liked-post-title_sy">찜한 글</h1>
         </div>
-        <h1 class="liked-post-title_sy">찜한 글</h1>
-    </div>
-
-    <div class="post-list_sy">
-        {% for saved in saved_list %}
-        <a href="{% url 'posts:post_detail' saved.post.id %}">
-            <div class="post-container_sy">
-                <div class="post-image_sy">
-                    {% with saved.post.images.all|first as image %}
-                        {% if image %}
-                            <img src="{{ image.image.url }}" alt="post image">
-                        {% else %}
-                            <img src="{% static 'images/test2.png' %}" alt="기본 이미지">
-                        {% endif %}
-                    {% endwith %}
-                </div>
-                <div class="post-item_sy">
-                    <h2 class="post-title_sy">{{ saved.post.title }}</h2>
-                    <div class="post-first-info_sy">
-                        <div class="post-location_sy">
-                            {% if selected_building_name %}
-                                {{ selected_building_name }}
+    
+        <div class="post-list_sy">
+            {% for saved in saved_list %}
+            <a href="{% url 'posts:post_detail' saved.post.id %}">
+                <div class="post-container_sy">
+                    <div class="post-image_sy">
+                        {% with saved.post.images.all|first as image %}
+                            {% if image %}
+                                <img src="{{ image.image.url }}" alt="post image">
                             {% else %}
-                                {{ saved.post.building.name }}
+                                <img src="{% static 'images/test2.png' %}" alt="기본 이미지">
                             {% endif %}
-                        </div>
-                        <div class="post-second-info-sy">
-                            <div class="post-time_sy">
-                                <svg class="{% if post.burning == 1 %}boosted-icon_sy{% endif %}" width="21" height="20" viewBox="0 0 21 20" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M10.5 0C9.18678 0 7.88642 0.258658 6.67317 0.761205C5.45991 1.26375 4.35752 2.00035 3.42893 2.92893C1.55357 4.8043 0.5 7.34784 0.5 10C0.5 12.6522 1.55357 15.1957 3.42893 17.0711C4.35752 17.9997 5.45991 18.7362 6.67317 19.2388C7.88642 19.7413 9.18678 20 10.5 20C13.1522 20 15.6957 18.9464 17.5711 17.0711C19.4464 15.1957 20.5 12.6522 20.5 10C20.5 8.68678 20.2413 7.38642 19.7388 6.17317C19.2362 4.95991 18.4997 3.85752 17.5711 2.92893C16.6425 2.00035 15.5401 1.26375 14.3268 0.761205C13.1136 0.258658 11.8132 0 10.5 0ZM14.7 14.2L9.5 11V5H11V10.2L15.5 12.9L14.7 14.2Z"
-                                            fill="#2A2A2A" />
-                                </svg>
-                                <p class="post-time-text_sy {% if saved.post.burning == 1 %}boosted_time_sy{% endif %}">
-                                    +{{ saved.post.amounts }}분
-                                </p>
+                        {% endwith %}
+                    </div>
+                    <div class="post-item_sy">
+                        <h2 class="post-title_sy">{{ saved.post.title }}</h2>
+                        <div class="post-first-info_sy">
+                            <div class="post-location_sy">
+                                {% if selected_building_name %}
+                                    {{ selected_building_name }}
+                                {% else %}
+                                    {{ saved.post.building.name }}
+                                {% endif %}
                             </div>
-                            <div class="post-deadline_sy">{{ saved.post.deadline|date:"m/d H:i" }}까지</div>
+                            <div class="post-second-info-sy">
+                                <div class="post-time_sy">
+                                    <svg class="{% if post.burning == 1 %}boosted-icon_sy{% endif %}" width="21" height="20" viewBox="0 0 21 20" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M10.5 0C9.18678 0 7.88642 0.258658 6.67317 0.761205C5.45991 1.26375 4.35752 2.00035 3.42893 2.92893C1.55357 4.8043 0.5 7.34784 0.5 10C0.5 12.6522 1.55357 15.1957 3.42893 17.0711C4.35752 17.9997 5.45991 18.7362 6.67317 19.2388C7.88642 19.7413 9.18678 20 10.5 20C13.1522 20 15.6957 18.9464 17.5711 17.0711C19.4464 15.1957 20.5 12.6522 20.5 10C20.5 8.68678 20.2413 7.38642 19.7388 6.17317C19.2362 4.95991 18.4997 3.85752 17.5711 2.92893C16.6425 2.00035 15.5401 1.26375 14.3268 0.761205C13.1136 0.258658 11.8132 0 10.5 0ZM14.7 14.2L9.5 11V5H11V10.2L15.5 12.9L14.7 14.2Z"
+                                                fill="#2A2A2A" />
+                                    </svg>
+                                    <p class="post-time-text_sy {% if saved.post.burning == 1 %}boosted_time_sy{% endif %}">
+                                        +{{ saved.post.amounts }}분
+                                    </p>
+                                </div>
+                                <div class="post-deadline_sy">{{ saved.post.deadline|date:"m/d H:i" }}까지</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </a>
-        {% empty %}
-        <p class = "saved-posts-description">찜한 게시글이 없습니다</p>
-        {% endfor %}
+            </a>
+            {% empty %}
+            <p class = "saved-posts-description">찜한 게시글이 없습니다</p>
+            {% endfor %}
+        </div>
     </div>
-</div>
+</body>
+
 {% endblock %}
 
 {% block scripts %}
