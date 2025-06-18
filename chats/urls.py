@@ -1,12 +1,11 @@
 from django.urls import path
 from .views import *
 
-app_name = 'chat'
+app_name = 'chats'
 
 urlpatterns = [
-    path('', views.chat_list, name='chat_list'),
-    path('<int:room_id>/', views.chat_room, name='chat_room'),
-    path('<int:room_id>/send/', views.submit_chat, name='submit_chat'),
-    path('<int:room_id>/fetch/', views.fetch_chats, name='fetch_chats'),
+    path('', chat_list, name='chat_list'),
+    path('<int:room_id>/', chat_room, name='chat_room'),
+    path('<int:room_id>/send/', submit_chat, name='submit_chat'),
+    path('<int:room_id>/fetch/', fetch_chats, name='fetch_chats'),
 ]
-

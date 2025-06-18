@@ -287,11 +287,10 @@ align-items: center;
     line-height: 1;
     color: #2A2A2A;
 }
-.f5_dropdownPlaceTextCreate_sw{
+.f5_dropdownPlaceTextCreate_sw option{
     height: 14px;
     display: flex;
-    align-items: center;
-
+    
 }
 .f5_calenderCreate_sw{
     width: 169px;

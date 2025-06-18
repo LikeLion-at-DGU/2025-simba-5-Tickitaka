@@ -1,1 +1,23 @@
 /* chat_list.css */
+.pageAlignChatroom_sw{
+    width: 390px;
+    height: 844px;
+    display: flex;
+ 
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    /* F6F8FA */
+    background: pink;
+}
+.nicknameFrameChatroom_sw{
+    display: flex;
+    width: 390px;
+    height: 77px;
+    padding: 24px 16px;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+background: #FFF;
+
+}

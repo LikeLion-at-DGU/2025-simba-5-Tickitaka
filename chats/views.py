@@ -18,7 +18,7 @@ def chat_room(request, room_id):
     post = chatroom.post
     comments = Comment.objects.filter(chatroom=chatroom).order_by('timestamp')
 
-    return render(request, 'chats/test-chat_room.html', {
+    return render(request, 'chats/chat_room.html', {
         'chatroom': chatroom,
         'post': post,
         'comments': comments,
@@ -56,7 +56,7 @@ def fetch_chats(request, room_id):
 
     comments = Comment.objects.filter(chatroom=chatroom).order_by('timestamp')
 
-    return render(request, 'chats/test-chat_room.html', {
+    return render(request, 'chats/chat_room.html', {
         'chatroom': chatroom,
         'post': chatroom.post,
         'comments': comments,
