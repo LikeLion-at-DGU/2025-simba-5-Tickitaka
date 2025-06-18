@@ -17,10 +17,8 @@ def chat_room(request, room_id):
     
     post = chatroom.post
     comments = Comment.objects.filter(chatroom=chatroom).order_by('timestamp')
-
-    # 상대방 opponent 지정
     opponent = chatroom.helper if chatroom.master == user_profile else chatroom.master
-
+    
     return render(request, 'chats/chat_room.html', {
         'chatroom': chatroom,
         'post': post,
