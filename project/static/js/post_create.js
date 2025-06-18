@@ -26,6 +26,7 @@ const uploadInput = document.getElementById('photoUpload');
 const previewContainer = document.querySelector('.f1_photosFrameCreate_sw');
 const photoCount = document.querySelector('.f1_photoAmountCreate_sw');
 
+
 let imageCount = 0;//현재 이미지 수
 let selectedFiles = [];
 uploadInput.addEventListener("change", function (e) {
