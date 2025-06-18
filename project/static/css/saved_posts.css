@@ -5,6 +5,7 @@
     margin: 0 auto;
     flex-direction: column;
     background: #F6F8FA;
+    gap: 24px;
 }
 
 .liked-post-header_sy {
@@ -41,7 +42,6 @@
     gap: 16px;
     overflow-y: auto;
     height: calc(100vh - 216px);
-    margin-top: 180px;
     position: static;
 
 }

@@ -57,7 +57,6 @@
 
         <div class="post-list_sy">
             {% for post in posts %}
-
             <a href="{% url 'posts:post_detail' post.id %}?{{ request.GET.urlencode }}">
                 <div class="post-container_sy">
                     <div class="post-image_sy">
