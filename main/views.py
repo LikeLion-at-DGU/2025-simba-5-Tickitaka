@@ -76,25 +76,6 @@ def saved_posts(request):
         'saved_list': saved_list,
     })
 
-# 타인페이지
-def other_profile(request, user_id):
-    profile = get_object_or_404(Profile, user__id=user_id)
-    # 콜? 완료글 = master + 거래완료
-    call_question_done = Post.objects.filter(master=profile, status='done')
-    # 콜! 완료글 = helper + 거래완료
-    call_exclamation_done = Post.objects.filter(helper=profile, status='done')
-    # 모집 중인 글 = master + waiting
-    waiting_posts = Post.objects.filter(master=profile, status='waiting')
-    context = {
-        'profile': profile,
-        'call_question_done': call_question_done,
-        'call_question_count': call_question_done.count(),
-        'call_exclamation_done': call_exclamation_done,
-        'call_exclamation_count': call_exclamation_done.count(),
-        'waiting_posts': waiting_posts,
-    }
-
-    return render(request, 'main/other_profile.html', context)
 
 # 신고하기
 def report(request):
