@@ -27,12 +27,14 @@ const uploadInput = document.getElementById("photoUpload");
 const previewContainer = document.querySelector(".f1_photosFrameCreate_sw");
 const photoCount = document.querySelector(".f1_photoAmountCreate_sw");
 
-  let imageCount = 0;
-  uploadInput.addEventListener("change", function (e) {
-    const files = Array.from(e.target.files);
-    for(const file of files){
+let imageCount = 0;//현재 이미지 수
+let selectedFiles = [];
+uploadInput.addEventListener("change", function (e) {
+  const files = Array.from(e.target.files);
+  // 선택한 파일들을 배열로
+  for(const file of files){
     if (!file || imageCount >= 3) break;
-
+     selectedFiles.push(file);
   const reader = new FileReader();
   reader.onload = function (e) {
     const wrapper = document.createElement("div");//이미지 삭제 버튼 감싸기
