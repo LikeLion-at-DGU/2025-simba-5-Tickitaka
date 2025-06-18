@@ -96,19 +96,25 @@
                 <div class="line_sy"></div>
 
                 <div class="post-detail-footer_sy">
-                    <div class="post-liked_sy">
+                    <form class="post-liked_sy" data-post-id="{{ post.id }}">
+                        {% csrf_token %}
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="21" viewBox="0 0 16 21" fill="none">
-                            <path d="M15.5 1V19.749L8.19238 16.7051L8 16.625L7.80762 16.7051L0.5 19.749V1H15.5Z"
-                                stroke="black" />
+                            <path d="M15.5 1V19.749L8.19238 16.7051L8 16.625L7.80762 16.7051L0.5 19.749V1H15.5Z" stroke="black" />
                         </svg>
                         <p class="post-liked-count_sy">{{ post.saved_count }}</p>
-                    </div>
+                    </form>
                     {% if user.id == post.master_id %}
                     <div class="manage-btn-wrapper_sy">
                         {# 작성자일 경우: 수정/삭제 버튼 #}
+
                         {% if post.status == "waiting" %}
-                        <button class="edit-btn_sy">수정하기</button>
-                        <button class="delete-btn_sy">삭제하기</button>
+                        <a href="{% url 'posts:post_update' post.id %}">
+                            <button class="edit-btn_sy">수정하기</button>
+                        </a>
+                        <form method="POST" action="{% url 'posts:post_delete' post.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="delete-btn_sy" onclick="return confirm('정말 삭제하시겠습니까?');">삭제하기</button>
+                        </form>
                         {% else %}
                         <button class="edit-btn_sy" disabled>수정하기</button>
                         <button class="edit-btn_sy" disabled>삭제하기</button>
@@ -117,7 +123,10 @@
                     {% else %}
                     {# 작성자가 아닌 일반 사용자 #}
                     {% if post.status == "waiting" %}
-                    <button class="call-btn_sy">콜!</button>
+                    <form method="POST" action="{% url 'posts:call_post' post.id %}">
+                        {% csrf_token %}
+                        <button class="call-btn_sy" type="submit">콜!</button>
+                    </form>
                     {% else %}
                     <button class="call-btn_sy disabled" disabled>콜!</button>
                     {% endif %}

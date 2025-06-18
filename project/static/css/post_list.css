@@ -119,6 +119,7 @@
 
 .dropdown-content_sy div {
     padding: 10px;
+    width: 100%;
     cursor: pointer;
     color: #2A2A2A;
     text-align: center;
@@ -129,7 +130,7 @@
     line-height: normal;
 }
 
-.dropdown-content_sy div:hover {
+.dropdown-content_sy :hover {
     background-color: #DFE8EF;
 }
 
