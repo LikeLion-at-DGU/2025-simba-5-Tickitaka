@@ -1,4 +1,7 @@
 /* post_create.css */
+button{
+    cursor: pointer;
+}
 .pageAlignCreate_sw{
      width: 390px;
     height: 844px;
@@ -226,8 +229,6 @@ align-items: center;
 }
 /* f5 */
 .f5_frameCreate_sw{
- 
-
     width: 358px;
     height: 59px;
     display: flex;
@@ -256,6 +257,7 @@ align-items: center;
     line-height: normal;
 }
 .f5_textSvgWrapperCreate_sw{
+    position: relative; 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -277,6 +279,7 @@ align-items: center;
 
 .f5_dropdownPlaceCreate_sw{
    appearance: none; /* 기본 화살표 제거 */
+   cursor: pointer;
     border: none;
     outline: none;
     background: transparent;
@@ -287,11 +290,19 @@ align-items: center;
     line-height: 1;
     color: #2A2A2A;
 }
-.f5_dropdownPlaceTextCreate_sw{
+.f5_dropdownPlaceTextCreate_sw option{
     height: 14px;
     display: flex;
-    align-items: center;
-
+    
+}
+.f5icon_sw{
+   position: absolute;  
+   right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* 클릭 막기 */
+    width: 13px;
+    height: 8px;
 }
 .f5_calenderCreate_sw{
     width: 169px;

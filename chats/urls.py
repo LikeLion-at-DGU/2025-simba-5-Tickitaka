@@ -9,4 +9,3 @@ urlpatterns = [
     path('<int:room_id>/send/', submit_chat, name='submit_chat'),
     path('<int:room_id>/fetch/', fetch_chats, name='fetch_chats'),
 ]
-
