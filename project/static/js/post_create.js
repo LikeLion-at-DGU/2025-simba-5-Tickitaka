@@ -26,17 +26,20 @@ const uploadInput = document.getElementById('photoUpload');
 const previewContainer = document.querySelector('.f1_photosFrameCreate_sw');
 const photoCount = document.querySelector('.f1_photoAmountCreate_sw');
 
-let imageCount = 0;
-uploadInput.addEventListener('change', function (e) {
-    const files = Array.from(e.target.files);
-    for (const file of files) {
-        if (!file || imageCount >= 3) break;
 
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const wrapper = document.createElement('div'); //이미지 삭제 버튼 감싸기
-            wrapper.className = 'f1_previewImageWrapperCreate_sw';
-            wrapper.innerHTML = `
+let imageCount = 0;//현재 이미지 수
+let selectedFiles = [];
+uploadInput.addEventListener("change", function (e) {
+  const files = Array.from(e.target.files);
+  // 선택한 파일들을 배열로
+  for(const file of files){
+    if (!file || imageCount >= 3) break;
+     selectedFiles.push(file);
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const wrapper = document.createElement("div");//이미지 삭제 버튼 감싸기
+    wrapper.className = "f1_previewImageWrapperCreate_sw";
+    wrapper.innerHTML = `
         <img src="${e.target.result}" class="f1_previewImageCreate_sw" />
         <button type="button" class="f1_deletePreviewButtonCreate_sw">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
