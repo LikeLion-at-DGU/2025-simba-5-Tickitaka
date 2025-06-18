@@ -33,9 +33,15 @@ def save_user_profile(sender, instance, **kwargs):
 
 
 class TimeHistory(models.Model):
+    TRANSACTION_TYPES = [
+        ('plus', '플러스'),
+        ('minus', '마이너스'),
+        ('tip', '팁'),
+    ]
+
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     amounts = models.IntegerField()
-    type = models.CharField(max_length=10, choices=[('plus', '플러스'), ('minus', '마이너스')])
+    type = models.CharField(max_length=10, choices=TRANSACTION_TYPES)
     timestamp = models.DateTimeField(auto_now_add=True)
     post_id = models.IntegerField()
 

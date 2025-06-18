@@ -7,83 +7,84 @@
 <link rel="stylesheet" href="{% static 'css/post_create.css' %}" />
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
 
-<form method="post" action="{% url 'posts:post_create' %}" enctype="multipart/form-data">
-<div class="pageAlignCreate_sw">
-    <div class="allFrameCreate_sw">
-        {% csrf_token %}
-        <div class="contentsFrameCreate_sw">
-            <div class="f1_frameCreate_sw">
-                <div class="f1_titleFrameCreate_sw">
-                    <div class="f1_titleBoxCreate_sw">
-                        <button class="f1_closeButtonCreate_sw" type="button">
-                            <img  src="{% static 'images/xicon.svg' %}" alt="엑스아이콘">
-                        </button>
-                        <div class="f1_titleCreate_sw">거래글 작성</div>
+<form method="POST" action="{% url 'posts:post_create' %}" enctype="multipart/form-data">
+    <div class="pageAlignCreate_sw">
+        <div class="allFrameCreate_sw">
+            {% csrf_token %}
+            <div class="contentsFrameCreate_sw">
+                <div class="f1_frameCreate_sw">
+                    <div class="f1_titleFrameCreate_sw">
+                        <div class="f1_titleBoxCreate_sw">
+                            <button class="f1_closeButtonCreate_sw" type="button">
+                                <img src="{% static 'images/xicon.svg' %}" alt="엑스아이콘">
+                            </button>
+                            <div class="f1_titleCreate_sw">거래글 작성</div>
+                        </div>
+                        <div class="f1_lineCreate_sw"></div>
                     </div>
-                    <div class="f1_lineCreate_sw"></div>
-                </div>
-                <div class="f1_photosFrameCreate_sw">
-                    <!-- 숨겨진 파일 업로드 input -->
-                    <input type="file" id="photoUpload" name="images" accept="image/*" multiple style="display: none;" />
-                    <!-- 사용자에게 보이는 부분: 사진 아이콘 -->
-                    <label for="photoUpload" class="f1_photoCreate_sw">
-                        <img  src="{% static 'images/photoicon.svg' %}" alt="사진아이콘">
-                        <div class="f1_photoAmountCreate_sw">0/3</div>
-                    </label>
-                </div>
-            </div>
-            <div class="f2_frameCreate_sw">
-                <label class="f234_titleCreate_sw">제목</label>
-                <input type="text" class="f2_inputCreate_sw" id="f2_inputCreate_sw" name="title"/>
-                <div class="f234_wordCountCreate_sw">0/30</div>
-            </div>
-            <div class="f3_frameCreate_sw">
-                <label class="f234_titleCreate_sw">설명</label>
-                <textarea class="f3_inputCreate_sw" id="f3_inputCreate_sw" name="content"></textarea>
-                <small class="f234_wordCountCreate_sw">0/500</small>
-            </div>
-            <div class="f4_frameCreate_sw">
-                <label class="f234_titleCreate_sw">개인 정보</label>
-                <textarea class="f4_inputCreate_sw" id="f4_inputCreate_sw" type="text" name="private_info"
-                    placeholder="민감한 정보는 거래가 시작되면 전달됩니다"></textarea>
-                <small class="f234_wordCountCreate_sw">0/100</small>
-            </div>
-            <div class="f5_frameCreate_sw">
-                <div class="f5_wrapperCreate_sw">
-                    <label class="f5_titleCreate_sw">거래 위치</label>
-                    <div class="f5_textSvgWrapperCreate_sw">
-                        <select class="f5_dropdownPlaceCreate_sw" id="f5_dropdownPlaceCreate_sw" name="building">
-                            <option value="" disabled selected class="f5_dropdownPlaceTextCreate_sw">전체</option>
-                            {% for building in buildings %}
-                            <option value="{{ building.id }}">{{ building.name }}</option>
-                            {% endfor %}
-                        </select>
-                        <img class="f5icon_sw" src="{% static 'images/dropdownicon.svg' %}" alt="드롭다운아이콘">
+                    <div class="f1_photosFrameCreate_sw">
+                        <!-- 숨겨진 파일 업로드 input -->
+                        <input type="file" id="photoUpload" name="images" style="display: none;" accept="image/*"
+                            multiple />
+                        <!-- 사용자에게 보이는 부분: 사진 아이콘 -->
+                        <label for="photoUpload" class="f1_photoCreate_sw">
+                            <img src="{% static 'images/photoicon.svg' %}" alt="사진아이콘">
+                            <div class="f1_photoAmountCreate_sw">0/3</div>
+                        </label>
                     </div>
+                </div>
+                <div class="f2_frameCreate_sw">
+                    <label class="f234_titleCreate_sw">제목</label>
+                    <input type="text" class="f2_inputCreate_sw" id="f2_inputCreate_sw" name="title" />
+                    <div class="f234_wordCountCreate_sw">0/30</div>
+                </div>
+                <div class="f3_frameCreate_sw">
+                    <label class="f234_titleCreate_sw">설명</label>
+                    <textarea class="f3_inputCreate_sw" id="f3_inputCreate_sw" name="content"></textarea>
+                    <small class="f234_wordCountCreate_sw">0/500</small>
+                </div>
+                <div class="f4_frameCreate_sw">
+                    <label class="f234_titleCreate_sw">개인 정보</label>
+                    <textarea class="f4_inputCreate_sw" id="f4_inputCreate_sw" type="text" name="private_info"
+                        placeholder="민감한 정보는 거래가 시작되면 전달됩니다"></textarea>
+                    <small class="f234_wordCountCreate_sw">0/100</small>
+                </div>
+                <div class="f5_frameCreate_sw">
+                    <div class="f5_wrapperCreate_sw">
+                        <label class="f5_titleCreate_sw">거래 위치</label>
+                        <div class="f5_textSvgWrapperCreate_sw">
+                            <select class="f5_dropdownPlaceCreate_sw" id="f5_dropdownPlaceCreate_sw" name="building">
+                                <option value="" disabled selected class="f5_dropdownPlaceTextCreate_sw">전체</option>
+                                {% for building in buildings %}
+                                <option value="{{ building.id }}">{{ building.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <img class="f5icon_sw" src="{% static 'images/dropdownicon.svg' %}" alt="드롭다운아이콘">
+                        </div>
 
+                    </div>
+                    <div class="f5_wrapperCreate_sw">
+                        <label class="f5_titleCreate_sw">거래글 마감 시간</label>
+                        <input class="f5_calenderCreate_sw" id="f5_calenderCreate_sw" name="deadline" type="text"
+                            placeholder="시간을 선택하세요" readonly>
+                    </div>
                 </div>
-                <div class="f5_wrapperCreate_sw">
-                    <label class="f5_titleCreate_sw">거래글 마감 시간</label>
-                    <input class="f5_calenderCreate_sw" id="f5_calenderCreate_sw" name="deadline" type="text"
-                        placeholder="시간을 선택하세요" readonly>
+                <div class="f6_frameCreate_sw">
+                    <label class="f234_titleCreate_sw">소요 시간</label>
+                    <div class="f6_wrapperCreate_sw">
+                        <input class="f6_requireTimeCreate_sw" id="f6_requireTimeCreate_sw" name="amounts"
+                            placeholder="10분 단위로 입력해주세요">
+                        <div class="f6_minuteText_sw">분</div>
+                    </div>
+                </div>
+                <div class="f7_frameCreate_sw">
+                    <small class="f7_descriptionCreate_sw">더 빠른 거래를 원한다면?</small>
+                    <button class="f7_buttonCreate_sw" type="button">1.5배</button>
+                    <input type="hidden" name="burning" id="burning" value="0" />
                 </div>
             </div>
-            <div class="f6_frameCreate_sw">
-                <label class="f234_titleCreate_sw">소요 시간</label>
-                <div class="f6_wrapperCreate_sw">
-                    <input class="f6_requireTimeCreate_sw" id="f6_requireTimeCreate_sw" name="amounts"
-                        placeholder="10분 단위로 입력해주세요">
-                    <div class="f6_minuteText_sw">분</div>
-                </div>
-            </div>
-            <div class="f7_frameCreate_sw">
-                <small class="f7_descriptionCreate_sw">더 빠른 거래를 원한다면?</small>
-                <button class="f7_buttonCreate_sw" type="button">1.5배</button>
-                <input type="hidden" name="burning" id="burning" value="0" />
-            </div>
+            <button type="submit" class="buttonFrameCreate_sw">작성완료</button>
         </div>
-        <button type="submit" class="buttonFrameCreate_sw">작성완료</button>
-    </div>
     </div>
 </form>
 
