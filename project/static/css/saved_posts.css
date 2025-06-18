@@ -1,3 +1,8 @@
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .liked-post-container_sy {
     width: 390px;
     height: 844px;
@@ -11,12 +16,14 @@
 .liked-post-header_sy {
     display: flex;
     height: 77px;
+    width: 390px;
     padding: 24px 161px 24px 16px;
     align-items: center;
     border-bottom: 0.5px solid var(--N-4, #D9D9D9);
     background: #FFF;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
 }
 
 .go-back-btn_sy {
@@ -40,9 +47,10 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    overflow-y: auto;
-    height: calc(100vh - 216px);
     position: static;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 102px;
 
 }
 
@@ -161,12 +169,17 @@
     fill: #C75352;
 }
 
+
+.boosted-icon_sy path {
+    fill: #C75352;
+}
+
 .post-location_sy {
     color: #959393;
     font-family: Pretendard;
     font-size: 12px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: normal;
 }
 
@@ -175,6 +188,20 @@
     font-family: Pretendard;
     font-size: 12px;
     font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.saved-posts-description {
+    color: #959393;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
     font-weight: 500;
     line-height: normal;
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
 }

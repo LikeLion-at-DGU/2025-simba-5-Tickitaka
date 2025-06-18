@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="{% static 'css/post_create.css' %}" />
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
 
-<form method="post" action="{% url 'posts:post_create' %}" enctype="multipart/form-data">
+<form method="POST" action="{% url 'posts:post_create' %}" enctype="multipart/form-data">
     <div class="pageAlignCreate_sw">
         <div class="allFrameCreate_sw">
             {% csrf_token %}
@@ -24,8 +24,8 @@
                     </div>
                     <div class="f1_photosFrameCreate_sw">
                         <!-- 숨겨진 파일 업로드 input -->
-                        <input type="file" id="photoUpload" name="images" accept="image/*" multiple
-                            style="display: none;" />
+                        <input type="file" id="photoUpload" name="images" style="display: none;" accept="image/*"
+                            multiple />
                         <!-- 사용자에게 보이는 부분: 사진 아이콘 -->
                         <label for="photoUpload" class="f1_photoCreate_sw">
                             <img src="{% static 'images/photoicon.svg' %}" alt="사진아이콘">
