@@ -4,15 +4,14 @@ from accounts.models import *
 from posts.models import *
 from chats.models import *
 
-
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
 
-# Create your views here.
 def mainpage(request):
     return render(request, 'main/test-mainpage.html')
 
+# 마이페이지 관련 기능
 def home(request):
     profile = request.user.profile
 
@@ -25,7 +24,6 @@ def home(request):
         'hours': hours,
         'minutes': minutes,
     })
-
 
 def edit_profile(request):
     profile = request.user.profile
@@ -78,27 +76,45 @@ def saved_posts(request):
         'saved_list': saved_list,
     })
 
+# 타인페이지
+def other_profile(request, user_id):
+    profile = get_object_or_404(Profile, user__id=user_id)
+    # 콜? 완료글 = master + 거래완료
+    call_question_done = Post.objects.filter(master=profile, status='done')
+    # 콜! 완료글 = helper + 거래완료
+    call_exclamation_done = Post.objects.filter(helper=profile, status='done')
+    # 모집 중인 글 = master + waiting
+    waiting_posts = Post.objects.filter(master=profile, status='waiting')
+    context = {
+        'profile': profile,
+        'call_question_done': call_question_done,
+        'call_question_count': call_question_done.count(),
+        'call_exclamation_done': call_exclamation_done,
+        'call_exclamation_count': call_exclamation_done.count(),
+        'waiting_posts': waiting_posts,
+    }
 
-# 일단 보류
-# def friend_list(request):
-#     profile = request.user.profile
+    return render(request, 'main/other_profile.html', context)
 
-#     # 친구 요청 중 수락된 것만
-#     friends = Friend.objects.filter(
-#         models.Q(requester=profile) | models.Q(receiver=profile),
-#         status='accepted'
-#     ).select_related('requester', 'receiver')
+# 신고하기
+def report(request):
+    if request.method == 'POST':
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        sender_email = request.user.profile.email or request.user.email
 
-#     # 상대방만 추출해서 리스트로 만들기
-#     friend_profiles = []
-#     for f in friends:
-#         if f.requester == profile:
-#             friend_profiles.append(f.receiver)
-#         else:
-#             friend_profiles.append(f.requester)
+        # 이메일 전송
+        send_mail(
+            subject=f"[시시콜콜 문의] {subject}",
+            message=f"보낸 사람: {sender_email}\n\n내용:\n{message}",
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=['sisicallcallnow@gmail.com'],
+            fail_silently=False,
+        )
 
-#     return render(request, 'main/friend_list.html', {
-#         'friend_profiles': friend_profiles
-#     })
+        messages.success(request, "문의가 성공적으로 전송되었습니다!")
+        return redirect('posts/post_list')
+
+    return render(request, 'main/report.html')
 
 

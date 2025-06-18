@@ -42,7 +42,7 @@ def submit_chat(request, room_id):
         return HttpResponseForbidden("채팅을 보낼 권한이 없습니다.")
 
     content = request.POST.get('content')
-    print("💬 입력된 채팅 내용:", content)
+   
     if content:
         Comment.objects.create(chatroom=chatroom, writer=user_profile, content=content)
 
