@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
     boostApplied = true;
     boostBtn.style.backgroundColor = "#025397";
     boostBtn.style.color = "#fff";
-  burningInput.value = "1";
+    burningInput.value = "1";
     checkSubmitButton();
   });
 });
