@@ -127,7 +127,7 @@ font-weight: 400;
 line-height: normal;
 }
 .tradeTitleButtonsFrameChatroom_sw{
-    width: 142px;
+    width: 225px;
     height: 30px;
     display: flex;
     flex-direction: row;
@@ -151,6 +151,9 @@ line-height: normal;
 .chatBubblesFrameChatroom_sw{
 display: flex;
 width: 363px;
+height: 709px;
+ overflow-y: auto;
+  overflow-x: hidden;
 height: auto;
 flex-direction: column;
 align-items: flex-start;
@@ -204,39 +207,36 @@ gap: 16px;
     margin-top: auto;
     margin-bottom: 29px;
 }
-.iconWriteChatroom_sw{
+.iconPhotoChatroom_sw{
     width: 34px;
     height: 34px;
     aspect-ratio: 1/1;
 }
+/* form 태그의 속성 */
 .chatInputWrapperChatroom_sw{
-    width: 258px;
-    min-height: 34px;
+    width: 314px;
+    min-height: 33px;
+    padding: 6px 16px;
     border-radius: 6px;
-    padding-right: 16px;
-    padding-left: 16px;
     border: 1px solid #D9D9D9;
     background: #FFF;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 16px;
-
 }
+/* text area의 속성 */
 .chatInputChatroom_sw{
-    
-    width: 100%;
-    min-height: 20px;
-    max-height: 88px;
-    padding: 7px 0px;
-  
+    background-color: pink;
+    resize: none;
+    height: 21px;
+    padding: 0 4px;
+   width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     align-self: stretch;
-   
     color: #2A2A2A;
     /* caption */
     font-family: Pretendard;
@@ -245,10 +245,8 @@ gap: 16px;
     font-weight: 400;
     line-height: normal;
     }
-.iconRefreshChatroom_sw{
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
+
+.iconSendChatroom_sw{
     aspect-ratio: 1/1;
 }
 .modalChatroom_sw{
