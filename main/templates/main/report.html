@@ -1,0 +1,15 @@
+{% extends 'test-base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/post_detail.css' %}">
+<div class="report-container_sy">
+    <h2>‘{{ post.title }}’ 게시글을 신고합니다</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <textarea name="reason" placeholder="신고 사유를 입력해주세요" required></textarea>
+        <br>
+        <button type="submit">신고 제출</button>
+        <a href="{% url 'posts:post_detail' post.id %}">취소</a>
+    </form>
+</div>
+{% endblock %}
