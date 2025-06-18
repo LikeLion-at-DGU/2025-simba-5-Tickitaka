@@ -27,10 +27,11 @@ const uploadInput = document.getElementById("photoUpload");
 const previewContainer = document.querySelector(".f1_photosFrameCreate_sw");
 const photoCount = document.querySelector(".f1_photoAmountCreate_sw");
 
-let imageCount = 0;
-uploadInput.addEventListener("change", function (e) {
-  const file = e.target.files[0];
-  if (!file || imageCount >= 3) return;
+  let imageCount = 0;
+  uploadInput.addEventListener("change", function (e) {
+    const files = Array.from(e.target.files);
+    for(const file of files){
+    if (!file || imageCount >= 3) break;
 
   const reader = new FileReader();
   reader.onload = function (e) {
@@ -48,18 +49,18 @@ uploadInput.addEventListener("change", function (e) {
     imageCount++;
     photoCount.textContent = `${imageCount}/3`;
 
-    // 삭제 기능
-    wrapper.querySelector(".f1_deletePreviewButtonCreate_sw").addEventListener("click", () => {
-      previewContainer.removeChild(wrapper);
-      imageCount--;
-      photoCount.textContent = `${imageCount}/3`;
+      // 삭제 기능
+      wrapper.querySelector(".f1_deletePreviewButtonCreate_sw").addEventListener("click", () => {
+        previewContainer.removeChild(wrapper);
+        imageCount--;
+        photoCount.textContent = `${imageCount}/3`;
+        checkSubmitButton();
+      });
       checkSubmitButton();
-    });
-    checkSubmitButton();
-  };
-  reader.readAsDataURL(file);
-
-});
+    };
+    reader.readAsDataURL(file);
+  }
+  });
 
 //  2. 글자 수 실시간 표시 및 제한
 document.querySelectorAll("textarea, input[type='text']").forEach((el) => {
