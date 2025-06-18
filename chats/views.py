@@ -44,10 +44,15 @@ def submit_chat(request, room_id):
         return HttpResponseForbidden("채팅을 보낼 권한이 없습니다.")
 
     content = request.POST.get('content')
-    if content:
-        Comment.objects.create(chatroom=chatroom, writer=user_profile, content=content)
+    image = request.FILES.get('image')
 
-    return redirect('chat:chat_room', room_id=room_id)
+    if not content and not image:
+        # 아무 내용도 없는 경우는 무시 (이미지와 텍스트 둘 다 없는 경우)
+        return redirect('chats:chat_room', room_id=room_id)
+
+    Comment.objects.create(chatroom=chatroom, writer=user_profile, content=content, image=image)
+
+    return redirect('chats:chat_room', room_id=room_id)
 
 
 @login_required
@@ -59,6 +64,7 @@ def fetch_chats(request, room_id):
         return HttpResponseForbidden("채팅을 볼 권한이 없습니다.")
 
     comments = Comment.objects.filter(chatroom=chatroom).order_by('timestamp')
+    opponent = chatroom.helper if chatroom.master == user_profile else chatroom.master
 
     return render(request, 'chats/chat_room.html', {
         'chatroom': chatroom,
