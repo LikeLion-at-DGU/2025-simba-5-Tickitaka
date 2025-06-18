@@ -17,10 +17,8 @@ def chat_room(request, room_id):
     
     post = chatroom.post
     comments = Comment.objects.filter(chatroom=chatroom).order_by('timestamp')
-
-    # 상대방 opponent 지정
     opponent = chatroom.helper if chatroom.master == user_profile else chatroom.master
-
+    
     return render(request, 'chats/chat_room.html', {
         'chatroom': chatroom,
         'post': post,
@@ -59,6 +57,7 @@ def fetch_chats(request, room_id):
         return HttpResponseForbidden("채팅을 볼 권한이 없습니다.")
 
     comments = Comment.objects.filter(chatroom=chatroom).order_by('timestamp')
+    opponent = chatroom.helper if chatroom.master == user_profile else chatroom.master
 
     return render(request, 'chats/chat_room.html', {
         'chatroom': chatroom,

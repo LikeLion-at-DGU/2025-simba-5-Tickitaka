@@ -1,0 +1,19 @@
+<!-- chat_list.html -->
+{% extends 'test-base.html' %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'css/chat_room.css' %}" />
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+<div class="pageAlignChatroom_sw">
+    <div class="nicknameFrameChatroom_sw">
+            <img class="backiconChatroom_sw" src="{% static 'images/backicon.svg' %}" alt="뒤로가기아이콘">
+            <div class="profileNicknameChatroom_sw">
+                <img class="profileImgChatroom_sw" src="{% static 'images/defaultprofile.svg' %}" alt="프로필사진">
+                <div class="nicknameChatroom_sw">{{post.master.nickname}}</div>
+            </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<!-- js 파일 -->
+<script src="{% static 'js/chat_room.js' %}"></script>
+{% endblock %}

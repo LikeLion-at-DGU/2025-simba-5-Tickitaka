@@ -57,7 +57,76 @@ uploadInput.addEventListener('change', function (e) {
         checkSubmitButton();
     };
     reader.readAsDataURL(file);
+<<<<<<< HEAD
     uploadInput.value = ''; //동일 파일 재선택 가능
+=======
+    
+  });
+
+  //  2. 글자 수 실시간 표시 및 제한
+  document.querySelectorAll("textarea, input[type='text']").forEach((el) => {
+    el.addEventListener("input", function () {
+      const counter = el.nextElementSibling;
+      if (!counter?.classList.contains("f234_wordCountCreate_sw")) return;
+      const max = parseInt(counter.textContent.split("/")[1]);
+      if (el.value.length > max) el.value = el.value.slice(0, max);
+      counter.textContent = `${el.value.length}/${max}`;
+    });
+  });
+
+  //  3. 거래 위치 드롭다운 DB 연동은 HTML에서 for문 처리
+
+  //  4. 소요 시간 10분 단위 확인
+  const timeInput = document.querySelector(".f6_requireTimeCreate_sw");
+  timeInput.addEventListener("blur", () => {
+    const val = parseInt(timeInput.value);
+    if (val % 10 !== 0) {
+      alert("10분 단위로 입력해주세요.");
+      timeInput.value = "";
+    }
+    checkSubmitButton();
+  });
+
+  //  5. 1.5배 버튼 기능  
+  
+  let boostApplied = false;
+  let originalTime = null;
+  document.addEventListener("DOMContentLoaded", function () {
+  const timeInput = document.getElementById("f6_requireTimeCreate_sw");
+  const boostBtn = document.querySelector(".f7_buttonCreate_sw");
+  const burningInput = document.getElementById("is_burning");
+
+  boostBtn.addEventListener("click", () => {
+    const currentVal = parseInt(timeInput.value);
+
+    if (boostApplied) {
+      // boost 해제는 무조건 허용
+      timeInput.value = originalTime;
+      originalTime = null;
+      boostApplied = false;
+      boostBtn.style.backgroundColor = "";
+      boostBtn.style.color = "";
+      burningInput.value = "0";
+      checkSubmitButton();
+      return;
+    }
+
+    // boost 적용할 때만 유효성 검사
+    if (isNaN(currentVal) || currentVal % 10 !== 0) {
+      alert("먼저 올바른 소요 시간을 입력하세요. (10분 단위)");
+      return;
+    }
+
+    // boost 적용
+    originalTime = currentVal;
+    timeInput.value = Math.round(currentVal * 1.5);
+    boostApplied = true;
+    boostBtn.style.backgroundColor = "#025397";
+    boostBtn.style.color = "#fff";
+  burningInput.value = "1";
+    checkSubmitButton();
+  });
+>>>>>>> 26ed4cb3a72d634a3c3f99b38bd48e81fe6544af
 });
 
 //  2. 글자 수 실시간 표시 및 제한
