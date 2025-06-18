@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener("DOMContentLoaded", function () {
   const timeInput = document.getElementById("f6_requireTimeCreate_sw");
   const boostBtn = document.querySelector(".f7_buttonCreate_sw");
-  const burningInput = document.getElementById("is_burning");
+  const burningInput = document.getElementById("burning");
 
   boostBtn.addEventListener("click", () => {
     const currentVal = parseInt(timeInput.value);
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
     boostApplied = true;
     boostBtn.style.backgroundColor = "#025397";
     boostBtn.style.color = "#fff";
-  burningInput.value = "1";
+    burningInput.value = "1";
     checkSubmitButton();
   });
 });
