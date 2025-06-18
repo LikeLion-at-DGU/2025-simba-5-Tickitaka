@@ -14,12 +14,12 @@
                 </svg>
             </div>
             <div class="complain-btn_sy">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path
-                        d="M8.673 12.942H9.673V10.135C9.673 9.50033 9.901 8.957 10.357 8.505C10.8123 8.053 11.36 7.827 12 7.827V6.827C11.08 6.827 10.2953 7.14833 9.646 7.791C8.99733 8.433 8.673 9.21433 8.673 10.135V12.942ZM4.616 20C4.17133 20 3.791 19.8417 3.475 19.525C3.159 19.2083 3.00067 18.8287 3 18.386V16.866C3 16.422 3.15833 16.042 3.475 15.726C3.79167 15.41 4.17167 15.2517 4.615 15.251H5.827V10.136C5.827 8.42667 6.426 6.97667 7.624 5.786C8.822 4.59533 10.2807 4 12 4C13.7193 4 15.178 4.59533 16.376 5.786C17.574 6.97667 18.173 8.42633 18.173 10.135V15.25H19.385C19.829 15.25 20.209 15.4083 20.525 15.725C20.841 16.0417 20.9993 16.4217 21 16.865V18.385C21 18.829 20.8417 19.209 20.525 19.525C20.2083 19.841 19.8283 19.9993 19.385 20H4.616Z"
-                        fill="#C75352" />
-                </svg>
-                <p>신고하기</p>
+                <!--<a href="{% url 'posts:report_post' post.id %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="..." fill="#C75352" />
+                    </svg>
+                    <p>신고하기</p>
+                </a>-->
             </div>
         </div>
 
@@ -30,9 +30,12 @@
             </div>
             <div class="post-detail-item_sy">
                 <div class="user-info_sy">
-                    <div class="profile-image_sy">
-                        <!--<img src="{{ accounts.image.url }}" alt="profile image">-->
-                        <img src="{% static 'images/test2.png' %}" alt="테스트 이미지">
+                    <div class="post-image-carousel-wrapper_sy">
+                        <div class="post-image-carousel_sy">
+                            {% for image in post.images.all %}
+                                <img src="{{ image.image.url }}" alt="post image">
+                            {% endfor %}
+                        </div>
                     </div>
                     <div class="user-name_sy">{{ post.master.nickname }}</div>
                 </div>
@@ -96,19 +99,25 @@
                 <div class="line_sy"></div>
 
                 <div class="post-detail-footer_sy">
-                    <div class="post-liked_sy">
+                    <form class="post-liked_sy" data-post-id="{{ post.id }}">
+                        {% csrf_token %}
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="21" viewBox="0 0 16 21" fill="none">
-                            <path d="M15.5 1V19.749L8.19238 16.7051L8 16.625L7.80762 16.7051L0.5 19.749V1H15.5Z"
-                                stroke="black" />
+                            <path d="M15.5 1V19.749L8.19238 16.7051L8 16.625L7.80762 16.7051L0.5 19.749V1H15.5Z" stroke="black" />
                         </svg>
                         <p class="post-liked-count_sy">{{ post.saved_count }}</p>
-                    </div>
+                    </form>
                     {% if user.id == post.master_id %}
                     <div class="manage-btn-wrapper_sy">
                         {# 작성자일 경우: 수정/삭제 버튼 #}
+
                         {% if post.status == "waiting" %}
-                        <button class="edit-btn_sy">수정하기</button>
-                        <button class="delete-btn_sy">삭제하기</button>
+                        <a href="{% url 'posts:post_update' post.id %}">
+                            <button class="edit-btn_sy">수정하기</button>
+                        </a>
+                        <form method="POST" action="{% url 'posts:post_delete' post.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="delete-btn_sy" onclick="return confirm('정말 삭제하시겠습니까?');">삭제하기</button>
+                        </form>
                         {% else %}
                         <button class="edit-btn_sy" disabled>수정하기</button>
                         <button class="edit-btn_sy" disabled>삭제하기</button>
@@ -117,7 +126,10 @@
                     {% else %}
                     {# 작성자가 아닌 일반 사용자 #}
                     {% if post.status == "waiting" %}
-                    <button class="call-btn_sy">콜!</button>
+                    <form method="POST" action="{% url 'posts:call_post' post.id %}">
+                        {% csrf_token %}
+                        <button class="call-btn_sy" type="submit">콜!</button>
+                    </form>
                     {% else %}
                     <button class="call-btn_sy disabled" disabled>콜!</button>
                     {% endif %}
