@@ -137,4 +137,17 @@ def approve_finish(request, room_id):
     post.status = 'done'
     post.save()
 
-    return redirect('main:home')
+    return redirect('main:mainpage')
+
+
+
+@require_POST
+@login_required
+def request_finish(request, room_id):
+    chatroom = get_object_or_404(ChatRoom, id=room_id)
+    user_profile = request.user.profile
+
+    if chatroom.helper != user_profile:
+        return HttpResponseForbidden("완료 요청 권한이 없습니다.")
+
+    return redirect('chats:chat_room', room_id=room_id)

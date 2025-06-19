@@ -11,5 +11,5 @@ urlpatterns = [
     # path('time_history/', time_history, name='time_history'),
     path('my_posts/', my_posts, name='my_posts'),
     path('saved_posts/', saved_posts, name='saved_posts'),
-    path('profile/<int:id>/', other_profile, name='other_profile'),
+    # path('profile/<int:id>/', other_profile, name='other_profile'),
 ]
