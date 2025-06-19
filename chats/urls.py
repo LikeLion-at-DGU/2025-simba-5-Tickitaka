@@ -11,4 +11,5 @@ urlpatterns = [
     path('<int:room_id>/start_transaction/', start_transaction, name='start_transaction'),
     path('<int:room_id>/approve_finish/', approve_finish, name='approve_finish'),
     path('<int:room_id>/fetch/', fetch_chats, name='fetch_chats'),
+    path('<int:room_id>/request_finish/', request_finish, name='request_finish'),
 ]
