@@ -31,7 +31,21 @@ def chat_room(request, room_id):
     
     opponent = chatroom.helper if chatroom.master == user_profile else chatroom.master
     
+    startnotice = False
+    requestnotice = False
 
+    if post.status == 'in_progress':
+        start_session_key = f"startnotice_shown_{room_id}"
+        if not request.session.get(start_session_key, False):
+            startnotice = True
+            request.session[start_session_key] = True
+
+    if post.status == 'task_completed':
+        request_session_key = f"requestnotice_shown_{room_id}"
+        if not request.session.get(request_session_key, False):
+            requestnotice = True
+            request.session[request_session_key] = True
+    
     return render(request, 'chats/chat_room.html', {
         'chatroom': chatroom,
         'post': post,
@@ -41,6 +55,8 @@ def chat_room(request, room_id):
         'transaction_started_at': post.transaction_started_at,   
         'task_completed_at': post.task_completed_at,            
         'transaction_finished_at': post.transaction_finished_at,
+        'startnotice': startnotice,
+        'requestnotice': requestnotice,
     })
 
 
