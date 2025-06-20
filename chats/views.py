@@ -228,11 +228,12 @@ def chat_list(request):
             timestamp__gt=read_status.last_read_at
         ).count()
 
-        print(f"ChatRoom {chatroom.id} - Unread: {unread_count}")
+        opponent = chatroom.helper if chatroom.master == user_profile else chatroom.master
 
         chat_list.append({
             'chatroom': chatroom,
             'unread': unread_count,
+            'opponent': opponent,
         })
 
     return render(request, 'chats/chat_list.html', {
