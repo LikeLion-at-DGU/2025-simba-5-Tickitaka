@@ -133,17 +133,7 @@
     line-height: normal;
 }
 
-.review-button_sy {
-    display: flex;
-    width: 358px;
-    padding: 15px 153px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 6px;
-    background: #999;
-    padding-bottom: 16px;
-}
+.review-button_sy {}
 
 .review-submit-button_sy {
     color: #FFF;
@@ -153,6 +143,20 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    background: #999;
+    display: flex;
+    width: 358px;
+    padding: 15px 153px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    padding-bottom: 16px;
+}
+
+.review-submit-button_sy:disabled {
+    background-color: #999;
+    cursor: not-allowed;
 }
 
 .bad-review_sy.selected svg rect {
@@ -181,4 +185,3 @@
     color: #FF8887;
     font-weight: bold;
 }
-
