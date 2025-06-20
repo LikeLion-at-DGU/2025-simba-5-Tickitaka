@@ -1,12 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
-from posts.models import ChatRoom, Comment, Post
-from accounts.models import Profile
 from django.views.decorators.http import require_POST
 from django.db.models import Q
-from .models import ChatRoomReadStatus
 from django.utils import timezone
+
+from .models import *
+from accounts.models import *
+from posts.models import *
+from chats.models import *
 
 
 
@@ -200,30 +202,41 @@ def chat_list(request):
     'filter_type': filter_type,
     })
 
+def get_tip_percentage(answer):
+    if answer == "2": 
+        return 5
+    elif answer == "1":
+        return 3
+    
+    return 0
 
-def process_review(user: Profile, post_id: int, q1: str, q2: str, q3: str):
-        post = get_object_or_404(Post, id=post_id)
 
-        if post.helper is None:
-            raise ValueError("도움을 준 헬퍼가 존재하지 않습니다.")
+def process_review(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
 
-        # Tip 퍼센트 계산
+    if request.method == "POST":
+        # 마스터가 아닌 사용자가 접근 시 차단
+        if post.master != request.user.profile:
+            return redirect('/main/')
+
+        q1 = request.POST.get('q1', '0')
+        q2 = request.POST.get('q2', '0')
+        q3 = request.POST.get('q3', '0')
+
         tip_percent = get_tip_percentage(q1) + get_tip_percentage(q2) + get_tip_percentage(q3)
-
-        if tip_percent == 0:
-            return  # tip이 없으면 아무 일도 하지 않음
-
-        # tip amount 계산
         tip_amount = int(post.amounts * tip_percent / 100)
 
-        # 헬퍼의 time_balance 증가
-        post.helper.time_balance += tip_amount
-        post.helper.save()
+        if tip_amount > 0 and post.helper:
+            post.helper.time_balance += tip_amount
+            post.helper.save()
 
-        # time history 기록
-        TimeHistory.objects.create(
-            user=post.helper,
-            amounts=tip_amount,
-            type='tip',
-            post_id=post.id
-        )
+            TimeHistory.objects.create(
+                user=post.helper,
+                amounts=tip_amount,
+                type='tip',
+                post_id=post.id
+            )
+
+        return redirect('main:home')  # 후기 제출 후 메인으로 이동
+
+    return render(request, 'chats/review.html', {'post': post})
