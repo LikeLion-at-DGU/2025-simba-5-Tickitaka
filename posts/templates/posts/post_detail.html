@@ -14,20 +14,27 @@
                 </svg>
             </div>
             <div class="complain-btn_sy">
-                {% comment %}
-                <!--<a href="{% url 'posts:report_post' post.id %}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="..." fill="#C75352" />
-                    </svg>
+                <a href="{% url 'main:report' %}" class="complain-btn_sy">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.673 12.942H9.673V10.135C9.673 9.50033 9.901 8.957 10.357 8.505C10.8123 8.053 11.36 7.827 12 7.827V6.827C11.08 6.827 10.2953 7.14833 9.646 7.791C8.99733 8.433 8.673 9.21433 8.673 10.135V12.942ZM4.616 20C4.17133 20 3.791 19.8417 3.475 19.525C3.159 19.2083 3.00067 18.8287 3 18.386V16.866C3 16.422 3.15833 16.042 3.475 15.726C3.79167 15.41 4.17167 15.2517 4.615 15.251H5.827V10.136C5.827 8.42667 6.426 6.97667 7.624 5.786C8.822 4.59533 10.2807 4 12 4C13.7193 4 15.178 4.59533 16.376 5.786C17.574 6.97667 18.173 8.42633 18.173 10.135V15.25H19.385C19.829 15.25 20.209 15.4083 20.525 15.725C20.841 16.0417 20.9993 16.4217 21 16.865V18.385C21 18.829 20.8417 19.209 20.525 19.525C20.2083 19.841 19.8283 19.9993 19.385 20H4.616Z" fill="#C75352"/>
+                    </svg>                        
                     <p>신고하기</p>
-                </a>-->
-                {% endcomment %}
+                </a>
             </div>
         </div>
 
         <div class="post-detail-content_sy">
             <div class="post-detail-image_sy">
-                <button class="carousel-btn left" onclick="prevImage()"></button>
+                <button class="carousel-btn left" onclick="prevImage()"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <rect width="28" height="28" fill="url(#pattern0_1263_2184)"/>
+                    <defs>
+                    <pattern id="pattern0_1263_2184" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <use xlink:href="#image0_1263_2184" transform="scale(0.0178571)"/>
+                    </pattern>
+                    <image id="image0_1263_2184" width="56" height="56" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjseAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAATySURBVHgB5ZtRSFtXGMe/pO3QtjimkhZKZQZsxbawCXOZDxO2PToRRFQUROyLvgx8ENahiLJNX9S96Et9Eok++OIQQVklL2ZBkUJTcAEbsC+rLI6WGh8ScN8/uUeuyYmJ9557o90PTpN6VPz5nfOdc79zdJAFHB8fP+KXcl27we1Wyqe94bbP7ZBbkFvY4XC8IMU4SAEsBAFIfc/NTUkhI0AWkgGW/YMUYEpQE2vQmlGpTCC6iKyXZd+QQQwJWiwmw8vtmRHRcwuynIdfuil9TlkNIuo979DNWVCLWhslo5ZPligpepjLJ+ckyHIufnlCyQRyEUA0f8plyGYV1OR+JvuHZDZykjxT8ALLCbJKZhS8BHKCMyWdsg9qCeUyyAEE4kftZ07DmeGLkC0vg5wAya9N1pEmyL+Jb8mmpWBiYsLd29v7GamhQVujT3FqDto570ZGRu7Nz8/fx/uysrK3c3Nz/uLi4hiZA/PxB/0amRpBRM9WObC3t/dxe3v7V7u7u4VkDgTo1Og7iaAWvadkMf39/Q+Xl5fLZX2VlZWRxcXFDTIHovdYRFEfwTayGMy3THIlJSXR0dHR52Qe8SCQQC/4kCzi4ODgWlNTU63P57sr68ccnJmZ8VdUVERJDQ1i2UgIapnTkrmHeYX5tbOzUyLrFwlGoRwQD+AnEfSQBUCuq6urFklE1l9XV/daUfaUgeoCXdX+o3x4CrlIJHJd1g+5qakpFXMuE4knH6dWIFL6VL65uVl0llxLS0vIYjlwA26IYDkpBHI9PT21R0dH12T9kBscHPyL7KEcgo9IEZwJ705PTz+4IHLADcHrpADIjY+PZ9xX9vX1Pe/u7n5N9vIpBF1kktStl57CwsIYD9mXeZADNyFoav3LJsfJxF9TU/OW8oPrKplkbW1NujvB1kvx7sQQTjJJNBr9KOM3dzqPKc+YFuzo6JBmRayBra2tdVtbW0WUR64MDQ19w683ySAej+df3kxTMBgsTe2LxWJXVldX7/BwfV9VVfWe7Gcfgt/xm0/IBLztirBMfHt7Oy0jQ3J9ff1OQUHBUXV19Tuyl1cQRAY0XbFGJF0u17tAIHArHo+nDX2/33+bh60DvwyyjzB+kDAporm5+W9eFjZ4eYjL+hcWFu4NDw/fJ/sIKhUEWPO8Xq8Py4Ss32bJsFM7Ns7ppCZXsPZhDTxLkmszD8haDuEm5sorUkw2Sa7NuDs7O79AOYOsIXHeLwR/JwsQklyWkGZPXiNvo5xhkWQA/whB5cNUAMnZ2dmNTJIoZzQ2Nn6toCaqZ1+cBCcEtRriEllEaWlpbGVlxYcyhawfux5UABRKBsUb/XoFQUuiKECZor6+XjrfIcmJ53NSg1e8ORG0OoqCsbGxl7xHTdu/onyoqPB76tpJ6o4DgobvpOTKwMBASC/JJft/FNVGcfjyTP+BtBNe7QjqCdnA5OSkOxQKFSmssP2Wes1EeoTNko8p/9dFzssSy6UdHmV6HsQkVb74W0jikpCsQyqoJZxfyIb5qABxCUG6Avx/r5EIPuiLQIILKIn88KuSq1yCD/oynh7tsLSV8nOd8imL/XmeLzJ6IRZDFqKWn+tTcn+MqC3lGjU9Zq80QxSSOEBVHVFTYgIll9KBNnS/pORxnJlL6UggeAB/YUZMoExQj+7PChBZyCLSsj8rgEBYNCv+rOA/HucbwqUZqQAAAAAASUVORK5CYII="/>
+                    </defs>
+                    </svg>                    
+                </button>
                 <div class="carousel-track_sy">
                     {% for image in post.images.all %}
                         <img src="{{ image.image.url }}" alt="post image" class="carousel-image_sy">
@@ -35,7 +42,16 @@
                         <img src="{% static 'images/test2.png' %}" alt="기본 이미지" class="carousel-image_sy">
                     {% endfor %}
                 </div>
-                <button class="carousel-btn right" onclick="nextImage()">›</button>
+                <button class="carousel-btn right" onclick="nextImage()"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <rect width="28" height="28" transform="matrix(-1 0 0 1 28 0)" fill="url(#pattern0_1263_2186)"/>
+                    <defs>
+                    <pattern id="pattern0_1263_2186" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <use xlink:href="#image0_1263_2186" transform="scale(0.0178571)"/>
+                    </pattern>
+                    <image id="image0_1263_2186" width="56" height="56" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjseAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAATySURBVHgB5ZtRSFtXGMe/pO3QtjimkhZKZQZsxbawCXOZDxO2PToRRFQUROyLvgx8ENahiLJNX9S96Et9Eok++OIQQVklL2ZBkUJTcAEbsC+rLI6WGh8ScN8/uUeuyYmJ9557o90PTpN6VPz5nfOdc79zdJAFHB8fP+KXcl27we1Wyqe94bbP7ZBbkFvY4XC8IMU4SAEsBAFIfc/NTUkhI0AWkgGW/YMUYEpQE2vQmlGpTCC6iKyXZd+QQQwJWiwmw8vtmRHRcwuynIdfuil9TlkNIuo979DNWVCLWhslo5ZPligpepjLJ+ckyHIufnlCyQRyEUA0f8plyGYV1OR+JvuHZDZykjxT8ALLCbJKZhS8BHKCMyWdsg9qCeUyyAEE4kftZ07DmeGLkC0vg5wAya9N1pEmyL+Jb8mmpWBiYsLd29v7GamhQVujT3FqDto570ZGRu7Nz8/fx/uysrK3c3Nz/uLi4hiZA/PxB/0amRpBRM9WObC3t/dxe3v7V7u7u4VkDgTo1Og7iaAWvadkMf39/Q+Xl5fLZX2VlZWRxcXFDTIHovdYRFEfwTayGMy3THIlJSXR0dHR52Qe8SCQQC/4kCzi4ODgWlNTU63P57sr68ccnJmZ8VdUVERJDQ1i2UgIapnTkrmHeYX5tbOzUyLrFwlGoRwQD+AnEfSQBUCuq6urFklE1l9XV/daUfaUgeoCXdX+o3x4CrlIJHJd1g+5qakpFXMuE4knH6dWIFL6VL65uVl0llxLS0vIYjlwA26IYDkpBHI9PT21R0dH12T9kBscHPyL7KEcgo9IEZwJ705PTz+4IHLADcHrpADIjY+PZ9xX9vX1Pe/u7n5N9vIpBF1kktStl57CwsIYD9mXeZADNyFoav3LJsfJxF9TU/OW8oPrKplkbW1NujvB1kvx7sQQTjJJNBr9KOM3dzqPKc+YFuzo6JBmRayBra2tdVtbW0WUR64MDQ19w683ySAej+df3kxTMBgsTe2LxWJXVldX7/BwfV9VVfWe7Gcfgt/xm0/IBLztirBMfHt7Oy0jQ3J9ff1OQUHBUXV19Tuyl1cQRAY0XbFGJF0u17tAIHArHo+nDX2/33+bh60DvwyyjzB+kDAporm5+W9eFjZ4eYjL+hcWFu4NDw/fJ/sIKhUEWPO8Xq8Py4Ss32bJsFM7Ns7ppCZXsPZhDTxLkmszD8haDuEm5sorUkw2Sa7NuDs7O79AOYOsIXHeLwR/JwsQklyWkGZPXiNvo5xhkWQA/whB5cNUAMnZ2dmNTJIoZzQ2Nn6toCaqZ1+cBCcEtRriEllEaWlpbGVlxYcyhawfux5UABRKBsUb/XoFQUuiKECZor6+XjrfIcmJ53NSg1e8ORG0OoqCsbGxl7xHTdu/onyoqPB76tpJ6o4DgobvpOTKwMBASC/JJft/FNVGcfjyTP+BtBNe7QjqCdnA5OSkOxQKFSmssP2Wes1EeoTNko8p/9dFzssSy6UdHmV6HsQkVb74W0jikpCsQyqoJZxfyIb5qABxCUG6Avx/r5EIPuiLQIILKIn88KuSq1yCD/oynh7tsLSV8nOd8imL/XmeLzJ6IRZDFqKWn+tTcn+MqC3lGjU9Zq80QxSSOEBVHVFTYgIll9KBNnS/pORxnJlL6UggeAB/YUZMoExQj+7PChBZyCLSsj8rgEBYNCv+rOA/HucbwqUZqQAAAAAASUVORK5CYII="/>
+                    </defs>
+                    </svg>                    
+                </button>
             </div>
             <div class="post-detail-item_sy">
                 <div class="user-info_sy">

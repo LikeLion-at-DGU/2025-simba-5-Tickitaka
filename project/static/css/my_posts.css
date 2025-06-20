@@ -20,7 +20,7 @@ a {
     padding: 24px 161px 24px 16px;
     align-items: center;
     border-bottom: 0.5px solid var(--N-4, #D9D9D9);
-    background: #FFF;
+    background: var(--P-1, #025397);
     justify-content: space-between;
     align-items: center;
     position: fixed;
@@ -30,11 +30,11 @@ a {
     width: 10px;
     height: 16px;
     aspect-ratio: 5/8;
-    fill: var(--N-1, #2A2A2A);
+    fill: var(--N-1, #ffffff);
 }
 
 .my-post-title_sy {
-    color: #2A2A2A;
+    color: #ffffff;
     text-align: center;
     font-family: Pretendard;
     font-size: 24px;
