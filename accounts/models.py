@@ -56,7 +56,7 @@ class TimeHistory(models.Model):
     amounts = models.IntegerField()
     type = models.CharField(max_length=10, choices=TRANSACTION_TYPES)
     timestamp = models.DateTimeField(auto_now_add=True)
-    post_id = models.IntegerField()
+    post = models.ForeignKey('posts.Post', on_delete=models.SET_NULL, null=True, blank=True)
 
 
 class Friend(models.Model):
