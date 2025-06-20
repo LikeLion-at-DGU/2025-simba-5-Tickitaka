@@ -8,7 +8,8 @@ from django.utils import timezone
 from .models import *
 from accounts.models import *
 from posts.models import *
-from chats.models import *
+from friends.models import *
+from main.models import *
 
 
 

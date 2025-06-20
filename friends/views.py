@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db import models
-from .models import Friend
-from accounts.models import Profile
-from posts.models import Post
+
+from .models import *
+from chats.models import *
+from posts.models import *
+from accounts.models import *
+from main.models import *
 
 
 # 타인페이지
