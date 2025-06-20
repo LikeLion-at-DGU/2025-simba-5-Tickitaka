@@ -22,6 +22,9 @@ class Post(models.Model):
      timestamp = models.DateTimeField(auto_now_add=True)
      burning = models.IntegerField(choices=[(0, 'default'), (1, 'burning')], default=0)
      private_info = models.TextField(blank=True, null=True)
+     transaction_started_at = models.DateTimeField(null=True, blank=True)
+     task_completed_at = models.DateTimeField(null=True, blank=True)
+     transaction_finished_at = models.DateTimeField(null=True, blank=True)
 
 class PostImage(models.Model):
      post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='images', null=True, blank=True)
