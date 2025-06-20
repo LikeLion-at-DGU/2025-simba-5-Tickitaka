@@ -2,7 +2,7 @@
 {% extends 'test-base.html' %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/report.css' %}">
+<link rel="stylesheet" href="{% static 'css/inquire.css' %}">
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
 
 <div class="report-container_sy">
@@ -14,7 +14,7 @@
                     fill="white" />
             </svg>
         </div>
-        <h1 class="report-title_sy">신고하기</h1>
+        <h1 class="report-title_sy">1:1 문의하기</h1>
     </div>
     
     <form method="POST" class="report-content_sy" id="reportForm">
@@ -26,7 +26,7 @@
                 class="report-f1-input_sy" 
                 id="title" 
                 name="title" 
-                placeholder="신고 제목을 입력해주세요"
+                placeholder="문의 제목을 입력해주세요"
                 maxlength="30"
                 required
             />
@@ -39,7 +39,7 @@
                 class="report-f2-input_sy" 
                 id="content" 
                 name="content"
-                placeholder="신고 사유를 자세히 입력해주세요"
+                placeholder="문의 내용을 자세히 입력해주세요"
                 maxlength="500"
                 required
             ></textarea>
@@ -52,5 +52,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static 'js/report.js' %}"></script>
+<script src="{% static 'js/inquire.js' %}"></script>
 {% endblock %}

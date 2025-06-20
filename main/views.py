@@ -93,9 +93,28 @@ def report(request):
             fail_silently=False,
         )
 
-        messages.success(request, "문의가 성공적으로 전송되었습니다!")
+        messages.success(request, "신고가 성공적으로 전송되었습니다!")
         return redirect('posts/post_list')
 
     return render(request, 'main/report.html')
 
 
+def inquire(request):
+    if request.method == 'POST':
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        sender_email = request.user.profile.email or request.user.email
+
+        # 이메일 전송
+        send_mail(
+            subject=f"[시시콜콜 문의] {subject}",
+            message=f"보낸 사람: {sender_email}\n\n내용:\n{message}",
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=['sisicallcallnow@gmail.com'],
+            fail_silently=False,
+        )
+
+        messages.success(request, "문의가 성공적으로 전송되었습니다!")
+        return redirect('posts/post_list')
+
+    return render(request, 'main/inquire.html')
