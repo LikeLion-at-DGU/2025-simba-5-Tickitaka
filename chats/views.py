@@ -12,8 +12,6 @@ from friends.models import *
 from main.models import *
 
 
-
-
 @login_required
 def chat_room(request, room_id):
     chatroom = get_object_or_404(ChatRoom, id=room_id)
@@ -72,26 +70,25 @@ def submit_chat(request, room_id):
 
     post = chatroom.post
 
+    # 거래 취소 시 새 채팅 작성 불가하게 제한하기 위한 상태 체크
     if post.status == 'waiting' or post.status == 'done':
         return HttpResponseForbidden("현재 채팅 전송이 불가능한 상태입니다.")
 
-    content = request.POST.get('content', '').strip()
+    content = request.POST.get('content')
     image = request.FILES.get('image')
 
-    # content도 빈 문자열로 허용하고, image만 있어도 허용
     if not content and not image:
-        # 완전 빈 경우에만 전송 안함
         return redirect('chats:chat_room', room_id=room_id)
 
     Comment.objects.create(
         chatroom=chatroom, 
         writer=user_profile, 
         content=content or '', 
-        image=image
+        image=image,
+        is_system=False  # 일반 채팅 메시지임을 명시
     )
 
     return redirect('chats:chat_room', room_id=room_id)
-
 
 
 
@@ -132,8 +129,14 @@ def start_transaction(request, room_id):
         return HttpResponseForbidden("거래 시작이 불가능한 상태입니다.")
 
     post.status = 'in_progress'
-    post.transaction_started_at = timezone.now()   # 거래 시작 시간 기록
+    post.transaction_started_at = timezone.now()
     post.save()
+
+    Comment.objects.create(
+        chatroom=chatroom,
+        content="거래가 시작되었습니다! 메뉴를 눌러 민감 정보를 확인해 주세요.",
+        is_system=True  # 시스템 메시지 표시
+    )
 
     return redirect('chats:chat_room', room_id=room_id)
 
@@ -174,12 +177,12 @@ def approve_finish(request, room_id):
     post = chatroom.post
     amounts = post.amounts
 
-    # 보유 시간 잔액 체크 (부족하면 승인 불가)
     if post.master.time_balance < amounts:
         return HttpResponseForbidden("보유 시간 부족으로 거래 완료 불가합니다.")
 
+
     # 거래 승인 처리
-    post.status = 'done'
+    post.status = 'done'  
     post.transaction_finished_at = timezone.now()  # 거래 완료 시간 기록
     post.save()
 
@@ -205,9 +208,13 @@ def approve_finish(request, room_id):
         post_id=post.id
     )
 
+    Comment.objects.create(
+        chatroom=chatroom,
+        content="거래가 최종 완료되었습니다. 수고하셨습니다!",
+        is_system=True
+    )
+
     return redirect('main:mainpage')
-
-
 
 
 # 수행 완료 요청
@@ -222,8 +229,14 @@ def request_finish(request, room_id):
 
     post = chatroom.post
     post.status = 'task_completed'  # 수행 완료로 상태 변경
-    post.task_completed_at = timezone.now()  # 수행 완료 시간 기록
+    post.task_completed_at = timezone.now()
     post.save()
+
+    Comment.objects.create(
+        chatroom=chatroom,
+        content="상대방이 거래 완료를 요청했습니다. 1시간 이내 미응답시 자동완료됩니다.",
+        is_system=True
+    )
 
     return redirect('chats:chat_room', room_id=room_id)
 
@@ -250,10 +263,10 @@ def chat_list(request):
             chatroom=chatroom,
             timestamp__gt=read_status.last_read_at
         ).count()
-
+        
         opponent = chatroom.helper if chatroom.master == user_profile else chatroom.master
 
-        # 마지막 채팅 시간
+        # 마지막 채팅 시간 구하기
         last_comment = Comment.objects.filter(chatroom=chatroom).order_by('-timestamp').first()
         if last_comment:
             last_chat_time = last_comment.timestamp
@@ -276,6 +289,7 @@ def chat_list(request):
     'filter_type': filter_type,
     })
 
+
 def get_tip_percentage(answer):
     if answer == "2": 
         return 5
@@ -283,7 +297,6 @@ def get_tip_percentage(answer):
         return 3
     
     return 0
-
 
 def process_review(request, post_id):
     post = get_object_or_404(Post, id=post_id)
@@ -302,6 +315,7 @@ def process_review(request, post_id):
 
         if tip_amount > 0 and post.helper:
             post.helper.time_balance += tip_amount
+            post.helper.time_tip += tip_amount
             post.helper.save()
 
             TimeHistory.objects.create(
@@ -311,6 +325,6 @@ def process_review(request, post_id):
                 post_id=post.id
             )
 
-        return redirect('main:home')  # 후기 제출 후 메인으로 이동
+        return redirect('posts:post_list')  # 후기 제출 후 메인으로 이동
 
     return render(request, 'chats/review.html', {'post': post})

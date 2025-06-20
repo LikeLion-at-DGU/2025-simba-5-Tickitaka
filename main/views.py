@@ -54,11 +54,24 @@ def edit_profile(request):
 
 def time_history(request):
     profile = request.user.profile
-    histories = TimeHistory.objects.filter(user=profile).order_by('-timestamp')  # 최근순
+    all_histories =  TimeHistory.objects.order_by('-timestamp')
 
-    return render(request, 'main/time_history.html', {
-        'histories': histories,
+    # 지급 type='plus'
+    received_histories = TimeHistory.objects.filter(user=profile, type='plus').order_by('-timestamp')
+
+    # 사용 type='minus'
+    given_histories = TimeHistory.objects.filter(user=profile, type='minus').order_by('-timestamp')
+
+    # 팁
+    tip_histories = TimeHistory.objects.filter(user=profile, type='tip').order_by('-timestamp')
+
+    return render(request, 'main/confirmed_time_history.html', {
+        'all_histories' : all_histories,
+        'received_histories': received_histories,
+        'given_histories': given_histories,
+        'tip_histories': tip_histories, 
     })
+
 
 def my_posts(request):
     profile = request.user.profile
@@ -87,7 +100,7 @@ def report(request):
 
         # 이메일 전송
         send_mail(
-            subject=f"[시시콜콜 문의] {subject}",
+            subject=f"[시시콜콜 신고] {subject}",
             message=f"보낸 사람: {sender_email}\n\n내용:\n{message}",
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=['sisicallcallnow@gmail.com'],
@@ -95,7 +108,7 @@ def report(request):
         )
 
         messages.success(request, "신고가 성공적으로 전송되었습니다!")
-        return redirect('posts/post_list')
+        return redirect('posts:post_list')
 
     return render(request, 'main/report.html')
 
@@ -108,7 +121,7 @@ def inquire(request):
 
         # 이메일 전송
         send_mail(
-            subject=f"[시시콜콜 문의] {subject}",
+            subject=f"[시시콜콜 1:1 문의] {subject}",
             message=f"보낸 사람: {sender_email}\n\n내용:\n{message}",
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=['sisicallcallnow@gmail.com'],
@@ -116,6 +129,6 @@ def inquire(request):
         )
 
         messages.success(request, "문의가 성공적으로 전송되었습니다!")
-        return redirect('posts/post_list')
+        return redirect('posts:post_list')
 
     return render(request, 'main/inquire.html')
