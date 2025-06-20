@@ -20,7 +20,7 @@ button{
     justify-content: space-between;
     align-items: center;
     position: relative;
-background: #FFF;
+background: #025397;
 
 }
 .backiconChatroom_sw{
@@ -56,7 +56,7 @@ border: 0.5px solid  #8A8A8A;
 background: #FFF;
 }
 .nicknameChatroom_sw{
-     color: #2A2A2A;
+     color: #FFF;
 text-align: center;
 
 /* H1 */
@@ -67,7 +67,7 @@ font-weight: 700;
 line-height: normal;
 }
 .reportChatroom_sw{
-    color: #2A2A2A;
+    color: #FFF;
 
 /* caption */
 font-family: Pretendard;
@@ -148,10 +148,11 @@ font-weight: 400;
 line-height: normal;
 }
 .disabledButtonChatroom_sw{
+   
+  cursor: default;
     width: 59px;
     height: 30px;
     border-radius: 6px;
-    cursor: none;
     text-align: center;
     background-color: #666;
     color: #FFFFFF;
@@ -166,14 +167,12 @@ line-height: normal;
 display: flex;
 width: 363px;
 height: 709px;
- overflow-y: auto;
+ overflow-y: scroll;
   overflow-x: hidden;
-height: auto;
 flex-direction: column;
-align-items: flex-start;
 gap: 16px;
 }
-.firstDescriptionBubbleChatroom_sw{
+.longDescriptionBubbleChatroom_sw{
     display: flex;
     padding: 10px;
     flex-direction: column;
@@ -193,7 +192,7 @@ gap: 16px;
     line-height: normal;
      white-space: nowrap;
 }
-.secondDescriptionBubbleChatroom_sw{
+.descriptionBubbleChatroom_sw{
    display: flex;
     padding: 10px;
     justify-content: center;
@@ -211,6 +210,19 @@ gap: 16px;
     font-weight: 400;
     line-height: normal;
 }
+.myBubbleChatroom_sw
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+}
+.opponentBubbleChatroom_sw{
+    display: flex;
+    white-space: nowrap;
+    justify-content: flex-start;
+}
+
 .chatWriteFrameChatroom_sw{
     width: 358px;
     height: 34px;
@@ -265,7 +277,7 @@ gap: 16px;
 }
 .modalChatroom_sw{
     position: fixed;        /* 추가 */
-    top: 50%;              /* 가운데 */
+    top: 40%;              /* 가운데보다 위 */
     left: 50%;              /* 가운데 정렬 */
     transform: translate(-50%, -50%);
     z-index: 1000;

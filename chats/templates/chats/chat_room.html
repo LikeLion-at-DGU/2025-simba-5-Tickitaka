@@ -23,18 +23,23 @@
             <div class="tradeTitleTextFrameChatroom_sw">
                 <div class="tradeTitleTextChatroom_sw">{{post.title}}</div>
                 <div class="tradeTitleButtonsFrameChatroom_sw">
-                    <!-- <p>DEBUG: post.status = [{{ post.status }}]</p> -->
 
                     <!-- 버튼 1 -->
-                     
+                    <!-- 민감 정보는 in_progress면 모두에게 보임 -->
                     {% if post.status == "in_progress" %}
                     <button type="button" class="buttonChatroom_sw" onclick="openSensitiveModal()">
                         민감 정보
                     </button>
+                    <!-- 민감 정보는 마스터에게는 항상 보이게 -->
+                    {% elif me == chatroom.master %}
+                    <button type="button" class="buttonChatroom_sw" onclick="openSensitiveModal()">
+                        민감 정보
+                    </button>
+                    <!-- 거래 요청을 하면 진짜 거래하겠냐고 묻기-아직안함 -->
                     {% elif post.status == "chatting" and me == chatroom.helper %}
                     <form method="post" action="{% url 'chats:start_transaction' chatroom.id %}">
                         {% csrf_token %}
-                        <button type="submit" class="buttonChatroom_sw">거래 요청</button>
+                        <button type="submit" class="buttonChatroom_sw" onclick="showRequestNotice()">거래 요청</button>
                     </form>
                     {% endif %}
                     
@@ -45,63 +50,115 @@
                         {% csrf_token %}
                         <button class="buttonChatroom_sw">거래 취소</button>
                     </form>
+                    <!-- 거래 취소는 in_progress 상태가 아니면 비활성화 -->
+                    {% elif post.status != "in_progress" %}
+                        <button class="disabledButtonChatroom_sw">거래 취소</button>
                     {% endif %}
 
 
                     <!-- 버튼 3 -->
-                    {% if post.status == "chatting" %}
-                     <!-- <form method="post" action=""> -->
+                    {% if post.status == "in_progress" and me == chatroom.helper %}
+                     <form method="post" action="{% url 'chats:request_finish' chatroom.id %}">
                         {% csrf_token %}
-                        <button class="buttonChatroom_sw">완료 요청</button>
+                        <button class="buttonChatroom_sw">수행 완료</button>
                     </form>
+                    {% elif post.status != "in_progress" and me == chatroom.helper %}
+                        <button class="disabledButtonChatroom_sw">수행 완료</button>
+
+                    {% elif post.status == "in_progress" and me == chatroom.master %}
+                    <form method="post" action="{% url 'chats:approve_finish' chatroom.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="buttonChatroom_sw">완료 승인</button>
+                    </form>
+                    {% elif post.status != "in_progress" and me == chatroom.master %}
+                        <button class="disabledButtonChatroom_sw">완료 승인</button>
                     {% endif %}
+
+                
                 </div>
             </div>
     </div>
+                   
 
 <!-- 여기부터 스크롤 -->
     <div class="chatBubblesFrameChatroom_sw">
-        <div class="firstDescriptionBubbleChatroom_sw">
-            <p>채팅창은 30초에 한번씩 새로고침 됩니다.</p>
-            <p>빠른 새로고침을 원하시면 입력창 오른쪽 새로고침 버튼을 눌러주세요.</p>
+        <div class="descriptionBubbleChatroom_sw">
+            <p>채팅창은 5초에 한번씩 새로고침 됩니다.</p>
         </div>
-        <div class="secondDescriptionBubbleChatroom_sw">
+        <div class="descriptionBubbleChatroom_sw">
             <p>거래를 원하시면 메뉴에서 거래를 확정해주세요.</p>
         </div>
+        
         <!-- 채팅 버블이 뜨는 곳 -->
-        <div id="chatbox_sw">
+
         {% for comment in comments %}
             {% if comment.writer == me %}
-                <div class="chat-message me">{{ comment.content }} ({{ comment.timestamp|date:"H:i" }})</div>
-            {% else %}
-                <div class="chat-message other">{{ comment.writer.nickname }}: {{ comment.content }} ({{ comment.timestamp|date:"H:i" }})</div>
+                <div class="myBubbleChatroom_sw">
+                    {%if comment.image %}
+                    <img src="{{comment.img}}" alt=" 내가 보낸 이미지">
+                    {% endif %}
+                    {% if comment.content %}
+                    <p>
+                        ({{ comment.timestamp|date:"H:i" }})
+                        {{ comment.content }}
+                    </p>
+                    {% endif %}
+                </div>
+
+
+                {% else %}
+                <div class="opponentBubbleChatroom_sw">     
+                    <img class="profileImgChatroom_sw" src="{% static 'images/defaultprofile.svg' %}" alt="프로필사진">
+                    {%if comment.image %}
+                    <img src="{{comment.img}}" alt=" 상대가 보낸 이미지">
+                    {% endif %}
+                    {% if comment.content %}
+                    <p>
+                        {{ comment.content }} 
+                    ({{ comment.timestamp|date:"H:i" }})
+                    </p>
+                    {% endif %}
+                </div>
             {% endif %}
         {% endfor %}
+           
+        <div id="startNotice_sw" class="descriptionBubbleChatroom_sw" style="display: none;">
+            <p>거래가 시작됩니다! 메뉴를 눌러 <b>민감 정보</b>를 확인해 주세요.</p>
         </div>
-
+       
+        <div id="requestNotice_sw" class="longDescriptionBubbleChatroom_sw" style="display: none;">
+            <p>상대방이 거래 완료를 요청했습니다.</p>
+            <p>1시간 안에 응답하지 않으면 자동으로 완료처리 됩니다.</p>
+        </div>
     </div>
 
 <!-- 여기까지 스크롤 -->
+ <p>DEBUG: post.status = [{{ post.status }}]</p>
+ <p>DEBUG: post.status = [{{ me }}]</p>
 
 <!-- 여기부터 채팅 입력창이고 고정 -->
     <div class="chatWriteFrameChatroom_sw">
-        <button id="photoBtn_sw" class="iconPhotoChatroom_sw" >
+        <form id="photoForm_sw" method="POST" action="{% url 'chats:submit_chat' chatroom.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" id="photoInput_sw" name="image" accept="image/*" style="display: none;">
+            <button type="button" id="photoBtn_sw"class="iconPhotoChatroom_sw" >
             <img src="{% static 'images/photoicon.svg' %}" alt="사진아이콘">
         </button>
+        </form>
     
         <form method="POST" action="{% url 'chats:submit_chat' chatroom.id %}" class="chatInputWrapperChatroom_sw">
             {% csrf_token %}
-            <textarea name="content" class="chatInputChatroom_sw" placeholder="메시지 보내기" id="commentinput_sw"></textarea>
+            <textarea name="content" class="chatInputChatroom_sw" id="commentinput_sw"
+            placeholder="메시지 보내기" ></textarea>
             <button type="submit" id="sendBtn_sw" class="iconSendChatroom_sw">
                 <img src="{% static 'images/airplaneicon.svg' %}" alt="전송아이콘">
             </button>
         </form>   
-        
-       
     </div>
 </div>
-<!-- 여기서부터 민감정보 모달 -->
+<!-- 채팅 입력창 끝 -->
 
+<!-- 여기서부터 민감정보 모달 -->
 <div  id="modalBackdrop_sw" class="modalBackdropChatroom_sw" style="display: none;"></div>
 
 <div class="modalChatroom_sw" id="sensitiveModal_sw" style="display: none;">
