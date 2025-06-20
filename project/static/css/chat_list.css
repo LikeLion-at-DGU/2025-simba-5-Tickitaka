@@ -164,7 +164,7 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 }
-.buildingChatList_sw{
+.buildingChatlist_sw{
 color: #2A2A2A;
 font-family: Pretendard;
 font-size: 12px;
@@ -172,7 +172,13 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
-.titleChatList_sw{
+.smallTextWrapperChatlist{
+    width:250px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.titleChatlist_sw{
 display: flex;
 height: 14px;
 flex-direction: column;

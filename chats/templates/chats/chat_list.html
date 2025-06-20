@@ -65,9 +65,13 @@
                     <div class="textBoxChatlist_sw">
                         <div class="textWrapperChatlist_sw">
                             <div class="opponentNameChatlist_sw">{{ item.opponent.nickname }}</div>
-                            <div class="buildingChatList_sw">{{ item.chatroom.post.building.name }}</div>
+                            <div class="buildingChatlist_sw">{{ item.chatroom.post.building.name }}</div>
                         </div>
-                        <div class="titleChatList_sw">{{ item.chatroom.post.title }}</div>
+                        <div class="smallTextWrapperChatlist">
+                            <div class="titleChatlist_sw">{{ item.chatroom.post.title }}</div>
+                            <div class="titleChatlist_sw">{{item.last_chat_time|date:"A h:i"}}</div>
+                        </div>
+                        
                     </div>
                     {% if item.unread %}
                     <div class="alerticonWrapperChatlist_sw">
