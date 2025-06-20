@@ -26,6 +26,8 @@ function updateCarousel() {
     const track = document.querySelector('.carousel-track_sy');
     const images = document.querySelectorAll('.carousel-image_sy');
 
+        totalImages = images.length;
+
     if (images.length === 0 || !track) return;
 
     const offset = -currentIndex * 100;
@@ -41,10 +43,8 @@ function prevImage() {
 }
 
 function nextImage() {
-    const images = document.querySelectorAll('.carousel-image_sy');
-    if (images.length === 0) return;
 
-    currentIndex = (currentIndex + 1) % images.length;
+    currentIndex = (currentIndex + 1) % totalImages;
     updateCarousel();
 }
 
