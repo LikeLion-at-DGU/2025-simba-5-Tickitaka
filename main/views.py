@@ -3,6 +3,7 @@ from .models import *
 from accounts.models import *
 from posts.models import *
 from chats.models import *
+from friends.models import *
 
 from django.core.mail import send_mail
 from django.conf import settings
