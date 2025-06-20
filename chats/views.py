@@ -53,18 +53,26 @@ def submit_chat(request, room_id):
 
     post = chatroom.post
 
-    # 거래 취소 시 새 채팅 작성 불가하게 제한하기 위한 상태 체크
     if post.status == 'waiting' or post.status == 'done':
         return HttpResponseForbidden("현재 채팅 전송이 불가능한 상태입니다.")
 
-    content = request.POST.get('content')
+    content = request.POST.get('content', '').strip()
     image = request.FILES.get('image')
 
+    # content도 빈 문자열로 허용하고, image만 있어도 허용
     if not content and not image:
+        # 완전 빈 경우에만 전송 안함
         return redirect('chats:chat_room', room_id=room_id)
 
-    Comment.objects.create(chatroom=chatroom, writer=user_profile, content=content, image=image)
+    Comment.objects.create(
+        chatroom=chatroom, 
+        writer=user_profile, 
+        content=content or '', 
+        image=image
+    )
+
     return redirect('chats:chat_room', room_id=room_id)
+
 
 
 
@@ -144,10 +152,41 @@ def approve_finish(request, room_id):
         return HttpResponseForbidden("완료 승인 권한이 없습니다.")
 
     post = chatroom.post
-    post.status = 'done'    
+    amounts = post.amounts
+
+    # 보유 시간 잔액 체크 (부족하면 승인 불가)
+    if post.master.time_balance < amounts:
+        return HttpResponseForbidden("보유 시간 부족으로 거래 완료 불가합니다.")
+
+    # 거래 승인 처리
+    post.status = 'done'
     post.save()
 
+    # 마스터 잔액 차감 및 기록
+    post.master.time_balance -= amounts
+    post.master.save()
+
+    TimeHistory.objects.create(
+        user=post.master,
+        amounts=-amounts,
+        type='minus',
+        post_id=post.id
+    )
+
+    # 헬퍼 잔액 적립 및 기록
+    post.helper.time_balance += amounts
+    post.helper.save()
+
+    TimeHistory.objects.create(
+        user=post.helper,
+        amounts=amounts,
+        type='plus',
+        post_id=post.id
+    )
+
     return redirect('main:mainpage')
+
+
 
 
 # 수행 완료 요청
@@ -190,11 +229,12 @@ def chat_list(request):
             timestamp__gt=read_status.last_read_at
         ).count()
 
-        print(f"ChatRoom {chatroom.id} - Unread: {unread_count}")
+        opponent = chatroom.helper if chatroom.master == user_profile else chatroom.master
 
         chat_list.append({
             'chatroom': chatroom,
             'unread': unread_count,
+            'opponent': opponent,
         })
 
     return render(request, 'chats/chat_list.html', {

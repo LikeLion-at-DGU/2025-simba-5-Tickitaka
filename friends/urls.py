@@ -4,5 +4,9 @@ from .views import *
 app_name = 'friends'
 
 urlpatterns = [
-     path('pr   ofile/<int:id>/', other_profile, name='other_profile'),
+     path('friend/search/', friend_search, name='friend_search'),
+     path('friend/request/<int:receiver_id>/', send_friend_request, name='send_friend_request'),
+     path('friend/accept/<int:request_id>/', accept_friend_request, name='accept_friend_request'),
+     path('friend/list/', friend_list, name='friend_list'),
 ]
+
