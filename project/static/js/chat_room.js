@@ -40,9 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 // 거래가 시작될 때 거래가 시작된다는 메시지가 뜨게 하기
-function showStartNotice(){
 
-}
 //완료 요청을 했을 때 완료 요청 메시지가 뜨게 하기
 function showRequestNotice(){
 

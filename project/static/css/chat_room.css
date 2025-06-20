@@ -42,19 +42,7 @@ background: #025397;
     transform: translateX(-50%);
    
 }
-.profileImgChatroom_sw{
-    display: flex;
-width: 40px;
-height: 40px;
-padding: 1px;
-margin-right: 8px;
-justify-content: center;
-align-items: center;
-    border-radius: 100px;
-    fill: #8A8A8A;
-border: 0.5px solid  #8A8A8A;
-background: #FFF;
-}
+
 .nicknameChatroom_sw{
      color: #FFF;
 text-align: center;
@@ -105,8 +93,8 @@ line-height: normal;
 .tradeTitleImageChatroom_sw{
     width: 60px;
     height: 60px;
-    background-color: midnightblue;
-border-radius: 6px;
+     background-color: pink;
+   border-radius: 6px;
 }
 .tradeTitleTextFrameChatroom_sw{
     width: 280px;

@@ -5,11 +5,13 @@
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
 <div class="pageAlignChatroom_sw">
     <div class="nicknameFrameChatroom_sw">
-        <button class="backiconChatroom_sw" >
-          <img src="{% static 'images/backicon.svg' %}" alt="뒤로가기아이콘">
-        </button>
+        <a href="{% url 'chats:chat_list' %}">
+            <button class="backiconChatroom_sw">
+                <img src="{% static 'images/backicon.svg' %}" alt="뒤로가기아이콘">
+            </button>
+        </a>
+
         <div class="profileNicknameChatroom_sw">
-            <img class="profileImgChatroom_sw" src="{% static 'images/defaultprofile.svg' %}" alt="프로필사진">
             <div class="nicknameChatroom_sw">{{opponent.nickname}}</div>
         </div>
         <button class="sirenChatroom_sw">
@@ -19,7 +21,11 @@
     </div>
     
     <div class="tradeTitleFrameChatroom_sw">
-            <div class="tradeTitleImageChatroom_sw"></div>
+         
+                {% for image in post.images.all %}
+                <img class="tradeTitleImageChatroom_sw" src="{{ image.image.url }}" alt="게시물 사진">
+                {% endfor %}
+          
             <div class="tradeTitleTextFrameChatroom_sw">
                 <div class="tradeTitleTextChatroom_sw">{{post.title}}</div>
                 <div class="tradeTitleButtonsFrameChatroom_sw">
@@ -30,7 +36,12 @@
                     <button type="button" class="buttonChatroom_sw" onclick="openSensitiveModal()">
                         민감 정보
                     </button>
-                    <!-- 민감 정보는 마스터에게는 항상 보이게 -->
+                    <!-- 끝나면 아무한테도 안 보여 -->
+                    {% elif post.status != "chatting" and me == chatroom.helper %}
+                    <button class="disabledButtonChatroom_sw">
+                        민감 정보
+                    </button>
+                    <!-- 민감 정보는 마스터에게는 보이게 -->
                     {% elif me == chatroom.master %}
                     <button type="button" class="buttonChatroom_sw" onclick="openSensitiveModal()">
                         민감 정보
@@ -39,7 +50,7 @@
                     {% elif post.status == "chatting" and me == chatroom.helper %}
                     <form method="post" action="{% url 'chats:start_transaction' chatroom.id %}">
                         {% csrf_token %}
-                        <button type="submit" class="buttonChatroom_sw" onclick="showRequestNotice()">거래 요청</button>
+                        <button type="submit" class="buttonChatroom_sw" onclick="showStartNotice()">거래 요청</button>
                     </form>
                     {% endif %}
                     
@@ -55,7 +66,6 @@
                         <button class="disabledButtonChatroom_sw">거래 취소</button>
                     {% endif %}
 
-
                     <!-- 버튼 3 -->
                     {% if post.status == "in_progress" and me == chatroom.helper %}
                      <form method="post" action="{% url 'chats:request_finish' chatroom.id %}">
@@ -64,13 +74,12 @@
                     </form>
                     {% elif post.status != "in_progress" and me == chatroom.helper %}
                         <button class="disabledButtonChatroom_sw">수행 완료</button>
-
-                    {% elif post.status == "in_progress" and me == chatroom.master %}
+                    {% elif post.status == "task_completed" and me == chatroom.master %}
                     <form method="post" action="{% url 'chats:approve_finish' chatroom.id %}">
                         {% csrf_token %}
                         <button type="submit" class="buttonChatroom_sw">완료 승인</button>
                     </form>
-                    {% elif post.status != "in_progress" and me == chatroom.master %}
+                    {% elif post.status != "task_completed" and me == chatroom.master %}
                         <button class="disabledButtonChatroom_sw">완료 승인</button>
                     {% endif %}
 
@@ -79,6 +88,8 @@
             </div>
     </div>
                    
+<!-- js를 위한 숨겨진 div에 post.status 심기 -->
+<div id="postStatus_sw" style="display: none;":>{{ post.status }}</div>
 
 <!-- 여기부터 스크롤 -->
     <div class="chatBubblesFrameChatroom_sw">
@@ -90,11 +101,22 @@
         </div>
         
         <!-- 채팅 버블이 뜨는 곳 -->
+        {% if post.status == "in_progress" %}
+            <div id="startNotice_sw" class="descriptionBubbleChatroom_sw">
+                <p>거래가 시작됩니다! 메뉴를 눌러 <b>민감 정보</b>를 확인해 주세요.</p>
+            </div>
+        {% endif %}
+        {% if post.status == "task_completed" %}
+        <div id="requestNotice_sw" class="longDescriptionBubbleChatroom_sw" >
+            <p>상대방이 거래 완료를 요청했습니다.</p>
+            <p>1시간 안에 응답하지 않으면 자동으로 완료처리 됩니다.</p>
+        </div>
+        {% endif %}
 
         {% for comment in comments %}
             {% if comment.writer == me %}
                 <div class="myBubbleChatroom_sw">
-                    {%if comment.image %}
+                    {% if comment.image %}
                     <img src="{{comment.img}}" alt=" 내가 보낸 이미지">
                     {% endif %}
                     {% if comment.content %}
@@ -109,7 +131,7 @@
                 {% else %}
                 <div class="opponentBubbleChatroom_sw">     
                     <img class="profileImgChatroom_sw" src="{% static 'images/defaultprofile.svg' %}" alt="프로필사진">
-                    {%if comment.image %}
+                    {% if comment.image %}
                     <img src="{{comment.img}}" alt=" 상대가 보낸 이미지">
                     {% endif %}
                     {% if comment.content %}
@@ -122,19 +144,14 @@
             {% endif %}
         {% endfor %}
            
-        <div id="startNotice_sw" class="descriptionBubbleChatroom_sw" style="display: none;">
-            <p>거래가 시작됩니다! 메뉴를 눌러 <b>민감 정보</b>를 확인해 주세요.</p>
-        </div>
+
        
-        <div id="requestNotice_sw" class="longDescriptionBubbleChatroom_sw" style="display: none;">
-            <p>상대방이 거래 완료를 요청했습니다.</p>
-            <p>1시간 안에 응답하지 않으면 자동으로 완료처리 됩니다.</p>
-        </div>
+        
     </div>
 
 <!-- 여기까지 스크롤 -->
- <p>DEBUG: post.status = [{{ post.status }}]</p>
- <p>DEBUG: post.status = [{{ me }}]</p>
+ <p>디버그용: post.status = [{{ post.status }}]</p>
+ <p>디버그용: me = [{{ me }}]</p>
 
 <!-- 여기부터 채팅 입력창이고 고정 -->
     <div class="chatWriteFrameChatroom_sw">
