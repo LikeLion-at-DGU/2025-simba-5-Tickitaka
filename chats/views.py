@@ -141,13 +141,13 @@ def approve_finish(request, room_id):
         return HttpResponseForbidden("완료 승인 권한이 없습니다.")
 
     post = chatroom.post
-    post.status = 'done'
+    post.status = 'done'    
     post.save()
 
     return redirect('main:mainpage')
 
 
-
+# 수행 완료 요청
 @require_POST
 @login_required
 def request_finish(request, room_id):
@@ -156,6 +156,10 @@ def request_finish(request, room_id):
 
     if chatroom.helper != user_profile:
         return HttpResponseForbidden("완료 요청 권한이 없습니다.")
+
+    post = chatroom.post
+    post.status = 'task_completed'  # 수행 완료로 상태 변경
+    post.save()
 
     return redirect('chats:chat_room', room_id=room_id)
 
