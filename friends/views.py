@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import *
-from accounts.models import *
-from posts.models import *
-from chats.models import *
-# Create your views here.
+from django.contrib.auth.decorators import login_required
+from django.db import models
+from .models import Friend
+from accounts.models import Profile
+from posts.models import Post
 
 
 # 타인페이지
@@ -26,25 +26,84 @@ def other_profile(request, user_id):
 
      return render(request, 'main/other_profile.html', context)
 
-# 일단 보류
-# def friend_list(request):
-#     profile = request.user.profile
 
-#     # 친구 요청 중 수락된 것만
-#     friends = Friend.objects.filter(
-#         models.Q(requester=profile) | models.Q(receiver=profile),
-#         status='accepted'
-#     ).select_related('requester', 'receiver')
+# 친구 검색
+@login_required
+def friend_search(request):
+     profile = request.user.profile
+     query = request.GET.get('query', '')
 
-#     # 상대방만 추출해서 리스트로 만들기
-#     friend_profiles = []
-#     for f in friends:
-#         if f.requester == profile:
-#             friend_profiles.append(f.receiver)
-#         else:
-#             friend_profiles.append(f.requester)
+     if query:
+          profiles = Profile.objects.filter(nickname__icontains=query).exclude(id=profile.id)
+     else:
+          profiles = Profile.objects.exclude(id=profile.id)
 
-#     return render(request, 'main/friend_list.html', {
-#         'friend_profiles': friend_profiles
-#     })
+     result_list = []
+     for p in profiles:
+          try:
+               friend_relation = Friend.objects.get(
+                    (models.Q(requester=profile, receiver=p) | models.Q(requester=p, receiver=profile))
+               )
+               status = friend_relation.status
+          except Friend.DoesNotExist:
+               status = 'none'
 
+          result_list.append({
+               'profile': p,
+               'status': status
+          })
+
+     context = {
+          'results': result_list,
+          'query': query,
+          }
+     return render(request, 'friends/friend_search.html', context)
+
+
+# 친구 요청 보내기
+@login_required
+def send_friend_request(request, receiver_id):
+     profile = request.user.profile
+     receiver = get_object_or_404(Profile, id=receiver_id)
+
+     if not Friend.objects.filter(
+          (models.Q(requester=profile, receiver=receiver) | models.Q(requester=receiver, receiver=profile))
+     ).exists():
+          Friend.objects.create(requester=profile, receiver=receiver, status='pending')
+
+     return redirect('friends:friend_search')
+
+
+# 친구 요청 수락
+@login_required
+def accept_friend_request(request, request_id):
+     friend_request = get_object_or_404(Friend, id=request_id, receiver=request.user.profile)
+
+     if friend_request.status == 'pending':
+          friend_request.status = 'accepted'
+          friend_request.save()
+
+     return redirect('friends:friend_search')
+
+
+# 친구 목록
+@login_required
+def friend_list(request):
+     profile = request.user.profile
+
+     friends = Friend.objects.filter(
+          models.Q(requester=profile) | models.Q(receiver=profile),
+          status='accepted'
+     ).select_related('requester', 'receiver')
+
+     friend_profiles = []
+     for f in friends:
+          if f.requester == profile:
+               friend_profiles.append(f.receiver)
+          else:
+               friend_profiles.append(f.requester)
+
+     context = {
+          'friend_profiles': friend_profiles
+     }
+     return render(request, 'friends/friend_list.html', context)
