@@ -4,9 +4,13 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
-from .models import Profile
-from main.models import University
 from django.contrib.auth.models import User
+
+from .models import *
+from chats.models import *
+from posts.models import *
+from friends.models import *
+from main.models import *
 
 def signup(request):
     if request.method == 'POST':
