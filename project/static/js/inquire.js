@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // 제출 확인
-        if (confirm('신고를 제출하시겠습니까?')) {
+        if (confirm('문의를 제출하시겠습니까?')) {
 
             this.submit();
         }
