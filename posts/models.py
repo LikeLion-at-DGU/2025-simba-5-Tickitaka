@@ -12,6 +12,7 @@ class Post(models.Model):
           ('waiting', '헬퍼찾는중'),
           ('chatting', '채팅중'),
           ('in_progress', '거래중'),
+          ('task_completed', '수행 완료'),
           ('done', '거래완료'),
      ])
      saved_count = models.IntegerField(default=0)
