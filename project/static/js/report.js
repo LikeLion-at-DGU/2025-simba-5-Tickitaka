@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // DOM 요소들
     const titleInput = document.getElementById('title');
     const contentInput = document.getElementById('content');
     const titleCount = document.getElementById('titleCount');
@@ -81,27 +80,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // 제출 확인
         if (confirm('신고를 제출하시겠습니까?')) {
-            // 실제 폼 제출
+
             this.submit();
         }
     });
 
-    // 뒤로가기 버튼 이벤트 (이미 HTML에서 onclick으로 처리됨)
 
-    // 초기 상태 설정
     updateSubmitButton();
-
-    // 텍스트 영역 자동 높이 조절 (선택사항)
-    function autoResize(textarea) {
-        textarea.style.height = 'auto';
-        textarea.style.height = Math.min(textarea.scrollHeight, 200) + 'px';
-    }
 
     // 내용 입력창 자동 높이 조절
     contentInput.addEventListener('input', function () {
         autoResize(this);
     });
 
-    // 페이지 로드 시 포커스
     titleInput.focus();
 });
