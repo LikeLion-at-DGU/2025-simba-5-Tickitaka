@@ -4,7 +4,7 @@ from .views import *
 app_name = 'chats'
 
 urlpatterns = [
-    path('', chat_list, name='chat_list'),
+    path('list/', chat_list, name='chat_list'),
     path('<int:room_id>/', chat_room, name='chat_room'),
     path('<int:room_id>/send/', submit_chat, name='submit_chat'),
     path('<int:room_id>/cancel_transaction/', cancel_transaction, name='cancel_transaction'),
