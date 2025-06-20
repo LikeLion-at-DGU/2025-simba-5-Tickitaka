@@ -24,7 +24,20 @@ class Profile(models.Model):
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        profile = Profile.objects.create(user=instance)
+
+        # 회원가입 선물 30분 지급
+        profile.time_balance = 30
+        profile.save()
+
+        # 선물 30분 지급 기록 TimeHistory 생성
+        TimeHistory.objects.create(
+            user=profile,
+            amounts=30,
+            type='plus',
+            post_id=0  # 가입 선물은 특정 Post와 연관 없으므로 0으로 저장
+        )
+
 
 
 @receiver(post_save, sender=User)
