@@ -38,6 +38,9 @@ def chat_room(request, room_id):
         'comments': comments,
         'me': user_profile,
         'opponent': opponent,
+        'transaction_started_at': post.transaction_started_at,   
+        'task_completed_at': post.task_completed_at,            
+        'transaction_finished_at': post.transaction_finished_at,
     })
 
 
@@ -113,6 +116,7 @@ def start_transaction(request, room_id):
         return HttpResponseForbidden("거래 시작이 불가능한 상태입니다.")
 
     post.status = 'in_progress'
+    post.transaction_started_at = timezone.now()   # 거래 시작 시간 기록
     post.save()
 
     return redirect('chats:chat_room', room_id=room_id)
@@ -160,6 +164,7 @@ def approve_finish(request, room_id):
 
     # 거래 승인 처리
     post.status = 'done'
+    post.transaction_finished_at = timezone.now()  # 거래 완료 시간 기록
     post.save()
 
     # 마스터 잔액 차감 및 기록
@@ -201,6 +206,7 @@ def request_finish(request, room_id):
 
     post = chatroom.post
     post.status = 'task_completed'  # 수행 완료로 상태 변경
+    post.task_completed_at = timezone.now()  # 수행 완료 시간 기록
     post.save()
 
     return redirect('chats:chat_room', room_id=room_id)
