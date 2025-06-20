@@ -18,6 +18,8 @@
             <div class="headerTextChatlist_sw">채팅목록</div>
         </div>
     </div>
+  
+
     
      <div class="listFrameChatlist_sw">
         <!-- 카테고리 -->
@@ -62,14 +64,17 @@
                     </div>
                     <div class="textBoxChatlist_sw">
                         <div class="textWrapperChatlist_sw">
-                            <div class="opponentNameChatlist_sw">{{ item.chatroom.opponent }}</div>
+                            <div class="opponentNameChatlist_sw">{{ item.opponent.nickname }}</div>
                             <div class="buildingChatList_sw">{{ item.chatroom.post.building.name }}</div>
                         </div>
-                        <div>{{ item.chatroom.post.title }}</div>
+                        <div class="titleChatList_sw">{{ item.chatroom.post.title }}</div>
                     </div>
                     {% if item.unread %}
-                        <img src="{% static 'images/alerticon.svg' %}" alt="안읽음표시">
+                    <div class="alerticonWrapperChatlist_sw">
+                        <div class="unreadCountChatlist_sw">{{item.unread}}</div>
+                    </div>                       
                     {% endif %}
+
                 </a>
             {% endfor %}
          </div>

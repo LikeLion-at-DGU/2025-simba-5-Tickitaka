@@ -16,14 +16,16 @@
         </div>
         <button class="sirenChatroom_sw">
                 <img class="sireniconChatroom_sw" src="{% static 'images/siren.svg' %}" alt="신고아이콘">
-                <div class="reportChatroom_sw">신고하기</div>
+                <div class="reportTextChatroom_sw">신고하기</div>
         </button>
     </div>
     
     <div class="tradeTitleFrameChatroom_sw">
          
                 {% for image in post.images.all %}
-                <img class="tradeTitleImageChatroom_sw" src="{{ image.image.url }}" alt="게시물 사진">
+                <a href="{% url 'posts:post_detail' chatroom.post.id %}">
+                    <img class="tradeTitleImageChatroom_sw" src="{{ image.image.url }}" alt="게시물 사진">
+                </a>
                 {% endfor %}
           
             <div class="tradeTitleTextFrameChatroom_sw">
@@ -162,8 +164,10 @@
             <img src="{% static 'images/photoicon.svg' %}" alt="사진아이콘">
         </button>
         </form>
-    
-        <form method="POST" action="{% url 'chats:submit_chat' chatroom.id %}" class="chatInputWrapperChatroom_sw">
+           
+        {% if post.status == "in_progress" or post.status == "chatting" %}
+        <form method="POST" action="{% url 'chats:submit_chat' chatroom.id %}"
+         class="chatInputWrapperChatroom_sw">
             {% csrf_token %}
             <textarea name="content" class="chatInputChatroom_sw" id="commentinput_sw"
             placeholder="메시지 보내기" ></textarea>
@@ -171,6 +175,15 @@
                 <img src="{% static 'images/airplaneicon.svg' %}" alt="전송아이콘">
             </button>
         </form>   
+            {% elif post.status == "done" or post.status == "waiting" %}
+          <div class="disabledChatInputWrapperChatroom_sw">
+            <textarea name="content" class="disabledChatInputChatroom_sw" id="commentinput_sw"
+            placeholder="대화가 종료된 채팅입니다." disabled></textarea>
+            <button class="iconSendChatroom_sw" >
+                <img src="{% static 'images/airplaneicon.svg' %}" alt="전송아이콘">
+            </button>
+        </div>   
+            {% endif %}
     </div>
 </div>
 <!-- 채팅 입력창 끝 -->

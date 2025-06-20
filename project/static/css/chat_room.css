@@ -54,15 +54,15 @@ font-style: normal;
 font-weight: 700;
 line-height: normal;
 }
-.reportChatroom_sw{
+.reportTextChatroom_sw{
     color: #FFF;
 
-/* caption */
-font-family: Pretendard;
-font-size: 12px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+    /* caption */
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 .sirenChatroom_sw{
     width: 70px;
@@ -75,7 +75,10 @@ line-height: normal;
 .sireniconChatroom_sw{
     width: 24px;
     height: 24px;
-    aspect-ratio: 1/1;
+display: flex;
+justify-content: center;
+align-items: center;
+     aspect-ratio: 1/1;
 }
 
 .tradeTitleFrameChatroom_sw{
@@ -160,6 +163,19 @@ height: 709px;
 flex-direction: column;
 gap: 16px;
 }
+.chatBubblesFrameChatroom_sw::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chatBubblesFrameChatroom_sw::-webkit-scrollbar-thumb {
+  background:#8A8A8A;
+  border-radius: 3px;
+}
+
+.chatBubblesFrameChatroom_sw::-webkit-scrollbar-track {
+  background: #ccc;
+}
+
 .longDescriptionBubbleChatroom_sw{
     display: flex;
     padding: 10px;
@@ -259,9 +275,46 @@ gap: 16px;
     font-weight: 400;
     line-height: normal;
     }
+    .disabledChatInputWrapperChatroom_sw{
+    width: 314px;
+    min-height: 33px;
+    padding: 6px 16px;
+    border-radius: 6px;
+   
+    border: 1px solid #D9D9D9;
+    background: #FFF;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+    .disabledChatInputChatroom_sw{
+   
+      background-color: pink;
+    resize: none;
+    height: 21px;
+    padding: 0 4px;
+   width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    color: #2A2A2A;
+    /* caption */
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+      cursor: default;
+    }
 
 .iconSendChatroom_sw{
     aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .modalChatroom_sw{
     position: fixed;        /* 추가 */
