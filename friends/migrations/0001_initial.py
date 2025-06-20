@@ -10,20 +10,16 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('accounts', '0001_initial'),
-        ('posts', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ChatRoomReadStatus',
+            name='Friend',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('last_read_at', models.DateTimeField(auto_now_add=True)),
-                ('chatroom', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='posts.chatroom')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='accounts.profile')),
+                ('status', models.CharField(choices=[('pending', '수락대기중'), ('accepted', '수락됨')], max_length=10)),
+                ('receiver', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='received_friend_requests', to='accounts.profile')),
+                ('requester', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sent_friend_requests', to='accounts.profile')),
             ],
-            options={
-                'unique_together': {('chatroom', 'user')},
-            },
         ),
     ]
