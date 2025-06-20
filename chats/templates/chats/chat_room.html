@@ -123,14 +123,17 @@
                     {% endif %}
                     {% if comment.content %}
                     <p>
-                        ({{ comment.timestamp|date:"H:i" }})
-                        {{ comment.content }}
+                        <div class="timeTextChatroom">{{ comment.timestamp|date:"A h:i" }}</div>
+                        <div class="myContentTextChatroom">{{ comment.content }} </div>  
                     </p>
                     {% endif %}
                 </div>
 
 
                 {% else %}
+
+                    
+                
                 <div class="opponentBubbleChatroom_sw">     
                     <img class="profileImgChatroom_sw" src="{% static 'images/defaultprofile.svg' %}" alt="프로필사진">
                     {% if comment.image %}
@@ -138,8 +141,8 @@
                     {% endif %}
                     {% if comment.content %}
                     <p>
-                    <div class="contentTextChatroom">{{ comment.content }} </div>  
-                    <div class="timeTextChatroom">({{ comment.timestamp|date:"H:i" }})</div>
+                    <div class="opponentContentTextChatroom">{{ comment.content }} </div>  
+                    <div class="timeTextChatroom">{{ comment.timestamp|date:"A h:i" }}</div>
                     </p>
                     {% endif %}
                 </div>
@@ -164,7 +167,7 @@
         </button>
         </form>
            
-        {% if post.status == "in_progress" or post.status == "chatting" %}
+        {% if post.status == "in_progress" or post.status == "task_completed" or post.status == "chatting" %}
         <form method="POST" action="{% url 'chats:submit_chat' chatroom.id %}"
          class="chatInputWrapperChatroom_sw">
             {% csrf_token %}
