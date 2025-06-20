@@ -16,8 +16,41 @@
             </div>
             <h1 class="time_history-title_sy">거래한 시간 내역</h1>
         </div>
-    
+
+        <div class="time_history-content_sy">
+            <div class="time-history-btn_sy">
+                <a href="?sort=all" class="{% if selected_sort == 'all' %}active_sy{% endif %}">전체</a>
+                <a href="?sort=input" class="{% if selected_sort == 'input' %}active_sy{% endif %}">적립</a>
+                <a href="?sort=output" class="{% if selected_sort == 'output' %}active_sy{% endif %}">사용</a>
+            </div>
         
+            <div class="time-history-list_sy">
+                {% for history in received_histories %}
+                <div class="history-pluscard_sy">
+                    <div class="history-info_sy">
+                        <div class="first-info_sy">
+                            <div class="history-title_sy">{{history.username}}</div>
+                            <div class="history-location_sy">{{ history.post.building.name }}</div>
+                        </div>
+                        <div class="history-title_sy">{{ history.post.title }}</div>
+                    </div>
+                    <div class="history-time_sy">+{{ history.amounts }}분</div>
+                </div>
+                {% endfor %}
+        
+                {% for history in given_histories %}
+                <div class="history-minuscard_sy">
+                    <div class="history-info_sy">
+                        <div class="first-info_sy">
+                            <div class="history-title_sy">{{history.username}}</div>
+                            <div class="history-location_sy">{{ history.post.building.name }}</div>
+                        </div>
+                        <div class="history-title_sy">{{ history.post.title }}</div>
+                    </div>
+                    <div class="history-time_sy">-{{ history.amounts }}분</div>
+                </div>
+                {% endfor %}
+            </div> 
     </div>
 </body>
 
