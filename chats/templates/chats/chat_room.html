@@ -103,19 +103,22 @@
         </div>
         
         <!-- 채팅 버블이 뜨는 곳 -->
-        {% if post.status == "in_progress" %}
+      
+
+       
+
+          {% if startnotice %}
             <div id="startNotice_sw" class="descriptionBubbleChatroom_sw">
                 <p>거래가 시작됩니다! 메뉴를 눌러 <b>민감 정보</b>를 확인해 주세요.</p>
             </div>
-        {% endif %}
-        {% if post.status == "task_completed" %}
+         {% endif %}
+        {% if requestnotice  %}
         <div id="requestNotice_sw" class="longDescriptionBubbleChatroom_sw" >
             <p>상대방이 거래 완료를 요청했습니다.</p>
             <p>1시간 안에 응답하지 않으면 자동으로 완료처리 됩니다.</p>
         </div>
         {% endif %}
-
-        {% for comment in comments %}
+         {% for comment in comments %}
             {% if comment.writer == me %}
                 <div class="myBubbleChatroom_sw">
                     {% if comment.image %}
@@ -128,12 +131,7 @@
                     </p>
                     {% endif %}
                 </div>
-
-
-                {% else %}
-
-                    
-                
+                {% else %}   
                 <div class="opponentBubbleChatroom_sw">     
                     <img class="profileImgChatroom_sw" src="{% static 'images/defaultprofile.svg' %}" alt="프로필사진">
                     {% if comment.image %}
@@ -148,14 +146,9 @@
                 </div>
             {% endif %}
         {% endfor %}
-           
-
-       
-        
     </div>
 
 <!-- 여기까지 스크롤 -->
- <p>디버그용: post.status = [{{ post.status }}]</p>
 
 <!-- 여기부터 채팅 입력창이고 고정 -->
     <div class="chatWriteFrameChatroom_sw">
