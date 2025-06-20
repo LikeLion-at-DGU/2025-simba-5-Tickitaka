@@ -52,18 +52,26 @@ def submit_chat(request, room_id):
 
     post = chatroom.post
 
-    # 거래 취소 시 새 채팅 작성 불가하게 제한하기 위한 상태 체크
     if post.status == 'waiting' or post.status == 'done':
         return HttpResponseForbidden("현재 채팅 전송이 불가능한 상태입니다.")
 
-    content = request.POST.get('content')
+    content = request.POST.get('content', '').strip()
     image = request.FILES.get('image')
 
+    # content도 빈 문자열로 허용하고, image만 있어도 허용
     if not content and not image:
+        # 완전 빈 경우에만 전송 안함
         return redirect('chats:chat_room', room_id=room_id)
 
-    Comment.objects.create(chatroom=chatroom, writer=user_profile, content=content, image=image)
+    Comment.objects.create(
+        chatroom=chatroom, 
+        writer=user_profile, 
+        content=content or '', 
+        image=image
+    )
+
     return redirect('chats:chat_room', room_id=room_id)
+
 
 
 
