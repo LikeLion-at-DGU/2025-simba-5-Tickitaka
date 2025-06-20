@@ -271,7 +271,7 @@ def chat_list(request):
     chat_list_sorted = sorted(chat_list, key=lambda x: x['last_chat_time'], reverse=True)
 
     return render(request, 'chats/chat_list.html', {
-    'chat_list': chat_list,
+    'chat_list': chat_list_sorted,
     'me': user_profile,
     'filter_type': filter_type,
     })
