@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
+
 from .models import *
-from accounts.models import *
-from posts.models import *
 from chats.models import *
-# Create your views here.
+from posts.models import *
+from accounts.models import *
+from main.models import *
 
 
 # 타인페이지

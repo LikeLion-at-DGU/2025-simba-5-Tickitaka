@@ -6,8 +6,11 @@ from django.views.decorators.http import require_POST
 
 from django.contrib.auth.decorators import login_required
 
-from accounts.models import Profile
 from .models import *
+from accounts.models import *
+from main.models import *
+from chats.models import *
+from friends.models import *
 
 @login_required
 def post_list(request):
