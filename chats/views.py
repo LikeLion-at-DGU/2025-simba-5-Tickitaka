@@ -4,6 +4,11 @@ from django.contrib.auth.decorators import login_required
 from posts.models import ChatRoom, Comment, Post
 from accounts.models import Profile
 from django.views.decorators.http import require_POST
+from django.db.models import Q
+from .models import ChatRoomReadStatus
+from django.utils import timezone
+
+
 
 
 @login_required
@@ -16,8 +21,14 @@ def chat_room(request, room_id):
     
     post = chatroom.post
     comments = Comment.objects.filter(chatroom=chatroom).order_by('timestamp')
+    
+    read_status, created = ChatRoomReadStatus.objects.get_or_create(chatroom=chatroom, user=user_profile)
+    read_status.last_read_at = timezone.now()
+    read_status.save()
+    
     opponent = chatroom.helper if chatroom.master == user_profile else chatroom.master
     
+
     return render(request, 'chats/chat_room.html', {
         'chatroom': chatroom,
         'post': post,
@@ -25,10 +36,6 @@ def chat_room(request, room_id):
         'me': user_profile,
         'opponent': opponent,
     })
-
-
-def chat_list(request):
-    return render(request, 'chats/chat_list.html')
 
 
 # 채팅 전송
@@ -151,3 +158,40 @@ def request_finish(request, room_id):
         return HttpResponseForbidden("완료 요청 권한이 없습니다.")
 
     return redirect('chats:chat_room', room_id=room_id)
+
+
+
+@login_required
+def chat_list(request):
+    user_profile = request.user.profile
+    filter_type = request.GET.get('filter', 'all')
+
+    if filter_type == 'master':
+        chatrooms = ChatRoom.objects.filter(master=user_profile)
+    elif filter_type == 'helper':
+        chatrooms = ChatRoom.objects.filter(helper=user_profile)
+    else:
+        chatrooms = ChatRoom.objects.filter(Q(master=user_profile) | Q(helper=user_profile))
+
+    chat_list = []
+    for chatroom in chatrooms:
+        read_status, created = ChatRoomReadStatus.objects.get_or_create(chatroom=chatroom, user=user_profile)
+
+
+        unread_count = Comment.objects.filter(
+            chatroom=chatroom,
+            timestamp__gt=read_status.last_read_at
+        ).count()
+
+        print(f"ChatRoom {chatroom.id} - Unread: {unread_count}")
+
+        chat_list.append({
+            'chatroom': chatroom,
+            'unread': unread_count,
+        })
+
+    return render(request, 'chats/chat_list.html', {
+    'chat_list': chat_list,
+    'me': user_profile,
+    'filter_type': filter_type,
+    })
