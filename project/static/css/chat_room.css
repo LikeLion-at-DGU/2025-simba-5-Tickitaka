@@ -132,8 +132,8 @@ line-height: normal;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
 }
+
 .buttonChatroom_sw{
     width: 59px;
     height: 30px;
@@ -146,6 +146,20 @@ font-size: 12px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+}
+.disabledButtonChatroom_sw{
+    width: 59px;
+    height: 30px;
+    border-radius: 6px;
+    cursor: none;
+    text-align: center;
+    background-color: #666;
+    color: #FFFFFF;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 .chatBubblesFrameChatroom_sw{
@@ -295,6 +309,7 @@ gap: 16px;
     background: none;
     border: none;
 }
+
 .modalTextBoxChatroom_sw{
    
     border-top: 0.5px  solid #666;

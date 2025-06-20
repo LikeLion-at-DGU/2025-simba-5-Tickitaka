@@ -17,14 +17,44 @@
                 <div class="reportChatroom_sw">신고하기</div>
         </button>
     </div>
+    
     <div class="tradeTitleFrameChatroom_sw">
             <div class="tradeTitleImageChatroom_sw"></div>
             <div class="tradeTitleTextFrameChatroom_sw">
                 <div class="tradeTitleTextChatroom_sw">{{post.title}}</div>
                 <div class="tradeTitleButtonsFrameChatroom_sw">
-                    <button class="buttonChatroom_sw">거래 요청</button>
-                    <button class="buttonChatroom_sw">거래 취소</button>
-                    <button class="buttonChatroom_sw">완료 요청</button>
+                    <!-- <p>DEBUG: post.status = [{{ post.status }}]</p> -->
+
+                    <!-- 버튼 1 -->
+                     
+                    {% if post.status == "in_progress" %}
+                    <button type="button" class="buttonChatroom_sw" onclick="openSensitiveModal()">
+                        민감 정보
+                    </button>
+                    {% elif post.status == "chatting" and me == chatroom.helper %}
+                    <form method="post" action="{% url 'chats:start_transaction' chatroom.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="buttonChatroom_sw">거래 요청</button>
+                    </form>
+                    {% endif %}
+                    
+                    <!-- 버튼 2 -->
+                    {% if post.status == "in_progress" %}
+                    <!-- home으로 돌아가야 되는데 현재는 안 됨 백 수정? -->
+                    <form method="post" action="{% url 'chats:cancel_transaction' chatroom.id %}">
+                        {% csrf_token %}
+                        <button class="buttonChatroom_sw">거래 취소</button>
+                    </form>
+                    {% endif %}
+
+
+                    <!-- 버튼 3 -->
+                    {% if post.status == "chatting" %}
+                     <!-- <form method="post" action=""> -->
+                        {% csrf_token %}
+                        <button class="buttonChatroom_sw">완료 요청</button>
+                    </form>
+                    {% endif %}
                 </div>
             </div>
     </div>
@@ -77,7 +107,7 @@
 <div class="modalChatroom_sw" id="sensitiveModal_sw" style="display: none;">
     <div class="modalTitleBoxChatroom_sw">
         <p class="modalTitleChatroom_sw">민감정보</p>
-        <button id="closeModalBtn_sw" class="modalBtnChatroom_sw">
+        <button id="closeModalBtn_sw" class="modalBtnChatroom_sw" onclick="closeSensitiveModal()">
             <img src="{% static 'images/xicon.svg' %}" alt="엑스아이콘">
         </button>
     </div>
