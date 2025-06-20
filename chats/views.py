@@ -12,8 +12,6 @@ from friends.models import *
 from main.models import *
 
 
-
-
 @login_required
 def chat_room(request, room_id):
     chatroom = get_object_or_404(ChatRoom, id=room_id)
@@ -38,9 +36,6 @@ def chat_room(request, room_id):
         'comments': comments,
         'me': user_profile,
         'opponent': opponent,
-        'transaction_started_at': post.transaction_started_at,   
-        'task_completed_at': post.task_completed_at,            
-        'transaction_finished_at': post.transaction_finished_at,
     })
 
 
@@ -56,26 +51,18 @@ def submit_chat(request, room_id):
 
     post = chatroom.post
 
+    # 거래 취소 시 새 채팅 작성 불가하게 제한하기 위한 상태 체크
     if post.status == 'waiting' or post.status == 'done':
         return HttpResponseForbidden("현재 채팅 전송이 불가능한 상태입니다.")
 
-    content = request.POST.get('content', '').strip()
+    content = request.POST.get('content')
     image = request.FILES.get('image')
 
-    # content도 빈 문자열로 허용하고, image만 있어도 허용
     if not content and not image:
-        # 완전 빈 경우에만 전송 안함
         return redirect('chats:chat_room', room_id=room_id)
 
-    Comment.objects.create(
-        chatroom=chatroom, 
-        writer=user_profile, 
-        content=content or '', 
-        image=image
-    )
-
+    Comment.objects.create(chatroom=chatroom, writer=user_profile, content=content, image=image)
     return redirect('chats:chat_room', room_id=room_id)
-
 
 
 
@@ -116,7 +103,6 @@ def start_transaction(request, room_id):
         return HttpResponseForbidden("거래 시작이 불가능한 상태입니다.")
 
     post.status = 'in_progress'
-    post.transaction_started_at = timezone.now()   # 거래 시작 시간 기록
     post.save()
 
     return redirect('chats:chat_room', room_id=room_id)
@@ -156,42 +142,10 @@ def approve_finish(request, room_id):
         return HttpResponseForbidden("완료 승인 권한이 없습니다.")
 
     post = chatroom.post
-    amounts = post.amounts
-
-    # 보유 시간 잔액 체크 (부족하면 승인 불가)
-    if post.master.time_balance < amounts:
-        return HttpResponseForbidden("보유 시간 부족으로 거래 완료 불가합니다.")
-
-    # 거래 승인 처리
-    post.status = 'done'
-    post.transaction_finished_at = timezone.now()  # 거래 완료 시간 기록
+    post.status = 'done'    
     post.save()
 
-    # 마스터 잔액 차감 및 기록
-    post.master.time_balance -= amounts
-    post.master.save()
-
-    TimeHistory.objects.create(
-        user=post.master,
-        amounts=-amounts,
-        type='minus',
-        post_id=post.id
-    )
-
-    # 헬퍼 잔액 적립 및 기록
-    post.helper.time_balance += amounts
-    post.helper.save()
-
-    TimeHistory.objects.create(
-        user=post.helper,
-        amounts=amounts,
-        type='plus',
-        post_id=post.id
-    )
-
     return redirect('main:mainpage')
-
-
 
 
 # 수행 완료 요청
@@ -206,7 +160,6 @@ def request_finish(request, room_id):
 
     post = chatroom.post
     post.status = 'task_completed'  # 수행 완료로 상태 변경
-    post.task_completed_at = timezone.now()  # 수행 완료 시간 기록
     post.save()
 
     return redirect('chats:chat_room', room_id=room_id)
@@ -235,30 +188,19 @@ def chat_list(request):
             timestamp__gt=read_status.last_read_at
         ).count()
 
-        opponent = chatroom.helper if chatroom.master == user_profile else chatroom.master
-
-        # 마지막 채팅 시간
-        last_comment = Comment.objects.filter(chatroom=chatroom).order_by('-timestamp').first()
-        if last_comment:
-            last_chat_time = last_comment.timestamp
-        else:
-            last_chat_time = chatroom.post.timestamp
+        print(f"ChatRoom {chatroom.id} - Unread: {unread_count}")
 
         chat_list.append({
             'chatroom': chatroom,
             'unread': unread_count,
-            'opponent': opponent,
-            'last_chat_time': last_chat_time,
         })
-
-    # 최신 채팅 순으로 정렬
-    chat_list_sorted = sorted(chat_list, key=lambda x: x['last_chat_time'], reverse=True)
 
     return render(request, 'chats/chat_list.html', {
     'chat_list': chat_list,
     'me': user_profile,
     'filter_type': filter_type,
     })
+
 
 def get_tip_percentage(answer):
     if answer == "2": 
@@ -267,7 +209,6 @@ def get_tip_percentage(answer):
         return 3
     
     return 0
-
 
 def process_review(request, post_id):
     post = get_object_or_404(Post, id=post_id)
@@ -286,6 +227,7 @@ def process_review(request, post_id):
 
         if tip_amount > 0 and post.helper:
             post.helper.time_balance += tip_amount
+            post.helper.time_tip += tip_amount
             post.helper.save()
 
             TimeHistory.objects.create(
@@ -295,6 +237,6 @@ def process_review(request, post_id):
                 post_id=post.id
             )
 
-        return redirect('main:home')  # 후기 제출 후 메인으로 이동
+        return redirect('posts:post_list')  # 후기 제출 후 메인으로 이동
 
     return render(request, 'chats/review.html', {'post': post})

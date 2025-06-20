@@ -54,6 +54,7 @@ def edit_profile(request):
 
 def time_history(request):
     profile = request.user.profile
+    all_histories =  TimeHistory.objects.order_by('-timestamp')
 
     # 지급 type='plus'
     received_histories = TimeHistory.objects.filter(user=profile, type='plus').order_by('-timestamp')
@@ -61,10 +62,16 @@ def time_history(request):
     # 사용 type='minus'
     given_histories = TimeHistory.objects.filter(user=profile, type='minus').order_by('-timestamp')
 
+    # 팁
+    tip_histories = TimeHistory.objects.filter(user=profile, type='tip').order_by('-timestamp')
+
     return render(request, 'main/confirmed_time_history.html', {
+        'all_histories' : all_histories,
         'received_histories': received_histories,
         'given_histories': given_histories,
+        'tip_histories': tip_histories, 
     })
+
 
 def my_posts(request):
     profile = request.user.profile
