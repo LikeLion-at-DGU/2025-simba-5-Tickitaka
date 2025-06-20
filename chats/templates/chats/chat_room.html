@@ -138,8 +138,8 @@
                     {% endif %}
                     {% if comment.content %}
                     <p>
-                        {{ comment.content }} 
-                    ({{ comment.timestamp|date:"H:i" }})
+                    <div class="contentTextChatroom">{{ comment.content }} </div>  
+                    <div class="timeTextChatroom">({{ comment.timestamp|date:"H:i" }})</div>
                     </p>
                     {% endif %}
                 </div>
@@ -153,7 +153,6 @@
 
 <!-- 여기까지 스크롤 -->
  <p>디버그용: post.status = [{{ post.status }}]</p>
- <p>디버그용: me = [{{ me }}]</p>
 
 <!-- 여기부터 채팅 입력창이고 고정 -->
     <div class="chatWriteFrameChatroom_sw">
