@@ -237,11 +237,22 @@ def chat_list(request):
 
         opponent = chatroom.helper if chatroom.master == user_profile else chatroom.master
 
+        # 마지막 채팅 시간
+        last_comment = Comment.objects.filter(chatroom=chatroom).order_by('-timestamp').first()
+        if last_comment:
+            last_chat_time = last_comment.timestamp
+        else:
+            last_chat_time = chatroom.post.timestamp
+
         chat_list.append({
             'chatroom': chatroom,
             'unread': unread_count,
             'opponent': opponent,
+            'last_chat_time': last_chat_time,
         })
+
+    # 최신 채팅 순으로 정렬
+    chat_list_sorted = sorted(chat_list, key=lambda x: x['last_chat_time'], reverse=True)
 
     return render(request, 'chats/chat_list.html', {
     'chat_list': chat_list,
