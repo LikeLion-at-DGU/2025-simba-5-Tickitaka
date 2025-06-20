@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
 <body>
     <div class="time_history-container_sy">
-
         <div class="time_history-header_sy">
             <div class="go-back-btn_sy">
                 <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,6 +16,7 @@
             </div>
             <h1 class="time_history-title_sy">거래한 시간 내역</h1>
         </div>
+
         <div class="time_history-content_sy">
             <div class="time-history-btn_sy">
                 <a href="?sort=all" class="{% if selected_sort == 'all' %}active_sy{% endif %}">전체</a>
@@ -50,8 +50,7 @@
                     <div class="history-time_sy">-{{ history.amounts }}분</div>
                 </div>
                 {% endfor %}
-            </div>  
-        </div>>
+            </div> 
     </div>
 </body>
 
