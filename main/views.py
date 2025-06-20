@@ -87,7 +87,7 @@ def report(request):
 
         # 이메일 전송
         send_mail(
-            subject=f"[시시콜콜 문의] {subject}",
+            subject=f"[시시콜콜 신고] {subject}",
             message=f"보낸 사람: {sender_email}\n\n내용:\n{message}",
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=['sisicallcallnow@gmail.com'],
@@ -95,7 +95,7 @@ def report(request):
         )
 
         messages.success(request, "신고가 성공적으로 전송되었습니다!")
-        return redirect('posts/post_list')
+        return redirect('posts:post_list')
 
     return render(request, 'main/report.html')
 
@@ -108,7 +108,7 @@ def inquire(request):
 
         # 이메일 전송
         send_mail(
-            subject=f"[시시콜콜 문의] {subject}",
+            subject=f"[시시콜콜 1:1 문의] {subject}",
             message=f"보낸 사람: {sender_email}\n\n내용:\n{message}",
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=['sisicallcallnow@gmail.com'],
@@ -116,6 +116,6 @@ def inquire(request):
         )
 
         messages.success(request, "문의가 성공적으로 전송되었습니다!")
-        return redirect('posts/post_list')
+        return redirect('posts:post_list')
 
     return render(request, 'main/inquire.html')
