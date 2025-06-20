@@ -45,4 +45,5 @@ class Comment(models.Model):
      image = models.ImageField(upload_to='chat_imgs/', blank=True, null=True)
      timestamp = models.DateTimeField(auto_now_add=True)
      chatroom = models.ForeignKey(ChatRoom, on_delete=models.CASCADE)
-     writer = models.ForeignKey(Profile, on_delete=models.CASCADE)
+     writer = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
+     is_system = models.BooleanField(default=False)
