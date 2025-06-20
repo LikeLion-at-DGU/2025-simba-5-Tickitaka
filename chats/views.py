@@ -151,10 +151,41 @@ def approve_finish(request, room_id):
         return HttpResponseForbidden("완료 승인 권한이 없습니다.")
 
     post = chatroom.post
-    post.status = 'done'    
+    amounts = post.amounts
+
+    # 보유 시간 잔액 체크 (부족하면 승인 불가)
+    if post.master.time_balance < amounts:
+        return HttpResponseForbidden("보유 시간 부족으로 거래 완료 불가합니다.")
+
+    # 거래 승인 처리
+    post.status = 'done'
     post.save()
 
+    # 마스터 잔액 차감 및 기록
+    post.master.time_balance -= amounts
+    post.master.save()
+
+    TimeHistory.objects.create(
+        user=post.master,
+        amounts=-amounts,
+        type='minus',
+        post_id=post.id
+    )
+
+    # 헬퍼 잔액 적립 및 기록
+    post.helper.time_balance += amounts
+    post.helper.save()
+
+    TimeHistory.objects.create(
+        user=post.helper,
+        amounts=amounts,
+        type='plus',
+        post_id=post.id
+    )
+
     return redirect('main:mainpage')
+
+
 
 
 # 수행 완료 요청
@@ -197,11 +228,12 @@ def chat_list(request):
             timestamp__gt=read_status.last_read_at
         ).count()
 
-        print(f"ChatRoom {chatroom.id} - Unread: {unread_count}")
+        opponent = chatroom.helper if chatroom.master == user_profile else chatroom.master
 
         chat_list.append({
             'chatroom': chatroom,
             'unread': unread_count,
+            'opponent': opponent,
         })
 
     return render(request, 'chats/chat_list.html', {
