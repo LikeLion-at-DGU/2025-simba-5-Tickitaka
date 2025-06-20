@@ -256,6 +256,6 @@ def process_review(request, post_id):
                 post_id=post.id
             )
 
-        return redirect('main:home')  # 후기 제출 후 메인으로 이동
+        return redirect('posts:post_list')  # 후기 제출 후 메인으로 이동
 
     return render(request, 'chats/review.html', {'post': post})
