@@ -21,12 +21,17 @@
     </div>
     
     <div class="tradeTitleFrameChatroom_sw">
-         
+        {% if post.image.all %}
                 {% for image in post.images.all %}
                 <a href="{% url 'posts:post_detail' chatroom.post.id %}">
                     <img class="tradeTitleImageChatroom_sw" src="{{ image.image.url }}" alt="게시물 사진">
                 </a>
                 {% endfor %}
+        {% else %}
+                 <a href="{% url 'posts:post_detail' chatroom.post.id %}">
+                    <img class="tradeTitleImageChatroom_sw" src="{% static 'images/test2.png'%}" alt="기본 이미지">
+                </a>
+        {% endif %}
           
             <div class="tradeTitleTextFrameChatroom_sw">
                 <div class="tradeTitleTextChatroom_sw">{{post.title}}</div>
@@ -103,23 +108,29 @@
         </div>
         
         <!-- 채팅 버블이 뜨는 곳 -->
-      
-
-       
-
-          {% if startnotice %}
+<!--       
+  {% if startnotice %}
             <div id="startNotice_sw" class="descriptionBubbleChatroom_sw">
                 <p>거래가 시작됩니다! 메뉴를 눌러 <b>민감 정보</b>를 확인해 주세요.</p>
             </div>
          {% endif %}
+  
         {% if requestnotice  %}
         <div id="requestNotice_sw" class="longDescriptionBubbleChatroom_sw" >
             <p>상대방이 거래 완료를 요청했습니다.</p>
             <p>1시간 안에 응답하지 않으면 자동으로 완료처리 됩니다.</p>
         </div>
-        {% endif %}
-         {% for comment in comments %}
-            {% if comment.writer == me %}
+        {% endif %} -->
+       
+   {% for comment in comments %}
+        
+            {% if comment.is_system %}
+            <div id="startNotice_sw" class="descriptionBubbleChatroom_sw">
+                {{comment.content}}
+            </div>
+           
+            
+            {% elif comment.writer == me %}
                 <div class="myBubbleChatroom_sw">
                     {% if comment.image %}
                     <img src="{{comment.img}}" alt=" 내가 보낸 이미지">
