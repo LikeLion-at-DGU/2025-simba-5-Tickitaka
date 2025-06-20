@@ -207,3 +207,31 @@ def chat_list(request):
     'me': user_profile,
     'filter_type': filter_type,
     })
+
+
+def process_review(user: Profile, post_id: int, q1: str, q2: str, q3: str):
+        post = get_object_or_404(Post, id=post_id)
+
+        if post.helper is None:
+            raise ValueError("도움을 준 헬퍼가 존재하지 않습니다.")
+
+        # Tip 퍼센트 계산
+        tip_percent = get_tip_percentage(q1) + get_tip_percentage(q2) + get_tip_percentage(q3)
+
+        if tip_percent == 0:
+            return  # tip이 없으면 아무 일도 하지 않음
+
+        # tip amount 계산
+        tip_amount = int(post.amounts * tip_percent / 100)
+
+        # 헬퍼의 time_balance 증가
+        post.helper.time_balance += tip_amount
+        post.helper.save()
+
+        # time history 기록
+        TimeHistory.objects.create(
+            user=post.helper,
+            amounts=tip_amount,
+            type='tip',
+            post_id=post.id
+        )
