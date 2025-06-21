@@ -35,7 +35,7 @@ def create_user_profile(sender, instance, created, **kwargs):
             user=profile,
             amounts=30,
             type='plus',
-            post_id=0  # 가입 선물은 특정 Post와 연관 없으므로 0으로 저장
+            # post_id=0  # 가입 선물은 특정 Post와 연관 없으므로 0으로 저장
         )
 
 
