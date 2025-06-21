@@ -1,10 +1,11 @@
 .post-list-container_sy {
     width: 390px;
-    height: 844px;
+    min-height: 844px;
     display: flex;
     margin: 0 auto;
     overflow: hidden;
     background-color: #F6F8FA;
+    padding-bottom: 32px;
 }
 
 .post-list-header_sy {
@@ -103,10 +104,10 @@
     border: 0.5px solid var(--N-3, #8A8A8A);
 }
 
-/**.friend-boost-btn_sy button.selected_sy {
+.friend-boost-btn_sy button.selected_sy {
     background-color: #025397;
     color: white;
-}**/
+}
 
 .time-boost-btn_sy button.selected_sy {
     background-color: #025397;

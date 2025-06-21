@@ -5,12 +5,13 @@ a {
 
 .liked-post-container_sy {
     width: 390px;
-    height: 844px;
+    min-height: 844px;
     display: flex;
     margin: 0 auto;
     flex-direction: column;
     background: #F6F8FA;
     gap: 24px;
+    padding-bottom: 32px;
 }
 
 .liked-post-header_sy {
