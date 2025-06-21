@@ -106,7 +106,7 @@ def fetch_chats(request, room_id):
 
     return render(request, 'chats/chat_room.html', {
         'chatroom': chatroom,
-        'post': chatroom.post,
+        'post': post,
         'comments': comments,
         'me': user_profile,
         'opponent': opponent,
@@ -134,8 +134,9 @@ def start_transaction(request, room_id):
 
     Comment.objects.create(
         chatroom=chatroom,
-        content="거래가 시작되었습니다! 메뉴를 눌러 민감 정보를 확인해 주세요.",
-        is_system=True  # 시스템 메시지 표시
+        content="거래가 시작되었습니다! 메뉴를 눌러 <b>민감 정보</b>를 확인해 주세요.",
+        is_system=True,  # 시스템 메시지 표시
+        timestamp=timezone.now(),
     )
 
     return redirect('chats:chat_room', room_id=room_id)
@@ -211,7 +212,8 @@ def approve_finish(request, room_id):
     Comment.objects.create(
         chatroom=chatroom,
         content="거래가 최종 완료되었습니다. 수고하셨습니다!",
-        is_system=True
+        is_system=True,
+        timestamp=timezone.now(),
     )
 
     return redirect('main:mainpage')
@@ -234,8 +236,9 @@ def request_finish(request, room_id):
 
     Comment.objects.create(
         chatroom=chatroom,
-        content="상대방이 거래 완료를 요청했습니다. 1시간 이내 미응답시 자동완료됩니다.",
-        is_system=True
+        content="상대방이 거래 완료를 요청했습니다. <br>1시간 이내 미응답시 자동완료됩니다.",
+        is_system=True,
+        timestamp=timezone.now(),
     )
 
     return redirect('chats:chat_room', room_id=room_id)
