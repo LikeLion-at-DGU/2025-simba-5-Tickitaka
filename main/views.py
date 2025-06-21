@@ -57,7 +57,6 @@ def time_history(request):
 
     all_histories =  TimeHistory.objects.filter(user=profile).select_related('post').order_by('-timestamp')
 
-
     # 지급 type='plus'
     received_histories = TimeHistory.objects.filter(user=profile, type='plus').select_related('post').order_by('-timestamp')
 
