@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static 'css/my_page.css' %}" />
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
 
-   
+<div class="pageAlignChatlist_sw">
 <!-- 헤더 -->
     <div class="headerFrameChatlist_sw">
     <!-- 아직 메인 없음 -->
@@ -18,6 +18,62 @@
             <div class="headerTextChatlist_sw">마이페이지</div>
         </div>
     </div>
+    <div class="wrapperMypage_sw">
+        <div class="profileCardMypage_sw">
+            <div class="profileWrapperMypage_sw">
+                {{profile.img}}
+                <img src="{% static 'images/lionprofile.svg' %}" alt="프사">
+                <div class="nicknameMypage_sw">
+                {{profile.nickname}}    
+                </div>
+            </div>
+            <div class="editWrapperMypage_sw">
+                <p class="editTextMypage_sw">프로필 수정</p>
+                <img src="{% static 'images/goMypage.svg' %}" alt="오른쪽화살표아이콘">
+            </div>
+                
+
+        </div>
+        <div class="menuBoxMypage_sw">
+            <a href="{% url 'main:my_posts' %}" class="aBoxMypage_sw" >
+                <div class="aWrapperMypage_sw">
+                    <img src="{% static 'images/paperMypage.svg' %}" alt="내가쓴글아이콘">
+                    <p class="aTextMypage_sw">내가 쓴 글</p>
+                </div>
+                <img src="{% static 'images/goMypage.svg' %}" alt="오른쪽화살표아이콘">
+            </a>
+
+            <div class="lineMypage_sw"></div>
+            <a href="{% url 'main:saved_posts' %}" class="aBoxMypage_sw" >
+                <div class="aWrapperMypage_sw">
+                    <img src="{% static 'images/bookmarkMypage.svg' %}" alt="내가쓴글아이콘">
+                    <p class="aTextMypage_sw">찜한 글</p>
+                </div>
+                <img src="{% static 'images/goMypage.svg' %}" alt="오른쪽화살표아이콘">
+            </a>
+
+            <div class="lineMypage_sw"></div>
+            <a href="{% url 'main:time_history' %}" class="aBoxMypage_sw" >
+                <div class="aWrapperMypage_sw">
+                    <img src="{% static 'images/timeMypage.svg' %}" alt="내가쓴글아이콘">
+                    <p class="aTextMypage_sw">거래한 시간</p>
+                </div>
+                <img src="{% static 'images/goMypage.svg' %}" alt="오른쪽화살표아이콘">
+            </a>
+            
+            <div class="lineMypage_sw"></div>
+            <a href="{% url 'main:report' %}" class="aBoxMypage_sw" >
+                <div class="aWrapperMypage_sw">
+                    <img src="{% static 'images/headphoneMypage.svg' %}" alt="내가쓴글아이콘">
+                    <p class="aTextMypage_sw">1:1 문의하기</p>
+                </div>
+                <img src="{% static 'images/goMypage.svg' %}" alt="오른쪽화살표아이콘">
+            </a>
+        </div>
+    </div>
+    
+</div>
+
 {% endblock %}
 {% block scripts %}
 <!-- js 파일 -->
