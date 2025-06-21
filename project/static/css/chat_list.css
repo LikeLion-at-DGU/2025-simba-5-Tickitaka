@@ -126,7 +126,10 @@ gap: 8px;
 .chatroomFrameChatlist_sw::-webkit-scrollbar-track {
   background: #ccc;
 }
-
+.container_sw{
+    width: 100%;
+    height: 100%;
+}
 
 .chatroomChatlist_sw{
     display: flex;

@@ -1,0 +1,86 @@
+
+<!-- edit_profile.html -->
+{% extends 'test-base.html' %} 
+{% load static %} 
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/edit_profile.css' %}" />
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+
+<div class="pageAlignChatlist_sw">
+    
+<!-- 헤더 -->
+    <div class="headerFrameChatlist_sw">
+    <!-- 아직 메인 없음 -->
+        <a href="{% url 'chats:chat_list' %}">
+            <button class="backiconChatlist_sw">
+                <img src="{% static 'images/backicon.svg' %}" alt="뒤로가기아이콘">
+            </button>
+        </a>
+        <div class="headerTitleChatlist_sw">
+            <div class="headerTextChatlist_sw">프로필 수정</div>
+        </div>
+    </div>
+    <!-- 여기부터 수정폼 -->
+    
+    <div class="allInputsFrameSignup_sw" >
+    <!-- action 추가해야 됨 마이페이지로 -->
+      <form class="formFrame_sw" method="post" id="editprofile_sw" enctype="multipart/form-data" >
+            {% csrf_token %}
+            <!-- 사진 바꾸기 -->
+            <div class="photoFrameEdit_sw">
+                <!-- 기존 사진 있으면 보여주기 -->
+                        {%if profile.image %}
+                        <img src="{{profile.image.url}}" alt="현재 프로필" class="photoPreview_sw">
+                        {% endif %}
+                    <!-- 숨겨진 파일 업로드 input -->
+                    <input type="file" id="photoUpload" name="image" style="display: none;" accept="image/*"/>
+                       
+                        <!-- 사용자에게 보이는 부분: 사진 아이콘 -->
+                    <label for="photoUpload" class="photoBtnEdit_sw">
+                                <img src="{% static 'images/photoediticon.svg' %}" alt="사진아이콘">
+                    </label>
+            </div>
+            <div class="inputFrameSignup_sw">
+            <!-- 닉네임 (nickname) -->
+                <label class="inputTitleSignup_sw" for="nicknameInputSignup_sw">닉네임</label>
+                <div class="inputButtonWrapperSignup_sw">
+                    <input class="inputBtnBoxSignup_sw" id="nicknameInputSignup_sw" type= "text" name="nickname" placeholder="닉네임을 입력해주세요"  value="{{profile.nickname}}" >
+                    <button class="checkButtonSignup_sw" id="checkButtonSignup1_sw" type="button" disabled>중복확인</button>
+                </div>
+                <small class="inputDescriptionSignup_sw">닉네임은 한글, 숫자, 영문으로 4~8자 이내로 입력해주세요</small>
+            </div>
+            <!-- 학교명(university) -->
+            <div class="inputFrameSignup_sw">
+                <label class="inputTitleSignup_sw" for="schoolInputSignup_sw">학교명</label>
+                <input class="inputBoxSignup_sw" id="schoolInputSignup_sw" type= "text" name="university" placeholder="학교 이름을 입력해주세요"  value="{{profile.university.name}}" >
+            </div>
+            <small class="inputDescriptionSignup_sw">학교 전체 이름을 입력해주세요</small>
+               <!-- 이메일(address) 입력 -->
+                <div class="inputFrameSignup_sw">
+                    <label class="inputTitleSignup_sw" for="emailInputSignup_sw">이메일</label>
+                    <div class="inputButtonWrapperSignup_sw">
+                        <input class="inputBoxSignup_sw" id="emailCheckInputSignup_sw" type= "email" name="address" placeholder="ex) likelion@dgu.ac.kr" >
+                        <button class="checkButtonSignup_sw" id="checkButtonSignup3_sw" type="button">인증하기</button>
+                    </div>
+                    <small class="inputDescriptionSignup_sw">학교메일을 입력해주세요</small>
+                </div>
+            <!-- 인증번호(user_check_signup_sw) 입력 -->
+            <div class="inputFrameSignup_sw">
+                <div class="inputButtonWrapperSignup_sw">
+                    <input class="inputBtnBoxSignup_sw" id="checkInputSignup_sw" type= "text" name="user_check_signup_sw" placeholder="인증번호를 입력하세요" >
+                    <button class="checkButtonSignup_sw" id="checkButtonSignup2_sw" type="button">확인</button>
+                </div>
+                <small class="inputDescriptionSignup_sw" id="codeErrorMsg" style="display: none;"></small>
+            </div>
+        </form>
+        <button class="nextButtonSignup_sw" id="nextButtonSignup_sw" type="submit" form="editprofile_sw">수정 완료</button>
+    </div>
+ </div>
+
+
+    {% endblock %}
+{% block scripts %}
+<!-- js 파일 -->
+<script src="{% static 'js/edit_profile.js' %}"></script>
+{% endblock %}

@@ -3,6 +3,9 @@
 
 <link rel="stylesheet" href="{% static 'css/chat_room.css' %}" />
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+<div class="container_sw">
+
+
 <div class="pageAlignChatroom_sw">
     <div class="nicknameFrameChatroom_sw">
         <a href="{% url 'chats:chat_list' %}">
@@ -94,7 +97,6 @@
                 </div>
             </div>
     </div>
-                   
 <!-- js를 위한 숨겨진 div에 post.status 심기 -->
 <div id="postStatus_sw" style="display: none;":>{{ post.status }}</div>
 
@@ -123,13 +125,12 @@
         {% endif %} -->
        
    {% for comment in comments %}
-        
+    
+
             {% if comment.is_system %}
             <div id="startNotice_sw" class="descriptionBubbleChatroom_sw">
                 {{comment.content}}
             </div>
-           
-            
             {% elif comment.writer == me %}
                 <div class="myBubbleChatroom_sw">
                     {% if comment.image %}
@@ -192,6 +193,8 @@
             {% endif %}
     </div>
 </div>
+               </div>    
+
 <!-- 채팅 입력창 끝 -->
 
 <!-- 여기서부터 민감정보 모달 -->

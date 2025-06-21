@@ -2,6 +2,10 @@
 button{
     cursor: pointer;
 }
+.container_sw{
+    width: 100%;
+    height: 100%;
+}
 .pageAlignChatroom_sw{
     width: 390px;
     height: 844px;
@@ -218,6 +222,10 @@ line-height: normal;
     font-weight: 400;
     line-height: normal;
 }
+.descriptionBubbleChatroom_sw b {
+  font-weight: 700;
+}
+
 .myBubbleChatroom_sw
 {
     display: flex;

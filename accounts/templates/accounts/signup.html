@@ -11,15 +11,19 @@
             <div class="divideTopLineSignup_sw"></div>
             <form class="allInputsFrameSignup_sw" method="post" id="signupinfo" action="{% url 'accounts:signup' %}">
                 {% csrf_token %}
+                <!-- 아이디(name) 입력 -->
                 <div class="inputFrameSignup_sw">
                     <label class="inputTitleSignup_sw" for="nameInputSignup_sw">이름</label>
                     <input class="inputBoxSignup_sw" id="nameInputSignup_sw" type= "text" name="name" placeholder="이름을 입력해주세요" >
                 </div>
+                <!-- 전화번호 (phone_number) 입력 -->
                 <div class="inputFrameSignup_sw">
                     <label class="inputTitleSignup_sw" for="phoneNumberInputSignup_sw">전화번호</label>
                     <input class="inputBoxSignup_sw" id="phoneNumberInputSignup_sw" type= "text" name="phone_number" placeholder="ex) 01012345678" >
                     <small class="inputDescriptionSignup_sw">-을 제외하고 입력해주세요</small>
                 </div>
+                <!-- 아이디 (username) 입력 -->
+                 <!-- 중복확인함 -->
                 <div class="inputFrameSignup_sw">
                     <label class="inputTitleSignup_sw" for="idInputSignup_sw">아이디</label>
                         <div class="inputButtonWrapperSignup_sw">
@@ -28,11 +32,13 @@
                         </div>
                         <small class="inputDescriptionSignup_sw">4자 이상 ~ 16자 이하로 입력해주세요</small>
                 </div>
+                <!-- 비밀전호 (password) 입력 -->
                 <div class="inputFrameSignup_sw">
                     <label class="inputTitleSignup_sw" for="pwInputSignup_sw">비밀번호</label>
                     <input class="inputBoxSignup_sw" id="pwInputSignup_sw" type= "password" name="password" placeholder="비밀번호를 입력해주세요" >
                     <small class="inputDescriptionSignup_sw">8~16자 이내의 영문, 숫자, 특수문자를 입력해주세요</small>
                 </div>
+                <!-- 비밀번호 확인 (password_check) 입력 -->
                 <div class="inputFrameSignup_sw">
                     <label class="inputTitleSignup_sw" for="pwCheckInputSignup_sw">비밀번호 재확인</label>
                     <input class="inputBoxSignup_sw" id="pwCheckInputSignup_sw" type= "password" name="password_check" placeholder="비밀번호를 한번 더 입력해주세요" > <!--김유미가 name="password_check" 추가함-->
