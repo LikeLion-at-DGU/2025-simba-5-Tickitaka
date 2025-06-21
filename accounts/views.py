@@ -161,4 +161,3 @@ def verify_code(request):
             return JsonResponse({'success': True})
         else:
             return JsonResponse({'success': False, 'error': '인증번호가 일치하지 않습니다.'})
-
