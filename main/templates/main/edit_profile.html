@@ -12,7 +12,7 @@
 <!-- 헤더 -->
     <div class="headerFrameChatlist_sw">
     <!-- 아직 메인 없음 -->
-        <a href="{% url 'chats:chat_list' %}">
+        <a href="{% url 'main:my_page' %}">
             <button class="backiconChatlist_sw">
                 <img src="{% static 'images/backicon.svg' %}" alt="뒤로가기아이콘">
             </button>
@@ -40,15 +40,6 @@
                     <label for="photoUpload" class="photoBtnEdit_sw">
                                 <img src="{% static 'images/photoediticon.svg' %}" alt="사진아이콘">
                     </label>
-            </div>
-            <div class="inputFrameSignup_sw">
-            <!-- 닉네임 (nickname) -->
-                <label class="inputTitleSignup_sw" for="nicknameInputSignup_sw">닉네임</label>
-                <div class="inputButtonWrapperSignup_sw">
-                    <input class="inputBtnBoxSignup_sw" id="nicknameInputSignup_sw" type= "text" name="nickname" placeholder="닉네임을 입력해주세요"  value="{{profile.nickname}}" >
-                    <button class="checkButtonSignup_sw" id="checkButtonSignup1_sw" type="button" disabled>중복확인</button>
-                </div>
-                <small class="inputDescriptionSignup_sw">닉네임은 한글, 숫자, 영문으로 4~8자 이내로 입력해주세요</small>
             </div>
             <!-- 학교명(university) -->
             <div class="inputFrameSignup_sw">

@@ -1,0 +1,25 @@
+{% extends 'test-base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/my_page.css' %}" />
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+
+   
+<!-- 헤더 -->
+    <div class="headerFrameChatlist_sw">
+    <!-- 아직 메인 없음 -->
+        <a href="{% url 'chats:chat_list' %}">
+            <button class="backiconChatlist_sw">
+                <img src="{% static 'images/backicon.svg' %}" alt="뒤로가기아이콘">
+            </button>
+        </a>
+        <div class="headerTitleChatlist_sw">
+            <div class="headerTextChatlist_sw">프로필 수정</div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+<!-- js 파일 -->
+<script src="{% static 'js/my_page.js' %}"></script>
+{% endblock %}
