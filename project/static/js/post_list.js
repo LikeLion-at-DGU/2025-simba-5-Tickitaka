@@ -46,4 +46,30 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.search = params.toString();
         });
     }
+
+    const friendBtn = document.querySelector("#friendOnlyBtn");
+
+    if (friendBtn) {
+        const url = new URL(window.location.href);
+        const isFriendOnly = url.searchParams.get("friend_only") === "1";
+
+        if (isFriendOnly) {
+            friendBtn.classList.add("selected_sy");
+        }
+
+        friendBtn.addEventListener("click", function () {
+            console.log("버튼 찾음", friendBtn);
+            const params = new URLSearchParams(window.location.search);
+            const friendFlag = params.get("friend_only");
+
+            if (friendFlag === "1") {
+                params.delete("friend_only");
+            } else {
+                params.set("friend_only", "1");
+            }
+
+            // 변경된 쿼리 파라미터로 페이지 이동
+            window.location.search = params.toString();
+        });
+    }
 });
