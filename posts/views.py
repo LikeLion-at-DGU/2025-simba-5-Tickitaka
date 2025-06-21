@@ -19,6 +19,7 @@ def post_list(request):
      building_id = request.GET.get('building_id')  # 드롭다운 선택 파라미터
      sort_option = request.GET.get('sort', 'latest')  # 기본 정렬은 최신순
      burning_flag = request.GET.get('burning')  # '1'이면 버닝 게시글만
+     friend_only = request.GET.get('friend_only') # 1이면 친구만
 
      posts = Post.objects.filter(
           university=user_profile.university,
@@ -40,6 +41,16 @@ def post_list(request):
      if burning_flag == '1':
           posts = posts.filter(burning=1)
 
+     # 친구만 필터
+     if friend_only == '1':
+          # 내가 보낸 친구 요청 중 accepted 된 사람들
+          sent_friends = Friend.objects.filter(requester=user_profile, status='accepted').values_list('receiver', flat=True)
+          # 내가 받은 친구 요청 중 accepted 된 사람들
+          received_friends = Friend.objects.filter(receiver=user_profile, status='accepted').values_list('requester', flat=True)
+          
+          friend_ids = list(sent_friends) + list(received_friends)
+          posts = posts.filter(master__in=friend_ids)
+
      # 정렬 기준 적용
      if sort_option == 'latest':
           posts = posts.order_by('-timestamp')
@@ -56,6 +67,7 @@ def post_list(request):
           'selected_building_id': building_id,
           'selected_sort': sort_option,
           'burning_flag': burning_flag,
+          'friend_only': friend_only,
           'selected_building_name': selected_building_name
      })
 
