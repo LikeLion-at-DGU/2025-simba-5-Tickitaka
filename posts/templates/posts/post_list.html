@@ -4,55 +4,61 @@
 
 <body>
     <div class="post-list-container_sy">
-
         <div class="post-list-header_sy">
+
             <div class="post-list-first-header_sy">
                 <div class="go-back-btn_sy">
                     <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M0.29277 5.79301L5.94977 0.136013L7.36377 1.55001L2.41377 6.50001L7.36377 11.45L5.94977 12.864L0.29277 7.20701C0.105299 7.01949 -1.66893e-05 6.76518 -1.66893e-05 6.50001C-1.66893e-05 6.23485 0.105299 5.98054 0.29277 5.79301Z"
-                            fill="black" />
+                            fill="white" />
                     </svg>
                 </div>
                 <h1 class="post-list-title_sy">거래 목록</h1>
             </div>
-            <div class="time-boost-btn_sy">
-                <button class="{% if burning_flag == '1' %}selected_sy{% endif %}">1.5배</button>
-            </div>
-            <div class="post-list-navbar_sy">
-                <div class="dropdown_sy">
-                    <div id="selectedBuilding_sy" class="dropdown-button_sy" onclick="toggleDropdown()">
-                        {% if selected_building_name %}
-                            {{ selected_building_name }}
-                        {% else %}
-                            {{ request.user.profile.university.name }}
-                        {% endif %}
-                        <svg width="13" height="8" viewBox="0 0 13 8" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M5.65703 7.38911L2.67029e-05 1.73212L1.41403 0.318115L6.36403 5.26812L11.314 0.318115L12.728 1.73212L7.07103 7.38911C6.8835 7.57659 6.62919 7.6819 6.36403 7.6819C6.09886 7.6819 5.84455 7.57659 5.65703 7.38911Z"
-                                fill="black" />
-                        </svg>
+
+            <div class="post-list-second-header_sy">
+
+                <div class="post-list-btn_sy">
+                    <div class="friend-boost-btn_sy">
+                        <button class="{% if burning_flag == '1' %}selected_sy{% endif %}">친구만</button>
                     </div>
-                    <div id="buildingDropdown_sy" class="dropdown-content_sy">
-                        <div onclick="selectBuilding('all', '{{ user_profile.university.name }}')">{{ user_profile.university.name }}전체</div>
-                        {% for b in buildings %}
-                        <div onclick="selectBuilding('{{ b.id }}', '{{ b.name }}')">{{ b.name }}</div>
-                        {% endfor %}
+                    <div class="time-boost-btn_sy">
+                        <button class="{% if burning_flag == '1' %}selected_sy{% endif %}">1.5배</button>
                     </div>
                 </div>
-                <div class="list-category_sy">
 
-                    <a href="?sort=latest{% if selected_building_id %}&building_id={{ selected_building_id }}{% endif %}" class="latest-category_sy {% if selected_sort == 'latest' %}active{% endif %}">최신순</a>
-                    <div class="category-line_sy"></div>
-                    <a href="?sort=deadline{% if selected_building_id %}&building_id={{ selected_building_id }}{% endif %}" class="deadline-category_sy {% if selected_sort == 'deadline' %}active{% endif %}">마감임박순</a>
-                    <div class="category-line_sy"></div>
-                    <a href="?sort=amounts{% if selected_building_id %}&building_id={{ selected_building_id }}{% endif %}" class="transaction-category_sy {% if selected_sort == 'amounts' %}active{% endif %}">거래시간순</a>
-
+                <div class="post-list-navbar_sy">
+                    <div class="dropdown_sy">
+                        <div id="selectedBuilding_sy" class="dropdown-button_sy" onclick="toggleDropdown()">
+                            {% if selected_building_name %}
+                                {{ selected_building_name }}
+                            {% else %}
+                                {{ request.user.profile.university.name }}
+                            {% endif %}
+                            <svg width="13" height="8" viewBox="0 0 13 8" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M5.65703 7.38911L2.67029e-05 1.73212L1.41403 0.318115L6.36403 5.26812L11.314 0.318115L12.728 1.73212L7.07103 7.38911C6.8835 7.57659 6.62919 7.6819 6.36403 7.6819C6.09886 7.6819 5.84455 7.57659 5.65703 7.38911Z"
+                                    fill="black" />
+                            </svg>
+                        </div>
+                        <div id="buildingDropdown_sy" class="dropdown-content_sy">
+                            <div onclick="selectBuilding('all', '{{ user_profile.university.name }}')">{{ user_profile.university.name }}전체</div>
+                            {% for b in buildings %}
+                            <div onclick="selectBuilding('{{ b.id }}', '{{ b.name }}')">{{ b.name }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="list-category_sy">
+                        <a href="?sort=latest{% if selected_building_id %}&building_id={{ selected_building_id }}{% endif %}" class="latest-category_sy {% if selected_sort == 'latest' %}active{% endif %}">최신순</a>
+                        <div class="category-line_sy"></div>
+                        <a href="?sort=deadline{% if selected_building_id %}&building_id={{ selected_building_id }}{% endif %}" class="deadline-category_sy {% if selected_sort == 'deadline' %}active{% endif %}">마감임박순</a>
+                        <div class="category-line_sy"></div>
+                        <a href="?sort=amounts{% if selected_building_id %}&building_id={{ selected_building_id }}{% endif %}" class="transaction-category_sy {% if selected_sort == 'amounts' %}active{% endif %}">거래시간순</a>
+                    </div>
                 </div>
-
             </div>
         </div>
-
 
         <div class="post-list_sy">
             {% for post in posts %}
