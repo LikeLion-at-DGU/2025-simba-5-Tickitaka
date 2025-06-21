@@ -4,6 +4,8 @@ from accounts.models import *
 from posts.models import *
 from chats.models import *
 from friends.models import *
+from django.db.models import Q
+import random
 
 from django.core.mail import send_mail
 from django.conf import settings
@@ -20,10 +22,16 @@ def home(request):
     hours = total_minutes // 60
     minutes = total_minutes % 60
 
+    # burning = 1인 게시글 중에서 10개 랜덤 추출
+    burning_posts = list(Post.objects.filter(burning=1))
+    random.shuffle(burning_posts)
+    burning_posts = burning_posts[:10]
+
     return render(request, 'main/home.html', {
         'profile': profile,
         'hours': hours,
         'minutes': minutes,
+        'burning_posts': burning_posts,
     })
 
 
