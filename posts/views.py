@@ -90,7 +90,7 @@ def post_create(request):
           content = request.POST.get('content')
           private_info = request.POST.get('private_info') 
           deadline_str = request.POST.get('deadline')
-          amounts = request.POST.get('amounts')
+          amounts = int(request.POST.get('amounts'))
           burning = 1 if request.POST.get('burning') == '1' else 0
           building_id = request.POST.get('building')
           building = get_object_or_404(Building, id=building_id, university=user_profile.university)
