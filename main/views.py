@@ -26,6 +26,14 @@ def home(request):
         'minutes': minutes,
     })
 
+
+def my(request):
+    profile = request.user.profile
+    return render(request, 'main/my_page.html', {
+        'profile': profile,
+    })
+
+
 def edit_profile(request):
     profile = request.user.profile
 
@@ -56,7 +64,6 @@ def time_history(request):
     profile = request.user.profile
 
     all_histories =  TimeHistory.objects.filter(user=profile).select_related('post').order_by('-timestamp')
-
 
     # 지급 type='plus'
     received_histories = TimeHistory.objects.filter(user=profile, type='plus').select_related('post').order_by('-timestamp')

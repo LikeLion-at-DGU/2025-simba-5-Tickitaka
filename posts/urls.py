@@ -11,5 +11,5 @@ urlpatterns = [
     path('post_delete/<int:id>', post_delete, name='post_delete'),  
     path('<int:post_id>/saved/', toggle_saved, name='toggle_saved'),
     path('<int:post_id>/call/', call_post, name='call_post'),
-    #path('post_edit/<int:id>', edit, name='post_edit'), 
+    path('post_edit/<int:id>', post_edit, name='post_edit'), 
 ]
