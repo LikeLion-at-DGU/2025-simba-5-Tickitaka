@@ -83,6 +83,7 @@ def post_detail(request, id):
 @login_required
 def post_create(request):
      user_profile = request.user.profile
+     buildings = Building.objects.filter(university=user_profile.university)
 
      if request.method == 'POST':
           title = request.POST.get('title')
@@ -98,6 +99,17 @@ def post_create(request):
                deadline = datetime.fromisoformat(deadline_str)
           except ValueError:
                deadline = now()
+
+          if user_profile.available_time < int(amounts):
+               return render(request, 'posts/post_create.html', {
+                    'buildings': buildings,
+                    'available_time': user_profile.available_time,
+                    'error': '잔여 타임이 부족합니다.'
+               })
+
+          # 사용 가능 시간 차감
+          user_profile.available_time -= amounts
+          user_profile.save()
 
           post = Post.objects.create(
                title=title,
@@ -119,24 +131,50 @@ def post_create(request):
           return redirect('posts:post_list')  # 생성 후 리스트 페이지로 리다이렉트
 
      # GET 요청 → 글 작성 폼
-     buildings = Building.objects.filter(university=user_profile.university)
      return render(request, 'posts/post_create.html', {
-          'buildings': buildings
+          'buildings': buildings,
+          'available_time': user_profile.available_time
      })
 
 
-def edit(request, id):
-     edit_post = Post.objects.get(pk=id)
-     return render(request, 'posts/post_edit.html', {"post": edit_post})
+def post_edit(request, id):
+     post = get_object_or_404(Post, id=id, master=request.user.profile)
+     user_profile = request.user.profile
+
+     # 기존 예약 시간 복구
+     user_profile.available_time += post.amounts
+     user_profile.save()
+
+     buildings = Building.objects.filter(university=user_profile.university)
+
+     return render(request, 'posts/post_update.html', {
+          'post': post,
+          'buildings': buildings,
+          'available_time': user_profile.available_time
+     })
+
 
 def post_update(request, id):
      post = get_object_or_404(Post, id=id, master=request.user.profile)
+     user_profile = request.user.profile
+     buildings = Building.objects.filter(university=request.user.profile.university)
 
      if request.method == 'POST':
+          amounts = int(request.POST.get('amounts'))
+          # 잔여 가능 시간 확인
+          if user_profile.available_time < amounts:
+               buildings = Building.objects.filter(university=user_profile.university)
+               return render(request, 'posts/post_update.html', {
+                    'post': post,
+                    'buildings': buildings,
+                    'available_time': user_profile.available_time,
+                    'error': '잔여 타임이 부족합니다.'
+               })
+          
           post.title = request.POST.get('title')
           post.content = request.POST.get('content')
           post.private_info = request.POST.get('private_info')
-          post.amounts = int(request.POST.get('amounts'))
+          post.amounts = amounts
           post.burning = 1 if request.POST.get('burning') == '1' else 0
 
           deadline_str = request.POST.get('deadline')
@@ -145,28 +183,30 @@ def post_update(request, id):
           except ValueError:
                post.deadline = now()
 
-          building_id = request.POST.get('building')
-          post.building = get_object_or_404(Building, id=building_id, university=request.user.profile.university)
-
+          post.building = get_object_or_404(Building, id=request.POST.get('building'), university=user_profile.university)
           post.save()
+
+          # 새 예약 시간 차감
+          user_profile.available_time -= amounts
+          user_profile.save()
 
           # 기존 이미지 유지 + 새 이미지만 추가
           for img in request.FILES.getlist('images'):
                PostImage.objects.create(post=post, image=img)
 
           return redirect('posts:post_detail', id=post.id)
+     
+     return redirect('posts:post_list')
 
-     buildings = Building.objects.filter(university=request.user.profile.university)
-     return render(request, 'posts/post_update.html', {
-          'post': post,
-          'buildings': buildings,
-     })
 
 @login_required
 def post_delete(request, id):
      post = get_object_or_404(Post, id=id, master=request.user.profile)
+     user_profile = request.user.profile
 
      if request.method == 'POST':
+          user_profile.available_time += post.amounts
+          user_profile.save()
           post.delete()
           return redirect('posts:post_list')
 
