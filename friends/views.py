@@ -72,8 +72,14 @@ def send_friend_request(request, receiver_id):
      if not Friend.objects.filter(
           (models.Q(requester=profile, receiver=receiver) | models.Q(requester=receiver, receiver=profile))
      ).exists():
-          Friend.objects.create(requester=profile, receiver=receiver, status='pending')
+          friend_request = Friend.objects.create(requester=profile, receiver=receiver, status='pending')
+          FriendRequestNotification.objects.create(
+               sender=profile,
+               receiver=receiver,
+               friend_request=friend_request,
+          )
 
+     
      return redirect('friends:friend_search')
 
 
@@ -86,7 +92,34 @@ def accept_friend_request(request, request_id):
           friend_request.status = 'accepted'
           friend_request.save()
 
+     # 알림 읽음 처리
+          try:
+               notification = FriendRequestNotification.objects.get(friend_request=friend_request)
+               notification.is_read = True
+               notification.save()
+          except FriendRequestNotification.DoesNotExist:
+               pass
+
      return redirect('friends:friend_search')
+
+# 친구 요청 거절
+@login_required
+def reject_friend_request(request, request_id):
+     friend_request = get_object_or_404(Friend, id=request_id, receiver=request.user.profile)
+
+     if friend_request.status == 'pending':
+          friend_request.delete()  # 친구 요청 자체 삭제
+          
+          # 알림 읽음 처리
+          try:
+               notification = FriendRequestNotification.objects.get(friend_request=friend_request)
+               notification.is_read = True
+               notification.save()
+          except FriendRequestNotification.DoesNotExist:
+               pass
+
+     return redirect('friends:friend_search')
+
 
 
 # 친구 목록
@@ -106,7 +139,30 @@ def friend_list(request):
           else:
                friend_profiles.append(f.requester)
 
+
+     # 빨간 점 표시 조건: 읽지 않은 알림이 있으면 표시
+     unread_notification_exists = FriendRequestNotification.objects.filter(
+          receiver=profile,
+          is_read=False
+     ).exists()
+
      context = {
-          'friend_profiles': friend_profiles
+          'friend_profiles': friend_profiles,
+          'unread_notification_exists': unread_notification_exists,
      }
      return render(request, 'friends/friend_list.html', context)
+
+
+@login_required
+def received_notifications(request):
+     profile = request.user.profile
+
+     notifications = FriendRequestNotification.objects.filter(
+          receiver=profile,
+          is_read=False
+     ).order_by('-timestamp')
+
+     context = {
+          'notifications': notifications
+     }
+     return render(request, 'friends/received_notifications.html', context)
