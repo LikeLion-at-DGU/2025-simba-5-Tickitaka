@@ -4,6 +4,7 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/time_history.css' %}" />
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+
 <body>
     <div class="time_history-container_sy">
         <div class="time_history-header_sy">
@@ -28,62 +29,64 @@
             <!-- 적립 (plus) -->
             <div id="plus_list" class="time-history-list_sy" style="display: none;">
                 {% for history in received_histories %}
-                    <div class="history-pluscard_sy">
-                        <div class="history-info_sy">
-                            <div class="first-info_sy">
-                                <div class="history-friend_sy">
-                                    {% if history.post.master == request.user.profile %}
-                                        {{ history.post.helper.nickname }}
-                                    {% else %}
-                                        {{ history.post.master.nickname }}
-                                    {% endif %}
-                                </div>
-                                <div class="history-location_sy">{{ history.post.building.name }}</div>
+                <div class="history-pluscard_sy">
+                    <div class="history-info_sy">
+                        <div class="first-info_sy">
+                            <div class="history-friend_sy">
+                                {% if history.post.master == request.user.profile %}
+                                {{ history.post.helper.nickname }}
+                                {% else %}
+                                {{ history.post.master.nickname }}
+                                {% endif %}
                             </div>
-                            <div class="second-info_sy">
-                                <div class="history-title_sy">{{ history.post.title }}</div>
-                            </div>
+                            <div class="history-location_sy">{{ history.post.building.name }}</div>
                         </div>
-                        <div class="history-time_sy">+{{ history.amounts }}분</div>
+                        <div class="second-info_sy">
+                            <div class="history-title_sy">{{ history.post.title }}</div>
+                        </div>
                     </div>
+                    <div class="history-time_sy">+{{ history.amounts }}분</div>
+                </div>
                 {% endfor %}
             </div>
 
             <!-- 사용 (minus) -->
             <div id="minus_list" class="time-history-list_sy" style="display: none;">
                 {% for history in given_histories %}
-                    <div class="history-minuscard_sy">
-                        <div class="history-info_sy">
-                            <div class="first-info_sy">
-                                <div class="history-friend_sy">
-                                    {% if history.post.master == request.user.profile %}
-                                        {{ history.post.helper.nickname }}
-                                    {% else %}
-                                        {{ history.post.master.nickname }}
-                                    {% endif %}
-                                </div>
-                                <div class="history-location_sy">{{ history.post.building.name }}</div>
+                <div class="history-minuscard_sy">
+                    <div class="history-info_sy">
+                        <div class="first-info_sy">
+                            <div class="history-friend_sy">
+                                {% if history.post.master == request.user.profile %}
+                                {{ history.post.helper.nickname }}
+                                {% else %}
+                                {{ history.post.master.nickname }}
+                                {% endif %}
                             </div>
-                            <div class="second-info_sy">
-                                <div class="history-title_sy">{{ history.post.title }}</div>
-                            </div>
+                            <div class="history-location_sy">{{ history.post.building.name }}</div>
                         </div>
-                        <div class="history-time_sy">-{{ history.amounts }}분</div>
+                        <div class="second-info_sy">
+                            <div class="history-title_sy">{{ history.post.title }}</div>
+                        </div>
                     </div>
+                    <div class="history-time_sy">-{{ history.amounts }}분</div>
+                </div>
                 {% endfor %}
             </div>
 
             <!-- 전체 (plus / minus / tip 모두) -->
             <div id="all_list" class="time-history-list_sy" style="display: none;">
-            {% for history in all_histories %}
-                <div class="{% if history.type == 'plus' or history.type == 'tip' %}history-pluscard_sy{% else %}history-minuscard_sy{% endif %}">
+                {% for history in all_histories %}
+                <div
+                    class="{% if history.type == 'plus' or history.type == 'tip' %}history-pluscard_sy{% else %}history-minuscard_sy{% endif %}">
                     <div class="history-info_sy">
                         <div class="first-info_sy">
                             <div class="history-friend_sy">
+
                                 {% if history.post.master == request.user.profile %}
-                                    {{ history.post.helper.nickname }}
+                                {{ history.post.helper.nickname }}
                                 {% else %}
-                                    {{ history.post.master.nickname }}
+                                {{ history.post.master.nickname }}
                                 {% endif %}
                             </div>
                             <div class="history-location_sy">
@@ -93,9 +96,9 @@
                         <div class="second-info_sy">
                             <div class="history-title_sy">
                                 {% if history.type == 'tip' %}
-                                    친절한 거래에 대한 팁입니다
+                                친절한 거래에 대한 팁입니다
                                 {% else %}
-                                    {{ history.post.title }}
+                                {{ history.post.title }}
                                 {% endif %}
                             </div>
                         </div>
@@ -105,9 +108,9 @@
                         {{ history.amounts }}분
                     </div>
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
 </body>
 {% endblock %}
 
