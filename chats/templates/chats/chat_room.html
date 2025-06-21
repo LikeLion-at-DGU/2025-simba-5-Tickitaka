@@ -118,7 +118,7 @@
             {% elif comment.writer == me %}
                 <div class="myBubbleChatroom_sw">
                     {% if comment.image %}
-                    <img src="{{comment.img}}" alt=" 내가 보낸 이미지">
+                    <img src="{{comment.image.url}}" alt=" 내가 보낸 이미지"  width="200" >
                     {% endif %}
                     {% if comment.content %}
                     <p>
@@ -135,7 +135,7 @@
                     <div class="profileImgChatroom_sw" style="visibility: hidden;"> </div>
                     {% endifchanged %}
                     {% if comment.image %}
-                    <img src="{{comment.img}}" alt=" 상대가 보낸 이미지">
+                    <img src="{{comment.image.url}}" alt=" 상대가 보낸 이미지" width="200">
                     {% endif %}
                     {% if comment.content %}
                     <p>

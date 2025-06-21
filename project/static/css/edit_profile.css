@@ -1,5 +1,7 @@
 /* edit_profile.css */
-
+button{
+    cursor: pointer;
+}
 .pageAlignChatlist_sw{
     width: 390px;
     height: 844px;
@@ -53,14 +55,22 @@ font-weight: 700;
 line-height: normal;
 }
 
-
+.containerEdit_sw{
+   width: 358px;
+    height: 719px;
+}
 .allInputsFrameSignup_sw{
     width: 358px;
-    height: 719px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     gap: 16px;
+}
+
+.photoFormFrame_sw{
+
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
 }
 .formFrame_sw{
     width: 358px;
@@ -70,19 +80,17 @@ line-height: normal;
     align-items: flex-start;
     gap: 16px;
 }
-.photoFrameEdit_sw{
-    margin: 0 auto;
-    border-radius: 99px;
-    width: 120px;
-    height: 120px;
-    border: solid #999;
-    position: relative;
+.editWrapper_sw{
+  position: relative;
+  margin: 0 auto;
 }
 .photoPreview_sw{
-  width: 120px !important;
-  height: 120px !important;
+    margin: 0 auto;
     border-radius: 99px;
-
+    width: 120px !important;
+    height: 120px !important;
+    border: solid #999;
+    position: relative;
 }
 .photoBtnEdit_sw{
     display: flex;
@@ -220,7 +228,30 @@ line-height: normal;
 
 }
 
-.nextButtonSignup_sw{
+.photoFormButton_sw{
+all: unset;
+    box-sizing: border-box;
+    width: 358px;
+    height: 44px;
+    padding: 15px 153px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+    background: #025397;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    color: #FFF;
+    text-align: center;
+    font-family: "Pretendard Variable";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+      white-space: nowrap;
+}
+
+.universityFormButton_sw{
       all: unset;
     box-sizing: border-box;
     width: 358px;
@@ -228,7 +259,6 @@ line-height: normal;
     padding: 15px 153px;
     border-radius: 6px;
     margin-bottom: 24px;
-    
     background: #025397;
     display: flex;
     justify-content: center;
