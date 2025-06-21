@@ -131,10 +131,15 @@ def start_transaction(request, room_id):
     post.status = 'in_progress'
     post.transaction_started_at = timezone.now()
     post.save()
+    
+    # 시스템 메시지에 시각 찍어주기
+    now = timezone.now()
+    formatted_time = now.strftime("%I시 %M분").lstrip('0')  # 1시 35분 형식
+    system_message = f"{formatted_time}에 거래가 시작됐습니다!\n메뉴를 눌러 민감 정보를 확인해 주세요."
 
     Comment.objects.create(
         chatroom=chatroom,
-        content="거래가 시작되었습니다! 메뉴를 눌러 <b>민감 정보</b>를 확인해 주세요.",
+        content=system_message,
         is_system=True,  # 시스템 메시지 표시
         timestamp=timezone.now(),
     )
@@ -231,12 +236,23 @@ def request_finish(request, room_id):
 
     post = chatroom.post
     post.status = 'task_completed'  # 수행 완료로 상태 변경
-    post.task_completed_at = timezone.now()
+
+    now = timezone.now()
+    post.task_completed_at = now
     post.save()
+
+    # 시간 포맷 생성
+    formatted_time = now.strftime("%I시 %M분").lstrip('0')
+
+    system_message = (
+        f"{formatted_time}에 거래 완료가 요청됐습니다.\n"
+        f"1시간 안에 응답하지 않으면 자동으로 완료처리 됩니다."
+    )
+
 
     Comment.objects.create(
         chatroom=chatroom,
-        content="상대방이 거래 완료를 요청했습니다. <br>1시간 이내 미응답시 자동완료됩니다.",
+        content=system_message,
         is_system=True,
         timestamp=timezone.now(),
     )
