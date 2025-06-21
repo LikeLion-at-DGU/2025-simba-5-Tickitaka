@@ -13,4 +13,5 @@ urlpatterns = [
     path('my_posts/', my_posts, name='my_posts'),
     path('saved_posts/', saved_posts, name='saved_posts'),
     #path('profile/<int:id>/', other_profile, name='other_profile'),
+    path('mypage/', my, name='mypage'),
 ]

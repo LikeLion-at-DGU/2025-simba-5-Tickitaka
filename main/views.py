@@ -26,6 +26,14 @@ def home(request):
         'minutes': minutes,
     })
 
+
+def my(request):
+    profile = request.user.profile
+    return render(request, 'main/my_page.html', {
+        'profile': profile,
+    })
+
+
 def edit_profile(request):
     profile = request.user.profile
 
