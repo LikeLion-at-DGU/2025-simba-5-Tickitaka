@@ -1,11 +1,12 @@
 .time_history-container_sy {
     width: 390px;
-    height: 844px;
+    min-height: 844px; 
     display: flex;
     margin: 0 auto;
     flex-direction: column;
     background: #f6f8fa;
     gap: 24px;
+    padding-bottom: 32px;
 }
 
 .time_history-header_sy {
@@ -69,13 +70,19 @@
     justify-content: center;
     align-items: center;
     border-radius: 50px;
-    background: #025397;
-    color: #fff;
+    border-radius: 50px;
+    border: 0.5px solid var(--N-2, #666);
+    background: var(--N-5, #FFF);
     font-family: 'Pretendard Variable';
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+
+.time-history-btn_sy a.active_sy {
+    background: #025397;
+    color: #fff;
 }
 
 .time-history-list_sy {
@@ -158,10 +165,37 @@
 }
 
 .history-time_sy {
-    color: var(--P-1, #025397);
     font-family: Pretendard;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
+    line-height: normal;
+}
+
+.history-time_sy.plus {
+    color: #025397;
+}
+
+.history-time_sy.minus {
+    color: #FF8887
+}
+
+.history-time_sy.tip{
+    color: #97D5AA
+}
+
+.time-sy {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+.history-total-time_sy {
+    color: var(--N-3, #8A8A8A);
+    font-family: "Pretendard Variable";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
     line-height: normal;
 }

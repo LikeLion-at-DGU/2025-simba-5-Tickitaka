@@ -68,6 +68,7 @@ def time_history(request):
     tip_histories = TimeHistory.objects.filter(user=profile, type='tip').select_related('post').order_by('-timestamp')
 
     return render(request, 'main/time_history.html', {
+        'profile' : profile,
         'all_histories' : all_histories,
         'received_histories': received_histories,
         'given_histories': given_histories,
