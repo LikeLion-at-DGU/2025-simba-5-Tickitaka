@@ -2,11 +2,14 @@
 button{
     cursor: pointer;
 }
+.container_sw{
+    width: 100%;
+    height: 100%;
+}
 .pageAlignChatroom_sw{
     width: 390px;
     height: 844px;
     display: flex;
- 
     margin: 0 auto;
     flex-direction: column;
     align-items: center;
@@ -207,7 +210,7 @@ line-height: normal;
     align-items: center;
     text-align: center;
     width: 363px;
-    height: 44px;
+    height: 34px;
     background-color: #D9D9D9;
     border-radius: 6px;
     color: #2A2A2A;
@@ -218,6 +221,10 @@ line-height: normal;
     font-weight: 400;
     line-height: normal;
 }
+.descriptionBubbleChatroom_sw b {
+  font-weight: 700;
+}
+
 .myBubbleChatroom_sw
 {
     display: flex;

@@ -6,6 +6,8 @@
 
 <link rel="stylesheet" href="{% static 'css/post_create.css' %}" />
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+<!-- available_time 불러오기 -->
+<input type="hidden" id="availableTime" value="{{ available_time|default:0 }}">
 
 <form method="POST" action="{% url 'posts:post_create' %}" enctype="multipart/form-data">
     <div class="pageAlignCreate_sw">
@@ -49,6 +51,8 @@
                         placeholder="민감한 정보는 거래가 시작되면 전달됩니다"></textarea>
                     <small class="f234_wordCountCreate_sw">0/100</small>
                 </div>
+
+                <!-- 거래위치 드롭다운 -->
                 <div class="f5_frameCreate_sw">
                     <div class="f5_wrapperCreate_sw">
                         <label class="f5_titleCreate_sw">거래 위치</label>
@@ -63,6 +67,8 @@
                         </div>
 
                     </div>
+
+                    <!-- 달력 -->
                     <div class="f5_wrapperCreate_sw">
                         <label class="f5_titleCreate_sw">거래글 마감 시간</label>
                         <input class="f5_calenderCreate_sw" id="f5_calenderCreate_sw" name="deadline" type="text"
@@ -87,7 +93,7 @@
         </div>
     </div>
 </form>
-
+<p>보유시간 : {{available_time}}</p>
 
 {% endblock %}
 {% block scripts %}

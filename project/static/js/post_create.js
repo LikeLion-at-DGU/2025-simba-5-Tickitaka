@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         enableTime: true,
         dateFormat: 'Y-m-d H:i',
         time_24hr: true,
-        position: 'below',
+        position: 'above right',
         defaultDate: null,
         allowInput: false,
         clickOpens: true,
@@ -77,8 +77,10 @@ document.querySelectorAll("textarea, input[type='text']").forEach((el) => {
 
 //  3. 거래 위치 드롭다운 DB 연동은 HTML에서 for문 처리
 
-//  4. 소요 시간 10분 단위 확인
+//  4. 소요 시간 10분 단위 확인, 보유시간이 더 적은지 확인
+
 const timeInput = document.querySelector('.f6_requireTimeCreate_sw');
+
 timeInput.addEventListener('blur', () => {
     const val = parseInt(timeInput.value);
     if (val % 10 !== 0) {
@@ -86,7 +88,9 @@ timeInput.addEventListener('blur', () => {
         timeInput.value = '';
     }
     checkSubmitButton();
+   
 });
+
 
 //  5. 1.5배 버튼 기능
 
@@ -138,16 +142,18 @@ function checkSubmitButton() {
     const locationInput = document.getElementById('f5_dropdownPlaceCreate_sw');
     const deadlineInput = document.getElementById('f5_calenderCreate_sw');
     const reqtimeInput = document.getElementById('f6_requireTimeCreate_sw');
+    const available_time = parseInt(document.getElementById('availableTime').value, 10);
+    const timeValue = parseInt(reqtimeInput.value, 10);
 
-    const timeValue = parseInt(reqtimeInput.value);
-    const isValidTime = !isNaN(timeValue) && (boostApplied || timeValue % 10 === 0);
 
+
+    const isValidTime = !isNaN(timeValue) && (boostApplied || timeValue % 10 === 0); 
+    const timeOk = timeValue<=available_time;
     const hasTitle = titleInput.value.trim().length > 0;
     const hasDesc = descInput.value.trim().length > 0;
     const hasLocation = locationInput.value.trim().length > 0;
     const hasDeadline = deadlineInput.value.trim().length > 0;
-
-    const allValid = hasTitle && hasDesc && hasLocation && hasDeadline && isValidTime;
+    const allValid = hasTitle && hasDesc && hasLocation && hasDeadline && isValidTime && timeOk;
 
     if (allValid) {
         submitBtn.style.background = '#025397';
@@ -160,17 +166,11 @@ function checkSubmitButton() {
         submitBtn.style.pointerEvents = 'none';
         submitBtn.style.opacity = 0.5;
     }
+   
 }
 
 timeInput.addEventListener('input', checkSubmitButton); //  실시간 감지
-timeInput.addEventListener('blur', () => {
-    const val = parseInt(timeInput.value);
-    if (val % 10 !== 0) {
-        alert('10분 단위로 입력해주세요.');
-        timeInput.value = '';
-    }
-    checkSubmitButton();
-});
+
 
 //엑스 버튼
 document.addEventListener('DOMContentLoaded', function () {
@@ -179,3 +179,4 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = '/'; //  메인 페이지 URL (루트)
     });
 });
+

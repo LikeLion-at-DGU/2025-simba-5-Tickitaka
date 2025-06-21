@@ -3,6 +3,9 @@
 
 <link rel="stylesheet" href="{% static 'css/chat_room.css' %}" />
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+<div class="container_sw">
+
+
 <div class="pageAlignChatroom_sw">
     <div class="nicknameFrameChatroom_sw">
         <a href="{% url 'chats:chat_list' %}">
@@ -94,7 +97,6 @@
                 </div>
             </div>
     </div>
-                   
 <!-- js를 위한 숨겨진 div에 post.status 심기 -->
 <div id="postStatus_sw" style="display: none;":>{{ post.status }}</div>
 
@@ -108,28 +110,11 @@
         </div>
         
         <!-- 채팅 버블이 뜨는 곳 -->
-<!--       
-  {% if startnotice %}
-            <div id="startNotice_sw" class="descriptionBubbleChatroom_sw">
-                <p>거래가 시작됩니다! 메뉴를 눌러 <b>민감 정보</b>를 확인해 주세요.</p>
-            </div>
-         {% endif %}
-  
-        {% if requestnotice  %}
-        <div id="requestNotice_sw" class="longDescriptionBubbleChatroom_sw" >
-            <p>상대방이 거래 완료를 요청했습니다.</p>
-            <p>1시간 안에 응답하지 않으면 자동으로 완료처리 됩니다.</p>
-        </div>
-        {% endif %} -->
-       
    {% for comment in comments %}
-        
             {% if comment.is_system %}
-            <div id="startNotice_sw" class="descriptionBubbleChatroom_sw">
-                {{comment.content}}
+            <div id="startNotice_sw" class="longDescriptionBubbleChatroom_sw">
+                {{comment.content|linebreaksbr}}
             </div>
-           
-            
             {% elif comment.writer == me %}
                 <div class="myBubbleChatroom_sw">
                     {% if comment.image %}
@@ -143,8 +128,12 @@
                     {% endif %}
                 </div>
                 {% else %}   
-                <div class="opponentBubbleChatroom_sw">     
+                <div class="opponentBubbleChatroom_sw">  
+                    {% ifchanged comment.writer.id comment.timestamp|date:"Y-m-d H:i" %}   
                     <img class="profileImgChatroom_sw" src="{% static 'images/defaultprofile.svg' %}" alt="프로필사진">
+                    {% else %}
+                    <div class="profileImgChatroom_sw" style="visibility: hidden;"> </div>
+                    {% endifchanged %}
                     {% if comment.image %}
                     <img src="{{comment.img}}" alt=" 상대가 보낸 이미지">
                     {% endif %}
@@ -192,6 +181,8 @@
             {% endif %}
     </div>
 </div>
+               </div>    
+
 <!-- 채팅 입력창 끝 -->
 
 <!-- 여기서부터 민감정보 모달 -->

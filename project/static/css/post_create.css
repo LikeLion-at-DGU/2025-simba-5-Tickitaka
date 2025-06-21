@@ -222,7 +222,6 @@ align-items: center;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-
     resize: none; /* textarea 크기 조절 막기 */
     white-space: pre-wrap; /* 줄바꿈 처리 */
     word-break: break-word; /* 단어 기준 줄바꿈 */
@@ -278,6 +277,7 @@ align-items: center;
 
 
 .f5_dropdownPlaceCreate_sw{
+    
    appearance: none; /* 기본 화살표 제거 */
    cursor: pointer;
     border: none;
@@ -291,10 +291,58 @@ align-items: center;
     color: #2A2A2A;
 }
 .f5_dropdownPlaceTextCreate_sw option{
-    height: 14px;
-    display: flex;
-    
+      width: 169px;           /* 드롭다운 너비 고정 */
+  height: 30px;           /* 각 옵션 높이 고정 */
+  line-height: 30px;      /* 텍스트 수직 가운데 정렬 */
+  background-color: #fff; /* 기본 배경 */
+  text-align: center;     /* 텍스트 수평 가운데 정렬 */ 
 }
+.f5_dropdownPlaceCreate_sw option:hover {
+  background-color: #DFE8EF;
+}
+/* 실제 선택(checked)된 옵션 배경색 */
+.f5_dropdownPlaceCreate_sw option:checked {
+  background-color: #DFE8EF;
+}
+/* 토글 버튼(선택된 항목) */
+.choices__inner {
+  width: 169px;
+  height: 37px;
+  background: white;
+  border: 1px solid #D9D9D9;
+  border-radius: 6px;
+  padding: 0 10px;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-weight: 500;
+  color: #2A2A2A;
+}
+
+/* 드롭다운 리스트 전체 */
+.choices__list--dropdown {
+  width: 169px !important;
+  margin-top: 4px;
+  background: #fff;
+  border: 1px solid #D9D9D9;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* 옵션 하나 높이/가운데 정렬 */
+.choices__list--dropdown .choices__item--selectable {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+
+/* 호버/선택 시 배경색 */
+.choices__list--dropdown .choices__item--selectable.is-highlighted,
+.choices__list--dropdown .choices__item--selectable.is-selected {
+  background-color: #DFE8EF;
+}
+
+
+
 .f5icon_sw{
    position: absolute;  
    right: 10px;

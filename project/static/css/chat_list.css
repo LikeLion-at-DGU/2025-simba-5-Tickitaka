@@ -126,7 +126,10 @@ gap: 8px;
 .chatroomFrameChatlist_sw::-webkit-scrollbar-track {
   background: #ccc;
 }
-
+.container_sw{
+    width: 100%;
+    height: 100%;
+}
 
 .chatroomChatlist_sw{
     display: flex;
@@ -143,7 +146,7 @@ gap: 8px;
 }
 .chatroomProfileChatlist_sw{
     width: 46px;
-height: 46px;
+    height: 46px;
 }
 .textBoxChatlist_sw{
     display: flex;
@@ -152,19 +155,28 @@ height: 46px;
 }
 .textWrapperChatlist_sw{
     display: flex;
+    flex-direction: row;
 align-items: flex-end;
+justify-content: space-between;
 gap: 8px;
 }
 .opponentNameChatlist_sw{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 color: #2A2A2A;
-/* H2 */
+
+/* Body */
 font-family: Pretendard;
-font-size: 20px;
+font-size: 16px;
 font-style: normal;
-font-weight: 600;
+font-weight: 500;
 line-height: normal;
 }
 .buildingChatlist_sw{
+     display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 color: #2A2A2A;
 font-family: Pretendard;
 font-size: 12px;
@@ -177,6 +189,12 @@ line-height: normal;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+.tempWrapperChatlist_Sw{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: flex-end;
 }
 .titleChatlist_sw{
 display: flex;
@@ -193,21 +211,13 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
-.alerticonWrapperChatlist_sw{
-    position: absolute;
-    display: inline-block;
-    top: -2px;
-    right:-2px;
-    width: 19px;
-    height: 19px;
-  
-}
+
 .unreadCountChatlist_sw{
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
-    font-size: 16px;
+    font-size: 12px;
     width: 19px;
     height: 19px;
     background-color: #FF8887;
