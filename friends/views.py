@@ -37,7 +37,7 @@ def friend_search(request):
      query = request.GET.get('query', '')
 
      if query:
-          profiles = Profile.objects.filter(nickname__icontains=query).exclude(id=profile.id)
+          profiles = Profile.objects.filter(nickname__istartswith=query).exclude(id=profile.id) # 앞부분 일치 검색
      else:
           profiles = Profile.objects.exclude(id=profile.id)
 
