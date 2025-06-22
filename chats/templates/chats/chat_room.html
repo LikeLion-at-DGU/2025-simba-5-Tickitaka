@@ -255,12 +255,12 @@
     </div>
     
     <div class="startBtnWrapper_sw">
-        <form method="post" action="{% url 'chats:review' post.id %}">
+        <form method="post" action="{% url 'chats:approve_finish' post.id %}">
             {% csrf_token %}
             <button class="startNoticeBtn_sw">승인</button>
         </form>
          <form  id="closeModalBtn_sw" class="startNoticeBtn_sw"
-          method="post" action="{% url 'chats:start_transaction' chatroom.id %}" onclick="closeDoneNotice()">
+          method="post" action="{% url 'chats:reject_finish' chatroom.id %}" onclick="closeDoneNotice()">
             {% csrf_token %}
             <button class="startNoticeBtn_sw">거절</button>
         </form>
