@@ -5,6 +5,13 @@ function openSensitiveModal() {
     document.getElementById("modalBackdrop_sw").style.display = "block";
 }
 
+// 거래 요청 버튼 클릭했을 때 뒷배경 어두워지면서 startnotice 뜨게 하기
+
+function openStartNotice() {
+    document.getElementById("startNotice_sw").style.display = "flex";
+    document.getElementById("modalBackdrop_sw").style.display = "block";
+}
+
 //   엑스 누르면 modal 닫게 하기
 // 엑스 말고 다른 곳 눌러도 닫히게 하기? 고민해보기
 function closeSensitiveModal() {
@@ -12,6 +19,15 @@ function closeSensitiveModal() {
     document.getElementById("modalBackdrop_sw").style.display = "none";
   }
 
+
+//   엑스나 아니요 누르면 startnotice 닫게 하기
+
+function closeStartNotice() {
+    document.getElementById("startNotice_sw").style.display = "none";
+    document.getElementById("modalBackdrop_sw").style.display = "none";
+  }
+
+  
 
 //사진 보내기
 document.addEventListener("DOMContentLoaded", function(){
@@ -28,6 +44,8 @@ document.addEventListener("DOMContentLoaded", function(){
     }
   });
 });
+
+
 
 //여기부터 새로고침 관련
  
@@ -117,4 +135,4 @@ setInterval(() => {
   if (!isTyping) {
     location.reload();
   }
-}, 5000);
+}, 5000000);

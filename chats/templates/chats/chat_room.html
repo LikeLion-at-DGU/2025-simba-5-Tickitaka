@@ -58,10 +58,9 @@
                     </button>
                     <!-- 거래 요청을 하면 진짜 거래하겠냐고 묻기-아직안함 -->
                     {% elif post.status == "chatting" and me == chatroom.helper %}
-                    <form method="post" action="{% url 'chats:start_transaction' chatroom.id %}">
-                        {% csrf_token %}
-                        <button type="submit" class="buttonChatroom_sw" onclick="showStartNotice()">거래 요청</button>
-                    </form>
+                    <button type="submit" class="buttonChatroom_sw" onclick="openStartNotice()">
+                        거래 요청
+                    </button>
                     {% endif %}
                     
                     <!-- 버튼 2 -->
@@ -149,6 +148,7 @@
     </div>
 
 <!-- 여기까지 스크롤 -->
+ {{post.status}}
 
 <!-- 여기부터 채팅 입력창이고 고정 -->
     <div class="chatWriteFrameChatroom_sw">
@@ -185,9 +185,9 @@
 
 <!-- 채팅 입력창 끝 -->
 
-<!-- 여기서부터 민감정보 모달 -->
 <div  id="modalBackdrop_sw" class="modalBackdropChatroom_sw" style="display: none;"></div>
 
+<!-- 여기서부터 민감정보 모달 -->
 <div class="modalChatroom_sw" id="sensitiveModal_sw" style="display: none;">
     <div class="modalTitleBoxChatroom_sw">
         <p class="modalTitleChatroom_sw">민감정보</p>
@@ -199,8 +199,28 @@
         <p class="modalTextChatroom_sw">{{post.private_info}}</p>
     </div>
 </div>
-<!-- 여기까지 모달 -->
- 
+<!-- 여기까지 민감정보 모달 -->
+
+ <!-- 여기서부터 거래 확인창 -->
+<div class="startModalFrame_sw" id="startNotice_sw" style="display: none;">
+    <div class="startTitleBoxChatroom_sw">
+        <p class="startTitleChatroom_sw">정말 거래를 진행하실 건가요?</p>
+    <button id="closeModalBtn_sw" class="noStartChatroom_sw" onclick="closeStartNotice()">
+        <img src="{% static 'images/xicon.svg' %}" alt="엑스아이콘">
+    </button>
+    </div>
+    
+    <div class="startBtnWrapper_sw">
+        <form method="post" action="{% url 'chats:start_transaction' chatroom.id %}">
+            {% csrf_token %}
+            <button class="startNoticeBtn_sw">예</button>
+        </form>
+        <button id="closeModalBtn_sw" class="startNoticeBtn_sw" onclick="closeStartNotice()">
+            아니요
+        </button>
+    </div>
+</div>
+ <!-- 여기까지 거래 확인창 -->
 {% endblock %}
 {% block scripts %}
 <!-- js 파일 -->
