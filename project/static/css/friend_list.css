@@ -1,0 +1,107 @@
+.friend-list-container_sy {
+    width: 390px;
+    min-height: 844px;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    background: #F6F8FA;
+    gap: 24px;
+    padding-bottom: 32px;
+}
+
+.friend-list-header_sy {
+    display: flex;
+    height: 77px;
+    width: 390px;
+    padding: 24px 16.5px 24px 15.743px;
+    align-items: center;
+    border-bottom: 0.5px solid var(--N-4, #D9D9D9);
+    background: var(--P-1, #025397);
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 100;
+}
+
+.go-back-btn_sy {
+    width: 10px;
+    height: 16px;
+    aspect-ratio: 5/8;
+    fill: var(--N-1, #ffffff);
+}
+
+.friend-list-title_sy {
+    color: #ffffff;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.friend-list-content_sy {
+    display: flex;
+    width: 390px;
+    padding: 0 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    position: relative;
+    top: 109px;
+}
+
+.friend-card_sy {
+    display: flex;
+    padding: 24px 16px;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 6px;
+    background: #FAFAFA;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+    justify-content: space-between;
+    align-self: stretch;
+}
+
+.friend-info_sy {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.friend-info_sy img {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+
+}
+
+.nickname_sy {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.friend-search-btn_sy {
+    position: relative;
+    left: 307px;
+    top: 410px;
+    display: inline-flex;
+    padding: 15px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 53px;
+    background: #025397;
+}
+
+.friend-search-btn_sy svg {
+    width: 29px;
+    height: 29px;
+    fill: var(--N-5, #FFF);
+    z-index: 100;
+}
