@@ -21,8 +21,26 @@ def chat_room(request, room_id):
         return HttpResponseForbidden("채팅방에 접근 권한이 없습니다.")  # 403 반환
     
     post = chatroom.post
-    comments = Comment.objects.filter(chatroom=chatroom).order_by('timestamp')
+    comments = list(Comment.objects.filter(chatroom=chatroom).order_by('timestamp')) # QuerySet을 list로 변환하여 인덱스 접근
     
+    # is_last_of_group 계산
+    for i, comment in enumerate(comments):
+        comment.is_last_of_group = False  # 기본은 False
+
+        # 마지막 댓글은 무조건 그룹의 끝
+        if i == len(comments) - 1:
+            comment.is_last_of_group = True
+            continue
+
+        # 다음 댓글과 비교
+        next_comment = comments[i+1]
+        same_writer = (comment.writer_id == next_comment.writer_id)
+        same_minute = (comment.timestamp.strftime('%Y-%m-%d %H:%M') == next_comment.timestamp.strftime('%Y-%m-%d %H:%M'))
+
+        if not (same_writer and same_minute):
+            comment.is_last_of_group = True
+
+
     read_status, created = ChatRoomReadStatus.objects.get_or_create(chatroom=chatroom, user=user_profile)
     read_status.last_read_at = timezone.now()
     read_status.save()
