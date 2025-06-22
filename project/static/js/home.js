@@ -1,20 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 기존 버튼 이벤트
-    document.querySelector('.home-logout_sy')?.addEventListener('click', () => {
-        location.href = '/accounts/login/';
-    });
-
-    document.querySelector('.home-time-btn1-1_sy')?.addEventListener('click', () => {
-        location.href = 'http://127.0.0.1:8000/posts/post_list/';
-    });
-
-    document.querySelector('.home-time-btn2-1_sy')?.addEventListener('click', () => {
-        location.href = 'http://127.0.0.1:8000/posts/post_create/';
-    });
-
-    document.querySelector('.home-about-friend_sy')?.addEventListener('click', () => {
-        location.href = 'http://127.0.0.1:8000/friends/friend/search/';
-    });
 
     // 남은 시간 카운트다운
     const timeElement = document.getElementById('remaining-time');
@@ -45,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const wrapper = document.querySelector('.home-boost-post-wrapper_sy');
     const slider = document.querySelector('.home-boost-post-content_sy');
     const slides = document.querySelectorAll('.post-content_sy');
-    const nextBtn = document.querySelector('.to-right-btn_sy');
+    const nextBtn = document.querySelectorAll('.to-right-btn_sy');
 
     let currentIndex = 0;
     let intervalId;

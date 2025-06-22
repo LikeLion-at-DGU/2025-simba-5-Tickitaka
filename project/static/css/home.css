@@ -375,7 +375,7 @@
     align-self: stretch;
     transition: transform 0.5s ease;
     will-change: transform;
-    gap: 19px;
+    gap: 18px;
 }
 
 .home-boost-post-wrapper_sy {
@@ -387,7 +387,7 @@
 .post-content_sy {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     width: 100%;
 }
 
@@ -410,7 +410,7 @@
 .post-item-title_sy {
     color: #2A2A2A;
     font-family: "Pretendard Variable";
-    font-size: 10px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
