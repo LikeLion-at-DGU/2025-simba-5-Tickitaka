@@ -12,6 +12,11 @@ from main.models import *
 # 타인페이지
 def other_profile(request, user_id):
      profile = get_object_or_404(Profile, user__id=user_id)
+     
+     total_minutes = profile.time_tip
+     hours = total_minutes // 60
+     minutes = total_minutes % 60
+
      # 콜? 완료글 = master + 거래완료
      call_question_done = Post.objects.filter(master=profile, status='done')
      # 콜! 완료글 = helper + 거래완료
@@ -20,6 +25,8 @@ def other_profile(request, user_id):
      waiting_posts = Post.objects.filter(master=profile, status='waiting')
      context = {
           'profile': profile,
+          'hours': hours,
+          'minutes': minutes,
           'call_question_done': call_question_done,
           'call_question_count': call_question_done.count(),
           'call_exclamation_done': call_exclamation_done,
