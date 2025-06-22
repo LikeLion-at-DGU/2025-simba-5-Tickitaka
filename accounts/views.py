@@ -161,3 +161,5 @@ def verify_code(request):
             return JsonResponse({'success': True})
         else:
             return JsonResponse({'success': False, 'error': '인증번호가 일치하지 않습니다.'})
+        
+    return JsonResponse({'success': False, 'error': 'POST 요청이 필요합니다.'}, status=405)
