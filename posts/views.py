@@ -141,16 +141,14 @@ def post_edit(request, id):
      post = get_object_or_404(Post, id=id, master=request.user.profile)
      user_profile = request.user.profile
 
-     # 기존 예약 시간 복구
-     user_profile.available_time += post.amounts
-     user_profile.save()
+     restored_available_time = user_profile.available_time + post.amounts
 
      buildings = Building.objects.filter(university=user_profile.university)
 
      return render(request, 'posts/post_update.html', {
           'post': post,
           'buildings': buildings,
-          'available_time': user_profile.available_time
+          'available_time': restored_available_time
      })
 
 
@@ -160,21 +158,24 @@ def post_update(request, id):
      buildings = Building.objects.filter(university=request.user.profile.university)
 
      if request.method == 'POST':
-          amounts = int(request.POST.get('amounts'))
-          # 잔여 가능 시간 확인
-          if user_profile.available_time < amounts:
+          new_amounts = int(request.POST.get('amounts'))
+          # 이전 예약 시간 복구
+          restored_time = user_profile.available_time + post.amounts 
+
+          # 복구된 시간을 기준으로 잔여 가능 시간 확인
+          if restored_time < new_amounts:
                buildings = Building.objects.filter(university=user_profile.university)
                return render(request, 'posts/post_update.html', {
                     'post': post,
                     'buildings': buildings,
-                    'available_time': user_profile.available_time,
+                    'available_time': restored_time,
                     'error': '잔여 타임이 부족합니다.'
                })
           
           post.title = request.POST.get('title')
           post.content = request.POST.get('content')
           post.private_info = request.POST.get('private_info')
-          post.amounts = amounts
+          post.amounts = new_amounts
           post.burning = 1 if request.POST.get('burning') == '1' else 0
 
           deadline_str = request.POST.get('deadline')
@@ -186,8 +187,8 @@ def post_update(request, id):
           post.building = get_object_or_404(Building, id=request.POST.get('building'), university=user_profile.university)
           post.save()
 
-          # 새 예약 시간 차감
-          user_profile.available_time -= amounts
+          # 시간 복구 + 새 예약 반영
+          user_profile.available_time = restored_time - new_amounts
           user_profile.save()
 
           # 기존 이미지 유지 + 새 이미지만 추가
