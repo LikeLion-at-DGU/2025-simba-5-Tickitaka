@@ -1,0 +1,333 @@
+/* other_profile.css */
+.pageAlignChatlist_sw{
+    width: 390px;
+    height: 844px;
+    display: flex;
+ 
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    background: #F6F8FA;
+}
+.headerFrameChatlist_sw{
+    display: flex;
+    width: 390px;
+    height: 77px;
+    padding: 24px 16px;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+background: #025397;
+
+}
+.backiconChatlist_sw{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7.364px;
+    height: 12.728px;
+    flex-shrink: 0;
+    aspect-ratio: 7.36/12.73;
+}
+
+.headerTitleChatlist_sw{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+   
+}
+.headerTextChatlist_sw{
+     color: #FFF;
+text-align: center;
+
+/* H1 */
+font-family: Pretendard;
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+
+/* 여기부터 진짜 */
+.nicknameFrameOtherProfile_sw{
+    width: 390px;
+    height: 150px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.profileWrapperOtherProfile_sw{
+    display: flex;
+width: 358px;
+height: 93px;
+align-items: flex-start;
+gap: 24px;
+gap: 24px;
+}
+.imgOtherProfile_sw{
+    width: 71px;
+    height: 71px;
+    border-radius: 99px;
+}
+
+.rightWrapperOtherProfile_sw{
+    width: 263px;
+    height: 150px;
+    flex-direction: column;
+
+}
+.textWRapperOtherProfile_sw{
+
+width: 263px;
+height: 71px;
+display: flex;
+flex-direction: column;
+gap: 18px;
+justify-content: flex-start;
+}
+.nameTextOtherProfile_sw{
+    color: #2A2A2A;
+/* H2 */
+font-family: Pretendard;
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+height: 24px;
+display: flex;
+align-items: center;
+}
+.tipTimeOtherProfile_sw{
+
+color: var(--P-1, #025397);
+height: 29px;
+/* H1 */
+font-family: "Pretendard Variable";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+display: flex;
+align-items: center;
+
+}
+.tipDescriptionOtherProfile_sw{
+    gap: 4px;
+display: flex;
+flex-direction: row;
+align-items: center;
+    color: var(--N-2, #666);
+
+/* caption */
+font-family: "Pretendard Variable";
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.bottomFrameOtherProfile_sw{
+    width: 390px;
+    height: 527px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #FFF;
+
+}
+.countFrameOtherProfile_sw{
+    width: 390px;
+    min-height: 72px;
+    border-bottom: 0.5px solid #8A8A8A;
+    display: flex;
+    align-items: center;
+}
+.countWrapperOtherProfile_sw{
+    margin-left: 16px;
+    width: 154px;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+.titleCountOtherProfile_sw{
+
+color: var(--N-2, #666);
+text-align: center;
+
+/* Body */
+font-family: Pretendard;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;}
+
+.countOtherProfile_sw{
+    color: var(--N-1, #2A2A2A);
+text-align: center;
+
+/* H2 */
+font-family: Pretendard;
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.postsFrameOtherProfile_sw{
+    margin-top: 24px;
+    margin-bottom: 24px;
+
+    width: 358px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+}
+.postsScrollOtherProfile{
+    height: 316px;
+    display: flex;
+    flex-direction: column;
+     gap: 24px;
+    overflow-y: auto;
+    will-change: scroll-position;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+      
+}
+.postsScrollOtherProfile::-webkit-scrollbar {
+  width: 6px;
+}
+
+.postsScrollOtherProfile::-webkit-scrollbar-thumb {
+  background:#8A8A8A;
+  border-radius: 3px;
+}
+
+.postsScrollOtherProfile::-webkit-scrollbar-track {
+  background: #ccc;
+}
+.postsTitleProfile_sw{
+    color: var(--N-2, #666);
+
+/* Body */
+font-family: Pretendard;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+.post-container_sy {
+    display: flex;
+    padding: 23px 16px;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 6px;
+    background: #FFF;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+    align-items: center;
+    gap: 18px;
+}
+
+.post-image_sy {
+    display: flex;
+    align-items: stretch;
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+    background: #025397;
+    overflow: hidden;
+}
+
+.post-image_sy img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    vertical-align: top;
+    line-height: 0;
+}
+
+.post-item_sy {
+    display: flex;
+    width: 208px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 23px;
+    flex-shrink: 0;
+}
+
+.post-title_sy {
+    color: #000000;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    align-self: stretch;
+    align-items: flex-end;
+}
+
+.post-first-info_sy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    align-self: stretch;
+}
+
+.post-second-info-sy {
+    display: flex;
+    align-items: flex-end;
+    align-self: stretch;
+    justify-content: space-between;
+}
+
+.post-time_sy {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+    align-items: center;
+}
+
+.post-time_sy svg {
+    width: 24px;
+    height: 24px;
+    aspect-ratio: 1/1;
+}
+
+.post-time-text_sy {
+    color: #2A2A2A;
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.boosted_time_sy {
+    color: #C75352;
+}
+
+.boosted-icon_sy path {
+    fill: #C75352;
+}
+
+.post-location_sy {
+    color: #959393;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.post-deadline_sy {
+    color: #959393;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
