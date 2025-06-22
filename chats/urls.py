@@ -13,4 +13,5 @@ urlpatterns = [
     path('<int:room_id>/fetch/', fetch_chats, name='fetch_chats'),
     path('<int:room_id>/request_finish/', request_finish, name='request_finish'),
     path('review/<int:post_id>/', process_review, name='review'),
+    path('<int:room_id>/reject_finish/', reject_finish, name='reject_finish'),
 ]

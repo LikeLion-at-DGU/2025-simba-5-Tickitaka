@@ -228,6 +228,7 @@ def approve_finish(request, room_id):
 
     # 헬퍼 잔액 적립 및 기록
     post.helper.time_balance += amounts
+    post.helper.available_time += amounts
     post.helper.save()
 
     TimeHistory.objects.create(
@@ -371,3 +372,33 @@ def process_review(request, post_id):
         return redirect('posts:post_list')  # 후기 제출 후 메인으로 이동
 
     return render(request, 'chats/review.html', {'post': post})
+
+# 거래 승인 거절 (마스터만 가능)
+@require_POST
+@login_required
+def reject_finish(request, room_id):
+    chatroom = get_object_or_404(ChatRoom, id=room_id)
+    user_profile = request.user.profile
+
+    if chatroom.master != user_profile:
+        return HttpResponseForbidden("거래 거절 권한이 없습니다.")
+
+    post = chatroom.post
+
+    # task_completed 상태에서만 거절 가능
+    if post.status != 'task_completed':
+        return HttpResponseForbidden("거절할 수 없는 상태입니다.")
+
+    # 상태를 다시 in_progress로 되돌림
+    post.status = 'in_progress'
+    post.save()
+
+    # 시스템 메시지 기록
+    Comment.objects.create(
+        chatroom=chatroom,
+        content="마스터가 거래 완료 요청을 거절했습니다. 작업을 이어서 진행해주세요.",
+        is_system=True,
+        timestamp=timezone.now(),
+    )
+
+    return redirect('chats:chat_room', room_id=room_id)
