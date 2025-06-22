@@ -25,8 +25,8 @@ def chat_room(request, room_id):
     
     # is_last_of_group & prev_is_notice 계산
     for i, comment in enumerate(comments):
-        comment.is_last_of_group = False  # 기본은 False
-        comment.prev_is_notice = False # 기본은 False
+        comment.is_last_of_group = False   # 기본은 False
+        comment.prev_is_notice = False  # 기본은 False
 
         # 이전 댓글이 존재할 때 prev_is_notice 설정
         if i > 0 and comments[i-1].is_system:
@@ -396,7 +396,7 @@ def reject_finish(request, room_id):
     # 시스템 메시지 기록
     Comment.objects.create(
         chatroom=chatroom,
-        content="마스터가 거래 완료 요청을 거절했습니다. 작업을 이어서 진행해주세요.",
+        content="마스터가 거래 완료 요청을 거절했습니다.\n작업을 이어서 진행해주세요.",
         is_system=True,
         timestamp=timezone.now(),
     )
