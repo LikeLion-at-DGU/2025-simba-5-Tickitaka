@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('f6_requireTimeCreate_sw').addEventListener('blur', checkSubmitButton);
 
     const input = document.getElementById('f5_calenderCreate_sw');
-    input.value = '';
+    if (!input.value) input.value = '';  // value가 이미 있으면 안 건드림
+
     flatpickr(input, {
         enableTime: true,
         dateFormat: 'Y-m-d H:i',
@@ -26,8 +27,9 @@ const uploadInput = document.getElementById('photoUpload');
 const previewContainer = document.querySelector('.f1_photosFrameCreate_sw');
 const photoCount = document.querySelector('.f1_photoAmountCreate_sw');
 
-
-let imageCount = 0;//현재 이미지 수
+// 현재 이미지 수
+let imageCount = document.querySelectorAll('.f1_previewImageWrapperCreate_sw').length;
+photoCount.textContent = `${imageCount}/3`;
 let selectedFiles = [];
 uploadInput.addEventListener("change", function (e) {
   const files = Array.from(e.target.files);
@@ -63,7 +65,21 @@ uploadInput.addEventListener("change", function (e) {
         reader.readAsDataURL(file);
     }
 });
+// edit의 html 사진 삭제 기능
+document.querySelectorAll('.f1_deletePreviewButtonCreate_sw').forEach(btn => {
+    btn.addEventListener('click', () => {
 
+        const wrapper = btn.closest('.f1_previewImageWrapperCreate_sw');
+        
+        const hiddenInput = wrapper.querySelector('input[type="hidden"][name="delete_images"]');
+        if (hiddenInput) hiddenInput.disabled = false;
+
+        wrapper.remove();
+        imageCount--;
+        photoCount.textContent = `${imageCount}/3`;
+        checkSubmitButton();
+    });
+});
 //  2. 글자 수 실시간 표시 및 제한
 document.querySelectorAll("textarea, input[type='text']").forEach((el) => {
     el.addEventListener('input', function () {
@@ -96,11 +112,19 @@ timeInput.addEventListener('blur', () => {
 
 let boostApplied = false;
 let originalTime = null;
+
 document.addEventListener('DOMContentLoaded', function () {
     const timeInput = document.getElementById('f6_requireTimeCreate_sw');
     const boostBtn = document.querySelector('.f7_buttonCreate_sw');
     const burningInput = document.getElementById('burning');
 
+        if (burningInput.value === '1') {
+        boostApplied = true;
+        boostBtn.style.backgroundColor = '#025397';
+        boostBtn.style.color = '#fff';
+    }
+
+    checkSubmitButton();
     boostBtn.addEventListener('click', () => {
         const currentVal = parseInt(timeInput.value);
 
@@ -145,8 +169,6 @@ function checkSubmitButton() {
     const available_time = parseInt(document.getElementById('availableTime').value, 10);
     const timeValue = parseInt(reqtimeInput.value, 10);
 
-
-
     const isValidTime = !isNaN(timeValue) && (boostApplied || timeValue % 10 === 0); 
     const timeOk = timeValue<=available_time;
     const hasTitle = titleInput.value.trim().length > 0;
@@ -180,3 +202,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// post_edit을 위한 js
+document.addEventListener("DOMContentLoaded", function () {
+    flatpickr("#f5_calenderCreate_sw", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        defaultDate: document.getElementById("f5_calenderCreate_sw").value || null
+    });
+});

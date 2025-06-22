@@ -145,7 +145,7 @@ def post_edit(request, id):
 
      buildings = Building.objects.filter(university=user_profile.university)
 
-     return render(request, 'posts/post_update.html', {
+     return render(request, 'posts/post_edit.html', {
           'post': post,
           'buildings': buildings,
           'available_time': restored_available_time
