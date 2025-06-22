@@ -21,8 +21,31 @@ def chat_room(request, room_id):
         return HttpResponseForbidden("채팅방에 접근 권한이 없습니다.")  # 403 반환
     
     post = chatroom.post
-    comments = Comment.objects.filter(chatroom=chatroom).order_by('timestamp')
+    comments = list(Comment.objects.filter(chatroom=chatroom).order_by('timestamp')) # QuerySet을 list로 변환하여 인덱스 접근
     
+    # is_last_of_group & prev_is_notice 계산
+    for i, comment in enumerate(comments):
+        comment.is_last_of_group = False   # 기본은 False
+        comment.prev_is_notice = False  # 기본은 False
+
+        # 이전 댓글이 존재할 때 prev_is_notice 설정
+        if i > 0 and comments[i-1].is_system:
+            comment.prev_is_notice = True
+
+        # 마지막 댓글은 무조건 그룹의 끝
+        if i == len(comments) - 1:
+            comment.is_last_of_group = True
+            continue
+
+        # 다음 댓글과 비교
+        next_comment = comments[i+1]
+        same_writer = (comment.writer_id == next_comment.writer_id)
+        same_minute = (comment.timestamp.strftime('%Y-%m-%d %H:%M') == next_comment.timestamp.strftime('%Y-%m-%d %H:%M'))
+
+        if not (same_writer and same_minute):
+            comment.is_last_of_group = True
+
+
     read_status, created = ChatRoomReadStatus.objects.get_or_create(chatroom=chatroom, user=user_profile)
     read_status.last_read_at = timezone.now()
     read_status.save()
@@ -205,6 +228,7 @@ def approve_finish(request, room_id):
 
     # 헬퍼 잔액 적립 및 기록
     post.helper.time_balance += amounts
+    post.helper.available_time += amounts
     post.helper.save()
 
     TimeHistory.objects.create(
@@ -221,7 +245,7 @@ def approve_finish(request, room_id):
         timestamp=timezone.now(),
     )
 
-    return redirect('main:mainpage')
+    return redirect('chats:review', post_id=post.id)
 
 
 # 수행 완료 요청
@@ -335,6 +359,7 @@ def process_review(request, post_id):
         if tip_amount > 0 and post.helper:
             post.helper.time_balance += tip_amount
             post.helper.time_tip += tip_amount
+            post.helper.available_time += tip_amount
             post.helper.save()
 
             TimeHistory.objects.create(
@@ -347,3 +372,33 @@ def process_review(request, post_id):
         return redirect('posts:post_list')  # 후기 제출 후 메인으로 이동
 
     return render(request, 'chats/review.html', {'post': post})
+
+# 거래 승인 거절 (마스터만 가능)
+@require_POST
+@login_required
+def reject_finish(request, room_id):
+    chatroom = get_object_or_404(ChatRoom, id=room_id)
+    user_profile = request.user.profile
+
+    if chatroom.master != user_profile:
+        return HttpResponseForbidden("거래 거절 권한이 없습니다.")
+
+    post = chatroom.post
+
+    # task_completed 상태에서만 거절 가능
+    if post.status != 'task_completed':
+        return HttpResponseForbidden("거절할 수 없는 상태입니다.")
+
+    # 상태를 다시 in_progress로 되돌림
+    post.status = 'in_progress'
+    post.save()
+
+    # 시스템 메시지 기록
+    Comment.objects.create(
+        chatroom=chatroom,
+        content="마스터가 거래 완료 요청을 거절했습니다.\n작업을 이어서 진행해주세요.",
+        is_system=True,
+        timestamp=timezone.now(),
+    )
+
+    return redirect('chats:chat_room', room_id=room_id)

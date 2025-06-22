@@ -6,6 +6,8 @@ from chats.models import *
 from friends.models import *
 from django.db.models import Q
 import random
+from django.utils import timezone
+from datetime import timedelta
 
 from django.core.mail import send_mail
 from django.conf import settings
@@ -14,7 +16,7 @@ from django.contrib import messages
 def mainpage(request):
     return render(request, 'main/test-mainpage.html')
 
-# 마이페이지 관련 기능
+# 메인페이지 관련 기능
 def home(request):
     profile = request.user.profile
 
@@ -27,11 +29,23 @@ def home(request):
     random.shuffle(burning_posts)
     burning_posts = burning_posts[:10]
 
+    # 수행 중인 거래 중 가장 데드라인 빠른 게시글
+    ongoing_post = (
+        Post.objects.filter(status='in_progress', helper=profile).order_by('deadline').first()
+    )
+
+    # js 시간 객체와 맞추기 위한 초-> 밀리초 변환
+    deadline_timestamp = None
+    if ongoing_post:
+        deadline_timestamp = int(ongoing_post.deadline.timestamp() * 1000)
+
     return render(request, 'main/home.html', {
         'profile': profile,
         'hours': hours,
         'minutes': minutes,
         'burning_posts': burning_posts,
+        'ongoing_post': ongoing_post,
+        'deadline_timestamp': deadline_timestamp,
     })
 
 
@@ -42,34 +56,9 @@ def my(request):
     })
 
 
-# def edit_profile(request):
-#     profile = request.user.profile
-
-#     if request.method == 'POST':
-#         nickname = request.POST.get('nickname')
-#         university_id = request.POST.get('university')
-#         image = request.FILES.get('image')
-
-#         profile.nickname = nickname
-
-#         if university_id:
-#             university = get_object_or_404(University, id=university_id)
-#             profile.university = university
-
-#         if image:
-#             profile.image = image
-
-#         profile.save()
-#         return redirect('home')
-
-#     universities = University.objects.all()
-#     return render(request, 'main/edit_profile.html', {
-#         'profile': profile,
-#         'universities': universities,
-#     })
-
 def edit_profile(request):
     profile = request.user.profile
+    uni_name = request.POST.get('university')
 
     if request.method == 'POST':
         # 사진만 왔을 때
@@ -84,7 +73,7 @@ def edit_profile(request):
         # 대학교만 왔을 때
         uni_id = request.POST.get('university')
         if uni_id:
-            university = get_object_or_404(University, id=uni_id)
+            university = get_object_or_404(University, name=uni_name)
             profile.university = university
 
         profile.save()
@@ -95,6 +84,8 @@ def edit_profile(request):
         'profile': profile,
         'universities': universities,
     })
+
+
 
 def time_history(request):
     profile = request.user.profile
