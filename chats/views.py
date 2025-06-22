@@ -23,9 +23,14 @@ def chat_room(request, room_id):
     post = chatroom.post
     comments = list(Comment.objects.filter(chatroom=chatroom).order_by('timestamp')) # QuerySet을 list로 변환하여 인덱스 접근
     
-    # is_last_of_group 계산
+    # is_last_of_group & prev_is_notice 계산
     for i, comment in enumerate(comments):
         comment.is_last_of_group = False  # 기본은 False
+        comment.prev_is_notice = False # 기본은 False
+
+        # 이전 댓글이 존재할 때 prev_is_notice 설정
+        if i > 0 and comments[i-1].is_system:
+            comment.prev_is_notice = True
 
         # 마지막 댓글은 무조건 그룹의 끝
         if i == len(comments) - 1:
@@ -239,7 +244,7 @@ def approve_finish(request, room_id):
         timestamp=timezone.now(),
     )
 
-    return redirect('main:mainpage')
+    return redirect('chats:review', post_id=post.id)
 
 
 # 수행 완료 요청
