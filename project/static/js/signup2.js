@@ -13,8 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('nextButtonSignup_sw');
     // 여기부터 수현 수정함
     const emailCheckBtn = document.getElementById('checkButtonSignup3_sw');
+    const emailHelperText = document.getElementById('emailHelperText');
 
-    // 학교별 도메인 자동완성
+    // 학교 도메인 자동완성
     schoolInput.addEventListener('blur', () => {
         const schoolName = schoolInput.value.trim();
 
@@ -32,13 +33,23 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     });
 
+    // 이메일 인증 요청
     emailCheckBtn.addEventListener('click', () => {
         const email = emailInput.value.trim();
 
         if (!email.includes('@')) {
-            alert('올바른 이메일 형식을 입력해주세요.');
+            emailInput.classList.remove('inputSuccess_sw');
+            emailInput.classList.add('inputError_sw');
+            emailStatusMsg.classList.remove('textSuccess_sw');
+            emailStatusMsg.classList.add('textError_sw');
+            emailStatusMsg.innerText = '올바른 이메일 형식을 입력해주세요.';
+            emailStatusMsg.style.display = 'block';
             return;
         }
+
+        emailInput.classList.remove('inputError_sw', 'inputSuccess_sw');
+        emailStatusMsg.style.display = 'none';
+        emailStatusMsg.innerText = '';
 
         fetch('/accounts/send_verification_code/', {
             method: 'POST',
@@ -52,37 +63,82 @@ document.addEventListener('DOMContentLoaded', () => {
             .then((text) => {
                 try {
                     const data = JSON.parse(text);
+                    emailStatusMsg.style.display = 'block';
                     if (data.success) {
-                        alert('인증번호가 발송되었습니다. 메일함을 확인해주세요.');
+                        emailInput.classList.add('inputSuccess_sw');
+                        emailStatusMsg.classList.remove('textError_sw');
+                        emailStatusMsg.classList.add('textSuccess_sw');
+                        emailStatusMsg.innerText = '이메일이 발송되었습니다!';
+                        emailHelperText.style.display = 'none';
                     } else {
-                        alert('오류 발생: ' + data.error);
+                        emailInput.classList.add('inputError_sw');
+                        emailStatusMsg.classList.remove('textSuccess_sw');
+                        emailStatusMsg.classList.add('textError_sw');
+                        emailStatusMsg.innerText = '이메일 발송 오류입니다!';
                     }
                 } catch (e) {
                     console.error('JSON 파싱 실패:', text);
-                    alert('서버 응답 형식이 올바르지 않습니다.');
                 }
             })
             .catch((err) => {
-                console.error(err);
-                alert('서버와의 통신 중 문제가 발생했습니다.');
+                console.error('이메일 인증 요청 실패:', err);
+                emailInput.classList.add('inputError_sw');
+                emailStatusMsg.classList.remove('textSuccess_sw');
+                emailStatusMsg.classList.add('textError_sw');
+                emailStatusMsg.innerText = '서버와의 통신 오류입니다!';
+                emailStatusMsg.style.display = 'block';
             });
     });
 
-    // CSRF 토큰 추출 함수 (이미 닉네임 쪽에도 있음)
-    function getCSRFToken() {
-        return document.querySelector('[name=csrfmiddlewaretoken]').value;
-    }
+    // 인증번호 확인
+    codeCheckBtn.addEventListener('click', () => {
+        const code = codeInput.value.trim();
 
-    nicknameCheckBtn.disabled = true;
-    let nicknameAvailable = false;
-    let emailVerified = false;
+        codeInput.classList.remove('inputError_sw');
+        codeErrorMsg.classList.remove('textError_sw', 'textSuccess_sw');
+        codeErrorMsg.style.display = 'none';
+        codeErrorMsg.innerText = '';
 
-    //닉네임 조건 맞게 입력 시 버튼 활성화
+        fetch('/accounts/verify_code/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': getCSRFToken(),
+            },
+            body: new URLSearchParams({ code }),
+            credentials: 'include',
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    emailVerified = true;
+                    codeErrorMsg.classList.add('textSuccess_sw');
+                    codeErrorMsg.innerText = '인증 완료되었습니다!';
+                    codeErrorMsg.style.display = 'block';
+                    codeInput.classList.remove('inputError_sw');
+                    codeInput.classList.add('inputSuccess_sw');
+                } else {
+                    emailVerified = false;
+                    codeInput.classList.add('inputError_sw');
+                    codeErrorMsg.classList.add('textError_sw');
+                    codeErrorMsg.innerText = data.error || '인증번호가 틀렸습니다.';
+                    codeErrorMsg.style.display = 'block';
+                }
+                validateForm();
+            })
+            .catch((err) => {
+                emailVerified = false;
+                console.error('[verify_code] fetch 오류:', err);
+                validateForm();
+            });
+    });
+    // 닉네임 입력 감지
     nicknameInput.addEventListener('input', () => {
         const nickname = nicknameInput.value.trim();
         nicknameAvailable = false;
-        nicknameInput.classList.remove('inputSuccess_sw');
-        nicknameDescription.classList.remove('textSuccess_sw');
+        nicknameInput.classList.remove('inputSuccess_sw', 'inputError_sw');
+        nicknameDescription.classList.remove('textSuccess_sw', 'textError_sw');
+
         if (nickname.length >= 4 && nickname.length <= 8) {
             nicknameCheckBtn.disabled = false;
         } else {
@@ -95,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
     nicknameCheckBtn.addEventListener('click', () => {
         const nickname = nicknameInput.value.trim();
 
-        // 초기화
         nicknameInput.classList.remove('inputError_sw', 'inputSuccess_sw');
         nicknameDescription.classList.remove('textError_sw', 'textSuccess_sw');
 
@@ -127,46 +182,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     });
 
-    // 인증번호 확인
-    codeCheckBtn.addEventListener('click', () => {
-        const code = codeInput.value.trim();
-
-        // 초기화
-        codeInput.classList.remove('inputError_sw');
-        codeErrorMsg.classList.remove('textError_sw');
-        codeErrorMsg.style.display = 'none';
-        codeErrorMsg.innerText = '';
-
-        fetch('/accounts/verify_code/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-CSRFToken': getCSRFToken(),
-            },
-            body: new URLSearchParams({ code }),
-            credentials: 'include',
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
-                    emailVerified = true;
-                    alert('인증 완료되었습니다!');
-                } else {
-                    emailVerified = false;
-                    codeInput.classList.add('inputError_sw');
-                    codeErrorMsg.classList.add('textError_sw');
-                    codeErrorMsg.innerText = '인증번호가 틀렸습니다.';
-                    codeErrorMsg.style.display = 'block';
-                }
-                validateForm();
-            })
-            .catch(() => {
-                emailVerified = false;
-                alert('서버 통신 중 오류가 발생했습니다.');
-                validateForm();
-            });
-    });
-
     // 모든 입력값이 유효한지 검사
     function validateForm() {
         const nickname = nicknameInput.value.trim();
@@ -185,4 +200,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 버튼 초기 비활성화
     nextBtn.disabled = true;
+
+    function getCSRFToken() {
+        return document.querySelector('[name=csrfmiddlewaretoken]').value;
+    }
 });

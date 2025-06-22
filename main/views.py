@@ -16,7 +16,7 @@ from django.contrib import messages
 def mainpage(request):
     return render(request, 'main/test-mainpage.html')
 
-# 마이페이지 관련 기능
+# 메인페이지 관련 기능
 def home(request):
     profile = request.user.profile
 
@@ -56,34 +56,9 @@ def my(request):
     })
 
 
-# def edit_profile(request):
-#     profile = request.user.profile
-
-#     if request.method == 'POST':
-#         nickname = request.POST.get('nickname')
-#         university_id = request.POST.get('university')
-#         image = request.FILES.get('image')
-
-#         profile.nickname = nickname
-
-#         if university_id:
-#             university = get_object_or_404(University, id=university_id)
-#             profile.university = university
-
-#         if image:
-#             profile.image = image
-
-#         profile.save()
-#         return redirect('home')
-
-#     universities = University.objects.all()
-#     return render(request, 'main/edit_profile.html', {
-#         'profile': profile,
-#         'universities': universities,
-#     })
-
 def edit_profile(request):
     profile = request.user.profile
+    uni_name = request.POST.get('university')
 
     if request.method == 'POST':
         # 사진만 왔을 때
@@ -98,7 +73,7 @@ def edit_profile(request):
         # 대학교만 왔을 때
         uni_id = request.POST.get('university')
         if uni_id:
-            university = get_object_or_404(University, id=uni_id)
+            university = get_object_or_404(University, name=uni_name)
             profile.university = university
 
         profile.save()
@@ -109,6 +84,8 @@ def edit_profile(request):
         'profile': profile,
         'universities': universities,
     })
+
+
 
 def time_history(request):
     profile = request.user.profile
