@@ -1,0 +1,53 @@
+/* other_profile.css */
+.pageAlignChatlist_sw{
+    width: 390px;
+    height: 844px;
+    display: flex;
+ 
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    background: #F6F8FA;
+}
+.headerFrameChatlist_sw{
+    display: flex;
+    width: 390px;
+    height: 77px;
+    padding: 24px 16px;
+    margin-bottom: 24px;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+background: #025397;
+
+}
+.backiconChatlist_sw{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7.364px;
+    height: 12.728px;
+    flex-shrink: 0;
+    aspect-ratio: 7.36/12.73;
+}
+
+.headerTitleChatlist_sw{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+   
+}
+.headerTextChatlist_sw{
+     color: #FFF;
+text-align: center;
+
+/* H1 */
+font-family: Pretendard;
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
