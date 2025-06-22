@@ -4,6 +4,10 @@ from accounts.models import *
 from posts.models import *
 from chats.models import *
 from friends.models import *
+from django.db.models import Q
+import random
+from django.utils import timezone
+from datetime import timedelta
 
 from django.core.mail import send_mail
 from django.conf import settings
@@ -20,10 +24,28 @@ def home(request):
     hours = total_minutes // 60
     minutes = total_minutes % 60
 
+    # burning = 1인 게시글 중에서 10개 랜덤 추출
+    burning_posts = list(Post.objects.filter(burning=1))
+    random.shuffle(burning_posts)
+    burning_posts = burning_posts[:10]
+
+    # 수행 중인 거래 중 가장 데드라인 빠른 게시글
+    ongoing_post = (
+        Post.objects.filter(status='in_progress', helper=profile).order_by('deadline').first()
+    )
+
+    # js 시간 객체와 맞추기 위한 초-> 밀리초 변환
+    deadline_timestamp = None
+    if ongoing_post:
+        deadline_timestamp = int(ongoing_post.deadline.timestamp() * 1000)
+
     return render(request, 'main/home.html', {
         'profile': profile,
         'hours': hours,
         'minutes': minutes,
+        'burning_posts': burning_posts,
+        'ongoing_post': ongoing_post,
+        'deadline_timestamp': deadline_timestamp,
     })
 
 
