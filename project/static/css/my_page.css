@@ -1,4 +1,6 @@
-
+button{
+    cursor: pointer;
+}
 .pageAlignChatlist_sw{
     width: 390px;
     height: 844px;

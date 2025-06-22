@@ -56,25 +56,53 @@ def my(request):
     })
 
 
+# def edit_profile(request):
+#     profile = request.user.profile
+
+#     if request.method == 'POST':
+#         nickname = request.POST.get('nickname')
+#         university_id = request.POST.get('university')
+#         image = request.FILES.get('image')
+
+#         profile.nickname = nickname
+
+#         if university_id:
+#             university = get_object_or_404(University, id=university_id)
+#             profile.university = university
+
+#         if image:
+#             profile.image = image
+
+#         profile.save()
+#         return redirect('home')
+
+#     universities = University.objects.all()
+#     return render(request, 'main/edit_profile.html', {
+#         'profile': profile,
+#         'universities': universities,
+#     })
+
 def edit_profile(request):
     profile = request.user.profile
 
     if request.method == 'POST':
+        # 사진만 왔을 때
+        if 'image' in request.FILES:
+            profile.image = request.FILES['image']
+
+        # 닉네임만 왔을 때
         nickname = request.POST.get('nickname')
-        university_id = request.POST.get('university')
-        image = request.FILES.get('image')
+        if nickname:
+            profile.nickname = nickname
 
-        profile.nickname = nickname
-
-        if university_id:
-            university = get_object_or_404(University, id=university_id)
+        # 대학교만 왔을 때
+        uni_id = request.POST.get('university')
+        if uni_id:
+            university = get_object_or_404(University, id=uni_id)
             profile.university = university
 
-        if image:
-            profile.image = image
-
         profile.save()
-        return redirect('home')
+        return redirect('main:edit_profile')
 
     universities = University.objects.all()
     return render(request, 'main/edit_profile.html', {
