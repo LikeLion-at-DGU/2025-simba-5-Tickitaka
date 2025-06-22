@@ -10,5 +10,5 @@ urlpatterns = [
      path('friend/reject/<int:request_id>/', reject_friend_request, name='reject_friend_request'),
      path('friend/list/', friend_list, name='friend_list'),
      path('friend/notifications/', received_notifications, name='received_notifications'),
+     path('profile/<int:user_id>/', other_profile, name='other_profile'),
 ]
-
