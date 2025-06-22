@@ -31,15 +31,24 @@
             {% endif %}
     
             
-            
+        <div class="rightWrapperOtherProfile_sw">
             <div class="textWRapperOtherProfile_sw">
                 <div class="nameTextOtherProfile_sw">
                     {{profile}}
                 </div>
                 <div class="tipTimeOtherProfile_sw">
-                    {{profile.time_tip}}분
+                    {% if hours %}
+                        {{hours}}시간
+                    {% endif %}
+                    {{minutes}}분
                 </div>
             </div>
+            <div class="tipDescriptionOtherProfile_sw">
+                받은 팁
+                <img src="{% static 'images/information.svg' %}" alt="정보표시 아이콘" style="padding-top: 5px;">
+                후기가 좋을수록 팁을 많이 받습니다
+            </div>
+        </div>   
 
         </div>
         
@@ -64,15 +73,7 @@
         <div class="postsFrameOtherProfile_sw">
             <div class="postsTitleProfile_sw">모집 중인 거래</div>
             <div class="postsScrollOtherProfile"> 
-                {% for posts in waiting_posts %}
-                <a class="postsOtherProfile_sw" href="{% url 'posts:post_detail' posts.id %}">
-                    
-                </a>
-                {% endfor %}
-            </div>
-        </div>
-       <!--  -->
-   {% for posts in waiting_posts %}
+                 {% for posts in waiting_posts %}
             <a href="{% url 'posts:post_detail' posts.id %}?{{ request.GET.urlencode }}">
                 <div class="post-container_sy">
                     <div class="post-image_sy">
@@ -91,7 +92,7 @@
                                 {% if selected_building_name %}
                                     {{ selected_building_name }}
                                 {% else %}
-                                    {{ post.building.name }}
+                                    {{ posts.building.name }}
                                 {% endif %}
                             </div>
                             <div class="post-second-info-sy">
@@ -103,10 +104,10 @@
                                             fill="#2A2A2A" />
                                     </svg>
                                     <p class="post-time-text_sy {% if post.burning == 1 %}boosted_time_sy{% endif %}">
-                                        +{{ post.amounts }}분
+                                        +{{ posts.amounts }}분
                                     </p>
                                 </div>
-                                <div class="post-deadline_sy">{{ post.deadline|date:"m/d H:i" }}까지</div>
+                                <div class="post-deadline_sy">{{ posts.deadline|date:"m/d H:i" }}까지</div>
 
                             </div>
                         </div>
@@ -114,6 +115,10 @@
                 </div>
             </a>
             {% endfor %}
+            </div>
+        </div>
+       <!--  -->
+  
        <!--  -->
     </div>
     </div>
