@@ -12,6 +12,13 @@ function openStartNotice() {
     document.getElementById("modalBackdrop_sw").style.display = "block";
 }
 
+// 완료 승인 버튼 클릭했을 때 뒷배경 어두워지면서 donenotice 뜨게 하기
+
+function openDoneNotice() {
+    document.getElementById("doneNotice_sw").style.display = "flex";
+    document.getElementById("modalBackdrop_sw").style.display = "block";
+}
+
 //   엑스 누르면 modal 닫게 하기
 // 엑스 말고 다른 곳 눌러도 닫히게 하기? 고민해보기
 function closeSensitiveModal() {
@@ -27,7 +34,13 @@ function closeStartNotice() {
     document.getElementById("modalBackdrop_sw").style.display = "none";
   }
 
-  
+  //   엑스나 거절 누르면 donenotice 닫게 하기
+
+function closeDoneNotice() {
+    document.getElementById("doneNotice_sw").style.display = "none";
+    document.getElementById("modalBackdrop_sw").style.display = "none";
+  }
+
 
 //사진 보내기
 document.addEventListener("DOMContentLoaded", function(){

@@ -57,7 +57,7 @@
                     <button type="button" class="buttonChatroom_sw" onclick="openSensitiveModal()">
                         민감 정보
                     </button>
-                    <!-- 거래 요청을 하면 진짜 거래하겠냐고 묻기-아직안함 -->
+                    <!-- 거래 요청을 하면 진짜 거래하겠냐고 묻기 -->
                     {% elif post.status == "chatting" and me == chatroom.helper %}
                     <button type="submit" class="buttonChatroom_sw" onclick="openStartNotice()">
                         거래 요청
@@ -85,15 +85,12 @@
                     {% elif post.status != "in_progress" and me == chatroom.helper %}
                         <button class="disabledButtonChatroom_sw">수행 완료</button>
                     {% elif post.status == "task_completed" and me == chatroom.master %}
-                    <form method="post" action="{% url 'chats:approve_finish' chatroom.id %}">
-                        {% csrf_token %}
-                        <button type="submit" class="buttonChatroom_sw">완료 승인</button>
-                    </form>
+                    <button type="submit" class="buttonChatroom_sw" onclick="openDoneNotice()">
+                        완료 승인
+                    </button>
                     {% elif post.status != "task_completed" and me == chatroom.master %}
                         <button class="disabledButtonChatroom_sw">완료 승인</button>
                     {% endif %}
-
-                
                 </div>
             </div>
     </div>
@@ -133,15 +130,28 @@
                 {% else %}  
                  <!--상대가 보낸 거  -->
                 <div class="opponentBubbleChatroom_sw">  
-                    {% ifchanged comment.writer.id comment.timestamp|date:"Y-m-d H:i" %}   
+                     {% if comment.prev_is_notice %}
                         {% if opponent.image %}
-                        <img class="profileImgChatroom_sw" src="{{opponent.image.url}}" alt="프로필사진">
+                            <img class="profileImgChatroom_sw" src="{{opponent.image.url}}" alt="프로필사진">
                         {%else%}
-                        <img class="profileImgChatroom_sw" src="{% static 'images/defaultprofile.svg' %}" alt="프로필사진">
+                            <img class="profileImgChatroom_sw" src="{% static 'images/defaultprofile.svg' %}" alt="프로필사진">
+                        {% endif %}
+                    {%else %}
+                    <!-- 시간이 바뀌거나 사람이 바뀌면 뜨게 함 -->
+                    {% ifchanged comment.writer.id comment.timestamp|date:"Y-m-d H:i" %}   
+                        <!-- 프로필 사진 위치 여기부터 -->
+                        {% if opponent.image %}
+                            <img class="profileImgChatroom_sw" src="{{opponent.image.url}}" alt="프로필사진">
+                        {%else%}
+                            <img class="profileImgChatroom_sw" src="{% static 'images/defaultprofile.svg' %}" alt="프로필사진">
                         {% endif %}
                     {% else %}
-                    <div class="profileImgChatroom_sw" style="visibility: hidden;"> </div>
+                        <div class="profileImgChatroom_sw" style="visibility: hidden;"></div>
+                        <!-- 프로필 사진 위치 여기까지 -->
                     {% endifchanged %}
+                    {%endif %}
+
+                    <!-- 상대 채팅 버블 여기부터-->
                     {% if comment.image %}
                     <img src="{{comment.image.url}}" alt=" 상대가 보낸 이미지" width="200">
                     {% endif %}
@@ -153,6 +163,7 @@
                     {% endif %}
                     </p>
                     {% endif %}
+                    <!-- 상대 채팅 버블 여기까지 -->
                 </div>
             {% endif %}
         {% endfor %}
@@ -160,7 +171,8 @@
 
 <!-- 여기까지 스크롤 -->
  {{post.status}}
-
+{{opponent.available_time}}
+{{me.available_time}}
 <!-- 여기부터 채팅 입력창이고 고정 -->
     <div class="chatWriteFrameChatroom_sw">
         <form id="photoForm_sw" method="POST" action="{% url 'chats:submit_chat' chatroom.id %}" enctype="multipart/form-data">
@@ -232,6 +244,30 @@
     </div>
 </div>
  <!-- 여기까지 거래 확인창 -->
+  
+ <!-- 여기서부터 완료 확인창 -->
+<div class="startModalFrame_sw" id="doneNotice_sw" style="display: none;">
+    <div class="startTitleBoxChatroom_sw">
+        <p class="startTitleChatroom_sw">완료를 승인하실 건가요?</p>
+    <button id="closeModalBtn_sw" class="noStartChatroom_sw" onclick="closeDoneNotice()">
+        <img src="{% static 'images/xicon.svg' %}" alt="엑스아이콘">
+    </button>
+    </div>
+    
+    <div class="startBtnWrapper_sw">
+        <form method="post" action="{% url 'chats:review' post.id %}">
+            {% csrf_token %}
+            <button class="startNoticeBtn_sw">승인</button>
+        </form>
+         <form  id="closeModalBtn_sw" class="startNoticeBtn_sw"
+          method="post" action="{% url 'chats:start_transaction' chatroom.id %}" onclick="closeDoneNotice()">
+            {% csrf_token %}
+            <button class="startNoticeBtn_sw">거절</button>
+        </form>
+      
+    </div>
+</div>
+ <!-- 여기까지 완료 확인창 -->
 {% endblock %}
 {% block scripts %}
 <!-- js 파일 -->
