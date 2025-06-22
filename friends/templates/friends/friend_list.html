@@ -29,10 +29,10 @@
                 <div class="friend-card_sy">
                     <a href="{% url 'friends:other_profile' friend.user.id %}">
                         <div class="friend-info_sy">
-                            {% if friend.image %}
-                                <img src="{{ friend.image.url }}" class="profile-img_sy" />
+                            {% if result.profile.image %}
+                            <img src="{{ result.profile.image.url }}" class="profile-img_sy" />
                             {% else %}
-                                <img src="{% static 'images/lionprofile.png' %}" class="profile-img_sy" />
+                            <img src="{% static 'images/lionprofile.svg' %}" class="profile-img_sy" />
                             {% endif %}
                             <p class="nickname_sy">{{ friend.nickname }}</p>
                         </div>

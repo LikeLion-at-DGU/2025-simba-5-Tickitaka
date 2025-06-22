@@ -71,9 +71,11 @@
     gap: 8px;
 }
 
-.profile-img_sy {
+.friend-info_sy img {
     width: 46px;
     height: 46px;
+    border-radius: 50%;
+
 }
 
 .nickname_sy {
