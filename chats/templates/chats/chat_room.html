@@ -17,10 +17,11 @@
         <div class="profileNicknameChatroom_sw">
             <div class="nicknameChatroom_sw">{{opponent.nickname}}</div>
         </div>
-        <button class="sirenChatroom_sw">
-                <img class="sireniconChatroom_sw" src="{% static 'images/siren.svg' %}" alt="신고아이콘">
-                <div class="reportTextChatroom_sw">신고하기</div>
-        </button>
+        <a href="{% url 'main:report' %}" class="sirenChatroom_sw">
+            <img class="sireniconChatroom_sw" src="{% static 'images/siren.svg' %}" alt="신고아이콘">
+            <div class="reportTextChatroom_sw">신고하기</div>
+        </a>
+
     </div>
     
     <div class="tradeTitleFrameChatroom_sw">
@@ -115,21 +116,29 @@
                 {{comment.content|linebreaksbr}}
             </div>
             {% elif comment.writer == me %}
+                <!-- 내가 보낸 거 -->
                 <div class="myBubbleChatroom_sw">
                     {% if comment.image %}
                     <img src="{{comment.image.url}}" alt=" 내가 보낸 이미지"  width="200" >
                     {% endif %}
                     {% if comment.content %}
                     <p>
+                        {% if comment.is_last_of_group %}
                         <div class="timeTextChatroom">{{ comment.timestamp|date:"A h:i" }}</div>
+                        {% endif %}
                         <div class="myContentTextChatroom">{{ comment.content }} </div>  
                     </p>
                     {% endif %}
                 </div>
-                {% else %}   
+                {% else %}  
+                 <!--상대가 보낸 거  -->
                 <div class="opponentBubbleChatroom_sw">  
                     {% ifchanged comment.writer.id comment.timestamp|date:"Y-m-d H:i" %}   
-                    <img class="profileImgChatroom_sw" src="{% static 'images/defaultprofile.svg' %}" alt="프로필사진">
+                        {% if opponent.image %}
+                        <img class="profileImgChatroom_sw" src="{{opponent.image.url}}" alt="프로필사진">
+                        {%else%}
+                        <img class="profileImgChatroom_sw" src="{% static 'images/defaultprofile.svg' %}" alt="프로필사진">
+                        {% endif %}
                     {% else %}
                     <div class="profileImgChatroom_sw" style="visibility: hidden;"> </div>
                     {% endifchanged %}
@@ -139,7 +148,9 @@
                     {% if comment.content %}
                     <p>
                     <div class="opponentContentTextChatroom">{{ comment.content }} </div>  
-                    <div class="timeTextChatroom">{{ comment.timestamp|date:"A h:i" }}</div>
+                    {% if comment.is_last_of_group%}
+                        <div class="timeTextChatroom">{{ comment.timestamp|date:"A h:i" }}</div>
+                    {% endif %}
                     </p>
                     {% endif %}
                 </div>
