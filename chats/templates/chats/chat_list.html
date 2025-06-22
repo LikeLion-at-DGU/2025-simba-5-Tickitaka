@@ -58,11 +58,14 @@
          <div class="chatroomFrameChatlist_sw">
             {% for item in chat_list%}    
                 <a href="{% url 'chats:chat_room' item.chatroom.id %}"
-                class="chatroomChatlist_sw">
+                class="chatroomChatlist_sw
+                {% if item.chatroom.post.status == 'done' %} chatroomChatlistDone_sw{% endif %}">
                 <!-- 프사 불러오기 만들기 edit 끝나고 -->
-                    <div class="chatroomProfileChatlist_sw">
-                        <img src="{% static 'images/lionprofile.svg' %}" alt="프로필사진">
-                    </div>
+                        {% if item.opponent.image %}
+                            <img class="chatroomProfileChatlist_sw" src="{{item.opponent.image.url}}" alt="상대프로필사진">
+                        {%else%}
+                            <img src="{% static 'images/lionprofile.svg' %}" class="chatroomProfileChatlist_sw" alt="기본프로필사진">
+                        {% endif %}
                     <div class="textBoxChatlist_sw">
                         <div class="textWrapperChatlist_sw">
                             <div class="tempWrapperChatlist_Sw">
@@ -70,13 +73,16 @@
                                 <div class="buildingChatlist_sw">{{ item.chatroom.post.building.name }}</div>
                             </div>
                             <div class="titleChatlist_sw">{{item.last_chat_time|date:"A h:i"}}</div>
-                       
                         </div>
                         <div class="smallTextWrapperChatlist">
+
+                            {% if item.chatroom.post.status == 'done'%}
+                            <div class="doneChatlist_sw">완료된 채팅입니다.</div>
+                            {% else %}
                             <div class="titleChatlist_sw">{{ item.chatroom.post.title }}</div>
+                            {% endif %}
                             {% if item.unread %}
                                 <div class="unreadCountChatlist_sw">{{item.unread}}</div>
-                                                  
                             {% endif %}
                         </div>
                         
