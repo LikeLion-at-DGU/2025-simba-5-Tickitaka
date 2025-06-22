@@ -142,3 +142,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'sisicallcallnow@gmail.com'
 EMAIL_HOST_PASSWORD = 'zqdalxkkcfffdwjt'
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://30be-220-117-244-232.ngrok-free.app",
+]
