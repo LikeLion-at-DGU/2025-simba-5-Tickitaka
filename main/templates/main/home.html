@@ -57,10 +57,10 @@
                             <h2>수행 중인 거래</h2>
                         </div>
                         <div class="home-in-progress-post_sy">
-                            {% if active_post %}
-                                <div class="post-title_sy">{{ active_post.title }}</div>
+                            {% if ongoing_post %}
+                                <div class="post-title_sy">{{ ongoing_post.title }}</div>
                                 <div class="post-last-time_sy">
-                                    <span id="remaining-time" data-seconds="{{ remaining_seconds }}"></span>
+                                    <span id="remaining-time" data-deadline="{{ deadline_timestamp }}"></span>
                                     <p>남았어요</p>
                                 </div>
                             {% else %}
@@ -86,6 +86,30 @@
                                     <div class="post-image_sy">
                                         {% with post.images.first as image %}
                                             {% if image %}
+                                                <img src="{{ image.image.url }}" alt="" class="post-now-image_sy">
+                                            {% else %}
+                                                <img src="{% static 'images/test2.png' %}" alt="기본 이미지">
+                                            {% endif %}
+                                        {% endwith %}
+                                    </div>
+                                    <div class="post-item_sy">
+                                        <div class="post-item-title_sy">{{ post.title }}</div>
+                                        <div class="post-item-time_sy">
+                                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 2.04199C10.6868 2.04199 9.38642 2.30065 8.17317 2.8032C6.95991 3.30574 5.85752 4.04234 4.92893 4.97092C3.05357 6.84629 2 9.38983 2 12.042C2 14.6942 3.05357 17.2377 4.92893 19.1131C5.85752 20.0416 6.95991 20.7782 8.17317 21.2808C9.38642 21.7833 10.6868 22.042 12 22.042C14.6522 22.042 17.1957 20.9884 19.0711 19.1131C20.9464 17.2377 22 14.6942 22 12.042C22 10.7288 21.7413 9.42841 21.2388 8.21516C20.7362 7.0019 19.9997 5.89951 19.0711 4.97092C18.1425 4.04234 17.0401 3.30574 15.8268 2.8032C14.6136 2.30065 13.3132 2.04199 12 2.04199ZM16.2 16.242L11 13.042V7.04199H12.5V12.242L17 14.942L16.2 16.242Z" fill="#C75352"/>
+                                            </svg>
+                                            <p>+{{ post.amounts }}분</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            {% endfor %}
+                            {% for post in burning_posts %}
+                            <a href="{% url 'posts:post_detail' post.id %}" class="post-content-link_sy">
+                                <div class="post-content_sy">
+                                    <div class="post-image_sy">
+                                        {% with post.images.first as image %}
+                                            {% if image %}
                                                 <img src="{{ image.image.url }}" alt="">
                                             {% else %}
                                                 <img src="{% static 'images/test2.png' %}" alt="기본 이미지">
@@ -103,15 +127,15 @@
                                     </div>
                                 </div>
                             </a>
-                            <button class="to-right-btn_sy">
-                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.071 6.33501L1.414 0.678005L0 2.092L4.95 7.04201L0 11.992L1.414 13.406L7.071 7.74901C7.25847 7.56148 7.36379 7.30717 7.36379 7.04201C7.36379 6.77684 7.25847 6.52253 7.071 6.33501Z" fill="#8A8A8A"/>
-                                </svg>                            
-                            </button>
                             {% endfor %}
                             
                         </div>
                     </div>
+                    <button class="to-right-btn_sy">
+                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.071 6.33501L1.414 0.678005L0 2.092L4.95 7.04201L0 11.992L1.414 13.406L7.071 7.74901C7.25847 7.56148 7.36379 7.30717 7.36379 7.04201C7.36379 6.77684 7.25847 6.52253 7.071 6.33501Z" fill="#8A8A8A"/>
+                        </svg>                            
+                    </button>
                 </div>
             </div>
             
