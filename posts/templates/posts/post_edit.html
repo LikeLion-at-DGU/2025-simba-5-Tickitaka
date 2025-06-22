@@ -1,28 +1,117 @@
-
 <!-- post_edit.html -->
 {% extends 'test-base.html' %} {% load static %} {% block content %}
+<!-- 달력 css 링크임 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-<link rel="stylesheet" href="{% static 'css/chat_list.css' %}" />
+<link rel="stylesheet" href="{% static 'css/post_create.css' %}" />
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+<!-- available_time 불러오기 -->
+<input type="hidden" id="availableTime" value="{{ available_time|default:0 }}">
 
-<div class="pageAlignChatlist_sw">
-    
-<!-- 헤더 -->
-    <div class="headerFrameChatlist_sw">
-    <!-- 아직 메인 없음 -->
-        <a href="{% url 'chats:chat_list' %}">
-            <button class="backiconChatlist_sw">
-                <img src="{% static 'images/backicon.svg' %}" alt="뒤로가기아이콘">
-            </button>
-        </a>
-        <div class="headerTitleChatlist_sw">
-            <div class="headerTextChatlist_sw">채팅목록</div>
+<form method="POST" action="{% url 'posts:post_update' post.id %}" enctype="multipart/form-data">
+    <div class="pageAlignCreate_sw">
+        <div class="allFrameCreate_sw">
+            {% csrf_token %}
+            <div class="contentsFrameCreate_sw">
+                <div class="f1_frameCreate_sw">
+                    <div class="f1_titleFrameCreate_sw">
+                        <div class="f1_titleBoxCreate_sw">
+                            <button class="f1_closeButtonCreate_sw" type="button">
+                                <img src="{% static 'images/xicon.svg' %}" alt="엑스아이콘">
+                            </button>
+                            <div class="f1_titleCreate_sw">거래글 작성</div>
+                        </div>
+                        <div class="f1_lineCreate_sw"></div>
+                    </div>
+                    <div class="f1_photosFrameCreate_sw">
+                        <!-- 숨겨진 파일 업로드 input -->
+                        <input type="file" id="photoUpload" name="images" style="display: none;" accept="image/*"
+                            multiple />
+                        <!-- 사용자에게 보이는 부분: 사진 아이콘 -->
+                        <label for="photoUpload" class="f1_photoCreate_sw">
+                            <img src="{% static 'images/photoicon.svg' %}" alt="사진아이콘">
+                            <div class="f1_photoAmountCreate_sw">0/3</div>
+                        </label>
+                        {% for image in post.images.all %}
+                    <div class="f1_previewImageWrapperCreate_sw">
+                        <img src="{{ image.image.url }}" class="f1_previewImageCreate_sw" />
+                        <button type="button" class="f1_deletePreviewButtonCreate_sw">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9 0C4.02944 0 0 4.02944 0 9C0 13.9706 4.02944 18 9 18C13.9706 18 18 13.9706 18 9C18 4.02944 13.9706 0 9 0ZM10.297 6.63323C10.5924 6.33783 11.0713 6.33783 11.3667 6.63323C11.6621 6.92864 11.6621 7.40758 11.3667 7.70298L10.0697 9L11.3667 10.297C11.6621 10.5924 11.6621 11.0714 11.3667 11.3668C11.0713 11.6622 10.5924 11.6622 10.297 11.3668L8.99995 10.0698L7.70292 11.3668C7.40752 11.6622 6.92857 11.6622 6.63317 11.3668C6.33777 11.0714 6.33777 10.5924 6.63317 10.297L7.93021 9L6.63317 7.70298C6.33777 7.40758 6.33777 6.92864 6.63317 6.63323C6.92857 6.33783 7.40752 6.33783 7.70292 6.63323L8.99995 7.93027L10.297 6.63323Z" fill="#8A8A8A"/>
+                        </svg>
+                        </button>
+                        <input type="hidden" name="delete_images" value="{{ image.id }}" disabled>
+                    </div>
+                    {% endfor %}
+                    </div>
+                    
+                </div>
+                <div class="f2_frameCreate_sw">
+                    <label class="f234_titleCreate_sw">제목</label>
+                    <input type="text" class="f2_inputCreate_sw" id="f2_inputCreate_sw" name="title" value="{{post.title}}"/>
+                    <div class="f234_wordCountCreate_sw">0/30</div>
+                </div>
+                <div class="f3_frameCreate_sw">
+                    <label class="f234_titleCreate_sw">설명</label>
+                    <textarea class="f3_inputCreate_sw" id="f3_inputCreate_sw" name="content">{{post.content}}</textarea>
+                    <small class="f234_wordCountCreate_sw">0/500</small>
+                </div>
+                <div class="f4_frameCreate_sw">
+                    <label class="f234_titleCreate_sw">개인 정보</label>
+                    <textarea class="f4_inputCreate_sw" id="f4_inputCreate_sw" type="text" name="private_info"
+                        placeholder="민감한 정보는 거래가 시작되면 전달됩니다">{{post.private_info}}</textarea>
+                    <small class="f234_wordCountCreate_sw">0/100</small>
+                </div>
+
+                <!-- 거래위치 드롭다운 -->
+                <div class="f5_frameCreate_sw">
+                    <div class="f5_wrapperCreate_sw">
+                        <label class="f5_titleCreate_sw">거래 위치</label>
+                        <div class="f5_textSvgWrapperCreate_sw">
+                            <select class="f5_dropdownPlaceCreate_sw" id="f5_dropdownPlaceCreate_sw" name="building">
+                                <option value="" disabled selected class="f5_dropdownPlaceTextCreate_sw">전체</option>
+                                {% for building in buildings %}
+                                <option value="{{ building.id }}"   
+                                {% if post.building.id == building.id %}selected{% endif %}>
+                                    {{ building.name }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                            <img class="f5icon_sw" src="{% static 'images/dropdownicon.svg' %}" alt="드롭다운아이콘">
+                        </div>
+
+                    </div>
+
+                    <!-- 달력 -->
+                    <div class="f5_wrapperCreate_sw">
+                        <label class="f5_titleCreate_sw">거래글 마감 시간</label>
+                        <input class="f5_calenderCreate_sw" id="f5_calenderCreate_sw" value="{{post.deadline|date:'Y-m-d H:i'}}" name="deadline" type="text"
+                            placeholder="시간을 선택하세요" readonly>
+                    </div>
+                </div>
+                <div class="f6_frameCreate_sw">
+                    <label class="f234_titleCreate_sw">소요 시간</label>
+                    <div class="f6_wrapperCreate_sw">
+                        <input class="f6_requireTimeCreate_sw" id="f6_requireTimeCreate_sw" name="amounts"
+                            placeholder="10분 단위로 입력해주세요" value="{{post.amounts}}">
+                        <div class="f6_minuteText_sw">분</div>
+                    </div>
+                </div>
+                <div class="f7_frameCreate_sw">
+                    <small class="f7_descriptionCreate_sw">더 빠른 거래를 원한다면?</small>
+                    <button class="f7_buttonCreate_sw" type="button">1.5배</button>
+                    <input type="hidden" name="burning" id="burning" value="{{post.burning}}" />
+                </div>
+            </div>
+            <button type="submit" class="buttonFrameCreate_sw">수정완료</button>
         </div>
     </div>
+</form>
+<p>보유시간 : {{available_time}}</p>
 
-</div>
-    {% endblock %}
+{% endblock %}
 {% block scripts %}
 <!-- js 파일 -->
-<script src="{% static 'js/chat_list.js' %}"></script>
+<script src="{% static 'js/post_create.js' %}"></script>
 {% endblock %}
