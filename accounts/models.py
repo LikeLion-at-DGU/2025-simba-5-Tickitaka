@@ -29,6 +29,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 
         # 회원가입 선물 30분 지급
         profile.time_balance = 30
+        profile.available_time = 30
         profile.save()
 
         # 선물 30분 지급 기록 TimeHistory 생성

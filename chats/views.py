@@ -353,6 +353,7 @@ def process_review(request, post_id):
         if tip_amount > 0 and post.helper:
             post.helper.time_balance += tip_amount
             post.helper.time_tip += tip_amount
+            post.helper.available_time += tip_amount
             post.helper.save()
 
             TimeHistory.objects.create(
