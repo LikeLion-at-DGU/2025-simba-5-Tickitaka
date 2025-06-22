@@ -228,6 +228,7 @@ def approve_finish(request, room_id):
 
     # 헬퍼 잔액 적립 및 기록
     post.helper.time_balance += amounts
+    post.helper.available_time += amounts
     post.helper.save()
 
     TimeHistory.objects.create(
