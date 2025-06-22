@@ -27,7 +27,7 @@ def other_profile(request, user_id):
           'waiting_posts': waiting_posts,
      }
 
-     return render(request, 'main/other_profile.html', context)
+     return render(request, 'friends/other_profile.html', context)
 
 
 # 친구 검색
