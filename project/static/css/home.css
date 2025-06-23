@@ -186,6 +186,7 @@
     font-weight: 600;
     line-height: normal;
     align-self: stretch;
+    White-space: nowrap;
     display: flex;
     justify-content: center;
 }

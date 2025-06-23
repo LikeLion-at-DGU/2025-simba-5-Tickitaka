@@ -184,14 +184,28 @@ def post_update(request, id):
           except ValueError:
                post.deadline = now()
 
-          post.building = get_object_or_404(Building, id=request.POST.get('building'), university=user_profile.university)
+          post.building = get_object_or_404(
+               Building,
+               id=request.POST.get('building'),
+               university=user_profile.university
+          )
+
           post.save()
 
           # 시간 복구 + 새 예약 반영
           user_profile.available_time = restored_time - new_amounts
           user_profile.save()
 
-          # 기존 이미지 유지 + 새 이미지만 추가
+          # 기존 이미지 삭제
+          delete_image_ids = request.POST.getlist('delete_images')
+          for image_id in delete_image_ids:
+               try:
+                    image = post.postimage_set.get(id=image_id)
+                    image.delete()
+               except PostImage.DoesNotExist:
+                    continue
+
+          # 새 이미지 추가
           for img in request.FILES.getlist('images'):
                PostImage.objects.create(post=post, image=img)
 

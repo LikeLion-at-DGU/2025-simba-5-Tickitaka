@@ -221,7 +221,7 @@ def approve_finish(request, room_id):
 
     TimeHistory.objects.create(
         user=post.master,
-        amounts=-amounts,
+        amounts=amounts,
         type='minus',
         post_id=post.id
     )

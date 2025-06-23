@@ -4,7 +4,6 @@
 
 <body>
     <div class="post-detail-container_sy">
-
         <div class="post-detail-header_sy">
             <div class="go-back-btn_sy" onclick="window.location.href='{% url 'posts:post_list' %}'">
                 <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,19 +21,17 @@
                 </a>
             </div>
         </div>
-
         <div class="post-detail-content_sy">
             <div class="post-detail-image_sy">
+                {% if post.images.all|length > 1 %}
                 <button class="carousel-btn left" onclick="prevImage()"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <rect width="28" height="28" fill="url(#pattern0_1263_2184)"/>
-                    <defs>
-                    <pattern id="pattern0_1263_2184" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <defs><pattern id="pattern0_1263_2184" patternContentUnits="objectBoundingBox" width="1" height="1">
                     <use xlink:href="#image0_1263_2184" transform="scale(0.0178571)"/>
-                    </pattern>
-                    <image id="image0_1263_2184" width="56" height="56" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjseAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAATySURBVHgB5ZtRSFtXGMe/pO3QtjimkhZKZQZsxbawCXOZDxO2PToRRFQUROyLvgx8ENahiLJNX9S96Et9Eok++OIQQVklL2ZBkUJTcAEbsC+rLI6WGh8ScN8/uUeuyYmJ9557o90PTpN6VPz5nfOdc79zdJAFHB8fP+KXcl27we1Wyqe94bbP7ZBbkFvY4XC8IMU4SAEsBAFIfc/NTUkhI0AWkgGW/YMUYEpQE2vQmlGpTCC6iKyXZd+QQQwJWiwmw8vtmRHRcwuynIdfuil9TlkNIuo979DNWVCLWhslo5ZPligpepjLJ+ckyHIufnlCyQRyEUA0f8plyGYV1OR+JvuHZDZykjxT8ALLCbJKZhS8BHKCMyWdsg9qCeUyyAEE4kftZ07DmeGLkC0vg5wAya9N1pEmyL+Jb8mmpWBiYsLd29v7GamhQVujT3FqDto570ZGRu7Nz8/fx/uysrK3c3Nz/uLi4hiZA/PxB/0amRpBRM9WObC3t/dxe3v7V7u7u4VkDgTo1Og7iaAWvadkMf39/Q+Xl5fLZX2VlZWRxcXFDTIHovdYRFEfwTayGMy3THIlJSXR0dHR52Qe8SCQQC/4kCzi4ODgWlNTU63P57sr68ccnJmZ8VdUVERJDQ1i2UgIapnTkrmHeYX5tbOzUyLrFwlGoRwQD+AnEfSQBUCuq6urFklE1l9XV/daUfaUgeoCXdX+o3x4CrlIJHJd1g+5qakpFXMuE4knH6dWIFL6VL65uVl0llxLS0vIYjlwA26IYDkpBHI9PT21R0dH12T9kBscHPyL7KEcgo9IEZwJ705PTz+4IHLADcHrpADIjY+PZ9xX9vX1Pe/u7n5N9vIpBF1kktStl57CwsIYD9mXeZADNyFoav3LJsfJxF9TU/OW8oPrKplkbW1NujvB1kvx7sQQTjJJNBr9KOM3dzqPKc+YFuzo6JBmRayBra2tdVtbW0WUR64MDQ19w683ySAej+df3kxTMBgsTe2LxWJXVldX7/BwfV9VVfWe7Gcfgt/xm0/IBLztirBMfHt7Oy0jQ3J9ff1OQUHBUXV19Tuyl1cQRAY0XbFGJF0u17tAIHArHo+nDX2/33+bh60DvwyyjzB+kDAporm5+W9eFjZ4eYjL+hcWFu4NDw/fJ/sIKhUEWPO8Xq8Py4Ss32bJsFM7Ns7ppCZXsPZhDTxLkmszD8haDuEm5sorUkw2Sa7NuDs7O79AOYOsIXHeLwR/JwsQklyWkGZPXiNvo5xhkWQA/whB5cNUAMnZ2dmNTJIoZzQ2Nn6toCaqZ1+cBCcEtRriEllEaWlpbGVlxYcyhawfux5UABRKBsUb/XoFQUuiKECZor6+XjrfIcmJ53NSg1e8ORG0OoqCsbGxl7xHTdu/onyoqPB76tpJ6o4DgobvpOTKwMBASC/JJft/FNVGcfjyTP+BtBNe7QjqCdnA5OSkOxQKFSmssP2Wes1EeoTNko8p/9dFzssSy6UdHmV6HsQkVb74W0jikpCsQyqoJZxfyIb5qABxCUG6Avx/r5EIPuiLQIILKIn88KuSq1yCD/oynh7tsLSV8nOd8imL/XmeLzJ6IRZDFqKWn+tTcn+MqC3lGjU9Zq80QxSSOEBVHVFTYgIll9KBNnS/pORxnJlL6UggeAB/YUZMoExQj+7PChBZyCLSsj8rgEBYNCv+rOA/HucbwqUZqQAAAAAASUVORK5CYII="/>
-                    </defs>
+                    </pattern><image id="image0_1263_2184" width="56" height="56" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjseAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAATySURBVHgB5ZtRSFtXGMe/pO3QtjimkhZKZQZsxbawCXOZDxO2PToRRFQUROyLvgx8ENahiLJNX9S96Et9Eok++OIQQVklL2ZBkUJTcAEbsC+rLI6WGh8ScN8/uUeuyYmJ9557o90PTpN6VPz5nfOdc79zdJAFHB8fP+KXcl27we1Wyqe94bbP7ZBbkFvY4XC8IMU4SAEsBAFIfc/NTUkhI0AWkgGW/YMUYEpQE2vQmlGpTCC6iKyXZd+QQQwJWiwmw8vtmRHRcwuynIdfuil9TlkNIuo979DNWVCLWhslo5ZPligpepjLJ+ckyHIufnlCyQRyEUA0f8plyGYV1OR+JvuHZDZykjxT8ALLCbJKZhS8BHKCMyWdsg9qCeUyyAEE4kftZ07DmeGLkC0vg5wAya9N1pEmyL+Jb8mmpWBiYsLd29v7GamhQVujT3FqDto570ZGRu7Nz8/fx/uysrK3c3Nz/uLi4hiZA/PxB/0amRpBRM9WObC3t/dxe3v7V7u7u4VkDgTo1Og7iaAWvadkMf39/Q+Xl5fLZX2VlZWRxcXFDTIHovdYRFEfwTayGMy3THIlJSXR0dHR52Qe8SCQQC/4kCzi4ODgWlNTU63P57sr68ccnJmZ8VdUVERJDQ1i2UgIapnTkrmHeYX5tbOzUyLrFwlGoRwQD+AnEfSQBUCuq6urFklE1l9XV/daUfaUgeoCXdX+o3x4CrlIJHJd1g+5qakpFXMuE4knH6dWIFL6VL65uVl0llxLS0vIYjlwA26IYDkpBHI9PT21R0dH12T9kBscHPyL7KEcgo9IEZwJ705PTz+4IHLADcHrpADIjY+PZ9xX9vX1Pe/u7n5N9vIpBF1kktStl57CwsIYD9mXeZADNyFoav3LJsfJxF9TU/OW8oPrKplkbW1NujvB1kvx7sQQTjJJNBr9KOM3dzqPKc+YFuzo6JBmRayBra2tdVtbW0WUR64MDQ19w683ySAej+df3kxTMBgsTe2LxWJXVldX7/BwfV9VVfWe7Gcfgt/xm0/IBLztirBMfHt7Oy0jQ3J9ff1OQUHBUXV19Tuyl1cQRAY0XbFGJF0u17tAIHArHo+nDX2/33+bh60DvwyyjzB+kDAporm5+W9eFjZ4eYjL+hcWFu4NDw/fJ/sIKhUEWPO8Xq8Py4Ss32bJsFM7Ns7ppCZXsPZhDTxLkmszD8haDuEm5sorUkw2Sa7NuDs7O79AOYOsIXHeLwR/JwsQklyWkGZPXiNvo5xhkWQA/whB5cNUAMnZ2dmNTJIoZzQ2Nn6toCaqZ1+cBCcEtRriEllEaWlpbGVlxYcyhawfux5UABRKBsUb/XoFQUuiKECZor6+XjrfIcmJ53NSg1e8ORG0OoqCsbGxl7xHTdu/onyoqPB76tpJ6o4DgobvpOTKwMBASC/JJft/FNVGcfjyTP+BtBNe7QjqCdnA5OSkOxQKFSmssP2Wes1EeoTNko8p/9dFzssSy6UdHmV6HsQkVb74W0jikpCsQyqoJZxfyIb5qABxCUG6Avx/r5EIPuiLQIILKIn88KuSq1yCD/oynh7tsLSV8nOd8imL/XmeLzJ6IRZDFqKWn+tTcn+MqC3lGjU9Zq80QxSSOEBVHVFTYgIll9KBNnS/pORxnJlL6UggeAB/YUZMoExQj+7PChBZyCLSsj8rgEBYNCv+rOA/HucbwqUZqQAAAAAASUVORK5CYII="/></defs>
                     </svg>                    
                 </button>
+                {% endif %}
                 <div class="carousel-track_sy">
                     {% for image in post.images.all %}
                         <img src="{{ image.image.url }}" alt="post image" class="carousel-image_sy">
@@ -42,38 +39,35 @@
                         <img src="{% static 'images/test2.png' %}" alt="기본 이미지" class="carousel-image_sy">
                     {% endfor %}
                 </div>
+                {% if post.images.all|length > 1 %}
                 <button class="carousel-btn right" onclick="nextImage()"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <rect width="28" height="28" transform="matrix(-1 0 0 1 28 0)" fill="url(#pattern0_1263_2186)"/>
-                    <defs>
-                    <pattern id="pattern0_1263_2186" patternContentUnits="objectBoundingBox" width="1" height="1">
-                    <use xlink:href="#image0_1263_2186" transform="scale(0.0178571)"/>
-                    </pattern>
-                    <image id="image0_1263_2186" width="56" height="56" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjseAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAATySURBVHgB5ZtRSFtXGMe/pO3QtjimkhZKZQZsxbawCXOZDxO2PToRRFQUROyLvgx8ENahiLJNX9S96Et9Eok++OIQQVklL2ZBkUJTcAEbsC+rLI6WGh8ScN8/uUeuyYmJ9557o90PTpN6VPz5nfOdc79zdJAFHB8fP+KXcl27we1Wyqe94bbP7ZBbkFvY4XC8IMU4SAEsBAFIfc/NTUkhI0AWkgGW/YMUYEpQE2vQmlGpTCC6iKyXZd+QQQwJWiwmw8vtmRHRcwuynIdfuil9TlkNIuo979DNWVCLWhslo5ZPligpepjLJ+ckyHIufnlCyQRyEUA0f8plyGYV1OR+JvuHZDZykjxT8ALLCbJKZhS8BHKCMyWdsg9qCeUyyAEE4kftZ07DmeGLkC0vg5wAya9N1pEmyL+Jb8mmpWBiYsLd29v7GamhQVujT3FqDto570ZGRu7Nz8/fx/uysrK3c3Nz/uLi4hiZA/PxB/0amRpBRM9WObC3t/dxe3v7V7u7u4VkDgTo1Og7iaAWvadkMf39/Q+Xl5fLZX2VlZWRxcXFDTIHovdYRFEfwTayGMy3THIlJSXR0dHR52Qe8SCQQC/4kCzi4ODgWlNTU63P57sr68ccnJmZ8VdUVERJDQ1i2UgIapnTkrmHeYX5tbOzUyLrFwlGoRwQD+AnEfSQBUCuq6urFklE1l9XV/daUfaUgeoCXdX+o3x4CrlIJHJd1g+5qakpFXMuE4knH6dWIFL6VL65uVl0llxLS0vIYjlwA26IYDkpBHI9PT21R0dH12T9kBscHPyL7KEcgo9IEZwJ705PTz+4IHLADcHrpADIjY+PZ9xX9vX1Pe/u7n5N9vIpBF1kktStl57CwsIYD9mXeZADNyFoav3LJsfJxF9TU/OW8oPrKplkbW1NujvB1kvx7sQQTjJJNBr9KOM3dzqPKc+YFuzo6JBmRayBra2tdVtbW0WUR64MDQ19w683ySAej+df3kxTMBgsTe2LxWJXVldX7/BwfV9VVfWe7Gcfgt/xm0/IBLztirBMfHt7Oy0jQ3J9ff1OQUHBUXV19Tuyl1cQRAY0XbFGJF0u17tAIHArHo+nDX2/33+bh60DvwyyjzB+kDAporm5+W9eFjZ4eYjL+hcWFu4NDw/fJ/sIKhUEWPO8Xq8Py4Ss32bJsFM7Ns7ppCZXsPZhDTxLkmszD8haDuEm5sorUkw2Sa7NuDs7O79AOYOsIXHeLwR/JwsQklyWkGZPXiNvo5xhkWQA/whB5cNUAMnZ2dmNTJIoZzQ2Nn6toCaqZ1+cBCcEtRriEllEaWlpbGVlxYcyhawfux5UABRKBsUb/XoFQUuiKECZor6+XjrfIcmJ53NSg1e8ORG0OoqCsbGxl7xHTdu/onyoqPB76tpJ6o4DgobvpOTKwMBASC/JJft/FNVGcfjyTP+BtBNe7QjqCdnA5OSkOxQKFSmssP2Wes1EeoTNko8p/9dFzssSy6UdHmV6HsQkVb74W0jikpCsQyqoJZxfyIb5qABxCUG6Avx/r5EIPuiLQIILKIn88KuSq1yCD/oynh7tsLSV8nOd8imL/XmeLzJ6IRZDFqKWn+tTcn+MqC3lGjU9Zq80QxSSOEBVHVFTYgIll9KBNnS/pORxnJlL6UggeAB/YUZMoExQj+7PChBZyCLSsj8rgEBYNCv+rOA/HucbwqUZqQAAAAAASUVORK5CYII="/>
-                    </defs>
+                    <defs><pattern id="pattern0_1263_2186" patternContentUnits="objectBoundingBox" width="1" height="1"><use xlink:href="#image0_1263_2186" transform="scale(0.0178571)"/>
+                    </pattern><image id="image0_1263_2186" width="56" height="56" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjseAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAATySURBVHgB5ZtRSFtXGMe/pO3QtjimkhZKZQZsxbawCXOZDxO2PToRRFQUROyLvgx8ENahiLJNX9S96Et9Eok++OIQQVklL2ZBkUJTcAEbsC+rLI6WGh8ScN8/uUeuyYmJ9557o90PTpN6VPz5nfOdc79zdJAFHB8fP+KXcl27we1Wyqe94bbP7ZBbkFvY4XC8IMU4SAEsBAFIfc/NTUkhI0AWkgGW/YMUYEpQE2vQmlGpTCC6iKyXZd+QQQwJWiwmw8vtmRHRcwuynIdfuil9TlkNIuo979DNWVCLWhslo5ZPligpepjLJ+ckyHIufnlCyQRyEUA0f8plyGYV1OR+JvuHZDZykjxT8ALLCbJKZhS8BHKCMyWdsg9qCeUyyAEE4kftZ07DmeGLkC0vg5wAya9N1pEmyL+Jb8mmpWBiYsLd29v7GamhQVujT3FqDto570ZGRu7Nz8/fx/uysrK3c3Nz/uLi4hiZA/PxB/0amRpBRM9WObC3t/dxe3v7V7u7u4VkDgTo1Og7iaAWvadkMf39/Q+Xl5fLZX2VlZWRxcXFDTIHovdYRFEfwTayGMy3THIlJSXR0dHR52Qe8SCQQC/4kCzi4ODgWlNTU63P57sr68ccnJmZ8VdUVERJDQ1i2UgIapnTkrmHeYX5tbOzUyLrFwlGoRwQD+AnEfSQBUCuq6urFklE1l9XV/daUfaUgeoCXdX+o3x4CrlIJHJd1g+5qakpFXMuE4knH6dWIFL6VL65uVl0llxLS0vIYjlwA26IYDkpBHI9PT21R0dH12T9kBscHPyL7KEcgo9IEZwJ705PTz+4IHLADcHrpADIjY+PZ9xX9vX1Pe/u7n5N9vIpBF1kktStl57CwsIYD9mXeZADNyFoav3LJsfJxF9TU/OW8oPrKplkbW1NujvB1kvx7sQQTjJJNBr9KOM3dzqPKc+YFuzo6JBmRayBra2tdVtbW0WUR64MDQ19w683ySAej+df3kxTMBgsTe2LxWJXVldX7/BwfV9VVfWe7Gcfgt/xm0/IBLztirBMfHt7Oy0jQ3J9ff1OQUHBUXV19Tuyl1cQRAY0XbFGJF0u17tAIHArHo+nDX2/33+bh60DvwyyjzB+kDAporm5+W9eFjZ4eYjL+hcWFu4NDw/fJ/sIKhUEWPO8Xq8Py4Ss32bJsFM7Ns7ppCZXsPZhDTxLkmszD8haDuEm5sorUkw2Sa7NuDs7O79AOYOsIXHeLwR/JwsQklyWkGZPXiNvo5xhkWQA/whB5cNUAMnZ2dmNTJIoZzQ2Nn6toCaqZ1+cBCcEtRriEllEaWlpbGVlxYcyhawfux5UABRKBsUb/XoFQUuiKECZor6+XjrfIcmJ53NSg1e8ORG0OoqCsbGxl7xHTdu/onyoqPB76tpJ6o4DgobvpOTKwMBASC/JJft/FNVGcfjyTP+BtBNe7QjqCdnA5OSkOxQKFSmssP2Wes1EeoTNko8p/9dFzssSy6UdHmV6HsQkVb74W0jikpCsQyqoJZxfyIb5qABxCUG6Avx/r5EIPuiLQIILKIn88KuSq1yCD/oynh7tsLSV8nOd8imL/XmeLzJ6IRZDFqKWn+tTcn+MqC3lGjU9Zq80QxSSOEBVHVFTYgIll9KBNnS/pORxnJlL6UggeAB/YUZMoExQj+7PChBZyCLSsj8rgEBYNCv+rOA/HucbwqUZqQAAAAAASUVORK5CYII="/></defs>
                     </svg>                    
                 </button>
+                {% endif %}
             </div>
             <div class="post-detail-item_sy">
-                <div class="user-info_sy">
-                    <div class="profile-image_sy">
-                            {% for image in post.images.all %}
-                                <img src="{{ image.image.url }}" alt="post image">
-                            {% endfor %}
+                <a href="{% url 'friends:other_profile' post.master.id %}">
+                    <div class="user-info_sy">
+                        <div class="profile-image_sy">
+                            {% if post.master.image %}
+                                <img src="{{ post.master.image.url }}" alt="프로필 이미지">
+                            {% else %}
+                                <img src="{% static 'images/lionprofile.svg' %}" alt="기본 프로필 이미지">
+                            {% endif %}
+                        </div>
+                        <div class="user-name_sy">{{ post.master.nickname }}</div>
                     </div>
-                    <div class="user-name_sy">{{ post.master.nickname }}</div>
-                </div>
-
+                </a>
                 <div class="line_sy"></div>
-
                 <div class="post-detail">
-
                     <div class="first-detail_sy">
                         <P class="post-title_sy">{{ post.title }}</P>
                         <p class="post-time-text_sy">{{ post.amounts }}분</p>
                     </div>
-
                     <div class="second-detail_sy">
-
                         <div class="third-detail_sy">
                             <div class="post-detail-time_sy">
                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
@@ -94,7 +88,6 @@
                                 {% endif %}
                             </div>
                         </div>
-
                         <div class="post-detail-location_sy">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -105,22 +98,14 @@
                                     d="M5.794 16.5181C4.50484 15.2907 3.60861 13.7085 3.21864 11.9717C2.82867 10.2349 2.96248 8.42149 3.60315 6.76074C4.24381 5.1 5.36256 3.66652 6.81792 2.6416C8.27328 1.61668 9.99988 1.04634 11.7794 1.00271C13.5589 0.959071 15.3114 1.4441 16.8152 2.39646C18.3191 3.34882 19.5067 4.72574 20.228 6.35309C20.9493 7.98044 21.1718 9.78514 20.8675 11.539C20.5631 13.2928 19.7455 14.917 18.518 16.2061L12.312 22.7241L5.794 16.5181ZM17.07 14.8271L12.243 19.8971L7.173 15.0701C6.17037 14.1154 5.47334 12.8849 5.17005 11.5341C4.86676 10.1833 4.97084 8.77285 5.46912 7.48119C5.9674 6.18953 6.8375 5.07462 7.96941 4.27746C9.10131 3.4803 10.4442 3.03668 11.8282 3.00269C13.2122 2.96871 14.5752 3.3459 15.7449 4.08655C16.9146 4.8272 17.8383 5.89806 18.3994 7.16371C18.9605 8.42936 19.1336 9.83297 18.897 11.197C18.6604 12.5611 18.0246 13.8244 17.07 14.8271Z"
                                     fill="black" />
                             </svg>
-
                             <p class="post-location_sy">{{ post.building.name }}</p>
-
                         </div>
                     </div>
-
-
-
                     <div class="fourth-detail_sy">
                         <p>{{ post.content }}</p>
                     </div>
-
                 </div>
-
                 <div class="line_sy"></div>
-
                 <div class="post-detail-footer_sy">
                     <form method="POST" action="{% url 'posts:toggle_saved' post.id %}" class="post-liked_sy">
                         {% csrf_token %}
@@ -137,9 +122,8 @@
                     {% if user.id == post.master_id %}
                     <div class="manage-btn-wrapper_sy">
                         {# 작성자일 경우: 수정/삭제 버튼 #}
-
                         {% if post.status == "waiting" %}
-                        <a href="{% url 'posts:post_update' post.id %}">
+                        <a href="{% url 'posts:post_edit' post.id %}">
                             <button class="edit-btn_sy">수정하기</button>
                         </a>
                         <form method="POST" action="{% url 'posts:post_delete' post.id %}" style="display:inline;">
@@ -170,7 +154,5 @@
 
 {% endblock %}
 {% block scripts %}
-
 <script src="{% static 'js/post_detail.js' %}"></script>
-
 {% endblock %}
