@@ -18,46 +18,22 @@
                         <div class="review-item1-text_sy">약속한 대로 거래가 정확히 이루어졌나요?</div>
                         <div class="line1_sy"></div>
                         <div class="review-item1-input_sy">
-                            <div class="bad-review_sy" onclick="selectAnswer('q1', 0, this)">
-                                <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="55" height="55" rx="27.5" fill="#8A8A8A"/>
-                                    <path d="M22.0047 37.0181L20.1733 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M32.9956 37.0181L34.8269 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 38.4908C33.5698 38.4908 38.4903 33.5703 38.4903 27.5005C38.4903 21.4308 33.5698 16.5103 27.5 16.5103C21.4303 16.5103 16.5098 21.4308 16.5098 27.5005C16.5098 33.5703 21.4303 38.4908 27.5 38.4908Z" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M16.8776 24.5709C16.0339 23.9385 15.3899 23.0767 15.0225 22.0883C14.6552 21.1 14.5799 20.0268 14.8058 18.9968C15.0316 17.9669 15.549 17.0236 16.2963 16.2797C17.0435 15.5357 17.989 15.0224 19.0199 14.8011C20.0509 14.5798 21.1237 14.6598 22.1105 15.0315C23.0972 15.4032 23.9562 16.0509 24.5849 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 16.5104L27.5 14.6787" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 22.0054V27.5005" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 27.5005L31.3856 31.3861" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M38.1228 24.5709C38.9665 23.9385 39.6105 23.0767 39.9779 22.0883C40.3452 21.1 40.4205 20.0268 40.1946 18.9968C39.9688 17.9669 39.4514 17.0236 38.7041 16.2797C37.9569 15.5357 37.0114 15.0224 35.9805 14.8011C34.9495 14.5798 33.8767 14.6598 32.8899 15.0315C31.9032 15.4032 31.0442 16.0509 30.4155 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                            <div class="bad-review_sy" onclick="selectAnswer('q1', 0, this)"
+                                data-original="{% static 'images/not-selected.svg' %}" 
+                                data-selected="{% static 'images/bad.svg' %}">
+                                <img src="{% static 'images/not-selected.svg' %}" class="review-icon">
                                 <div class="bad-review-text_sy">별로에요</div>   
                             </div>
-                            <div class="soso-review_sy" onclick="selectAnswer('q1', 1, this)">
-                                <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="55" height="55" rx="27.5" fill="#8A8A8A"/>
-                                    <path d="M22.0047 37.0181L20.1733 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M32.9956 37.0181L34.8269 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 38.4908C33.5698 38.4908 38.4903 33.5703 38.4903 27.5005C38.4903 21.4308 33.5698 16.5103 27.5 16.5103C21.4303 16.5103 16.5098 21.4308 16.5098 27.5005C16.5098 33.5703 21.4303 38.4908 27.5 38.4908Z" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M16.8776 24.5709C16.0339 23.9385 15.3899 23.0767 15.0225 22.0883C14.6552 21.1 14.5799 20.0268 14.8058 18.9968C15.0316 17.9669 15.549 17.0236 16.2963 16.2797C17.0435 15.5357 17.989 15.0224 19.0199 14.8011C20.0509 14.5798 21.1237 14.6598 22.1105 15.0315C23.0972 15.4032 23.9562 16.0509 24.5849 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 16.5104L27.5 14.6787" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 22.0054V27.5005" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 27.5005L31.3856 31.3861" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M38.1228 24.5709C38.9665 23.9385 39.6105 23.0767 39.9779 22.0883C40.3452 21.1 40.4205 20.0268 40.1946 18.9968C39.9688 17.9669 39.4514 17.0236 38.7041 16.2797C37.9569 15.5357 37.0114 15.0224 35.9805 14.8011C34.9495 14.5798 33.8767 14.6598 32.8899 15.0315C31.9032 15.4032 31.0442 16.0509 30.4155 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                            <div class="soso-review_sy" onclick="selectAnswer('q1', 1, this)"
+                                data-original="{% static 'images/not-selected.svg' %}" 
+                                data-selected="{% static 'images/soso.svg' %}">
+                                <img src="{% static 'images/not-selected.svg' %}" class="review-icon">
                                 <div class="soso-review-text_sy">좋아요</div>   
                             </div>
-                            <div class="good-review_sy" onclick="selectAnswer('q1', 2, this)">
-                                <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="55" height="55" rx="27.5" fill="#8A8A8A"/>
-                                    <path d="M22.0047 37.0181L20.1733 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M32.9956 37.0181L34.8269 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 38.4908C33.5698 38.4908 38.4903 33.5703 38.4903 27.5005C38.4903 21.4308 33.5698 16.5103 27.5 16.5103C21.4303 16.5103 16.5098 21.4308 16.5098 27.5005C16.5098 33.5703 21.4303 38.4908 27.5 38.4908Z" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M16.8776 24.5709C16.0339 23.9385 15.3899 23.0767 15.0225 22.0883C14.6552 21.1 14.5799 20.0268 14.8058 18.9968C15.0316 17.9669 15.549 17.0236 16.2963 16.2797C17.0435 15.5357 17.989 15.0224 19.0199 14.8011C20.0509 14.5798 21.1237 14.6598 22.1105 15.0315C23.0972 15.4032 23.9562 16.0509 24.5849 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 16.5104L27.5 14.6787" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 22.0054V27.5005" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 27.5005L31.3856 31.3861" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M38.1228 24.5709C38.9665 23.9385 39.6105 23.0767 39.9779 22.0883C40.3452 21.1 40.4205 20.0268 40.1946 18.9968C39.9688 17.9669 39.4514 17.0236 38.7041 16.2797C37.9569 15.5357 37.0114 15.0224 35.9805 14.8011C34.9495 14.5798 33.8767 14.6598 32.8899 15.0315C31.9032 15.4032 31.0442 16.0509 30.4155 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                            <div class="good-review_sy" onclick="selectAnswer('q1', 2, this)"
+                                data-original="{% static 'images/not-selected.svg' %}" 
+                                data-selected="{% static 'images/great.svg' %}">
+                                <img src="{% static 'images/not-selected.svg' %}" class="review-icon">
                                 <div class="good-review-text_sy">최고에요</div>   
                             </div>
                         </div>
@@ -70,46 +46,22 @@
                         <div class="review-item2-text_sy">응답이 빠르고 원활했나요?</div>
                         <div class="line2_sy"></div>
                         <div class="review-item2-input_sy">
-                            <div class="bad-review_sy" onclick="selectAnswer('q2', 0, this)">
-                                <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="55" height="55" rx="27.5" fill="#8A8A8A"/>
-                                    <path d="M22.0047 37.0181L20.1733 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M32.9956 37.0181L34.8269 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 38.4908C33.5698 38.4908 38.4903 33.5703 38.4903 27.5005C38.4903 21.4308 33.5698 16.5103 27.5 16.5103C21.4303 16.5103 16.5098 21.4308 16.5098 27.5005C16.5098 33.5703 21.4303 38.4908 27.5 38.4908Z" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M16.8776 24.5709C16.0339 23.9385 15.3899 23.0767 15.0225 22.0883C14.6552 21.1 14.5799 20.0268 14.8058 18.9968C15.0316 17.9669 15.549 17.0236 16.2963 16.2797C17.0435 15.5357 17.989 15.0224 19.0199 14.8011C20.0509 14.5798 21.1237 14.6598 22.1105 15.0315C23.0972 15.4032 23.9562 16.0509 24.5849 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 16.5104L27.5 14.6787" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 22.0054V27.5005" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 27.5005L31.3856 31.3861" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M38.1228 24.5709C38.9665 23.9385 39.6105 23.0767 39.9779 22.0883C40.3452 21.1 40.4205 20.0268 40.1946 18.9968C39.9688 17.9669 39.4514 17.0236 38.7041 16.2797C37.9569 15.5357 37.0114 15.0224 35.9805 14.8011C34.9495 14.5798 33.8767 14.6598 32.8899 15.0315C31.9032 15.4032 31.0442 16.0509 30.4155 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                            <div class="bad-review_sy" onclick="selectAnswer('q2', 0, this)"
+                                data-original="{% static 'images/not-selected.svg' %}" 
+                                data-selected="{% static 'images/bad.svg' %}">
+                                <img src="{% static 'images/not-selected.svg' %}" class="review-icon">
                                 <div class="bad-review-text_sy">별로에요</div>   
                             </div>
-                            <div class="soso-review_sy" onclick="selectAnswer('q2', 1, this)">
-                                <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="55" height="55" rx="27.5" fill="#8A8A8A"/>
-                                    <path d="M22.0047 37.0181L20.1733 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M32.9956 37.0181L34.8269 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 38.4908C33.5698 38.4908 38.4903 33.5703 38.4903 27.5005C38.4903 21.4308 33.5698 16.5103 27.5 16.5103C21.4303 16.5103 16.5098 21.4308 16.5098 27.5005C16.5098 33.5703 21.4303 38.4908 27.5 38.4908Z" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M16.8776 24.5709C16.0339 23.9385 15.3899 23.0767 15.0225 22.0883C14.6552 21.1 14.5799 20.0268 14.8058 18.9968C15.0316 17.9669 15.549 17.0236 16.2963 16.2797C17.0435 15.5357 17.989 15.0224 19.0199 14.8011C20.0509 14.5798 21.1237 14.6598 22.1105 15.0315C23.0972 15.4032 23.9562 16.0509 24.5849 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 16.5104L27.5 14.6787" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 22.0054V27.5005" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 27.5005L31.3856 31.3861" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M38.1228 24.5709C38.9665 23.9385 39.6105 23.0767 39.9779 22.0883C40.3452 21.1 40.4205 20.0268 40.1946 18.9968C39.9688 17.9669 39.4514 17.0236 38.7041 16.2797C37.9569 15.5357 37.0114 15.0224 35.9805 14.8011C34.9495 14.5798 33.8767 14.6598 32.8899 15.0315C31.9032 15.4032 31.0442 16.0509 30.4155 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                            <div class="soso-review_sy" onclick="selectAnswer('q2', 1, this)"
+                                data-original="{% static 'images/not-selected.svg' %}" 
+                                data-selected="{% static 'images/soso.svg' %}">
+                                <img src="{% static 'images/not-selected.svg' %}" class="review-icon">
                                 <div class="soso-review-text_sy">좋아요</div>   
                             </div>
-                            <div class="good-review_sy" onclick="selectAnswer('q2', 2, this)">
-                                <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="55" height="55" rx="27.5" fill="#8A8A8A"/>
-                                    <path d="M22.0047 37.0181L20.1733 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M32.9956 37.0181L34.8269 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 38.4908C33.5698 38.4908 38.4903 33.5703 38.4903 27.5005C38.4903 21.4308 33.5698 16.5103 27.5 16.5103C21.4303 16.5103 16.5098 21.4308 16.5098 27.5005C16.5098 33.5703 21.4303 38.4908 27.5 38.4908Z" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M16.8776 24.5709C16.0339 23.9385 15.3899 23.0767 15.0225 22.0883C14.6552 21.1 14.5799 20.0268 14.8058 18.9968C15.0316 17.9669 15.549 17.0236 16.2963 16.2797C17.0435 15.5357 17.989 15.0224 19.0199 14.8011C20.0509 14.5798 21.1237 14.6598 22.1105 15.0315C23.0972 15.4032 23.9562 16.0509 24.5849 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 16.5104L27.5 14.6787" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 22.0054V27.5005" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 27.5005L31.3856 31.3861" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M38.1228 24.5709C38.9665 23.9385 39.6105 23.0767 39.9779 22.0883C40.3452 21.1 40.4205 20.0268 40.1946 18.9968C39.9688 17.9669 39.4514 17.0236 38.7041 16.2797C37.9569 15.5357 37.0114 15.0224 35.9805 14.8011C34.9495 14.5798 33.8767 14.6598 32.8899 15.0315C31.9032 15.4032 31.0442 16.0509 30.4155 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                            <div class="good-review_sy" onclick="selectAnswer('q2', 2, this)"
+                                data-original="{% static 'images/not-selected.svg' %}" 
+                                data-selected="{% static 'images/great.svg' %}">
+                                <img src="{% static 'images/not-selected.svg' %}" class="review-icon">
                                 <div class="good-review-text_sy">최고에요</div>   
                             </div>
                         </div>
@@ -122,46 +74,22 @@
                         <div class="line3_sy"></div>
                         <input type="hidden" name="q3" id="q3" value="">
                         <div class="review-item3-input_sy">
-                            <div class="bad-review_sy" onclick="selectAnswer('q3', 0, this)">
-                                <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="55" height="55" rx="27.5" fill="#8A8A8A"/>
-                                    <path d="M22.0047 37.0181L20.1733 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M32.9956 37.0181L34.8269 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 38.4908C33.5698 38.4908 38.4903 33.5703 38.4903 27.5005C38.4903 21.4308 33.5698 16.5103 27.5 16.5103C21.4303 16.5103 16.5098 21.4308 16.5098 27.5005C16.5098 33.5703 21.4303 38.4908 27.5 38.4908Z" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M16.8776 24.5709C16.0339 23.9385 15.3899 23.0767 15.0225 22.0883C14.6552 21.1 14.5799 20.0268 14.8058 18.9968C15.0316 17.9669 15.549 17.0236 16.2963 16.2797C17.0435 15.5357 17.989 15.0224 19.0199 14.8011C20.0509 14.5798 21.1237 14.6598 22.1105 15.0315C23.0972 15.4032 23.9562 16.0509 24.5849 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 16.5104L27.5 14.6787" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 22.0054V27.5005" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 27.5005L31.3856 31.3861" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M38.1228 24.5709C38.9665 23.9385 39.6105 23.0767 39.9779 22.0883C40.3452 21.1 40.4205 20.0268 40.1946 18.9968C39.9688 17.9669 39.4514 17.0236 38.7041 16.2797C37.9569 15.5357 37.0114 15.0224 35.9805 14.8011C34.9495 14.5798 33.8767 14.6598 32.8899 15.0315C31.9032 15.4032 31.0442 16.0509 30.4155 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                            <div class="bad-review_sy" onclick="selectAnswer('q3', 0, this)"
+                                data-original="{% static 'images/not-selected.svg' %}" 
+                                data-selected="{% static 'images/bad.svg' %}">
+                                <img src="{% static 'images/not-selected.svg' %}" class="review-icon">
                                 <div class="bad-review-text_sy">별로에요</div>   
                             </div>
-                            <div class="soso-review_sy" onclick="selectAnswer('q3', 1, this)">
-                                <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="55" height="55" rx="27.5" fill="#8A8A8A"/>
-                                    <path d="M22.0047 37.0181L20.1733 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M32.9956 37.0181L34.8269 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 38.4908C33.5698 38.4908 38.4903 33.5703 38.4903 27.5005C38.4903 21.4308 33.5698 16.5103 27.5 16.5103C21.4303 16.5103 16.5098 21.4308 16.5098 27.5005C16.5098 33.5703 21.4303 38.4908 27.5 38.4908Z" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M16.8776 24.5709C16.0339 23.9385 15.3899 23.0767 15.0225 22.0883C14.6552 21.1 14.5799 20.0268 14.8058 18.9968C15.0316 17.9669 15.549 17.0236 16.2963 16.2797C17.0435 15.5357 17.989 15.0224 19.0199 14.8011C20.0509 14.5798 21.1237 14.6598 22.1105 15.0315C23.0972 15.4032 23.9562 16.0509 24.5849 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 16.5104L27.5 14.6787" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 22.0054V27.5005" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 27.5005L31.3856 31.3861" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M38.1228 24.5709C38.9665 23.9385 39.6105 23.0767 39.9779 22.0883C40.3452 21.1 40.4205 20.0268 40.1946 18.9968C39.9688 17.9669 39.4514 17.0236 38.7041 16.2797C37.9569 15.5357 37.0114 15.0224 35.9805 14.8011C34.9495 14.5798 33.8767 14.6598 32.8899 15.0315C31.9032 15.4032 31.0442 16.0509 30.4155 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                            <div class="soso-review_sy" onclick="selectAnswer('q3', 1, this)"
+                                data-original="{% static 'images/not-selected.svg' %}" 
+                                data-selected="{% static 'images/soso.svg' %}">
+                                <img src="{% static 'images/not-selected.svg' %}" class="review-icon">
                                 <div class="soso-review-text_sy">좋아요</div>   
                             </div>
-                            <div class="good-review_sy" onclick="selectAnswer('q3', 2, this)">
-                                <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="55" height="55" rx="27.5" fill="#8A8A8A"/>
-                                    <path d="M22.0047 37.0181L20.1733 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M32.9956 37.0181L34.8269 40.3224" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 38.4908C33.5698 38.4908 38.4903 33.5703 38.4903 27.5005C38.4903 21.4308 33.5698 16.5103 27.5 16.5103C21.4303 16.5103 16.5098 21.4308 16.5098 27.5005C16.5098 33.5703 21.4303 38.4908 27.5 38.4908Z" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M16.8776 24.5709C16.0339 23.9385 15.3899 23.0767 15.0225 22.0883C14.6552 21.1 14.5799 20.0268 14.8058 18.9968C15.0316 17.9669 15.549 17.0236 16.2963 16.2797C17.0435 15.5357 17.989 15.0224 19.0199 14.8011C20.0509 14.5798 21.1237 14.6598 22.1105 15.0315C23.0972 15.4032 23.9562 16.0509 24.5849 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 16.5104L27.5 14.6787" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 22.0054V27.5005" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M27.5 27.5005L31.3856 31.3861" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M38.1228 24.5709C38.9665 23.9385 39.6105 23.0767 39.9779 22.0883C40.3452 21.1 40.4205 20.0268 40.1946 18.9968C39.9688 17.9669 39.4514 17.0236 38.7041 16.2797C37.9569 15.5357 37.0114 15.0224 35.9805 14.8011C34.9495 14.5798 33.8767 14.6598 32.8899 15.0315C31.9032 15.4032 31.0442 16.0509 30.4155 16.8975" stroke="#F6F8FA" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                            <div class="good-review_sy" onclick="selectAnswer('q3', 2, this)"
+                                data-original="{% static 'images/not-selected.svg' %}" 
+                                data-selected="{% static 'images/great.svg' %}">
+                                <img src="{% static 'images/not-selected.svg' %}" class="review-icon">
                                 <div class="good-review-text_sy">최고에요</div>   
                             </div>
                         </div>

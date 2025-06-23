@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/splash.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+</head>
+<body>
+    <div class="splash-container_sy">
+        <div class="splash-content_sy">
+            <div class="splah-description_sy">
+                <div class="splash-logo_sy">
+                    <img src="{% static 'images/splash-logo.svg' %}" alt="Logo" />
+                </div>
+                <div class="splash-text_sy">
+                    시간이 부족할 때<br/>학교에서 찾는 도움 공유 플랫폼
+                </div>
+            </div>
+            <video autoplay muted loop playsinline class="splash-video">
+                <source src="{% static 'video/colcol.webm' %}" type="video/mp4">
+            </video>
+            <a href="{% url 'accounts:login' %}" class="login-button">
+                <button class="login-button_sy">시작하기</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
