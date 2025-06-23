@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <div class="phone-frame_sw">
+    <div class="main-content_sw">
+    {% block content %}{% endblock %}
+    </div>
+    <!-- 네브바 -->
+    <nav class="navbar-frame_sw">
+      <div class="navbar-wrapper_sw">
+        <a href="{% url 'main:home' %}" class="nav-item_sw">
+          <img src="{% static 'images/homeNav.svg' %}" alt="홈" class="nav-icon_sw">
+          <span class="nav-label_sw">홈</span>
+        </a>
+        <a href="{% url 'posts:post_list' %}" class="nav-item_sw">
+          <img src="{% static 'images/postsNav.svg' %}" alt="글 목록" class="nav-icon_sw">
+          <span class="nav-label_sw">글 목록</span>
+        </a>
+        <a href="{% url 'posts:post_create' %}" class="nav-item_sw">
+          <img src="{% static 'images/writeNav.svg' %}" alt="글쓰기" class="nav-icon_sw">
+          <span class="nav-label_sw">글쓰기</span>
+        </a>
+        <a href="{% url 'chats:chat_list' %}" class="nav-item_sw">
+          <img src="{% static 'images/chatNav.svg' %}" alt="채팅" class="nav-icon_sw">
+          <span class="nav-label_sw">채팅</span>
+        </a>
+        <a href="{% url 'main:mypage' %}" class="nav-item_sw">
+          <img src="{% static 'images/mypageNav.svg' %}" alt="마이페이지" class="nav-icon_sw">
+          <span class="nav-label_sw">마이페이지</span>
+        </a>
+      </div>
+
+    </nav>
+  </div>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
