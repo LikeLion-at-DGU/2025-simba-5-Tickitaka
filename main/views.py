@@ -171,3 +171,17 @@ def inquire(request):
         return redirect('posts:post_list')
 
     return render(request, 'main/inquire.html')
+
+# 공통 로직 함수로 분리 (중복 제거)
+def annotate_is_new_group(comments):
+    for i, comment in enumerate(comments):
+        if i == 0:
+            comment.is_new_group = True
+        else:
+            prev_comment = comments[i-1]
+            different_writer = (comment.writer_id != prev_comment.writer_id)
+            current_minute = comment.timestamp.strftime('%Y-%m-%d %H:%M')
+            prev_minute = prev_comment.timestamp.strftime('%Y-%m-%d %H:%M')
+            different_minute = (current_minute != prev_minute)
+            comment.is_new_group = (different_writer or different_minute)
+    return comments
