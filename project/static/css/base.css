@@ -1,20 +1,23 @@
 /* base.css */
 .phone-frame_sw{
     width: 390px;
-    min-height: 844px;
+    height: 844px;
     margin: 0 auto;
   position: relative;
-    
+  display: flex;
+  flex-direction: column;
 }
 .main-content_sw{
     box-sizing: border-box;
     padding-bottom: 56px;
+  position: relative;
+
 }
 
 .navbar-frame_sw{
-    position: fixed;
-    left: 0;
-    bottom:0;
+    position: absolute;
+        left: 0;
+    bottom: 0;
     display: flex;
     z-index: 99999999;
     width: 390px;
