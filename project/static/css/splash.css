@@ -51,7 +51,6 @@
     transform: scale(5.5);
     top: 26px;
     left: 25px;
-    object-fit: cover;
     transform-origin: center center;
 }
 
