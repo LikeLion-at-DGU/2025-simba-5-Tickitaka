@@ -14,6 +14,7 @@
     {% block content %}{% endblock %}
     </div>
     <!-- 네브바 -->
+     {% if show_navbar %}
     <nav class="navbar-frame_sw">
       <div class="navbar-wrapper_sw">
         <a href="{% url 'main:home' %}" class="nav-item_sw">
@@ -37,8 +38,10 @@
           <span class="nav-label_sw">마이페이지</span>
         </a>
       </div>
-
     </nav>
+
+    {% endif %}
+    
   </div>
   {% block scripts %}{% endblock %}
 </body>

@@ -284,7 +284,6 @@ def request_finish(request, room_id):
     return redirect('chats:chat_room', room_id=room_id)
 
 
-
 @login_required
 def chat_list(request):
     user_profile = request.user.profile
@@ -321,7 +320,6 @@ def chat_list(request):
             'unread': unread_count,
             'opponent': opponent,
             'last_chat_time': last_chat_time,
-            'show_navbar': True
         })
 
     # 최신 채팅 순으로 정렬
@@ -331,8 +329,8 @@ def chat_list(request):
     'chat_list': chat_list_sorted,
     'me': user_profile,
     'filter_type': filter_type,
+    'show_navbar': True
     })
-
 
 def get_tip_percentage(answer):
     if answer == "2": 
