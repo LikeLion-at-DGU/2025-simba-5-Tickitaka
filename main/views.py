@@ -13,8 +13,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
 
-def mainpage(request):
-    return render(request, 'main/test-mainpage.html')
+def splash(request):
+    return render(request, 'main/splash.html')
 
 # 메인페이지 관련 기능
 def home(request):
