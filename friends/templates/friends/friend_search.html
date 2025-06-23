@@ -32,11 +32,16 @@
                     <div class="friend-search-list_sy">
                         {% for result in results %}
                             <div class="friend-card_sy">
+                               
                                 <div class="friend-info_sy">
-                                    <img src="{{ result.profile.image }}" class="profile-img_sy" />
+                                    {% if result.profile.image %}
+                                    <img src="{{ result.profile.image.url }}" class="profile-img_sy" />
+                                    {% else %}
+                                    <img src="{% static 'images/lionprofile.svg' %}" class="profile-img_sy" />
+                                    {% endif %}
                                     <p class="nickname_sy">{{ result.profile.nickname }}</p>
                                 </div>
-
+                                
                                 {% if result.status == "none" %}
                                     <form method="POST" action="{% url 'friends:send_friend_request' result.profile.id %}">
                                         {% csrf_token %}

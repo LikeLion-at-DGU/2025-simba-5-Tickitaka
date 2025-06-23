@@ -1,0 +1,58 @@
+{% extends 'test-base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/received_notifications.css' %}" />
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+<body>
+    <div class="friend-search-container_sy">
+        <div class="friend-search-header_sy">
+            <a href="{% url 'main:home' %}">
+            <button class="backiconChatroom_sw">
+                <img src="{% static 'images/backicon.svg' %}" alt="뒤로가기아이콘">
+            </button>
+        </a>
+            <h1 class="friend-search-title_sy">받은 알림</h1>
+        </div>
+        <div class="friend-search-content_sy">
+        
+                    <div class="friend-search-list_sy">
+                        {% for notification in notifications %}
+                            <div class="friend-card_sy">
+                                <div class="friend-info_sy">
+                                    {% if notification.profile.image %}
+                                    <img src="{{ notification.sender.image.url }}" class="profile-img_sy" />
+                                    {% else %}
+                                    <img src="{% static 'images/lionprofile.svg' %}" class="profile-img_sy" />
+                                    {% endif %}
+                                    <p class="nickname_sy">{{ notification.sender.nickname }}</p>
+                                </div>
+                                <div class="btnWrapper_sw">
+                                    <form method="POST" action="{% url 'friends:accept_friend_request' notification.friend_request.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="accept-btn_sy">수락</button>
+                                    </form>
+                                    <form method="POST" action="{% url 'friends:reject_friend_request' notification.friend_request.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="reject-btn_sy">거절</button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+               
+                    <div class="friend-search-list_sy">
+                        <p style="color: #888; font-size: 14px; text-align: center; margin-top: 24px; width: 100%;">
+                            받은 알림이 없습니다.
+                        </p>
+                    </div>
+             
+        </div>
+    </div>
+</body>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static '/js/friend_search.js' %}"></script>
+{% endblock %}
