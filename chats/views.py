@@ -321,6 +321,7 @@ def chat_list(request):
             'unread': unread_count,
             'opponent': opponent,
             'last_chat_time': last_chat_time,
+            'show_navbar': True
         })
 
     # 최신 채팅 순으로 정렬

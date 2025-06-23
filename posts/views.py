@@ -68,7 +68,8 @@ def post_list(request):
           'selected_sort': sort_option,
           'burning_flag': burning_flag,
           'friend_only': friend_only,
-          'selected_building_name': selected_building_name
+          'selected_building_name': selected_building_name,
+          'show_navbar': True
      })
 
 @login_required

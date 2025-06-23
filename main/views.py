@@ -46,6 +46,7 @@ def home(request):
         'burning_posts': burning_posts,
         'ongoing_post': ongoing_post,
         'deadline_timestamp': deadline_timestamp,
+        'show_navbar': True
     })
 
 
@@ -53,6 +54,7 @@ def my(request):
     profile = request.user.profile
     return render(request, 'main/my_page.html', {
         'profile': profile,
+        'show_navbar': True
     })
 
 
