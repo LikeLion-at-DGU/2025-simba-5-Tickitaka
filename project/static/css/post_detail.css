@@ -222,19 +222,19 @@
 }
 
 .status-blue_sy {
-    background: #025397;
+    background: rgba(2, 83, 151, 0.84);
     color: #FFF;
     padding: 5px;
 }
 
 .status-red_sy {
-    background: #C75352;
+    background: rgba(199, 83, 82, 0.78);
     color: #FFF;
     padding: 5px;
 }
 
 .status-green_sy {
-    background: #0E851A;
+    background: rgba(14, 133, 26, 0.69);
     color: #FFF;
     padding: 5px;
 }
