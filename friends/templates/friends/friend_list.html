@@ -15,13 +15,13 @@
                 </svg>
             </div>
             <h1 class="friend-list-title_sy">친구 목록</h1>
-            <!--받은 알림이랑 연결-->
-            <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <rect width="21.5" height="23" fill="url(#pattern0_1523_6180)"/>
-                <defs><pattern id="pattern0_1523_6180" patternContentUnits="objectBoundingBox" width="1" height="1">
-                <use xlink:href="#image0_1523_6180" transform="scale(0.0232558 0.0217391)"/>
-                </pattern><image id="image0_1523_6180" width="43" height="46" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAuCAYAAACxkOBzAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHJSURBVHgB7ZmBbcIwEEV/mIBuYCZoNiidoN2gbNBugDoB6gTpJmEDuoHZgG5wvUusEoITEieOHYknnYBYQk/H5Tg7wAgQ0ZJjy6HpzIEj41CIBZZ55zhRO1uExoh2JZyw/LwdMlpnjQEs4I5kaol+vGFqJEN0eTN1RX6JDaaAyrt+R8PJyGeXoLJGDzQe2ouwEdU0PnpUYY+i4wvzF+XkHymvvp3lSnRL07G75ZO0iCp+OaB/Lx3CKkmSY9Ni25+CS9MfSta2aM2syapGGB44u7+2habMrhGOj6aFJtkXhOOpaaGpDE6Yvl6rWEvhKrMsmiKsqKBsF21lEFpUSG0XY5W1MnvZaLnL+uIu64tYu4HVwSb7iPBYZ5OL2SDwaFjnmeeDffXCf2bNHihHPGRU20gWsuaiiCrEg+LIq8IL/vCKcq+VIj4Uh2bHYiBP+I1GXBm1IbPtSsog2sGlQuEosp+Iny/ZORSti8pDXoU4OdZb2CxI4Ijpy2t0r3m5SX7aTly8QO4ni5oGnBi6Tl3SmxX6o9ByiHGLWY2ITlD5bMHlyF4TBXjiaIS/e4jmQURr0psbWZa1DUbAuXXVMVlLcR6Ijhz7MVvVH/I8SexR5nKpAAAAAElFTkSuQmCC"/></defs>
-            </svg>
+            <a href="{% url 'friends:friend_alarm' %}">
+                {% if unread_notification_exists %}
+                <img src="{% static 'images/alarm-exist.png' %}" alt="알림 있음" width="22" height="23" />
+                {% else %}
+                    <img src="{% static 'images/alarm-no.png' %}" alt="알림 없음" width="22" height="23" />
+                {% endif %}
+            </a>
         </div>
         
         <div class="friend-list-content_sy">

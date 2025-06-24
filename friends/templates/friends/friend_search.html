@@ -44,6 +44,7 @@
                                 {% if result.status == "none" %}
                                     <form method="POST" action="{% url 'friends:send_friend_request' result.profile.id %}">
                                         {% csrf_token %}
+                                        <input type="hidden" name="query" value="{{ query }}">
                                         <button type="submit" class="friend-btn_sy">친구 신청</button>
                                     </form>
                                 {% elif result.status == "pending" %}
