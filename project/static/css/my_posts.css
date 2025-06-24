@@ -52,9 +52,23 @@ a {
     padding-left: 16px;
     padding-right: 16px;
     margin-top: 102px;
+    height: 767px;
+        overflow-y: auto;
+    overflow-x: hidden;
 
 }
+.post-list_sy::-webkit-scrollbar {
+    width: 6px;
+}
 
+.post-list_sy::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 3px;
+}
+
+.post-list_sy::-webkit-scrollbar-track {
+    background: #ccc;
+}
 .post-container_sy {
     display: flex;
     padding: 23px 16px;
