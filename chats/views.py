@@ -69,6 +69,8 @@ def chat_room(request, room_id):
             requestnotice = True
             request.session[request_session_key] = True
     
+    last_comment = comments[-1] if comments else None
+
     return render(request, 'chats/chat_room.html', {
         'chatroom': chatroom,
         'post': post,
@@ -81,6 +83,7 @@ def chat_room(request, room_id):
         'startnotice': startnotice,
         'requestnotice': requestnotice,
         'just_sent': request.GET.get('just_sent') == '1',
+        'last_comment': last_comment, 
     })
 
 

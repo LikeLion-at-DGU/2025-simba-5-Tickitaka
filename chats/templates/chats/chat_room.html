@@ -108,8 +108,8 @@
         </div>
         
         <!-- 채팅 버블이 뜨는 곳 -->
-   {% for comment in comments %}
-            {% if comment.is_system %}
+    {% for comment in comments %}
+        {% if comment.is_system %}
             <div id="startNotice_sw" class="longDescriptionBubbleChatroom_sw">
                 {{comment.content|linebreaksbr}}
             </div>
@@ -117,25 +117,28 @@
                 <!-- 내가 보낸 거 -->
                 <div class="myBubbleChatroom_sw">
                     {% if comment.image %}
-                    <img src="{{comment.image.url}}" alt=" 내가 보낸 이미지"  width="200" >
+                        <div class="timeTextChatroom">{{ comment.timestamp|date:"A h:i" }}</div>
+                        <img class="sentPic_sw{% if comment == last_comment and just_sent %} new-comment{% endif %}" 
+                        src="{{comment.image.url}}" alt=" 내가 보낸 이미지" >
                     {% endif %}
                     {% if comment.content %}
                     <p>
                         {% if comment.is_last_of_group %}
                         <div class="timeTextChatroom">{{ comment.timestamp|date:"A h:i" }}</div>
                         {% endif %}
-                        <div class="myContentTextChatroom">{{ comment.content }} </div>  
+                        <div class="myContentTextChatroom{% if comment == last_comment and just_sent %} new-comment{% endif %}{% if comment.is_new_group %} with-tail{% endif %}">
+                            {{ comment.content }} </div>  
                     </p>
                     {% endif %}
                 </div>
-                {% else %}  
+            {% else %}  
                  <!--상대가 보낸 거  -->
                 <div class="opponentBubbleChatroom_sw"> 
                     {% if comment.prev_is_notice %}
                         {% if opponent.image %}
                             <img class="profileImgChatroom_sw" src="{{opponent.image.url}}" alt="프로필사진">
                         {%else%}
-                            <img class="profileImgChatroom_sw" src="{% static 'images/defaultprofile.svg' %}" alt="프로필사진">
+                            <img class="profileImgChatroom_sw" src="{% static 'images/post-list-default.png' %}" alt="기본프로필사진">
                         {% endif %}
                     {%else %}
                     <!-- 시간이 바뀌거나 사람이 바뀌면 뜨게 함 -->
@@ -144,7 +147,7 @@
                             {% if opponent.image %}
                             <img class="profileImgChatroom_sw" src="{{opponent.image.url}}" alt="프로필사진">
                             {%else%}
-                            <img class="profileImgChatroom_sw" src="{% static 'images/lionprofile.svg' %}" alt="프로필사진">
+                            <img class="profileImgChatroom_sw" src="{% static 'images/post-list-default.png' %}" alt="프로필사진">
                             {% endif %}
                         {% else %}
                             <div class="profileImgChatroom_sw" style="visibility: hidden;"></div>
@@ -154,11 +157,13 @@
 
                     <!-- 상대 채팅 버블 여기부터-->
                     {% if comment.image %}
-                    <img src="{{comment.image.url}}" alt=" 상대가 보낸 이미지" width="200">
+                    <img class="sentPic_sw{% if comment == last_comment and just_sent %} new-comment{% endif %}" 
+                    src="{{comment.image.url}}" alt=" 상대가 보낸 이미지">
                     {% endif %}
                     {% if comment.content %}
                     <p>
-                    <div class="opponentContentTextChatroom">{{ comment.content }} </div>  
+                    <div class="opponentContentTextChatroom{% if comment == last_comment and just_sent %} new-comment{% endif %}{% if comment.is_new_group %} with-tail-left{% endif %}">
+                        {{ comment.content }} </div>  
                     {% if comment.is_last_of_group%}
                         <div class="timeTextChatroom">{{ comment.timestamp|date:"A h:i" }}</div>
                     {% endif %}
