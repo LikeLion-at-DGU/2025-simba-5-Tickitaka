@@ -219,13 +219,7 @@ function checkSubmitButton() {
 timeInput.addEventListener('input', checkSubmitButton); //  실시간 감지
 
 
-//엑스 버튼
-document.addEventListener('DOMContentLoaded', function () {
-    const closeButton = document.querySelector('.f1_closeButtonCreate_sw');
-    closeButton.addEventListener('click', function () {
-        window.location.href = '/'; //  메인 페이지 URL (루트)
-    });
-});
+
 
 // post_edit을 위한 js
 document.addEventListener("DOMContentLoaded", function () {
