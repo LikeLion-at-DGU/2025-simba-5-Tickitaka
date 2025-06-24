@@ -86,7 +86,22 @@ window.addEventListener("beforeunload", function () {
 });
 
 
+document.addEventListener('DOMContentLoaded', () => {
+  // URL에 just_sent=1 있을 때만 실행
+  if (window.location.search.includes("just_sent=1")) {
+    const newComments = document.querySelectorAll('.new-comment');
+    newComments.forEach(el => {
+      el.classList.remove('new-comment'); // 애니메이션 초기화
+      void el.offsetWidth;                // 리플로우 유도
+      el.classList.add('new-comment');   // 다시 붙여서 애니메이션 발동
+    });
 
+    // URL에서 just_sent 파라미터 제거
+    const url = new URL(window.location);
+    url.searchParams.delete('just_sent');
+    window.history.replaceState({}, document.title, url.pathname);
+  }
+});
 // 새로고침됐을 때에
 document.addEventListener("DOMContentLoaded", function () {
   const bubblesNow = document.querySelectorAll(".myBubbleChatroom_sw, .opponentBubbleChatroom_sw");
@@ -141,6 +156,15 @@ if (textarea) {
   });
 }
 
+window.addEventListener('DOMContentLoaded', () => {
+  if (window.location.search.includes('just_sent=1')) {
+    // 띠용 애니메이션 한 번 주고 나면 URL 파라미터 제거
+    const url = new URL(window.location);
+    url.searchParams.delete('just_sent');
+    window.history.replaceState({}, document.title, url.pathname);
+  }
+});
+let isSendingImage = false;
 
 
 // 자동 새로고침 (입력 중 아닐 때만)
@@ -148,4 +172,5 @@ setInterval(() => {
   if (!isTyping) {
     location.reload();
   }
-}, 5000000);
+}, 5000);
+
