@@ -333,7 +333,7 @@
     color: #2A2A2A;
     font-family: "Pretendard Variable";
     font-size: 12px;
-    position:  relative;
+    position: relative;
     top: -2px;
     font-style: normal;
     font-weight: 600;
@@ -444,6 +444,9 @@
     font-weight: 600;
     line-height: normal;
     align-self: stretch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .post-item-time_sy {
