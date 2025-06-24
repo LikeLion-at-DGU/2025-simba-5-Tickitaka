@@ -2,32 +2,35 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/received_notifications.css' %}" />
+<link rel="stylesheet" href="{% static 'css/friend_alarm.css' %}" />
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
 <body>
-    <div class="friend-search-container_sy">
-        <div class="friend-search-header_sy">
-            <a href="{% url 'main:home' %}">
-            <button class="backiconChatroom_sw">
-                <img src="{% static 'images/backicon.svg' %}" alt="뒤로가기아이콘">
-            </button>
-        </a>
-            <h1 class="friend-search-title_sy">받은 알림</h1>
+    <div class="friend-alarm-container_sy">
+        <div class="friend-alarm-header_sy">
+            <div class="go-back-btn_sy">
+                <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M0.29277 5.79301L5.94977 0.136013L7.36377 1.55001L2.41377 6.50001L7.36377 11.45L5.94977 12.864L0.29277 7.20701C0.105299 7.01949 -1.66893e-05 6.76518 -1.66893e-05 6.50001C-1.66893e-05 6.23485 0.105299 5.98054 0.29277 5.79301Z"
+                        fill="white" />
+                </svg>
+            </div>
+            <h1 class="friend-alarm-title_sy">받은 알림</h1>
         </div>
+
         <div class="friend-search-content_sy">
-        
                     <div class="friend-search-list_sy">
                         {% for notification in notifications %}
+                            {% if notification.friend_request.status == 'pending' %}
                             <div class="friend-card_sy">
                                 <div class="friend-info_sy">
-                                    {% if notification.profile.image %}
-                                    <img src="{{ notification.sender.image.url }}" class="profile-img_sy" />
+                                    {% if notification.sender.image %}
+                                        <img src="{{ notification.sender.image.url }}" class="profile-img_sy" />
                                     {% else %}
-                                    <img src="{% static 'images/lionprofile.svg' %}" class="profile-img_sy" />
+                                        <img src="{% static 'images/lionprofile.svg' %}" class="profile-img_sy" />
                                     {% endif %}
                                     <p class="nickname_sy">{{ notification.sender.nickname }}</p>
                                 </div>
-                                <div class="btnWrapper_sw">
+                                <div class="alarm-btn_sy">
                                     <form method="POST" action="{% url 'friends:accept_friend_request' notification.friend_request.id %}">
                                         {% csrf_token %}
                                         <button type="submit" class="accept-btn_sy">수락</button>
@@ -38,15 +41,14 @@
                                     </form>
                                 </div>
                             </div>
+                            {% endif %}
                         {% endfor %}
                     </div>
-               
                     <div class="friend-search-list_sy">
                         <p style="color: #888; font-size: 14px; text-align: center; margin-top: 24px; width: 100%;">
-                            받은 알림이 없습니다.
+                            받은 알림이 없습니다
                         </p>
                     </div>
-             
         </div>
     </div>
 </body>
@@ -54,5 +56,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static '/js/friend_search.js' %}"></script>
+<script src="{% static '/js/friend_alarm.js' %}"></script>
 {% endblock %}
