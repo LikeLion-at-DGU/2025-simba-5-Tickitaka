@@ -25,7 +25,15 @@ def home(request):
     minutes = total_minutes % 60
 
     # burning = 1인 게시글 중에서 10개 랜덤 추출
-    burning_posts = list(Post.objects.filter(burning=1))
+    burning_posts = list(
+        Post.objects.filter(
+            burning=1,
+            status='waiting', #거래 가능한 상태만
+            # 내 게시글은 제외
+        ).exclude(
+            master = profile
+        )
+    )
     random.shuffle(burning_posts)
     burning_posts = burning_posts[:10]
 
