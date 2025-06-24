@@ -89,17 +89,17 @@ button{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
+    gap: 14.33333px;
     align-self: stretch;
 }
 
 .f1_photosFrameCreate_sw{
-    width: 358px;
+    max-width: 358px;
     height: 75px;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
-    gap: 19.33333px;
+    gap: 14.33333px;
     align-self: stretch;
 }
 .f1_photoCreate_sw{
