@@ -6,6 +6,7 @@ height: 844px;
 margin: 0 auto;
 flex-direction: column;
 align-items: center;
+background: #FFF;
 }
 
 .pageFrameLogin_sw{
@@ -95,7 +96,7 @@ Frame 1321317291*/
 .idPwButtonSignupFrameLogin_sw{
     
     width: 343px;
-    height: 257px;
+    height: 279px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -108,7 +109,7 @@ Frame 1321317289*/
 .idPwButtonFrameLogin_sw{
 
     width: 343px;
-    height: 224px;
+    height: 246px;
 
     display: flex;
     flex-direction: column;
@@ -119,20 +120,35 @@ Frame 1321317289*/
 Frame 1321317288*/
 .idPwFrameLogin_sw{
     width: 343px;
-    height: 156px; 
+    height: 178px; 
     gap:16px;
     display: flex;
     flex-direction: column;
 
 }
-.titleIdPwInputFrameLogin_sw{
-    
+.titleIdInputFrameLogin_sw{
     width: 343px;
-    height: 70px;
-
+    min-height: 70px;
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+.titlePwInputFrameLogin_sw{
+    width: 343px;
+    min-height: 92px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.errorMsgLogin_sw{
+    color: #C75352;
+
+/* caption */
+font-family: "Pretendard Variable";
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
 }
 .idPwTitleLogin_sw{
     width: 343px;

@@ -129,8 +129,8 @@
                 </div>
                 {% else %}  
                  <!--상대가 보낸 거  -->
-                <div class="opponentBubbleChatroom_sw">  
-                     {% if comment.prev_is_notice %}
+                <div class="opponentBubbleChatroom_sw"> 
+                    {% if comment.prev_is_notice %}
                         {% if opponent.image %}
                             <img class="profileImgChatroom_sw" src="{{opponent.image.url}}" alt="프로필사진">
                         {%else%}
@@ -138,17 +138,17 @@
                         {% endif %}
                     {%else %}
                     <!-- 시간이 바뀌거나 사람이 바뀌면 뜨게 함 -->
-                    {% ifchanged comment.writer.id comment.timestamp|date:"Y-m-d H:i" %}   
+                        {% ifchanged comment.writer.id comment.timestamp|date:"Y-m-d H:i" %}   
                         <!-- 프로필 사진 위치 여기부터 -->
-                        {% if opponent.image %}
+                            {% if opponent.image %}
                             <img class="profileImgChatroom_sw" src="{{opponent.image.url}}" alt="프로필사진">
-                        {%else%}
+                            {%else%}
                             <img class="profileImgChatroom_sw" src="{% static 'images/defaultprofile.svg' %}" alt="프로필사진">
-                        {% endif %}
-                    {% else %}
-                        <div class="profileImgChatroom_sw" style="visibility: hidden;"></div>
+                            {% endif %}
+                        {% else %}
+                            <div class="profileImgChatroom_sw" style="visibility: hidden;"></div>
                         <!-- 프로필 사진 위치 여기까지 -->
-                    {% endifchanged %}
+                        {% endifchanged %}
                     {%endif %}
 
                     <!-- 상대 채팅 버블 여기부터-->

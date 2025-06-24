@@ -4,8 +4,7 @@
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
 
 <div class="displaySize_sw">
-    <div class="pageFrameLogin_sw">
-    
+    <div class="pageFrameLogin_sw">    
         <div class="titleLogin_sw">로그인</div>
         
         <div class="divideTopLineLogin_sw"></div>
@@ -19,17 +18,19 @@
                 <form action="" method="post" class="idPwButtonFrameLogin_sw">
                     {% csrf_token %}
                     <div class="idPwFrameLogin_sw">
-                        <div class="titleIdPwInputFrameLogin_sw">
+                        <div class="titleIdInputFrameLogin_sw">
                             <label class="idPwTitleLogin_sw">아이디</label>
                             <input class="idFrameLogin_sw" id="idFrameLogin_sw" type= "text" name="username" placeholder="아이디를 입력하세요" >
                         </div>
-                        <div class="titleIdPwInputFrameLogin_sw">
+                        <div class="titlePwInputFrameLogin_sw">
                             <label class="idPwTitleLogin_sw">비밀번호</label>
                             <input class="pwFrameLogin_sw" id="pwFrameLogin_sw" type="password" name="password"placeholder="비밀번호를 입력하세요">
+                            <small class="errorMsgLogin_sw"></small>
                         </div>
                     </div>
                     <button class="buttonLogin_sw" id="buttonLogin_sw" type="submit">로그인</button>
                 </form>
+                <input type="hidden" id="loginFailedFlag" value="{{ login_failed|yesno:'1,0' }}">
 
                 <div class="signupFrameLogin_sw">
                     <div class="divideBottomLineLogin_sw"></div>

@@ -81,7 +81,7 @@ def login_view(request):
             login(request, user)
             return redirect('main:home')
         else:
-            return render(request, 'accounts/login.html')
+            return render(request, 'accounts/login.html', {'login_failed': True})
         
     return render(request, 'accounts/login.html')
 
