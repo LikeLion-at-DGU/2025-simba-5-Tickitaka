@@ -138,17 +138,17 @@
                         {% endif %}
                     {%else %}
                     <!-- 시간이 바뀌거나 사람이 바뀌면 뜨게 함 -->
-                        {% ifchanged comment.writer.id comment.timestamp|date:"Y-m-d H:i" %}   
+                        {% if comment.is_new_group %}   
                         <!-- 프로필 사진 위치 여기부터 -->
                             {% if opponent.image %}
                             <img class="profileImgChatroom_sw" src="{{opponent.image.url}}" alt="프로필사진">
                             {%else%}
-                            <img class="profileImgChatroom_sw" src="{% static 'images/defaultprofile.svg' %}" alt="프로필사진">
+                            <img class="profileImgChatroom_sw" src="{% static 'images/lionprofile.svg' %}" alt="프로필사진">
                             {% endif %}
                         {% else %}
                             <div class="profileImgChatroom_sw" style="visibility: hidden;"></div>
                         <!-- 프로필 사진 위치 여기까지 -->
-                        {% endifchanged %}
+                        {% endif %}
                     {%endif %}
 
                     <!-- 상대 채팅 버블 여기부터-->
