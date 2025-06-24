@@ -165,6 +165,7 @@
     padding: 21px 19px 22px 20px;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     border-radius: 48px;
     color: #086FC6;
     background: #CBE6FD;
