@@ -25,17 +25,18 @@
     </div>
     
     <div class="tradeTitleFrameChatroom_sw">
-        {% if post.image.all %}
-                {% for image in post.images.all %}
-                <a href="{% url 'posts:post_detail' chatroom.post.id %}">
-                    <img class="tradeTitleImageChatroom_sw" src="{{ image.image.url }}" alt="게시물 사진">
-                </a>
-                {% endfor %}
-        {% else %}
-                 <a href="{% url 'posts:post_detail' chatroom.post.id %}">
-                    <img class="tradeTitleImageChatroom_sw" src="{% static 'images/test2.png'%}" alt="기본 이미지">
-                </a>
-        {% endif %}
+            {% with post.images.all|first as first_image %}
+                {% if first_image %}
+                    <a href="{% url 'posts:post_detail' chatroom.post.id %}">
+                        <img class="tradeTitleImageChatroom_sw" src="{{ first_image.image.url }}" alt="게시물 사진">
+                    </a>
+                {% else %}
+                    <a href="{% url 'posts:post_detail' chatroom.post.id %}">
+                        <img class="tradeTitleImageChatroom_sw" src="{% static 'images/post-list-default.png' %}" alt="기본 이미지">
+                    </a>
+                {% endif %}
+            {% endwith %}
+
           
             <div class="tradeTitleTextFrameChatroom_sw">
                 <div class="tradeTitleTextChatroom_sw">{{post.title}}</div>
@@ -220,7 +221,11 @@
         </button>
     </div>
     <div class="modalTextBoxChatroom_sw">
+        {% if post.private_info %}
         <p class="modalTextChatroom_sw">{{post.private_info}}</p>
+        {% else %}
+        <p class="modalTextChatroom_sw">민감정보가 없습니다.</p>
+        {% endif %}
     </div>
 </div>
 <!-- 여기까지 민감정보 모달 -->
