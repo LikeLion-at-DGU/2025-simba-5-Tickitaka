@@ -32,13 +32,13 @@
                         <div class="first-info_sy">
                             <div class="history-friend_sy">
                                 {% if history.post %}
-                                    {% if history.post.master == request.user.profile %}
-                                        {{ history.post.helper.nickname }}
-                                    {% else %}
-                                        {{ history.post.master.nickname }}
-                                    {% endif %}
+                                {% if history.post.master == request.user.profile %}
+                                {{ history.post.helper.nickname }}
                                 {% else %}
-                                    가입 선물
+                                {{ history.post.master.nickname }}
+                                {% endif %}
+                                {% else %}
+                                가입 선물
                                 {% endif %}
                             </div>
                             <div class="history-location_sy">{{ history.post.building.name }}</div>
@@ -46,11 +46,11 @@
                         <div class="second-info_sy">
                             <div class="history-title_sy">
                                 {% if history.type == 'tip' and history.post %}
-                                    친절한 거래에 대한 팁입니다
+                                친절한 거래에 대한 팁입니다
                                 {% elif not history.post %}
-                                    시간을 알차게 활용해보세요!
+                                시간을 알차게 활용해보세요!
                                 {% else %}
-                                    {{ history.post.title }}
+                                {{ history.post.title }}
                                 {% endif %}
                             </div>
                         </div>
@@ -64,41 +64,41 @@
                             {% endif %}">
                             {% if history.type == 'minus' %}-{% else %}+{% endif %}{{ history.amounts }}분
                         </div>
-                        <div class="history-total-time_sy">{{history.user.time_balance}}분</div>
+                        <div class="history-total-time_sy">{{history.balance_after}}분</div>
                     </div>
                 </div>
                 {% endfor %}
 
                 {% for history in tip_histories %}
-                    <div class="history-pluscard_sy">
-                        <div class="history-info_sy">
-                            <div class="first-info_sy">
-                                <div class="history-friend_sy">
-                                    {% if history.post %}
-                                        {% if history.post.master == request.user.profile %}
-                                            {{ history.post.helper.nickname }}
-                                        {% else %}
-                                            {{ history.post.master.nickname }}
-                                        {% endif %}
-                                    {% else %}
-                                        가입 선물
-                                    {% endif %}
-                                </div>
-                                <div class="history-location_sy">{{ history.post.building.name }}</div>
+                <div class="history-pluscard_sy">
+                    <div class="history-info_sy">
+                        <div class="first-info_sy">
+                            <div class="history-friend_sy">
+                                {% if history.post %}
+                                {% if history.post.master == request.user.profile %}
+                                {{ history.post.helper.nickname }}
+                                {% else %}
+                                {{ history.post.master.nickname }}
+                                {% endif %}
+                                {% else %}
+                                가입 선물
+                                {% endif %}
                             </div>
-                            <div class="second-info_sy">
-                                <div class="history-title_sy">
-                                    친절한 거래에 대한 팁입니다
-                                </div>
-                            </div>
+                            <div class="history-location_sy">{{ history.post.building.name }}</div>
                         </div>
-                        <div class="time-sy">
-                            <div class="history-time_sy tip">
-                                +{{ history.amounts }}분
+                        <div class="second-info_sy">
+                            <div class="history-title_sy">
+                                친절한 거래에 대한 팁입니다
                             </div>
-                            <div class="history-total-time_sy">{{history.user.time_balance}}분</div>
                         </div>
                     </div>
+                    <div class="time-sy">
+                        <div class="history-time_sy tip">
+                            +{{ history.amounts }}분
+                        </div>
+                        <div class="history-total-time_sy">{{history.balance_after}}분</div>
+                    </div>
+                </div>
                 {% endfor %}
             </div>
             <!-- 사용 (minus) -->
@@ -109,13 +109,13 @@
                         <div class="first-info_sy">
                             <div class="history-friend_sy">
                                 {% if history.post %}
-                                    {% if history.post.master == request.user.profile %}
-                                        {{ history.post.helper.nickname }}
-                                    {% else %}
-                                        {{ history.post.master.nickname }}
-                                    {% endif %}
+                                {% if history.post.master == request.user.profile %}
+                                {{ history.post.helper.nickname }}
                                 {% else %}
-                                    가입 선물
+                                {{ history.post.master.nickname }}
+                                {% endif %}
+                                {% else %}
+                                가입 선물
                                 {% endif %}
                             </div>
                             <div class="history-location_sy">{{ history.post.building.name }}</div>
@@ -123,11 +123,11 @@
                         <div class="second-info_sy">
                             <div class="history-title_sy">
                                 {% if history.type == 'tip' and history.post %}
-                                    친절한 거래에 대한 팁입니다
+                                친절한 거래에 대한 팁입니다
                                 {% elif not history.post %}
-                                    시간을 알차게 활용해보세요!
+                                시간을 알차게 활용해보세요!
                                 {% else %}
-                                    {{ history.post.title }}
+                                {{ history.post.title }}
                                 {% endif %}
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                             {% endif %}">
                             {% if history.type == 'minus' %}-{% else %}+{% endif %}{{ history.amounts }}분
                         </div>
-                        <div class="history-total-time_sy">{{history.user.time_balance}}분</div>
+                        <div class="history-total-time_sy">{{history.balance_after}}분</div>
                     </div>
                 </div>
                 {% endfor %}
@@ -156,13 +156,13 @@
                         <div class="first-info_sy">
                             <div class="history-friend_sy">
                                 {% if history.post %}
-                                    {% if history.post.master == request.user.profile %}
-                                        {{ history.post.helper.nickname }}
-                                    {% else %}
-                                        {{ history.post.master.nickname }}
-                                    {% endif %}
+                                {% if history.post.master == request.user.profile %}
+                                {{ history.post.helper.nickname }}
                                 {% else %}
-                                    가입 선물
+                                {{ history.post.master.nickname }}
+                                {% endif %}
+                                {% else %}
+                                가입 선물
                                 {% endif %}
                             </div>
                             <div class="history-location_sy">
@@ -172,11 +172,11 @@
                         <div class="second-info_sy">
                             <div class="history-title_sy">
                                 {% if history.type == 'tip' and history.post %}
-                                    친절한 거래에 대한 팁입니다
+                                친절한 거래에 대한 팁입니다
                                 {% elif not history.post %}
-                                    시간을 알차게 활용해보세요!
+                                시간을 알차게 활용해보세요!
                                 {% else %}
-                                    {{ history.post.title }}
+                                {{ history.post.title }}
                                 {% endif %}
                             </div>
                         </div>
@@ -190,7 +190,7 @@
                             {% endif %}">
                             {% if history.type == 'minus' %}-{% else %}+{% endif %}{{ history.amounts }}분
                         </div>
-                        <div class="history-total-time_sy">{{history.user.time_balance}}분</div>
+                        <div class="history-total-time_sy">{{history.balance_after}}분</div>
                     </div>
                 </div>
                 {% endfor %}
