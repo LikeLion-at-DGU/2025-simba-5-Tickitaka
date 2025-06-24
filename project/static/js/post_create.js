@@ -72,8 +72,11 @@ document.querySelectorAll('.f1_deletePreviewButtonCreate_sw').forEach(btn => {
         const wrapper = btn.closest('.f1_previewImageWrapperCreate_sw');
         
         const hiddenInput = wrapper.querySelector('input[type="hidden"][name="delete_images"]');
-        if (hiddenInput) hiddenInput.disabled = false;
-
+              if (hiddenInput) {
+            hiddenInput.disabled = false;
+            // DOM 상단의 안전한 영역으로 이동 (예: form 맨 뒤)
+            document.querySelector('form').appendChild(hiddenInput);
+        }
         wrapper.remove();
         imageCount--;
         photoCount.textContent = `${imageCount}/3`;
@@ -217,8 +220,6 @@ function checkSubmitButton() {
 }
 
 timeInput.addEventListener('input', checkSubmitButton); //  실시간 감지
-
-
 
 
 // post_edit을 위한 js

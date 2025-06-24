@@ -11,11 +11,9 @@
     <!-- 헤더 -->
     <div class="headerFrameChatlist_sw">
     <!-- js로 연결 필요-->
-        <a href="{% url 'chats:chat_list' %}">
-            <button class="backiconChatlist_sw">
+        <button onclick="history.back()" class="backiconChatlist_sw">
                 <img src="{% static 'images/backicon.svg' %}" alt="뒤로가기아이콘">
-            </button>
-        </a>
+        </button>
         <div class="headerTitleChatlist_sw">
             <div class="headerTextChatlist_sw">프로필</div>
         </div>

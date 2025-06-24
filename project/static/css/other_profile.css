@@ -1,4 +1,7 @@
 /* other_profile.css */
+button{
+    cursor: pointer;
+}
 .pageAlignChatlist_sw{
     width: 390px;
     height: 844px;
@@ -76,22 +79,22 @@ gap: 24px;
 
 .rightWrapperOtherProfile_sw{
     width: 263px;
-    height: 150px;
+    height: 94px;
+    display: flex;
     flex-direction: column;
+    gap: 8px;
 
 }
 .textWRapperOtherProfile_sw{
-
-width: 263px;
-height: 71px;
-display: flex;
-flex-direction: column;
-gap: 18px;
-justify-content: flex-start;
+    width: 263px;
+    height: 71px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    justify-content: flex-start;
 }
 .nameTextOtherProfile_sw{
     color: #2A2A2A;
-/* H2 */
 font-family: Pretendard;
 font-size: 20px;
 font-style: normal;

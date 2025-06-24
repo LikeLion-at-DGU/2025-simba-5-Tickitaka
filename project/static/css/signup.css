@@ -28,14 +28,14 @@ align-items: center;
     flex-direction: column;
     align-items: flex-start;   
 }
-
-.titleSignup_sw{
-
-    width: 358px;
+.titleWrapper_sw{
+      width: 358px;
     height: 29px;
     display: flex;
-    justify-content: center;
-
+    justify-content: space-between;
+align-items: center;
+}
+.titleSignup_sw{
     color:  #2A2A2A;
     font-family: "Pretendard Variable";
     font-size: 20px;

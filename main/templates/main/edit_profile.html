@@ -7,10 +7,8 @@
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
 
 <div class="pageAlignChatlist_sw">
-
     <!-- 헤더 -->
     <div class="headerFrameChatlist_sw">
-        <!-- 아직 메인 없음 -->
         <a href="{% url 'main:mypage' %}">
             <button class="backiconChatlist_sw">
                 <img src="{% static 'images/backicon.svg' %}" alt="뒤로가기아이콘">
@@ -34,7 +32,7 @@
                 {% if profile.image %}
                 <img src="{{profile.image.url}}" alt="현재 프로필" class="photoPreview_sw">
                 {% else %}
-                <img src="{% static 'images/elephant.png' %}" alt="기본프로필사진 ">
+                <img src="{% static 'images/lionprofile.svg' %}" class="photoPreview_sw" alt="기본프로필사진 ">
                 {% endif %}
 
                 <!-- 숨겨진 파일 업로드 input -->
