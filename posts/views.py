@@ -76,9 +76,21 @@ def post_list(request):
 def post_detail(request, id):
      post = get_object_or_404(Post, id=id)
      is_saved = Saved.objects.filter(user=request.user.profile, post=post).exists()
+     
+     if post.status in ['in_progress', 'task_completed', 'chatting']:
+          display_status = 'in_progress_group'
+     elif post.status == 'waiting':
+          display_status = 'waiting'
+     elif post.status == 'done':
+          display_status = 'done'
+     else:
+          display_status = 'unknown'
+     
+     
      return render(request, 'posts/post_detail.html', {
           'post': post,
           'is_saved': is_saved,
+          'display_status': display_status,
      })
 
 @login_required
