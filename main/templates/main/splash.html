@@ -14,9 +14,7 @@
                 <div class="splash-logo_sy">
                     <img src="{% static 'images/splash-logo.svg' %}" alt="Logo" />
                 </div>
-                <div class="splash-text_sy">
-                    시간이 부족할 때<br/>학교에서 찾는 도움 공유 플랫폼
-                </div>
+                <div class="splash-text_sy" id="splashText"></div>
             </div>
             <video autoplay muted loop playsinline class="splash-video">
                 <source src="{% static 'video/colcol.webm' %}" type="video/mp4">
@@ -26,5 +24,7 @@
             </a>
         </div>
     </div>
+
+    <script src="{% static 'js/splash.js' %}"></script>
 </body>
 </html>

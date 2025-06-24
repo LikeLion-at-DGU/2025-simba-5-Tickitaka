@@ -162,3 +162,17 @@ button {
     gap: 16px;
     justify-content: flex-start;
 }
+
+.aBoxMypage_sw:hover .aTextMypage_sw {
+    color: #025397;
+
+}
+
+.aBoxMypage_sw:hover img {
+    filter: brightness(0) saturate(100%) invert(27%) sepia(97%) saturate(473%) hue-rotate(180deg) brightness(91%) contrast(89%);
+}
+
+.aBoxMypage_sw:hover {
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.12);
+    background: #F6F8FA;
+}
