@@ -108,8 +108,8 @@
         </div>
         
         <!-- 채팅 버블이 뜨는 곳 -->
-   {% for comment in comments %}
-            {% if comment.is_system %}
+    {% for comment in comments %}
+        {% if comment.is_system %}
             <div id="startNotice_sw" class="longDescriptionBubbleChatroom_sw">
                 {{comment.content|linebreaksbr}}
             </div>
@@ -117,7 +117,8 @@
                 <!-- 내가 보낸 거 -->
                 <div class="myBubbleChatroom_sw">
                     {% if comment.image %}
-                    <img src="{{comment.image.url}}" alt=" 내가 보낸 이미지"  width="200" >
+                        <div class="timeTextChatroom">{{ comment.timestamp|date:"A h:i" }}</div>
+                        <img class="sentPic_sw"src="{{comment.image.url}}" alt=" 내가 보낸 이미지" >
                     {% endif %}
                     {% if comment.content %}
                     <p>

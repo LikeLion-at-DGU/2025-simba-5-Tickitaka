@@ -236,15 +236,35 @@ button {
     font-weight: 700;
 }
 
+/* 채팅 띠용 */
+@keyframes popIn {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .myBubbleChatroom_sw {
+    animation: popIn 0.3s ease-out;
+    transition: all 0.2s; 
     display: flex;
-    gap: 8px;
+    gap: 18px;
     flex-direction: row;
     justify-content: flex-end;
     align-items: flex-end;
 
 }
-
+.sentPic_sw{
+    width: 200px;
+border-radius: 20px;
+margin-right: 2px;
+}
 .myContentTextChatroom {
     word-wrap: break-word;
     word-break: break-word;
@@ -253,7 +273,7 @@ button {
     min-width: 10px;
     max-width: 246px;
     padding: 10px 10px;
-    border-radius: 6px;
+    border-radius: 56px;
     background: #025397;
     color: #FFF;
     font-family: "Pretendard Variable";
