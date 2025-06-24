@@ -5,19 +5,19 @@ a {
 
 .my-post-container_sy {
     width: 390px;
-    min-height: 844px;
+    height: 844px;
     display: flex;
     margin: 0 auto;
     flex-direction: column;
     background: #F6F8FA;
     gap: 24px;
-    padding-bottom: 32px;
+   
 }
 
 .my-post-header_sy {
     display: flex;
     height: 77px;
-    width: 390px;
+    width: 405px;
     padding: 24px 161px 24px 16px;
     align-items: center;
     border-bottom: 0.5px solid var(--N-4, #D9D9D9);
@@ -49,14 +49,18 @@ a {
     flex-direction: column;
     gap: 16px;
     position: static;
+    padding-bottom: 16px;
+    padding-top: 16px;
     padding-left: 16px;
     padding-right: 16px;
-    margin-top: 102px;
+    margin-top: 77px;
     height: 767px;
-        overflow-y: auto;
+    overflow-y: auto;
     overflow-x: hidden;
 
 }
+
+
 .post-list_sy::-webkit-scrollbar {
     width: 6px;
 }

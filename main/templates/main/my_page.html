@@ -20,8 +20,11 @@
     <div class="wrapperMypage_sw">
         <a href="{% url 'main:edit_profile' %}" class="profileCardMypage_sw">
             <div class="profileWrapperMypage_sw">
-                {{profile.img}}
-                <img src="{% static 'images/lionprofile.svg' %}" alt="프사">
+                {% if profile.image %}
+                <img src="{{profile.image.url}}" class="profileCircle_sw" alt="프사">
+                {% else %}
+                <img src="{% static 'images/lionprofile.svg' %}" class="profileCircle_sw" alt="기본프사">
+                {% endif %}
                 <div class="nicknameMypage_sw">
                 {{profile.nickname}}    
                 </div>

@@ -8,22 +8,24 @@
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
 <!-- available_time 불러오기 -->
 <input type="hidden" id="availableTime" value="{{ available_time|default:0 }}">
-
+ <!-- 헤더 -->
+    <div class="headerFrameChatlist_sw">
+    <!-- 아직 메인 없음 -->
+        <a href="{% url 'posts:post_detail' post.id %}">
+            <button class="backiconChatlist_sw">
+                <img src="{% static 'images/backicon.svg' %}" alt="뒤로가기아이콘">
+            </button>
+        </a>
+        <div class="headerTitleChatlist_sw">
+            <div class="headerTextChatlist_sw">글 수정하기</div>
+        </div>
+    </div>
 <form method="POST" action="{% url 'posts:post_update' post.id %}" enctype="multipart/form-data">
     <div class="pageAlignCreate_sw">
         <div class="allFrameCreate_sw">
             {% csrf_token %}
             <div class="contentsFrameCreate_sw">
                 <div class="f1_frameCreate_sw">
-                    <div class="f1_titleFrameCreate_sw">
-                        <div class="f1_titleBoxCreate_sw">
-                            <button class="f1_closeButtonCreate_sw" type="button">
-                                <img src="{% static 'images/xicon.svg' %}" alt="엑스아이콘">
-                            </button>
-                            <div class="f1_titleCreate_sw">거래글 작성</div>
-                        </div>
-                        <div class="f1_lineCreate_sw"></div>
-                    </div>
                     <div class="f1_photosFrameCreate_sw">
                         <!-- 숨겨진 파일 업로드 input -->
                         <input type="file" id="photoUpload" name="images" style="display: none;" accept="image/*"
@@ -109,7 +111,7 @@
         </div>
     </div>
 </form>
-<p>보유시간 : {{available_time}}</p>
+
 
 {% endblock %}
 {% block scripts %}
