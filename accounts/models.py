@@ -37,6 +37,7 @@ def create_user_profile(sender, instance, created, **kwargs):
             user=profile,
             amounts=30,
             type='plus',
+            balance_after = profile.time_balance
             # 가입 선물은 post_id는 null임
         )
 
@@ -59,6 +60,7 @@ class TimeHistory(models.Model):
     type = models.CharField(max_length=10, choices=TRANSACTION_TYPES)
     timestamp = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey('posts.Post', on_delete=models.SET_NULL, null=True, blank=True)
+    balance_after = models.IntegerField(null=True, blank=True)
 
 
 

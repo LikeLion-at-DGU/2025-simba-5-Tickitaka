@@ -226,7 +226,8 @@ def approve_finish(request, room_id):
         user=post.master,
         amounts=amounts,
         type='minus',
-        post_id=post.id
+        post_id=post.id,
+        balance_after=master.time_balance
     )
 
     # 헬퍼 잔액 적립 및 기록
@@ -238,7 +239,8 @@ def approve_finish(request, room_id):
         user=post.helper,
         amounts=amounts,
         type='plus',
-        post_id=post.id
+        post_id=post.id,
+        balance_after=master.time_balance
     )
 
     Comment.objects.create(
@@ -368,7 +370,8 @@ def process_review(request, post_id):
                 user=post.helper,
                 amounts=tip_amount,
                 type='tip',
-                post_id=post.id
+                post_id=post.id,
+                balance_after=post.helper.time_balance
             )
 
         return redirect('posts:post_list')  # 후기 제출 후 메인으로 이동
