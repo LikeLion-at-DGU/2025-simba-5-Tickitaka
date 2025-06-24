@@ -1,101 +1,93 @@
 /* login.css */
-.displaySize_sw{
+.displaySize_sw {
     display: flex;
-width: 390px;
-height: 844px;
-margin: 0 auto;
-flex-direction: column;
-align-items: center;
+    width: 390px;
+    height: 844px;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
 }
 
-.pageFrameLogin_sw{
-
+.pageFrameLogin_sw {
     width: 343px;
     height: 452px;
     gap: 24px;
     display: flex;
-     margin-top: 36px;
+    margin-top: 36px;
     margin-bottom: 356px;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-  
+
 }
 
-.titleLogin_sw{
-     width: 343px;
+.titleLogin_sw {
+    width: 343px;
     height: 29px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color:  #2A2A2A;
+    color: #2A2A2A;
     font-family: "Pretendard";
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
 }
-.divideTopLineLogin_sw{
-    
+
+.divideTopLineLogin_sw {
     width: 343px;
     height: 1px;
-
-    background: #5E5E5E;
+    background: #8A8A8A;
 }
 
 /*Tickit~끝까지 감싸는 프레임
 콘텐츠*/
-.contentFrameLogin_sw{
-   
-    width:343px;
+.contentFrameLogin_sw {
+    width: 343px;
     height: 341px;
-    gap:32px;
+    gap: 32px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
+
 /*1. tickit~당신의 시간을 거래하세요*/
-.logoFrameLogin_sw{
-  
+.logoFrameLogin_sw {
     width: 161px;
     height: 60px;
-
     display: flex;
-    
     flex-direction: column;
     justify-content: space-between;
     align-items: start;
 }
-.logoLogin_sw{
-  
+
+.logoLogin_sw {
     height: 33px;
-    color: #2A2A2A;
+    color: #025397;
     text-align: center;
-font-family: CookieRunOTF;
-font-size: 24px;
-font-style: normal;
-font-weight: 900;
-line-height: normal;
+    font-family: CookieRunOTF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
 }
-.logoDescriptionLogin_sw{
-text-align:start;
-color: #666;
-font-family: "Pretendard Variable";
 
-/*이거 폰트 16으로 하면 프레임 안에 안 들어감*/
-font-size: 15px;
-
-font-style: normal;
-font-weight: 500;
-line-height: normal;
+.logoDescriptionLogin_sw {
+    text-align: start;
+    color: #666;
+    font-family: "Pretendard Variable";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
 /*2. 아이디 입력~회원가입
 Frame 1321317291*/
-.idPwButtonSignupFrameLogin_sw{
-    
+.idPwButtonSignupFrameLogin_sw {
     width: 343px;
-    height: 257px;
+    height: 279px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -105,50 +97,49 @@ Frame 1321317291*/
 
 /*아이디입력창~로그인버튼까지
 Frame 1321317289*/
-.idPwButtonFrameLogin_sw{
-
+.idPwButtonFrameLogin_sw {
     width: 343px;
     height: 224px;
-
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
 }
+
 /*로그인부터
 Frame 1321317288*/
-.idPwFrameLogin_sw{
+.idPwFrameLogin_sw {
     width: 343px;
-    height: 156px; 
-    gap:16px;
+    height: 156px;
+    gap: 16px;
     display: flex;
     flex-direction: column;
 
 }
-.titleIdPwInputFrameLogin_sw{
-    
+
+.titleIdPwInputFrameLogin_sw {
     width: 343px;
     height: 70px;
-
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
-.idPwTitleLogin_sw{
+
+.idPwTitleLogin_sw {
     width: 343px;
     height: 14px;
     display: flex;
     align-items: center;
-    color:#2A2A2A;
+    color: #2A2A2A;
     font-family: "Pretendard";
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
 }
-.idFrameLogin_sw{
-    all:unset;
-    /* padding 포함해서 길이 계산 */
+
+.idFrameLogin_sw {
+    all: unset;
     box-sizing: border-box;
     width: 343px;
     height: 48px;
@@ -165,7 +156,8 @@ Frame 1321317288*/
     font-weight: 500;
     line-height: normal;
 }
-.idFrameLogin_sw::placeholder{
+
+.idFrameLogin_sw::placeholder {
     color: #999;
     font-family: Pretendard;
     font-size: 12px;
@@ -173,8 +165,9 @@ Frame 1321317288*/
     font-weight: 500;
     line-height: normal;
 }
-.pwFrameLogin_sw{
-    all:unset;
+
+.pwFrameLogin_sw {
+    all: unset;
     box-sizing: border-box;
     width: 343px;
     height: 48px;
@@ -190,9 +183,10 @@ Frame 1321317288*/
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    
+
 }
-.pwFrameLogin_sw::placeholder{
+
+.pwFrameLogin_sw::placeholder {
     color: #999;
     font-family: Pretendard;
     font-size: 12px;
@@ -200,13 +194,13 @@ Frame 1321317288*/
     font-weight: 500;
     line-height: normal;
 }
-.buttonLogin_sw{
+
+.buttonLogin_sw {
     all: unset;
     cursor: pointer;
     width: 343px;
     height: 44px;
     border-radius: 6px;
-
     background: #025397;
     display: flex;
     justify-content: center;
@@ -224,20 +218,21 @@ Frame 1321317288*/
 
 
 /*Frame 1321317294*/
-.signupFrameLogin_sw{
+.signupFrameLogin_sw {
     width: 343px;
-    gap:16px;
+    gap: 16px;
     display: flex;
     flex-direction: column;
 }
 
 
-.divideBottomLineLogin_sw{
+.divideBottomLineLogin_sw {
     width: 343px;
     height: 1px;
-    background: #000;
+    background: #8A8A8A;
 }
-.signupButtonLogin_sw{
+
+.signupButtonLogin_sw {
     all: unset;
     cursor: pointer;
     width: 343px;
