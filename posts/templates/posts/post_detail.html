@@ -82,7 +82,7 @@
                             <div class="status-button_sy">
                                 {% if post.status == "waiting" %}
                                 <button class="status-blue_sy">거래전</button>
-                                {% elif post.status == "chatting" or post.status == "in_progress" or post.status == "task_completed" %}
+                                {% elif post.status == "in_progress_group" %}
                                 <button class="status-red_sy">거래중</button>
                                 {% elif post.status == "done" %}
                                 <button class="status-green_sy">거래완료</button>
