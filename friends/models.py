@@ -15,7 +15,7 @@ class Friend(models.Model):
 
 class FriendRequestNotification(models.Model):
     sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='sent_notifications')
-    receiver = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='received_notifications')
+    receiver = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='friend_alarm')
     friend_request = models.ForeignKey(Friend, on_delete=models.CASCADE)
     is_read = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
