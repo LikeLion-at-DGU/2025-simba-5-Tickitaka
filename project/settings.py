@@ -144,5 +144,5 @@ EMAIL_HOST_USER = 'sisicallcallnow@gmail.com'
 EMAIL_HOST_PASSWORD = 'zqdalxkkcfffdwjt'
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://3750-220-117-244-232.ngrok-free.app",
+    "https://c5c5-210-94-220-229.ngrok-free.app",
 ]
