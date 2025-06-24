@@ -26,6 +26,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 18px;
+    min-height: 127px;
 }
 
 .splash-logo_sy {
@@ -50,6 +51,7 @@
     bottom: 210px;
     aspect-ratio: 331 / 330;
     object-fit: cover;
+    animation: run-in 1.4s ease-out forwards;
 }
 
 .login-button {
@@ -63,7 +65,7 @@
     margin: 0px 16px;
     align-self: stretch;
     border-radius: 20px;
-    background: var(--P-1, #025397);
+    /*background: var(--P-1, #025397);*/
     color: var(--N-5, #FFF);
     text-align: center;
     font-family: Pretendard;
@@ -74,4 +76,31 @@
     position: relative;
     z-index: 100;
     bottom: 475px;
+    background: linear-gradient(184deg, #025397, #3c77d3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
+
+.login-button:hover {
+    background: linear-gradient(135deg, #2f6ac5, #5b95e4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.splash-video {
+    animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+
