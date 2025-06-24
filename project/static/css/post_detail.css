@@ -350,3 +350,9 @@
     background-color: #666;
     cursor: not-allowed;
 }
+
+.edit-btn_sy:disabled,
+.delete-btn_sy:disabled {
+    background: #666;
+    cursor: default;
+}
