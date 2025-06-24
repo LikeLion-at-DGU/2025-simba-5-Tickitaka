@@ -45,6 +45,7 @@ def chat_room(request, room_id):
         if not (same_writer and same_minute):
             comment.is_last_of_group = True
 
+    comments = annotate_is_new_group(comments)
 
     read_status, created = ChatRoomReadStatus.objects.get_or_create(chatroom=chatroom, user=user_profile)
     read_status.last_read_at = timezone.now()
@@ -124,7 +125,9 @@ def fetch_chats(request, room_id):
         return HttpResponseForbidden("채팅을 볼 권한이 없습니다.")
 
     post = chatroom.post
-    comments = Comment.objects.filter(chatroom=chatroom).order_by('timestamp')
+    comments = list(Comment.objects.filter(chatroom=chatroom).order_by('timestamp'))
+    comments = annotate_is_new_group(comments)
+    
     opponent = chatroom.helper if chatroom.master == user_profile else chatroom.master
 
     return render(request, 'chats/chat_room.html', {
@@ -401,3 +404,18 @@ def reject_finish(request, room_id):
     )
 
     return redirect('chats:chat_room', room_id=room_id)
+
+
+# 공통 로직 함수로 분리 (중복 제거)
+def annotate_is_new_group(comments):
+    for i, comment in enumerate(comments):
+        if i == 0:
+            comment.is_new_group = True
+        else:
+            prev_comment = comments[i-1]
+            different_writer = (comment.writer_id != prev_comment.writer_id)
+            current_minute = comment.timestamp.strftime('%Y-%m-%d %H:%M')
+            prev_minute = prev_comment.timestamp.strftime('%Y-%m-%d %H:%M')
+            different_minute = (current_minute != prev_minute)
+            comment.is_new_group = (different_writer or different_minute)
+    return comments

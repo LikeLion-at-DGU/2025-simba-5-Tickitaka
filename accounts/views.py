@@ -91,7 +91,7 @@ def logout_view(request):
 
 from django.http import JsonResponse
 from .models import Profile
-from django.contrib.auth.models import User  # User 모델은 기본 Django 유저 모델
+from django.contrib.auth.models import User
 
 
 
