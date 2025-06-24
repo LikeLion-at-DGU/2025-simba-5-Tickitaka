@@ -164,7 +164,7 @@ def friend_list(request):
 
 
 @login_required
-def received_notifications(request):
+def friend_alarm(request):
      profile = request.user.profile
 
      notifications = FriendRequestNotification.objects.filter(
@@ -175,4 +175,4 @@ def received_notifications(request):
      context = {
           'notifications': notifications
      }
-     return render(request, 'friends/received_notifications.html', context)
+     return render(request, 'friends/friend_alarm.html', context)
