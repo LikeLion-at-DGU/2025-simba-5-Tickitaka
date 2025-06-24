@@ -50,29 +50,38 @@
                         <p>친구</p>
                     </div>
                 </a>
-                <a href="{% url 'chats:chat_room' chatroom.id %}">
-                    <div class="home-in-progress_sy">
-                        <div class="home-in-progress-content_sy">
-                            <div class="home-in-progress-header_sy">
-                                <img src="{% static 'images/in-progress.png' %}" alt="In Progress">
-                                <h2>수행 중인 거래</h2>
-                            </div>
-                            <div class="home-in-progress-post_sy">
-                                {% if ongoing_post %}
-                                    <div class="post-title_sy">{{ ongoing_post.title }}</div>
-                                    <div class="post-last-time_sy">
-                                        <span id="remaining-time" data-deadline="{{ deadline_timestamp }}"></span>
-                                        <p>남았어요</p>
-                                    </div>
-                                {% else %}
-                                    <div class="post-empty_sy">
-                                        지금 진행 중인 거래가 없어요. <br> 거래 목록에서 도움을 주고 받아보세요!
-                                    </div>
-                                {% endif %}
+                {% if ongoing_post and chatroom %}
+                    <a href="{% url 'chats:chat_room' chatroom.id %}">
+                {% else %}
+                    <div style="cursor: default;">
+                {% endif %}
+                        <div class="home-in-progress_sy">
+                            <div class="home-in-progress-content_sy">
+                                <div class="home-in-progress-header_sy">
+                                    <img src="{% static 'images/in-progress.png' %}" alt="In Progress">
+                                    <h2>수행 중인 거래</h2>
+                                </div>
+                                <div class="home-in-progress-post_sy">
+                                    {% if ongoing_post %}
+                                        <div class="post-title_sy">{{ ongoing_post.title }}</div>
+                                        <div class="post-last-time_sy">
+                                            <span id="remaining-time" data-deadline="{{ deadline_timestamp }}"></span>
+                                            <p>남았어요</p>
+                                        </div>
+                                    {% else %}
+                                        <div class="post-empty_sy">
+                                            지금 진행 중인 거래가 없어요. <br> 거래 목록에서 도움을 주고 받아보세요!
+                                        </div>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
+                {% if ongoing_post and chatroom %}
+                    </a>
+                {% else %}
                     </div>
-                </a>
+                {% endif %}
+
             </div>
             <div class="home-content3_sy">
                 <div class="home-boost-post_sy">
