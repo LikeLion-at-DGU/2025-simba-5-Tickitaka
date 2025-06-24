@@ -213,7 +213,7 @@ def post_update(request, id):
           delete_image_ids = request.POST.getlist('delete_images')
           for image_id in delete_image_ids:
                try:
-                    image = post.postimage_set.get(id=image_id)
+                    image = post.images.get(id=image_id)
                     image.delete()
                except PostImage.DoesNotExist:
                     continue
