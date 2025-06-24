@@ -236,15 +236,63 @@ button {
     font-weight: 700;
 }
 
+/* 채팅 띠용 */
+@keyframes smoothPop {
+  0% {
+    transform: translateY(10px) scale(0.95);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-2px) scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.new-comment {
+  animation: smoothPop 0.4s ease-out;
+}
+.with-tail {
+  position: relative;
+}
+
+.with-tail::after {
+  content: "";
+  position: absolute;
+  right: -12px;
+  bottom: 22px;
+  border-width: 0px 3px 10px 12px;
+  border-style: solid;
+  border-color: transparent transparent transparent #D9D9D9; /* 말풍선 배경색 */
+}
+.with-tail-left {
+  position: relative;
+}
+.with-tail-left::after {
+  content: "";
+  position: absolute;
+  left: -12px; /* 왼쪽으로 꼬리 빼기 */
+  bottom: 22px;
+  border-width: 0px 12px 10px 3px;
+  border-style: solid;
+  border-color: transparent #CBE6FD transparent transparent; /* 왼쪽만 색 */
+}
+
 .myBubbleChatroom_sw {
     display: flex;
-    gap: 8px;
+    gap: 18px;
     flex-direction: row;
     justify-content: flex-end;
     align-items: flex-end;
 
 }
-
+.sentPic_sw{
+    width: 200px;
+    border-radius: 20px;
+    margin-right: 15px;
+}
 .myContentTextChatroom {
     word-wrap: break-word;
     word-break: break-word;
@@ -253,9 +301,9 @@ button {
     min-width: 10px;
     max-width: 246px;
     padding: 10px 10px;
-    border-radius: 6px;
-    background: #025397;
-    color: #FFF;
+    border-radius: 15px;
+    background: #D9D9D9;
+    color: black;
     font-family: "Pretendard Variable";
     font-size: 12px;
     font-style: normal;
@@ -284,12 +332,12 @@ button {
     word-break: break-word;
     min-height: 34px;
     height: auto;
-    min-width: 40px;
+    min-width: 10px;
     max-width: 246px;
     padding: 10px 10px;
-    border-radius: 6px;
-    background: #8A8A8A;
-    color: #FFF;
+    border-radius: 15px;
+    background: #CBE6FD;
+    color: black;
     font-family: "Pretendard Variable";
     font-size: 12px;
     font-style: normal;
@@ -370,8 +418,6 @@ button {
 }
 
 .disabledChatInputChatroom_sw {
-
-
     resize: none;
     height: 21px;
     padding: 0 4px;
