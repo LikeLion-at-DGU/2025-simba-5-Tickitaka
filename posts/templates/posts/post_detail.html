@@ -36,7 +36,7 @@
                     {% for image in post.images.all %}
                         <img src="{{ image.image.url }}" alt="post image" class="carousel-image_sy">
                     {% empty %}
-                        <img src="{% static 'images/test2.png' %}" alt="기본 이미지" class="carousel-image_sy">
+                        <img src="{% static 'images/post-list-default.png' %}" alt="기본 이미지" class="carousel-image_sy">
                     {% endfor %}
                 </div>
                 {% if post.images.all|length > 1 %}
