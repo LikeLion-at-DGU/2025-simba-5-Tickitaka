@@ -50,7 +50,7 @@
                         <p>친구</p>
                     </div>
                 </a>
-                {% if ongoing_post %}
+                {% if ongoing_post and chatroom and chatroom.id %}
                     <a id="chat-link" href="{% url 'chats:chat_room' chatroom.id %}" class="home-in-progress-link_sy">
                         <div class="home-in-progress_sy">
                             <div class="home-in-progress-content_sy">
@@ -100,7 +100,7 @@
                                             {% if image %}
                                                 <img src="{{ image.image.url }}" alt="" class="post-now-image_sy">
                                             {% else %}
-                                                <img src="{% static 'images/test2.png' %}" alt="기본 이미지">
+                                            <img src="{% static 'images/post-list-default.png' %}" alt="기본 이미지">
                                             {% endif %}
                                         {% endwith %}
                                     </div>
