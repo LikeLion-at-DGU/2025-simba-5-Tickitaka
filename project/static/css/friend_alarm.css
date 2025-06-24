@@ -1,10 +1,12 @@
-button{
+button {
     cursor: pointer;
 }
-a{
+
+a {
     cursor: pointer;
 }
-.friend-search-container_sy {
+
+.friend-alarm-container_sy {
     width: 390px;
     min-height: 844px;
     display: flex;
@@ -15,7 +17,7 @@ a{
     padding-bottom: 32px;
 }
 
-.friend-search-header_sy {
+.friend-alarm-header_sy {
     display: flex;
     height: 77px;
     width: 390px;
@@ -37,7 +39,7 @@ a{
     fill: var(--N-1, #ffffff);
 }
 
-.friend-search-title_sy {
+.friend-alarm-title_sy {
     color: #ffffff;
     text-align: center;
     font-family: Pretendard;
@@ -48,7 +50,7 @@ a{
     white-space: nowrap;
 }
 
-.friend-search-content_sy {
+.friend-alarm-content_sy {
     display: flex;
     width: 390px;
     padding: 0 16px;
@@ -57,62 +59,14 @@ a{
     gap: 24px;
 }
 
-.friend-searchbar-header_sy {
-    position: fixed;
-    background: #F6F8FA;
-    height: 88px;
-    padding: 19px 0;
-    display: flex;
-    top: 76px;
-    z-index: 10;
-    width: 390px;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.friend-searchbar_sy {
-    display: flex;
-    padding: 12px 16px;
-    /* gap: 281px; */
-    align-self: stretch;
-    border-radius: 6px;
-    border: 1px solid #D9D9D9;
-    background: #FFF;
-    position: relative;
-    width: 358px;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.friend-searchbar_sy input {
-    color: #2A2A2A;
-    font-family: Pretendard;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-}
-
-.friend-searchbar_sy form {
-    gap: 129px;
-    display: flex;
-}
-
-.search-button_sy {
-    width: 24px;
-    height: 24px;
-    aspect-ratio: 1/1;
-}
-
-.friend-search-list_sy {
+.friend-alarm-list_sy {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
     align-self: stretch;
     position: relative;
-    top: 164px;
+    top: 95px;
 }
 
 .friend-card_sy {
@@ -128,7 +82,7 @@ a{
     justify-content: space-between;
     align-self: stretch;
     align-items: center;
-    
+
 }
 
 .friend-info_sy {
@@ -142,13 +96,15 @@ a{
     height: 46px;
 
 }
-.btnWrapper_sw{
-width: 90px;
-height: 24px;
-display: flex;
-flex-direction: row;
-gap:8px;
+
+.alarm-btn_sy {
+    width: 90px;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
 }
+
 .nickname_sy {
     color: #000;
     font-family: Pretendard;
@@ -160,7 +116,7 @@ gap:8px;
 
 .accept-btn_sy {
     display: flex;
-    min-width: 41px;
+    min-width: 44px;
     height: 24px;
     padding: 10px;
     justify-content: center;
@@ -176,9 +132,10 @@ gap:8px;
     line-height: normal;
     white-space: nowrap;
 }
+
 .reject-btn_sy {
-   display: flex;
-    min-width: 41px;
+    display: flex;
+    min-width: 44px;
     height: 24px;
     padding: 10px;
     justify-content: center;
@@ -187,7 +144,7 @@ gap:8px;
     border-radius: 30px;
     border: 0.5px solid #666;
     background: #FFF;
-    color:#666;
+    color: #666;
     font-family: "Pretendard Variable";
     font-size: 12px;
     font-style: normal;

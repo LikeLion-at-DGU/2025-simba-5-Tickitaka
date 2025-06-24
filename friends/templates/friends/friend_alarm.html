@@ -17,10 +17,11 @@
             <h1 class="friend-alarm-title_sy">받은 알림</h1>
         </div>
 
-        <div class="friend-search-content_sy">
-                    <div class="friend-search-list_sy">
-                        {% for notification in notifications %}
-                            {% if notification.friend_request.status == 'pending' %}
+        <div class="friend-alarm-content_sy">
+            {% if notifications %}
+                <div class="friend-alarm-list_sy">
+                    {% for notification in notifications %}
+                        {% if notification.friend_request.status == 'pending' %}
                             <div class="friend-card_sy">
                                 <div class="friend-info_sy">
                                     {% if notification.sender.image %}
@@ -31,24 +32,32 @@
                                     <p class="nickname_sy">{{ notification.sender.nickname }}</p>
                                 </div>
                                 <div class="alarm-btn_sy">
-                                    <form method="POST" action="{% url 'friends:accept_friend_request' notification.friend_request.id %}">
+                                    <form method="POST"
+                                        action="{% url 'friends:accept_friend_request' notification.friend_request.id %}"
+                                        target="hidden-frame"
+                                        onsubmit="this.closest('.friend-card_sy').remove(); return true;">
                                         {% csrf_token %}
                                         <button type="submit" class="accept-btn_sy">수락</button>
                                     </form>
-                                    <form method="POST" action="{% url 'friends:reject_friend_request' notification.friend_request.id %}">
+                                    <form method="POST"
+                                        action="{% url 'friends:reject_friend_request' notification.friend_request.id %}"
+                                        target="hidden-frame"
+                                        onsubmit="this.closest('.friend-card_sy').remove(); return true;">
                                         {% csrf_token %}
                                         <button type="submit" class="reject-btn_sy">거절</button>
                                     </form>
                                 </div>
                             </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <div class="friend-search-list_sy">
-                        <p style="color: #888; font-size: 14px; text-align: center; margin-top: 24px; width: 100%;">
-                            받은 알림이 없습니다
-                        </p>
-                    </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="friend-search-list_sy">
+                    <p style="color: #888; font-size: 14px; text-align: center; margin-top: 24px; width: 100%;">
+                        받은 알림이 없습니다
+                    </p>
+                </div>
+            {% endif %}
         </div>
     </div>
 </body>
