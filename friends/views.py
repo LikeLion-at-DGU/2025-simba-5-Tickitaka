@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db import models
+from django.urls import reverse
+
 
 from .models import *
 from chats.models import *
@@ -86,9 +88,10 @@ def send_friend_request(request, receiver_id):
                friend_request=friend_request,
           )
 
-     
+     query = request.POST.get('query', '')
+     if query:
+          return redirect(f"{reverse('friends:friend_search')}?query={query}")
      return redirect('friends:friend_search')
-
 
 # 친구 요청 수락
 @login_required
@@ -161,7 +164,7 @@ def friend_list(request):
 
 
 @login_required
-def received_notifications(request):
+def friend_alarm(request):
      profile = request.user.profile
 
      notifications = FriendRequestNotification.objects.filter(
@@ -172,4 +175,4 @@ def received_notifications(request):
      context = {
           'notifications': notifications
      }
-     return render(request, 'friends/received_notifications.html', context)
+     return render(request, 'friends/friend_alarm.html', context)

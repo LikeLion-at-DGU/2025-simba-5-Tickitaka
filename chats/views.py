@@ -227,7 +227,7 @@ def approve_finish(request, room_id):
         amounts=amounts,
         type='minus',
         post_id=post.id,
-        balance_after=master.time_balance
+        balance_after=post.master.time_balance
     )
 
     # 헬퍼 잔액 적립 및 기록
@@ -240,7 +240,7 @@ def approve_finish(request, room_id):
         amounts=amounts,
         type='plus',
         post_id=post.id,
-        balance_after=master.time_balance
+        balance_after=post.helper.time_balance
     )
 
     Comment.objects.create(
