@@ -23,10 +23,8 @@
             <a href="?sort=input" class="{% if selected_sort == 'input' %}active_sy{% endif %}">적립</a>
             <a href="?sort=output" class="{% if selected_sort == 'output' %}active_sy{% endif %}">사용</a>
         </div>
-
         <div class="time_history-content_sy">
-
-            <!-- 적립 (plus) -->
+            <!-- 적립 (plus + tip 포함) -->
             <div id="plus_list" class="time-history-list_sy" style="display: none;">
                 {% for history in received_histories %}
                 <div class="history-pluscard_sy">
@@ -70,8 +68,39 @@
                     </div>
                 </div>
                 {% endfor %}
-            </div>
 
+                {% for history in tip_histories %}
+                    <div class="history-pluscard_sy">
+                        <div class="history-info_sy">
+                            <div class="first-info_sy">
+                                <div class="history-friend_sy">
+                                    {% if history.post %}
+                                        {% if history.post.master == request.user.profile %}
+                                            {{ history.post.helper.nickname }}
+                                        {% else %}
+                                            {{ history.post.master.nickname }}
+                                        {% endif %}
+                                    {% else %}
+                                        가입 선물
+                                    {% endif %}
+                                </div>
+                                <div class="history-location_sy">{{ history.post.building.name }}</div>
+                            </div>
+                            <div class="second-info_sy">
+                                <div class="history-title_sy">
+                                    친절한 거래에 대한 팁입니다
+                                </div>
+                            </div>
+                        </div>
+                        <div class="time-sy">
+                            <div class="history-time_sy tip">
+                                +{{ history.amounts }}분
+                            </div>
+                            <div class="history-total-time_sy">{{history.user.time_balance}}분</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
             <!-- 사용 (minus) -->
             <div id="minus_list" class="time-history-list_sy" style="display: none;">
                 {% for history in given_histories %}

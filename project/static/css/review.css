@@ -159,29 +159,17 @@
     cursor: not-allowed;
 }
 
-.bad-review_sy.selected svg rect {
-    fill: #2A2A2A;
-}
-
-.soso-review_sy.selected svg rect {
-    fill: #97D5AA;
-}
-
-.good-review_sy.selected svg rect {
-    fill: #FF8887;
-}
-
 .bad-review_sy.selected .bad-review-text_sy {
     color: #2A2A2A;
     font-weight: bold;
 }
 
 .soso-review_sy.selected .soso-review-text_sy {
-    color: #97D5AA;
+    color: #FF8887;
     font-weight: bold;
 }
 
 .good-review_sy.selected .good-review-text_sy {
-    color: #FF8887;
+    color: #97D5AA;
     font-weight: bold;
 }

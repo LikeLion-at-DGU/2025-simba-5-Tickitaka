@@ -13,8 +13,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
 
-def mainpage(request):
-    return render(request, 'main/test-mainpage.html')
+def splash(request):
+    return render(request, 'main/splash.html')
 
 # 메인페이지 관련 기능
 def home(request):
@@ -36,8 +36,14 @@ def home(request):
 
     # js 시간 객체와 맞추기 위한 초-> 밀리초 변환
     deadline_timestamp = None
+    chatroom = None
+
     if ongoing_post:
         deadline_timestamp = int(ongoing_post.deadline.timestamp() * 1000)
+
+        # 연결된 chatroom 찾기
+        chatroom = ChatRoom.objects.filter(post=ongoing_post).first()
+        
 
     return render(request, 'main/home.html', {
         'profile': profile,
@@ -46,6 +52,7 @@ def home(request):
         'burning_posts': burning_posts,
         'ongoing_post': ongoing_post,
         'deadline_timestamp': deadline_timestamp,
+        'chatroom': chatroom,
         'show_navbar': True
     })
 
@@ -171,3 +178,4 @@ def inquire(request):
         return redirect('posts:post_list')
 
     return render(request, 'main/inquire.html')
+

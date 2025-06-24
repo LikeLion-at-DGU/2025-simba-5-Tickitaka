@@ -1,6 +1,6 @@
 .post-list-container_sy {
     width: 390px;
-    min-height: 844px;
+    max-height: 844px;
     display: flex;
     margin: 0 auto;
     overflow: hidden;
@@ -214,11 +214,25 @@
     flex-direction: column;
     gap: 16px;
     margin-top: 190px;
-    position: static;
+    position: relative;
     padding-left: 16px;
     padding-right: 16px;
+    height: 704px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.post-list_sy::-webkit-scrollbar {
+    width: 6px;
 }
 
+.post-list_sy::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 3px;
+}
+
+.post-list_sy::-webkit-scrollbar-track {
+    background: #ccc;
+}
 .post-container_sy {
     display: flex;
     padding: 23px 16px;

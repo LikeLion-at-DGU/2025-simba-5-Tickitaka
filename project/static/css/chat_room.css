@@ -1,12 +1,14 @@
 /* chat_room.css */
-button{
+button {
     cursor: pointer;
 }
-.container_sw{
+
+.container_sw {
     width: 100%;
     height: 100%;
 }
-.pageAlignChatroom_sw{
+
+.pageAlignChatroom_sw {
     width: 390px;
     height: 844px;
     display: flex;
@@ -15,7 +17,8 @@ button{
     align-items: center;
     background: #F6F8FA;
 }
-.nicknameFrameChatroom_sw{
+
+.nicknameFrameChatroom_sw {
     display: flex;
     width: 390px;
     height: 77px;
@@ -23,10 +26,11 @@ button{
     justify-content: space-between;
     align-items: center;
     position: relative;
-background: #025397;
+    background: #025397;
 
 }
-.backiconChatroom_sw{
+
+.backiconChatroom_sw {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,55 +40,56 @@ background: #025397;
     aspect-ratio: 7.36/12.73;
 }
 
-.profileNicknameChatroom_sw{
+.profileNicknameChatroom_sw {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-   
+
 }
 
-.nicknameChatroom_sw{
-     color: #FFF;
-text-align: center;
-
-/* H1 */
-font-family: Pretendard;
-font-size: 24px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-}
-.reportTextChatroom_sw{
+.nicknameChatroom_sw {
     color: #FFF;
+    text-align: center;
 
-    /* caption */
+    /* H1 */
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.reportTextChatroom_sw {
+    color: #FFF;
     font-family: Pretendard;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
-.sirenChatroom_sw{
+
+.sirenChatroom_sw {
     width: 70px;
     height: 24px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;    
+    justify-content: space-between;
     align-items: center;
 }
-.sireniconChatroom_sw{
+
+.sireniconChatroom_sw {
     width: 24px;
     height: 24px;
-display: flex;
-justify-content: center;
-align-items: center;
-     aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
 }
 
-.tradeTitleFrameChatroom_sw{
+.tradeTitleFrameChatroom_sw {
     width: 390px;
     height: 93px;
     padding: 16px;
@@ -96,31 +101,33 @@ align-items: center;
     justify-content: space-between;
     margin-bottom: 16px;
 }
-.tradeTitleImageChatroom_sw{
+
+.tradeTitleImageChatroom_sw {
     width: 60px;
     height: 60px;
-     background-color: pink;
-   border-radius: 6px;
+    background-color: pink;
+    border-radius: 6px;
 }
-.tradeTitleTextFrameChatroom_sw{
+
+.tradeTitleTextFrameChatroom_sw {
     width: 280px;
     height: 60px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
-}
-.tradeTitleTextChatroom_sw{
-    color: #2A2A2A;
 
-/* caption */
-font-family: Pretendard;
-font-size: 12px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
 }
-.tradeTitleButtonsFrameChatroom_sw{
+
+.tradeTitleTextChatroom_sw {
+    color: #2A2A2A;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.tradeTitleButtonsFrameChatroom_sw {
     width: 225px;
     height: 30px;
     display: flex;
@@ -128,7 +135,7 @@ line-height: normal;
     justify-content: space-between;
 }
 
-.buttonChatroom_sw{
+.buttonChatroom_sw {
     width: 59px;
     height: 30px;
     border-radius: 6px;
@@ -136,14 +143,15 @@ line-height: normal;
     background-color: #025397;
     color: #FFFFFF;
     font-family: Pretendard;
-font-size: 12px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
-.disabledButtonChatroom_sw{
-   
-  cursor: default;
+
+.disabledButtonChatroom_sw {
+
+    cursor: default;
     width: 59px;
     height: 30px;
     border-radius: 6px;
@@ -157,7 +165,7 @@ line-height: normal;
     line-height: normal;
 }
 
-.chatBubblesFrameChatroom_sw{
+.chatBubblesFrameChatroom_sw {
     display: flex;
     width: 363px;
     height: 700px;
@@ -170,20 +178,21 @@ line-height: normal;
     backface-visibility: hidden;
     transform: translateZ(0);
 }
+
 .chatBubblesFrameChatroom_sw::-webkit-scrollbar {
-  width: 6px;
+    width: 6px;
 }
 
 .chatBubblesFrameChatroom_sw::-webkit-scrollbar-thumb {
-  background:#8A8A8A;
-  border-radius: 3px;
+    background: #8A8A8A;
+    border-radius: 3px;
 }
 
 .chatBubblesFrameChatroom_sw::-webkit-scrollbar-track {
-  background: #ccc;
+    background: #ccc;
 }
 
-.longDescriptionBubbleChatroom_sw{
+.longDescriptionBubbleChatroom_sw {
     display: flex;
     padding: 10px;
     flex-direction: column;
@@ -201,10 +210,11 @@ line-height: normal;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-     white-space: nowrap;
+    white-space: nowrap;
 }
-.descriptionBubbleChatroom_sw{
-   display: flex;
+
+.descriptionBubbleChatroom_sw {
+    display: flex;
     padding: 10px;
     justify-content: center;
     align-items: center;
@@ -221,12 +231,12 @@ line-height: normal;
     font-weight: 400;
     line-height: normal;
 }
+
 .descriptionBubbleChatroom_sw b {
-  font-weight: 700;
+    font-weight: 700;
 }
 
-.myBubbleChatroom_sw
-{
+.myBubbleChatroom_sw {
     display: flex;
     gap: 8px;
     flex-direction: row;
@@ -234,71 +244,69 @@ line-height: normal;
     align-items: flex-end;
 
 }
-.myContentTextChatroom{
-     word-wrap: break-word;     /* 단어를 잘라서 줄바꿈 허용 */
-  word-break: break-word;    /* 너무 긴 단어도 줄바꿈 허용 */
+
+.myContentTextChatroom {
+    word-wrap: break-word;
+    word-break: break-word;
     min-height: 34px;
     height: auto;
     min-width: 10px;
     max-width: 246px;
     padding: 10px 10px;
     border-radius: 6px;
-    background:  #025397;
+    background: #025397;
     color: #FFF;
-
-    /* caption */
     font-family: "Pretendard Variable";
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
-.profileImgChatroom_sw{
+
+.profileImgChatroom_sw {
     width: 46px;
-height: 46px;
-border:0.5px solid #D9D9D9;
-border-radius: 99px;
+    height: 46px;
+    border: 0.5px solid #D9D9D9;
+    border-radius: 99px;
 }
 
-.opponentBubbleChatroom_sw{
- 
+.opponentBubbleChatroom_sw {
+
     display: flex;
     gap: 8px;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-end;
 }
-.opponentContentTextChatroom{
-     word-wrap: break-word;     /* 단어를 잘라서 줄바꿈 허용 */
-  word-break: break-word;    /* 너무 긴 단어도 줄바꿈 허용 */
+
+.opponentContentTextChatroom {
+    word-wrap: break-word;
+    word-break: break-word;
     min-height: 34px;
     height: auto;
     min-width: 40px;
     max-width: 246px;
     padding: 10px 10px;
     border-radius: 6px;
-    background:  #8A8A8A;
+    background: #8A8A8A;
     color: #FFF;
-
-    /* caption */
     font-family: "Pretendard Variable";
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
-.timeTextChatroom{
-color: #666;
 
-/* caption */
-font-family: "Pretendard Variable";
-font-size: 12px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+.timeTextChatroom {
+    color: #666;
+    font-family: "Pretendard Variable";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
-.chatWriteFrameChatroom_sw{
+.chatWriteFrameChatroom_sw {
     width: 358px;
     height: 34px;
     display: flex;
@@ -308,13 +316,14 @@ line-height: normal;
     margin-top: auto;
     margin-bottom: 29px;
 }
-.iconPhotoChatroom_sw{
+
+.iconPhotoChatroom_sw {
     width: 34px;
     height: 34px;
     aspect-ratio: 1/1;
 }
-/* form 태그의 속성 */
-.chatInputWrapperChatroom_sw{
+
+.chatInputWrapperChatroom_sw {
     width: 314px;
     min-height: 33px;
     padding: 6px 16px;
@@ -326,12 +335,12 @@ line-height: normal;
     justify-content: space-between;
     align-items: center;
 }
-/* text area의 속성 */
-.chatInputChatroom_sw{
+
+.chatInputChatroom_sw {
     resize: none;
     height: 21px;
     padding: 0 4px;
-   width: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -344,13 +353,14 @@ line-height: normal;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    }
-    .disabledChatInputWrapperChatroom_sw{
+}
+
+.disabledChatInputWrapperChatroom_sw {
     width: 314px;
     min-height: 33px;
     padding: 6px 16px;
     border-radius: 6px;
-   
+
     border: 1px solid #D9D9D9;
     background-color: #D9D9D9;
     display: flex;
@@ -358,13 +368,14 @@ line-height: normal;
     justify-content: space-between;
     align-items: center;
 }
-    .disabledChatInputChatroom_sw{
-   
-   
+
+.disabledChatInputChatroom_sw {
+
+
     resize: none;
     height: 21px;
     padding: 0 4px;
-   width: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -377,19 +388,23 @@ line-height: normal;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-     
-    }
 
-.iconSendChatroom_sw{
+}
+
+.iconSendChatroom_sw {
     aspect-ratio: 1/1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.modalChatroom_sw{
-    position: fixed;        /* 추가 */
-    top: 40%;              /* 가운데보다 위 */
-    left: 50%;              /* 가운데 정렬 */
+
+.modalChatroom_sw {
+    position: fixed;
+    /* 추가 */
+    top: 40%;
+    /* 가운데보다 위 */
+    left: 50%;
+    /* 가운데 정렬 */
     transform: translate(-50%, -50%);
     z-index: 1000;
 
@@ -398,17 +413,19 @@ line-height: normal;
     border-radius: 6px;
     background-color: #FFF;
     /* box_dropshadow */
-    box-shadow: 
-    0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+    box-shadow:
+        0px 2px 8px 0px rgba(0, 0, 0, 0.12);
 }
-.modalTitleBoxChatroom_sw{
+
+.modalTitleBoxChatroom_sw {
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
 }
-.modalTitleChatroom_sw{
+
+.modalTitleChatroom_sw {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -422,29 +439,32 @@ line-height: normal;
     font-weight: 700;
     line-height: normal;
 }
-.modalBtnChatroom_sw{
- position: absolute;
+
+.modalBtnChatroom_sw {
+    position: absolute;
     right: 12px;
     top: 50%;
-    
+
     transform: translateY(-50%);
     padding: 10px;
     background: none;
     border: none;
 }
-.noStartChatroom_sw{
-     position: absolute;
+
+.noStartChatroom_sw {
+    position: absolute;
     right: 12px;
     top: 50%;
-    
+
     transform: translateY(-50%);
     padding: 10px;
     background: none;
     border: none;
 }
-.modalTextBoxChatroom_sw{
-   
-    border-top: 0.5px  solid #666;
+
+.modalTextBoxChatroom_sw {
+
+    border-top: 0.5px solid #666;
     width: 358px;
     padding: 16px;
 
@@ -453,17 +473,19 @@ line-height: normal;
     justify-content: center;
     align-items: center;
 }
-.modalTextChatroom_sw{
- 
-   color: #2A2A2A;
-/* caption */
-font-family: Pretendard;
-font-size: 12px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-width: 326px;
+
+.modalTextChatroom_sw {
+
+    color: #2A2A2A;
+    /* caption */
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 326px;
 }
+
 /*  */
 .modalBackdropChatroom_sw {
     position: fixed;
@@ -471,31 +493,36 @@ width: 326px;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.4); /* 어두운 반투명 */
+    background: rgba(0, 0, 0, 0.4);
+    /* 어두운 반투명 */
     z-index: 999;
 }
 
 
-.startModalFrame_sw{
+.startModalFrame_sw {
     width: 358px;
     height: 126px;
-    position: fixed;        /* 추가 */
-    top: 40%;              /* 가운데보다 위 */
-    left: 50%;              /* 가운데 정렬 */
+    position: fixed;
+    /* 추가 */
+    top: 40%;
+    /* 가운데보다 위 */
+    left: 50%;
+    /* 가운데 정렬 */
     transform: translate(-50%, -50%);
     z-index: 1000;
     border-radius: 6px;
     background-color: #FFF;
     /* box_dropshadow */
-    box-shadow: 
-    0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+    box-shadow:
+        0px 2px 8px 0px rgba(0, 0, 0, 0.12);
 
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 24px;
 }
-.startTitleBoxChatroom_sw{
+
+.startTitleBoxChatroom_sw {
     height: 24px;
     width: 358px;
     margin-top: 24px;
@@ -504,7 +531,8 @@ width: 326px;
     justify-content: center;
     position: relative;
 }
-.startTitleChatroom_sw{
+
+.startTitleChatroom_sw {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -520,16 +548,17 @@ width: 326px;
     line-height: normal;
 }
 
-.startBtnWrapper_sw{
+.startBtnWrapper_sw {
     width: 210px;
     height: 30px;
     gap: 20px;
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
-.startNoticeBtn_sw{
+
+.startNoticeBtn_sw {
     display: flex;
     width: 95px;
     height: 30px;
@@ -537,14 +566,14 @@ width: 326px;
     justify-content: center;
     align-items: center;
     border-radius: 6px;
-background: #025397;
-color: #FFF;
-text-align: center;
+    background: #025397;
+    color: #FFF;
+    text-align: center;
 
-/* caption */
-font-family: "Pretendard Variable";
-font-size: 12px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+    /* caption */
+    font-family: "Pretendard Variable";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }

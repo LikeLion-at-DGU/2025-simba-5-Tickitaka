@@ -1,6 +1,6 @@
 .home-container_sy {
     width: 390px;
-    height: 403px;
+    height: 391px;
     flex-shrink: 0;
     background: var(--P-1, #025397);
     z-index: 2;
@@ -33,7 +33,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 54px;
+    gap: 48px;
     align-self: stretch;
 }
 
@@ -374,6 +374,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 4px;
 }
 
 .home-boost-post-title_sy img {

@@ -80,15 +80,20 @@ document.querySelectorAll('.f1_deletePreviewButtonCreate_sw').forEach(btn => {
         checkSubmitButton();
     });
 });
+// 글자 수 세기 함수
+function updateWordCount(el) {
+  const counter = el.nextElementSibling;
+  if (!counter?.classList.contains('f234_wordCountCreate_sw')) return;
+  const max = parseInt(counter.textContent.split('/')[1]);
+  if (el.value.length > max) el.value = el.value.slice(0, max);
+  counter.textContent = `${el.value.length}/${max}`;
+}
 //  2. 글자 수 실시간 표시 및 제한
-document.querySelectorAll("textarea, input[type='text']").forEach((el) => {
-    el.addEventListener('input', function () {
-        const counter = el.nextElementSibling;
-        if (!counter?.classList.contains('f234_wordCountCreate_sw')) return;
-        const max = parseInt(counter.textContent.split('/')[1]);
-        if (el.value.length > max) el.value = el.value.slice(0, max);
-        counter.textContent = `${el.value.length}/${max}`;
-    });
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll("textarea, input[type='text']").forEach((el) => {
+    updateWordCount(el); // 초기 글자 수 세기
+    el.addEventListener('input', () => updateWordCount(el)); // 실시간
+  });
 });
 
 //  3. 거래 위치 드롭다운 DB 연동은 HTML에서 for문 처리
@@ -100,7 +105,6 @@ const timeInput = document.querySelector('.f6_requireTimeCreate_sw');
 timeInput.addEventListener('blur', () => {
     const val = parseInt(timeInput.value);
     if (val % 10 !== 0) {
-        alert('10분 단위로 입력해주세요.');
         timeInput.value = '';
     }
     checkSubmitButton();
@@ -170,12 +174,33 @@ function checkSubmitButton() {
     const timeValue = parseInt(reqtimeInput.value, 10);
 
     const isValidTime = !isNaN(timeValue) && (boostApplied || timeValue % 10 === 0); 
-    const timeOk = timeValue<=available_time;
+    const timeOk = 0<timeValue && timeValue<=available_time;
     const hasTitle = titleInput.value.trim().length > 0;
     const hasDesc = descInput.value.trim().length > 0;
     const hasLocation = locationInput.value.trim().length > 0;
     const hasDeadline = deadlineInput.value.trim().length > 0;
     const allValid = hasTitle && hasDesc && hasLocation && hasDeadline && isValidTime && timeOk;
+    
+    // 시간 올바르게 입력
+    const errorMsg = document.getElementById('timeErrorMsg');
+    const timeValRaw = reqtimeInput.value.trim();
+    if(timeValRaw===""){
+            errorMsg.textContent = ` 현재 보유 시간은 ${available_time}분입니다.`;
+             errorMsg.style.color = '#8A8A8A';
+    reqtimeInput.classList.remove('inputErrorCreate_sw');
+    }
+    else if (!timeOk) {
+        errorMsg.textContent = `보유 시간 ${available_time}분을 초과했거나 0분 이하입니다.`;
+        reqtimeInput.classList.add('inputErrorCreate_sw');
+    }
+    else if(!isValidTime){
+        errorMsg.textContent = `10분 단위로 입력해주세요.`;
+        reqtimeInput.classList.add('inputErrorCreate_sw');  
+    }
+    else {
+    errorMsg.textContent = '';
+    reqtimeInput.classList.remove('inputErrorCreate_sw');
+    }
 
     if (allValid) {
         submitBtn.style.background = '#025397';

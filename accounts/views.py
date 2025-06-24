@@ -81,7 +81,7 @@ def login_view(request):
             login(request, user)
             return redirect('main:home')
         else:
-            return render(request, 'accounts/login.html')
+            return render(request, 'accounts/login.html', {'login_failed': True})
         
     return render(request, 'accounts/login.html')
 
@@ -91,7 +91,7 @@ def logout_view(request):
 
 from django.http import JsonResponse
 from .models import Profile
-from django.contrib.auth.models import User  # User 모델은 기본 Django 유저 모델
+from django.contrib.auth.models import User
 
 
 
