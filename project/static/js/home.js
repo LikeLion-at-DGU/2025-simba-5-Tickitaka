@@ -29,12 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     aTag.removeAttribute('href');
                     aTag.style.pointerEvents = 'none';
                     aTag.style.cursor = 'default';
-
                     if (postContainer) {
                         postContainer.innerHTML = `
                             <div class="post-empty_sy">
                                 지금 진행 중인 거래가 없어요. <br> 거래 목록에서 도움을 주고 받아보세요!
                             </div>
+                            
                         `;
                     }
                 }

@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
@@ -100,7 +99,7 @@
                                             {% if image %}
                                                 <img src="{{ image.image.url }}" alt="" class="post-now-image_sy">
                                             {% else %}
-                                                <img src="{% static 'images/test2.png' %}" alt="기본 이미지">
+                                                <img src="{% static 'images/post-list-default.png' %}" alt="기본 이미지">
                                             {% endif %}
                                         {% endwith %}
                                     </div>
@@ -125,7 +124,7 @@
                                                     {% if image %}
                                                         <img src="{{ image.image.url }}" alt="">
                                                     {% else %}
-                                                        <img src="{% static 'images/test2.png' %}" alt="기본 이미지">
+                                                        <img src="{% static 'images/post-list-default.png' %}" alt="기본 이미지">
                                                     {% endif %}
                                                 {% endwith %}
                                             </div>

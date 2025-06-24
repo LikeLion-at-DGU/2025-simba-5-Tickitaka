@@ -262,11 +262,11 @@
 }
 
 .home-in-progress-header_sy h2 {
-    color: var(--N-2, #666);
+    color: #4b4b4b;
     font-family: "Pretendard Variable";
     font-size: 12px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     line-height: normal;
 }
 
@@ -333,7 +333,7 @@
     color: #2A2A2A;
     font-family: "Pretendard Variable";
     font-size: 12px;
-    position:  relative;
+    position: relative;
     top: -2px;
     font-style: normal;
     font-weight: 600;
@@ -385,12 +385,12 @@
 }
 
 .home-boost-post-title_sy h2 {
-    color: var(--N-2, #666);
+    color: #4b4b4b;
     text-align: center;
     font-family: "Pretendard Variable";
     font-size: 12px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     line-height: normal;
 }
 
@@ -444,6 +444,9 @@
     font-weight: 600;
     line-height: normal;
     align-self: stretch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .post-item-time_sy {
