@@ -15,6 +15,7 @@
                 </svg>
             </div>
             <h1 class="friend-list-title_sy">친구 목록</h1>
+            <!--받은 알림이랑 연결-->
             <a href="{% url 'friends:friend_alarm' %}">
                 {% if unread_notification_exists %}
                 <img src="{% static 'images/alarm_exist.png' %}" alt="알림 있음" width="22" height="23" />
