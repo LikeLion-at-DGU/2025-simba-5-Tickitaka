@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.db.models import Q
 from django.utils import timezone
+from django.urls import reverse
 
 from .models import *
 from accounts.models import *
@@ -79,6 +80,7 @@ def chat_room(request, room_id):
         'transaction_finished_at': post.transaction_finished_at,
         'startnotice': startnotice,
         'requestnotice': requestnotice,
+        'just_sent': request.GET.get('just_sent') == '1',
     })
 
 
@@ -112,7 +114,7 @@ def submit_chat(request, room_id):
         is_system=False  # 일반 채팅 메시지임을 명시
     )
 
-    return redirect('chats:chat_room', room_id=room_id)
+    return redirect(f'{reverse("chats:chat_room", args=[room_id])}?just_sent=1')
 
 
 
@@ -136,6 +138,7 @@ def fetch_chats(request, room_id):
         'comments': comments,
         'me': user_profile,
         'opponent': opponent,
+        'just_sent': False,
     })
 
 
