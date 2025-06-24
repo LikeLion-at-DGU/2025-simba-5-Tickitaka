@@ -7,7 +7,15 @@
 <div class="displaySize_sw">
     <div class="contentFrameSignup_sw">
         <div class="exceptButtonFrame_sw">
-            <div class="titleSignup_sw">회원가입</div>
+            <div class="titleWrapper_sw">
+                <a href="{% url 'accounts:login' %}">
+                 <img src="{% static 'images/blackback.svg' %}" alt="검정뒤로가기">
+                </a>
+                <div class="titleSignup_sw">
+                    회원가입
+                </div>
+                <div></div>
+            </div>
             <div class="divideTopLineSignup_sw"></div>
             <form class="allInputsFrameSignup_sw" method="post" id="signupinfo" action="{% url 'accounts:signup' %}">
                 {% csrf_token %}

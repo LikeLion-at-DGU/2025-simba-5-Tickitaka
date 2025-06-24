@@ -55,11 +55,11 @@
 
 /*1. tickit~당신의 시간을 거래하세요*/
 .logoFrameLogin_sw {
-    width: 161px;
-    height: 60px;
+    width: 113px;
+    height: 65px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 13px;
     align-items: start;
 }
 

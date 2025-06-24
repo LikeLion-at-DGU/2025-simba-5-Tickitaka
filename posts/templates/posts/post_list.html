@@ -2,19 +2,19 @@
 <link rel="stylesheet" href="{% static 'css/post_list.css' %}" />
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
 
-<body>
+
     <div class="post-list-container_sy">
         <div class="post-list-header_sy">
 
             <div class="post-list-first-header_sy">
-                <div class="go-back-btn_sy">
+                <a class="go-back-btn_sy" href="{% url 'main:home' %}">
                     <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M0.29277 5.79301L5.94977 0.136013L7.36377 1.55001L2.41377 6.50001L7.36377 11.45L5.94977 12.864L0.29277 7.20701C0.105299 7.01949 -1.66893e-05 6.76518 -1.66893e-05 6.50001C-1.66893e-05 6.23485 0.105299 5.98054 0.29277 5.79301Z"
                             fill="white" />
                     </svg>
-                </div>
-                <h1 class="post-list-title_sy">거래 목록</h1>
+                </a>
+                <h1 class="post-list-title_sy">글 목록</h1>
             </div>
 
             <div class="post-list-second-header_sy">
@@ -105,7 +105,7 @@
             {% endfor %}
         </div>
     </div>
-</body>
+
 
 {% endblock %}
 {% block scripts %}
