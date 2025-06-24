@@ -36,8 +36,14 @@ def home(request):
 
     # js 시간 객체와 맞추기 위한 초-> 밀리초 변환
     deadline_timestamp = None
+    chatroom = None
+
     if ongoing_post:
         deadline_timestamp = int(ongoing_post.deadline.timestamp() * 1000)
+
+        # 연결된 chatroom 찾기
+        chatroom = ChatRoom.objects.filter(post=ongoing_post).first()
+        
 
     return render(request, 'main/home.html', {
         'profile': profile,
@@ -46,6 +52,7 @@ def home(request):
         'burning_posts': burning_posts,
         'ongoing_post': ongoing_post,
         'deadline_timestamp': deadline_timestamp,
+        'chatroom': chatroom,
         'show_navbar': True
     })
 
@@ -172,16 +179,3 @@ def inquire(request):
 
     return render(request, 'main/inquire.html')
 
-# 공통 로직 함수로 분리 (중복 제거)
-def annotate_is_new_group(comments):
-    for i, comment in enumerate(comments):
-        if i == 0:
-            comment.is_new_group = True
-        else:
-            prev_comment = comments[i-1]
-            different_writer = (comment.writer_id != prev_comment.writer_id)
-            current_minute = comment.timestamp.strftime('%Y-%m-%d %H:%M')
-            prev_minute = prev_comment.timestamp.strftime('%Y-%m-%d %H:%M')
-            different_minute = (current_minute != prev_minute)
-            comment.is_new_group = (different_writer or different_minute)
-    return comments
