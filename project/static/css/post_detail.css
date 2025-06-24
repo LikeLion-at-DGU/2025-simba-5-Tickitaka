@@ -323,7 +323,7 @@
 
 .call-btn_sy.disabled {
     background-color: #666;
-    cursor: not-allowed; 
+    cursor: default;; 
 }
 
 .manage-btn-wrapper_sy {
@@ -348,7 +348,7 @@
 
 .manage-btn_sy:disabled {
     background-color: #666;
-    cursor: not-allowed;
+    cursor: default;
 }
 
 .edit-btn_sy:disabled,

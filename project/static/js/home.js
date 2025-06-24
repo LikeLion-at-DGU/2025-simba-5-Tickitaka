@@ -21,17 +21,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function updateCountdown() {
             if (remaining <= 0) {
-                timeElement.innerHTML = `
-                    <span class="big-num">00</span><span class="small-unit">시간</span>
-                    <span class="big-num">00</span><span class="small-unit">분</span>
-                    <span class="big-num">00</span><span class="small-unit">초</span>
-                `;
+                const postContainer = document.querySelector('.home-in-progress-post_sy');
+                if (postContainer) {
+                    postContainer.innerHTML = `
+                        <div class="post-empty_sy">
+                            지금 진행 중인 거래가 없어요. <br> 거래 목록에서 도움을 주고 받아보세요!
+                        </div>
+                    `;
+                }
                 return;
             }
             timeElement.innerHTML = formatTime(remaining);
             remaining--;
         }
-
         updateCountdown(); // 최초 1회 실행
         setInterval(updateCountdown, 1000); // 1초마다 업데이트
     }
