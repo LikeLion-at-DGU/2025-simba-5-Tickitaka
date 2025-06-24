@@ -279,7 +279,7 @@
 }
 
 .post-title_sy {
-    color: #2A2A2A;
+    color: #716c6c;
     font-family: "Pretendard Variable";
     font-size: 12px;
     font-style: normal;
@@ -311,7 +311,7 @@
 }
 
 .big-num {
-    color: var(--N-1, #2A2A2A);
+    color: var(--N-1, #424141);
     font-family: "Pretendard Variable";
     font-size: 18px;
     font-style: normal;
@@ -320,7 +320,7 @@
 }
 
 .small-unit {
-    color: var(--N-1, #2A2A2A);
+    color: var(--N-1, #424141);
     font-family: Pretendard;
     font-size: 18px;
     font-style: normal;
@@ -330,7 +330,7 @@
 }
 
 .post-last-time_sy p {
-    color: #2A2A2A;
+    color: #716c6c;
     font-family: "Pretendard Variable";
     font-size: 12px;
     position: relative;
@@ -479,3 +479,4 @@
     left: 311px;
     padding: 5px;
 }
+
