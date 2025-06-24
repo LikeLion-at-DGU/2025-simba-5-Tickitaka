@@ -9,7 +9,7 @@ urlpatterns = [
      path('accept/<int:request_id>/', accept_friend_request, name='accept_friend_request'),
      path('reject/<int:request_id>/', reject_friend_request, name='reject_friend_request'),
      path('list/', friend_list, name='friend_list'),
-     path('notifications/', received_notifications, name='received_notifications'),
+     path('alarm/', friend_alarm, name='friend_alarm'),
      path('profile/<int:user_id>/', other_profile, name='other_profile'),
 ]
 

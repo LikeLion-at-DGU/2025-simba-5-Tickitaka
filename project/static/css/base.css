@@ -11,6 +11,7 @@
 
 .main-content_sw {
     box-sizing: border-box;
+    height: 767px;
     padding-bottom: 56px;
     position: relative;
 }

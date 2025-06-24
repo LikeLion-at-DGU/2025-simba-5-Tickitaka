@@ -131,7 +131,7 @@ line-height: normal;
 }
 .bottomFrameOtherProfile_sw{
     width: 390px;
-    height: 527px;
+    height: 616px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -179,7 +179,7 @@ line-height: normal;
 .postsFrameOtherProfile_sw{
     margin-top: 24px;
     margin-bottom: 24px;
-
+    height: 472px;
     width: 358px;
     display: flex;
     flex-direction: column;
@@ -187,7 +187,7 @@ line-height: normal;
 
 }
 .postsScrollOtherProfile{
-    height: 316px;
+    height: 312px;
     display: flex;
     flex-direction: column;
      gap: 24px;
