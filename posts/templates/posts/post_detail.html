@@ -24,7 +24,7 @@
         <div class="post-detail-content_sy">
             <div class="post-detail-image_sy">
                 {% if post.images.all|length > 1 %}
-                <button class="carousel-btn left" onclick="prevImage()"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <button class="carousel-btn-left" onclick="prevImage()"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <rect width="28" height="28" fill="url(#pattern0_1263_2184)"/>
                     <defs><pattern id="pattern0_1263_2184" patternContentUnits="objectBoundingBox" width="1" height="1">
                     <use xlink:href="#image0_1263_2184" transform="scale(0.0178571)"/>
@@ -40,7 +40,7 @@
                     {% endfor %}
                 </div>
                 {% if post.images.all|length > 1 %}
-                <button class="carousel-btn right" onclick="nextImage()"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <button class="carousel-btn-right" onclick="nextImage()"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <rect width="28" height="28" transform="matrix(-1 0 0 1 28 0)" fill="url(#pattern0_1263_2186)"/>
                     <defs><pattern id="pattern0_1263_2186" patternContentUnits="objectBoundingBox" width="1" height="1"><use xlink:href="#image0_1263_2186" transform="scale(0.0178571)"/>
                     </pattern><image id="image0_1263_2186" width="56" height="56" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjseAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAATySURBVHgB5ZtRSFtXGMe/pO3QtjimkhZKZQZsxbawCXOZDxO2PToRRFQUROyLvgx8ENahiLJNX9S96Et9Eok++OIQQVklL2ZBkUJTcAEbsC+rLI6WGh8ScN8/uUeuyYmJ9557o90PTpN6VPz5nfOdc79zdJAFHB8fP+KXcl27we1Wyqe94bbP7ZBbkFvY4XC8IMU4SAEsBAFIfc/NTUkhI0AWkgGW/YMUYEpQE2vQmlGpTCC6iKyXZd+QQQwJWiwmw8vtmRHRcwuynIdfuil9TlkNIuo979DNWVCLWhslo5ZPligpepjLJ+ckyHIufnlCyQRyEUA0f8plyGYV1OR+JvuHZDZykjxT8ALLCbJKZhS8BHKCMyWdsg9qCeUyyAEE4kftZ07DmeGLkC0vg5wAya9N1pEmyL+Jb8mmpWBiYsLd29v7GamhQVujT3FqDto570ZGRu7Nz8/fx/uysrK3c3Nz/uLi4hiZA/PxB/0amRpBRM9WObC3t/dxe3v7V7u7u4VkDgTo1Og7iaAWvadkMf39/Q+Xl5fLZX2VlZWRxcXFDTIHovdYRFEfwTayGMy3THIlJSXR0dHR52Qe8SCQQC/4kCzi4ODgWlNTU63P57sr68ccnJmZ8VdUVERJDQ1i2UgIapnTkrmHeYX5tbOzUyLrFwlGoRwQD+AnEfSQBUCuq6urFklE1l9XV/daUfaUgeoCXdX+o3x4CrlIJHJd1g+5qakpFXMuE4knH6dWIFL6VL65uVl0llxLS0vIYjlwA26IYDkpBHI9PT21R0dH12T9kBscHPyL7KEcgo9IEZwJ705PTz+4IHLADcHrpADIjY+PZ9xX9vX1Pe/u7n5N9vIpBF1kktStl57CwsIYD9mXeZADNyFoav3LJsfJxF9TU/OW8oPrKplkbW1NujvB1kvx7sQQTjJJNBr9KOM3dzqPKc+YFuzo6JBmRayBra2tdVtbW0WUR64MDQ19w683ySAej+df3kxTMBgsTe2LxWJXVldX7/BwfV9VVfWe7Gcfgt/xm0/IBLztirBMfHt7Oy0jQ3J9ff1OQUHBUXV19Tuyl1cQRAY0XbFGJF0u17tAIHArHo+nDX2/33+bh60DvwyyjzB+kDAporm5+W9eFjZ4eYjL+hcWFu4NDw/fJ/sIKhUEWPO8Xq8Py4Ss32bJsFM7Ns7ppCZXsPZhDTxLkmszD8haDuEm5sorUkw2Sa7NuDs7O79AOYOsIXHeLwR/JwsQklyWkGZPXiNvo5xhkWQA/whB5cNUAMnZ2dmNTJIoZzQ2Nn6toCaqZ1+cBCcEtRriEllEaWlpbGVlxYcyhawfux5UABRKBsUb/XoFQUuiKECZor6+XjrfIcmJ53NSg1e8ORG0OoqCsbGxl7xHTdu/onyoqPB76tpJ6o4DgobvpOTKwMBASC/JJft/FNVGcfjyTP+BtBNe7QjqCdnA5OSkOxQKFSmssP2Wes1EeoTNko8p/9dFzssSy6UdHmV6HsQkVb74W0jikpCsQyqoJZxfyIb5qABxCUG6Avx/r5EIPuiLQIILKIn88KuSq1yCD/oynh7tsLSV8nOd8imL/XmeLzJ6IRZDFqKWn+tTcn+MqC3lGjU9Zq80QxSSOEBVHVFTYgIll9KBNnS/pORxnJlL6UggeAB/YUZMoExQj+7PChBZyCLSsj8rgEBYNCv+rOA/HucbwqUZqQAAAAAASUVORK5CYII="/></defs>
@@ -79,11 +79,11 @@
                                 <p>{{ post.deadline|date:"m/d H:i" }}까지</p>
                             </div>
                             <div class="status-button_sy">
-                                {% if post.status == "waiting" %}
+                                {% if display_status == "waiting" %}
                                 <button class="status-blue_sy">거래전</button>
-                                {% elif post.status == "in_progress_group" %}
+                                {% elif display_status == "in_progress_group" %}
                                 <button class="status-red_sy">거래중</button>
-                                {% elif post.status == "done" %}
+                                {% elif display_status == "done" %}
                                 <button class="status-green_sy">거래완료</button>
                                 {% endif %}
                             </div>

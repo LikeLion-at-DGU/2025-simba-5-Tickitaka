@@ -95,11 +95,11 @@
     cursor: pointer;
 }
 
-.carousel-btn.left {
+.carousel-btn-left {
     left: 10px;
 }
 
-.carousel-btn.right {
+.carousel-btn-right {
     right: 10px; }
 
 

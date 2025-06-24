@@ -22,15 +22,26 @@ document.addEventListener('DOMContentLoaded', () => {
         function updateCountdown() {
             if (remaining <= 0) {
                 const postContainer = document.querySelector('.home-in-progress-post_sy');
-                if (postContainer) {
-                    postContainer.innerHTML = `
-                        <div class="post-empty_sy">
-                            지금 진행 중인 거래가 없어요. <br> 거래 목록에서 도움을 주고 받아보세요!
-                        </div>
-                    `;
+                const aTag = document.getElementById('chat-link');
+
+                if (aTag) {
+                    // 링크 무력화
+                    aTag.removeAttribute('href');
+                    aTag.style.pointerEvents = 'none';
+                    aTag.style.cursor = 'default';
+
+                    if (postContainer) {
+                        postContainer.innerHTML = `
+                            <div class="post-empty_sy">
+                                지금 진행 중인 거래가 없어요. <br> 거래 목록에서 도움을 주고 받아보세요!
+                            </div>
+                        `;
+                    }
                 }
                 return;
             }
+
+
             timeElement.innerHTML = formatTime(remaining);
             remaining--;
         }
