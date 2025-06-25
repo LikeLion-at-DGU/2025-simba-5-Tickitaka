@@ -31,6 +31,8 @@ function closeDoneNotice() {
     document.getElementById("modalBackdrop_sw").style.display = "none";
   }
 // 여기까지 모달관련
+
+
 // 전역 선언부
 const chatBox        = document.querySelector(".chatBubblesFrameChatroom_sw");
 const sendBtn        = document.getElementById("sendBtn_sw");
@@ -66,19 +68,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 3) 새로고침 전 scroll/카운트 저장
   window.addEventListener("beforeunload", () => {
-    const bubbles = document.querySelectorAll(".myBubbleChatroom_sw, .opponentBubbleChatroom_sw");
+    const bubbles = document.querySelectorAll(".myBubbleChatroom_sw, .opponentBubbleChatroom_sw, .longDescriptionBubbleChatroom_sw");
     sessionStorage.setItem("previousScroll", chatBox.scrollTop);
     sessionStorage.setItem("prevBubbleCount", bubbles.length);
     if (document.activeElement === sendBtn) {
       sessionStorage.setItem("isSent", "true");
     }
   });
-  // 메시지 전송 폼(submit) 직전에 플래그
+  // 오류 방지를 위해 메시지 전송 폼(submit) 직전에 플래그 
   form.addEventListener("submit", () => {
     sessionStorage.setItem("isSent", "true");
   });
+
   // 4) 새로고침 후 스크롤 복원 or 맨 아래
-  const nowBubblesCnt = document.querySelectorAll(".myBubbleChatroom_sw, .opponentBubbleChatroom_sw").length;
+  const nowBubblesCnt = document.querySelectorAll(".myBubbleChatroom_sw, .opponentBubbleChatroom_sw, .longDescriptionBubbleChatroom_sw").length;
   const prevCnt      = parseInt(sessionStorage.getItem("prevBubbleCount") || "0", 10);
   if (sessionStorage.getItem("isSent")==="true" || nowBubblesCnt>prevCnt) {
     scrollLastBubbleIntoView();
@@ -113,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // 마지막 메시지 뷰로 스크롤해 주는 함수
 function scrollLastBubbleIntoView() {
-  const bubbles = chatBox.querySelectorAll(".myBubbleChatroom_sw, .opponentBubbleChatroom_sw");
+  const bubbles = chatBox.querySelectorAll(".myBubbleChatroom_sw, .opponentBubbleChatroom_sw, .longDescriptionBubbleChatroom_sw");
   const last = bubbles[bubbles.length - 1];
   if (last) last.scrollIntoView({ block: "end" });
 }

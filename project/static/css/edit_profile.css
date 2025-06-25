@@ -64,6 +64,7 @@ line-height: normal;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    max-height: 767px;
 }
 
 .photoFormFrame_sw{
