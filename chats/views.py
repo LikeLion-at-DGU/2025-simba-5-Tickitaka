@@ -382,7 +382,7 @@ def process_review(request, post_id):
 
         return redirect('posts:post_list')  # 후기 제출 후 메인으로 이동
 
-    return render(request, 'chats/review.html', {'post': post})
+    return render(request, 'main/home.html', {'post': post})
 
 # 거래 승인 거절 (마스터만 가능)
 @require_POST
