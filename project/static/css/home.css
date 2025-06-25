@@ -428,7 +428,7 @@
     aspect-ratio: 1/1;
     border-radius: 8px;
     overflow: hidden;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .post-item_sy {

@@ -26,7 +26,7 @@
                         {% if notification.sender.image %}
                         <img src="{{ notification.sender.image.url }}" class="profile-img_sy" />
                         {% else %}
-                        <img src="{% static 'images/lionprofile.svg' %}" class="profile-img_sy" />
+                        <img src="{% static 'images/post-list-default.png' %}" class="profile-img_sy" />
                         {% endif %}
                         <p class="nickname_sy">{{ notification.sender.nickname }}</p>
                     </div>

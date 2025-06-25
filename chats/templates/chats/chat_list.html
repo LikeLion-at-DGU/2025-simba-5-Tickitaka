@@ -6,66 +6,63 @@
 
 <div class="container_sw">
 
-<div class="pageAlignChatlist_sw">
-    <!-- 헤더 -->
-    <div class="headerFrameChatlist_sw">
-    <!-- 아직 메인 없음 -->
-        <a href="{% url 'main:home' %}">
-            <button class="backiconChatlist_sw">
-                <img src="{% static 'images/backicon.svg' %}" alt="뒤로가기아이콘">
-            </button>
-        </a>
-        <div class="headerTitleChatlist_sw">
-            <div class="headerTextChatlist_sw">채팅목록</div>
+    <div class="pageAlignChatlist_sw">
+        <!-- 헤더 -->
+        <div class="headerFrameChatlist_sw">
+            <!-- 아직 메인 없음 -->
+            <a href="{% url 'main:home' %}">
+                <button class="backiconChatlist_sw">
+                    <img src="{% static 'images/backicon.svg' %}" alt="뒤로가기아이콘">
+                </button>
+            </a>
+            <div class="headerTitleChatlist_sw">
+                <div class="headerTextChatlist_sw">채팅목록</div>
+            </div>
         </div>
-    </div>
-  
 
-    
-     <div class="listFrameChatlist_sw">
-        <!-- 카테고리 -->
+
+
+        <div class="listFrameChatlist_sw">
+            <!-- 카테고리 -->
             <div class="categoriesFrameChatlist_sw">
-                <a href="?filter=all" 
-                class="
+                <a href="?filter=all" class="
                 {% if filter_type == 'all' %}
                     usedFilterBtnChatlist_sw
                 {% else %}
                     unusedfilterBtnChatlist_sw
                 {% endif %}">
-                전체
+                    전체
                 </a>
-                <a href="?filter=master" 
-                class="
+                <a href="?filter=master" class="
                 {% if filter_type == 'master' %}
                     usedFilterBtnChatlist_sw
                 {% else %}
                     unusedfilterBtnChatlist_sw
                 {% endif %}">
-                요청
+                    요청
                 </a>
-                 <a href="?filter=helper" 
-                class="
+                <a href="?filter=helper" class="
                 {% if filter_type == 'helper' %}
                     usedFilterBtnChatlist_sw
                 {% else %}
                     unusedfilterBtnChatlist_sw
                 {% endif %}">
-                수락
+                    수락
                 </a>
             </div>
 
-        <!-- 목록 -->
-         <div class="chatroomFrameChatlist_sw">
-            {% for item in chat_list%}    
-                <a href="{% url 'chats:chat_room' item.chatroom.id %}"
-                class="chatroomChatlist_sw
+            <!-- 목록 -->
+            <div class="chatroomFrameChatlist_sw">
+                {% for item in chat_list%}
+                <a href="{% url 'chats:chat_room' item.chatroom.id %}" class="chatroomChatlist_sw
                 {% if item.chatroom.post.status == 'done' %} chatroomChatlistDone_sw{% endif %}">
-                <!-- 프사 불러오기 만들기 edit 끝나고 -->
-                        {% if item.opponent.image %}
-                            <img class="chatroomProfileChatlist_sw" src="{{item.opponent.image.url}}" alt="상대프로필사진">
-                        {%else%}
-                            <img src="{% static 'images/lionprofile.svg' %}" class="chatroomProfileChatlist_sw" alt="기본프로필사진">
-                        {% endif %}
+                    <!-- 프사 불러오기 만들기 edit 끝나고 -->
+                    {% if item.opponent.image %}
+                    <img class="chatroomProfileChatlist_sw" src="{{item.opponent.image.url}}" alt="상대프로필사진">
+                    {%else%}
+                    <img src="{% static 'images/post-list-default.png' %}" class="chatroomProfileChatlist_sw"
+                        alt="기본프로필사진">
+                    {% endif %}
                     <div class="textBoxChatlist_sw">
                         <div class="textWrapperChatlist_sw">
                             <div class="tempWrapperChatlist_Sw">
@@ -82,21 +79,21 @@
                             <div class="titleChatlist_sw">{{ item.chatroom.post.title }}</div>
                             {% endif %}
                             {% if item.unread %}
-                                <div class="unreadCountChatlist_sw">{{item.unread}}</div>
+                            <div class="unreadCountChatlist_sw">{{item.unread}}</div>
                             {% endif %}
                         </div>
-                        
+
                     </div>
-                 
+
 
                 </a>
-            {% endfor %}
-         </div>
+                {% endfor %}
+            </div>
 
-     </div>
+        </div>
 
 
-</div>
+    </div>
 </div>
 {% endblock %}
 {% block scripts %}
