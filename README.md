@@ -93,20 +93,23 @@
 # 🚀 설치 및 실행 방법
 
 ```bash
-# 1️⃣ 프로젝트 클론
-$ git clone [REPO_URL]
+# 1️⃣ 프로젝트 클론 및 해당 디렉토리로 이동
+$ git clone https://github.com/LikeLion-at-DGU/2025-simba-5-Tickitaka.git
+$ cd 2025-simba-5-Tickitaka
 
 # 2️⃣ 가상환경 생성 및 활성화
 $ python -m venv venv
-$ source venv/bin/activate  # Windows: venv\Scripts\activate
+$ source venv/bin/activate  # Windows: source venv/Scripts/activate
 
 # 3️⃣ 패키지 설치
 $ pip install -r requirements.txt
 
-# 4️⃣ 데이터베이스 초기화
-$ python manage.py migrate
+# 4️⃣ Pillow 설치하기
+$ pip install Pillow
 
 # 5️⃣ 서버 실행
 $ python manage.py runserver
+
+# ‼️ 채팅을 테스트하려면 회원가입을 통해 두 계정을 만든 후 서로 다른 두 브라우저(ex: chrome edge)로 각각 로그인한 후 테스트하기
 
 
