@@ -1,0 +1,184 @@
+button {
+    cursor: pointer;
+}
+
+a {
+    cursor: pointer;
+}
+
+.friend-alarm-container_sy {
+    width: 390px;
+    min-height: 844px;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    background: #f6f8fa;
+    gap: 24px;
+    padding-bottom: 32px;
+}
+
+.friend-alarm-header_sy {
+    display: flex;
+    height: 77px;
+    width: 390px;
+    gap: 130.74px;
+    padding: 24px 164.946px 24px 16.743px;
+    align-items: center;
+    border-bottom: 0.5px solid var(--N-4, #d9d9d9);
+    background: var(--P-1, #025397);
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 100;
+}
+
+.go-back-btn_sy {
+    width: 10px;
+    height: 16px;
+    aspect-ratio: 5/8;
+    fill: var(--N-1, #ffffff);
+}
+
+.friend-alarm-title_sy {
+    color: #ffffff;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.friend-alarm-content_sy {
+    display: flex;
+    width: 390px;
+    padding: 0 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.friend-alarm-list_sy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+    position: relative;
+    top: 95px;
+}
+
+.friend-card_sy {
+    display: flex;
+    padding: 24px 16px;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 6px;
+    background: #fafafa;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+    justify-content: space-between;
+    align-self: stretch;
+    align-items: center;
+}
+
+.friend-info_sy {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profile-img_sy {
+    width: 46px;
+    height: 46px;
+}
+
+.alarm-btn_sy {
+    width: 90px;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.nickname_sy {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.accept-btn_sy {
+    display: flex;
+    min-width: 44px;
+    height: 24px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 30px;
+    background: #025397;
+    color: #fff;
+    font-family: 'Pretendard Variable';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.reject-btn_sy {
+    display: flex;
+    min-width: 44px;
+    height: 24px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 30px;
+    border: 0.5px solid #666;
+    background: #fff;
+    color: #666;
+    font-family: 'Pretendard Variable';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.pending_sy {
+    color: #ffffff;
+    display: flex;
+    padding: 5px 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background: #97d5aa;
+}
+
+.already-friend_sy {
+    display: flex;
+    padding: 5px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 30px;
+    color: #ffffff;
+    background: var(--N-2, #666);
+}
+
+.already-friend_sy,
+.pending_sy,
+.friend-btn_sy {
+    color: #fff;
+    font-family: 'Pretendard Variable';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}

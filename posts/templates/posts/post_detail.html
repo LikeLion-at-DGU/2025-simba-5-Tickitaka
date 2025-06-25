@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/post_detail.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+</head>
+
+<body>
+    <div class="post-detail-container_sy">
+        <div class="post-detail-header_sy">
+            <a href="{% url 'posts:post_list' %}" class="go-back-btn_sy">
+                <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M0.29277 5.79301L5.94977 0.136013L7.36377 1.55001L2.41377 6.50001L7.36377 11.45L5.94977 12.864L0.29277 7.20701C0.105299 7.01949 -1.66893e-05 6.76518 -1.66893e-05 6.50001C-1.66893e-05 6.23485 0.105299 5.98054 0.29277 5.79301Z"
+                        fill="black" />
+                </svg>
+            </a>
+            <div class="complain-btn_sy">
+                <a href="{% url 'main:report' %}" class="complain-btn_sy">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M8.673 12.942H9.673V10.135C9.673 9.50033 9.901 8.957 10.357 8.505C10.8123 8.053 11.36 7.827 12 7.827V6.827C11.08 6.827 10.2953 7.14833 9.646 7.791C8.99733 8.433 8.673 9.21433 8.673 10.135V12.942ZM4.616 20C4.17133 20 3.791 19.8417 3.475 19.525C3.159 19.2083 3.00067 18.8287 3 18.386V16.866C3 16.422 3.15833 16.042 3.475 15.726C3.79167 15.41 4.17167 15.2517 4.615 15.251H5.827V10.136C5.827 8.42667 6.426 6.97667 7.624 5.786C8.822 4.59533 10.2807 4 12 4C13.7193 4 15.178 4.59533 16.376 5.786C17.574 6.97667 18.173 8.42633 18.173 10.135V15.25H19.385C19.829 15.25 20.209 15.4083 20.525 15.725C20.841 16.0417 20.9993 16.4217 21 16.865V18.385C21 18.829 20.8417 19.209 20.525 19.525C20.2083 19.841 19.8283 19.9993 19.385 20H4.616Z"
+                            fill="#C75352" />
+                    </svg>
+                    <p>신고하기</p>
+                </a>
+            </div>
+        </div>
+        <div class="post-detail-content_sy">
+            <div class="post-detail-image_sy">
+                {% if post.images.all|length > 1 %}
+                <button class="carousel-btn left" onclick="prevImage()"><svg width="28" height="28" viewBox="0 0 28 28"
+                        fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="28" height="28" fill="url(#pattern0_1263_2184)" />
+                        <defs>
+                            <pattern id="pattern0_1263_2184" patternContentUnits="objectBoundingBox" width="1"
+                                height="1">
+                                <use xlink:href="#image0_1263_2184" transform="scale(0.0178571)" />
+                            </pattern>
+                            <image id="image0_1263_2184" width="56" height="56" preserveAspectRatio="none"
+                                xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjseAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAATySURBVHgB5ZtRSFtXGMe/pO3QtjimkhZKZQZsxbawCXOZDxO2PToRRFQUROyLvgx8ENahiLJNX9S96Et9Eok++OIQQVklL2ZBkUJTcAEbsC+rLI6WGh8ScN8/uUeuyYmJ9557o90PTpN6VPz5nfOdc79zdJAFHB8fP+KXcl27we1Wyqe94bbP7ZBbkFvY4XC8IMU4SAEsBAFIfc/NTUkhI0AWkgGW/YMUYEpQE2vQmlGpTCC6iKyXZd+QQQwJWiwmw8vtmRHRcwuynIdfuil9TlkNIuo979DNWVCLWhslo5ZPligpepjLJ+ckyHIufnlCyQRyEUA0f8plyGYV1OR+JvuHZDZykjxT8ALLCbJKZhS8BHKCMyWdsg9qCeUyyAEE4kftZ07DmeGLkC0vg5wAya9N1pEmyL+Jb8mmpWBiYsLd29v7GamhQVujT3FqDto570ZGRu7Nz8/fx/uysrK3c3Nz/uLi4hiZA/PxB/0amRpBRM9WObC3t/dxe3v7V7u7u4VkDgTo1Og7iaAWvadkMf39/Q+Xl5fLZX2VlZWRxcXFDTIHovdYRFEfwTayGMy3THIlJSXR0dHR52Qe8SCQQC/4kCzi4ODgWlNTU63P57sr68ccnJmZ8VdUVERJDQ1i2UgIapnTkrmHeYX5tbOzUyLrFwlGoRwQD+AnEfSQBUCuq6urFklE1l9XV/daUfaUgeoCXdX+o3x4CrlIJHJd1g+5qakpFXMuE4knH6dWIFL6VL65uVl0llxLS0vIYjlwA26IYDkpBHI9PT21R0dH12T9kBscHPyL7KEcgo9IEZwJ705PTz+4IHLADcHrpADIjY+PZ9xX9vX1Pe/u7n5N9vIpBF1kktStl57CwsIYD9mXeZADNyFoav3LJsfJxF9TU/OW8oPrKplkbW1NujvB1kvx7sQQTjJJNBr9KOM3dzqPKc+YFuzo6JBmRayBra2tdVtbW0WUR64MDQ19w683ySAej+df3kxTMBgsTe2LxWJXVldX7/BwfV9VVfWe7Gcfgt/xm0/IBLztirBMfHt7Oy0jQ3J9ff1OQUHBUXV19Tuyl1cQRAY0XbFGJF0u17tAIHArHo+nDX2/33+bh60DvwyyjzB+kDAporm5+W9eFjZ4eYjL+hcWFu4NDw/fJ/sIKhUEWPO8Xq8Py4Ss32bJsFM7Ns7ppCZXsPZhDTxLkmszD8haDuEm5sorUkw2Sa7NuDs7O79AOYOsIXHeLwR/JwsQklyWkGZPXiNvo5xhkWQA/whB5cNUAMnZ2dmNTJIoZzQ2Nn6toCaqZ1+cBCcEtRriEllEaWlpbGVlxYcyhawfux5UABRKBsUb/XoFQUuiKECZor6+XjrfIcmJ53NSg1e8ORG0OoqCsbGxl7xHTdu/onyoqPB76tpJ6o4DgobvpOTKwMBASC/JJft/FNVGcfjyTP+BtBNe7QjqCdnA5OSkOxQKFSmssP2Wes1EeoTNko8p/9dFzssSy6UdHmV6HsQkVb74W0jikpCsQyqoJZxfyIb5qABxCUG6Avx/r5EIPuiLQIILKIn88KuSq1yCD/oynh7tsLSV8nOd8imL/XmeLzJ6IRZDFqKWn+tTcn+MqC3lGjU9Zq80QxSSOEBVHVFTYgIll9KBNnS/pORxnJlL6UggeAB/YUZMoExQj+7PChBZyCLSsj8rgEBYNCv+rOA/HucbwqUZqQAAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+                </button>
+                {% endif %}
+                <div class="carousel-track_sy">
+                    {% for image in post.images.all %}
+                    <img src="{{ image.image.url }}" alt="post image" class="carousel-image_sy">
+                    {% empty %}
+                    <img src="{% static 'images/post-list-default.png' %}" alt="기본 이미지" class="carousel-image_sy">
+                    {% endfor %}
+                </div>
+                {% if post.images.all|length > 1 %}
+                <button class="carousel-btn right" onclick="nextImage()"><svg width="28" height="28" viewBox="0 0 28 28"
+                        fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="28" height="28" transform="matrix(-1 0 0 1 28 0)"
+                            fill="url(#pattern0_1263_2186)" />
+                        <defs>
+                            <pattern id="pattern0_1263_2186" patternContentUnits="objectBoundingBox" width="1"
+                                height="1">
+                                <use xlink:href="#image0_1263_2186" transform="scale(0.0178571)" />
+                            </pattern>
+                            <image id="image0_1263_2186" width="56" height="56" preserveAspectRatio="none"
+                                xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjseAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAATySURBVHgB5ZtRSFtXGMe/pO3QtjimkhZKZQZsxbawCXOZDxO2PToRRFQUROyLvgx8ENahiLJNX9S96Et9Eok++OIQQVklL2ZBkUJTcAEbsC+rLI6WGh8ScN8/uUeuyYmJ9557o90PTpN6VPz5nfOdc79zdJAFHB8fP+KXcl27we1Wyqe94bbP7ZBbkFvY4XC8IMU4SAEsBAFIfc/NTUkhI0AWkgGW/YMUYEpQE2vQmlGpTCC6iKyXZd+QQQwJWiwmw8vtmRHRcwuynIdfuil9TlkNIuo979DNWVCLWhslo5ZPligpepjLJ+ckyHIufnlCyQRyEUA0f8plyGYV1OR+JvuHZDZykjxT8ALLCbJKZhS8BHKCMyWdsg9qCeUyyAEE4kftZ07DmeGLkC0vg5wAya9N1pEmyL+Jb8mmpWBiYsLd29v7GamhQVujT3FqDto570ZGRu7Nz8/fx/uysrK3c3Nz/uLi4hiZA/PxB/0amRpBRM9WObC3t/dxe3v7V7u7u4VkDgTo1Og7iaAWvadkMf39/Q+Xl5fLZX2VlZWRxcXFDTIHovdYRFEfwTayGMy3THIlJSXR0dHR52Qe8SCQQC/4kCzi4ODgWlNTU63P57sr68ccnJmZ8VdUVERJDQ1i2UgIapnTkrmHeYX5tbOzUyLrFwlGoRwQD+AnEfSQBUCuq6urFklE1l9XV/daUfaUgeoCXdX+o3x4CrlIJHJd1g+5qakpFXMuE4knH6dWIFL6VL65uVl0llxLS0vIYjlwA26IYDkpBHI9PT21R0dH12T9kBscHPyL7KEcgo9IEZwJ705PTz+4IHLADcHrpADIjY+PZ9xX9vX1Pe/u7n5N9vIpBF1kktStl57CwsIYD9mXeZADNyFoav3LJsfJxF9TU/OW8oPrKplkbW1NujvB1kvx7sQQTjJJNBr9KOM3dzqPKc+YFuzo6JBmRayBra2tdVtbW0WUR64MDQ19w683ySAej+df3kxTMBgsTe2LxWJXVldX7/BwfV9VVfWe7Gcfgt/xm0/IBLztirBMfHt7Oy0jQ3J9ff1OQUHBUXV19Tuyl1cQRAY0XbFGJF0u17tAIHArHo+nDX2/33+bh60DvwyyjzB+kDAporm5+W9eFjZ4eYjL+hcWFu4NDw/fJ/sIKhUEWPO8Xq8Py4Ss32bJsFM7Ns7ppCZXsPZhDTxLkmszD8haDuEm5sorUkw2Sa7NuDs7O79AOYOsIXHeLwR/JwsQklyWkGZPXiNvo5xhkWQA/whB5cNUAMnZ2dmNTJIoZzQ2Nn6toCaqZ1+cBCcEtRriEllEaWlpbGVlxYcyhawfux5UABRKBsUb/XoFQUuiKECZor6+XjrfIcmJ53NSg1e8ORG0OoqCsbGxl7xHTdu/onyoqPB76tpJ6o4DgobvpOTKwMBASC/JJft/FNVGcfjyTP+BtBNe7QjqCdnA5OSkOxQKFSmssP2Wes1EeoTNko8p/9dFzssSy6UdHmV6HsQkVb74W0jikpCsQyqoJZxfyIb5qABxCUG6Avx/r5EIPuiLQIILKIn88KuSq1yCD/oynh7tsLSV8nOd8imL/XmeLzJ6IRZDFqKWn+tTcn+MqC3lGjU9Zq80QxSSOEBVHVFTYgIll9KBNnS/pORxnJlL6UggeAB/YUZMoExQj+7PChBZyCLSsj8rgEBYNCv+rOA/HucbwqUZqQAAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+                </button>
+                {% endif %}
+            </div>
+            <div class="post-detail-item_sy">
+                <a href="{% url 'friends:other_profile' post.master.id %}">
+                    <div class="user-info_sy">
+                        <div class="profile-image_sy">
+                            {% if post.master.image %}
+                            <img src="{{ post.master.image.url }}" alt="프로필 이미지">
+                            {% else %}
+                            <img src="{% static 'images/lionprofile.svg' %}" alt="기본 프로필 이미지">
+                            {% endif %}
+                        </div>
+                        <div class="user-name_sy">{{ post.master.nickname }}</div>
+                    </div>
+                </a>
+                <div class="line_sy"></div>
+                <div class="post-detail">
+                    <div class="first-detail_sy">
+                        <P class="post-title_sy">{{ post.title }}</P>
+                        <p class="post-time-text_sy">{{ post.amounts }}분</p>
+                    </div>
+                    <div class="second-detail_sy">
+                        <div class="third-detail_sy">
+                            <div class="post-detail-time_sy">
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M8.99995 16.5C8.06245 16.5 7.18445 16.322 6.36595 15.966C5.54745 15.61 4.83495 15.1287 4.22845 14.5222C3.62195 13.9157 3.1407 13.2032 2.7847 12.3847C2.4287 11.5662 2.25045 10.688 2.24995 9.74995C2.24945 8.81195 2.4277 7.93395 2.7847 7.11595C3.1417 6.29795 3.6227 5.58545 4.2277 4.97845C4.8327 4.37145 5.5452 3.8902 6.3652 3.5347C7.1852 3.1792 8.06345 3.00095 8.99995 2.99995C9.93645 2.99895 10.8147 3.1772 11.6347 3.5347C12.4547 3.8922 13.1672 4.37345 13.7722 4.97845C14.3772 5.58345 14.8584 6.29595 15.216 7.11595C15.5735 7.93595 15.7514 8.81395 15.7499 9.74995C15.7484 10.686 15.5704 11.5642 15.216 12.3847C14.8615 13.2052 14.3802 13.9177 13.7722 14.5222C13.1642 15.1267 12.4517 15.608 11.6347 15.966C10.8177 16.324 9.93945 16.502 8.99995 16.5ZM11.0999 12.9L12.15 11.85L9.74995 9.44995V5.99995H8.24995V10.05L11.0999 12.9ZM4.19995 1.76245L5.24995 2.81245L2.06245 5.99995L1.01245 4.94995L4.19995 1.76245ZM13.7999 1.76245L16.9874 4.94995L15.9374 5.99995L12.75 2.81245L13.7999 1.76245Z"
+                                        fill="black" />
+                                </svg>
+                                <p>{{ post.deadline|date:"m/d H:i" }}까지</p>
+                            </div>
+                            <div class="status-button_sy">
+                                {% if display_status == "waiting" %}
+                                <button class="status-blue_sy">거래전</button>
+                                {% elif display_status == "in_progress_group" %}
+                                <button class="status-red_sy">거래중</button>
+                                {% elif display_status == "done" %}
+                                <button class="status-green_sy">거래완료</button>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="post-detail-location_sy">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M16.272 10.2722C16.272 11.3331 15.8506 12.3505 15.1005 13.1006C14.3503 13.8508 13.3329 14.2722 12.272 14.2722C11.2112 14.2722 10.1938 13.8508 9.44361 13.1006C8.69346 12.3505 8.27203 11.3331 8.27203 10.2722C8.27203 9.21135 8.69346 8.19394 9.44361 7.44379C10.1938 6.69364 11.2112 6.27222 12.272 6.27222C13.3329 6.27222 14.3503 6.69364 15.1005 7.44379C15.8506 8.19394 16.272 9.21135 16.272 10.2722ZM14.272 10.2722C14.272 10.8027 14.0613 11.3114 13.6862 11.6864C13.3112 12.0615 12.8025 12.2722 12.272 12.2722C11.7416 12.2722 11.2329 12.0615 10.8578 11.6864C10.4827 11.3114 10.272 10.8027 10.272 10.2722C10.272 9.74178 10.4827 9.23308 10.8578 8.858C11.2329 8.48293 11.7416 8.27222 12.272 8.27222C12.8025 8.27222 13.3112 8.48293 13.6862 8.858C14.0613 9.23308 14.272 9.74178 14.272 10.2722Z"
+                                    fill="black" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M5.794 16.5181C4.50484 15.2907 3.60861 13.7085 3.21864 11.9717C2.82867 10.2349 2.96248 8.42149 3.60315 6.76074C4.24381 5.1 5.36256 3.66652 6.81792 2.6416C8.27328 1.61668 9.99988 1.04634 11.7794 1.00271C13.5589 0.959071 15.3114 1.4441 16.8152 2.39646C18.3191 3.34882 19.5067 4.72574 20.228 6.35309C20.9493 7.98044 21.1718 9.78514 20.8675 11.539C20.5631 13.2928 19.7455 14.917 18.518 16.2061L12.312 22.7241L5.794 16.5181ZM17.07 14.8271L12.243 19.8971L7.173 15.0701C6.17037 14.1154 5.47334 12.8849 5.17005 11.5341C4.86676 10.1833 4.97084 8.77285 5.46912 7.48119C5.9674 6.18953 6.8375 5.07462 7.96941 4.27746C9.10131 3.4803 10.4442 3.03668 11.8282 3.00269C13.2122 2.96871 14.5752 3.3459 15.7449 4.08655C16.9146 4.8272 17.8383 5.89806 18.3994 7.16371C18.9605 8.42936 19.1336 9.83297 18.897 11.197C18.6604 12.5611 18.0246 13.8244 17.07 14.8271Z"
+                                    fill="black" />
+                            </svg>
+                            <p class="post-location_sy">{{ post.building.name }}</p>
+                        </div>
+                    </div>
+                    <div class="fourth-detail_sy">
+                        <p>{{ post.content }}</p>
+                    </div>
+                </div>
+                <div class="line_sy"></div>
+                <div class="post-detail-footer_sy">
+                    <form method="POST" action="{% url 'posts:toggle_saved' post.id %}" class="post-liked_sy">
+                        {% csrf_token %}
+                        <button type="submit" style="all:unset; cursor:pointer;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="21" viewBox="0 0 16 21"
+                                fill="{% if is_saved %}black{% else %}none{% endif %}" stroke="black">
+                                <path d="M15.5 1V19.749L8.19238 16.7051L8 16.625L7.80762 16.7051L0.5 19.749V1H15.5Z" />
+                            </svg>
+                        </button>
+                        <p class="post-liked-count_sy">{{ post.saved_count }}</p>
+                    </form>
+
+                    {% if user.id == post.master_id %}
+                    <div class="manage-btn-wrapper_sy">
+                        {# 작성자일 경우: 수정/삭제 버튼 #}
+                        {% if post.status == "waiting" %}
+                        <a href="{% url 'posts:post_edit' post.id %}">
+                            <button class="edit-btn_sy">수정하기</button>
+                        </a>
+                        <form method="POST" action="{% url 'posts:post_delete' post.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="delete-btn_sy"
+                                onclick="return confirm('정말 삭제하시겠습니까?');">삭제하기</button>
+                        </form>
+                        {% else %}
+                        <button class="edit-btn_sy" disabled>수정하기</button>
+                        <button class="edit-btn_sy" disabled>삭제하기</button>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    {# 작성자가 아닌 일반 사용자 #}
+                    {% if post.status == "waiting" %}
+                    <form method="POST" action="{% url 'posts:call_post' post.id %}">
+                        {% csrf_token %}
+                        <button class="call-btn_sy" type="submit">콜!</button>
+                    </form>
+                    {% else %}
+                    <button class="call-btn_sy disabled" disabled>콜!</button>
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="{% static 'js/post_detail.js' %}"></script>
+
+</html>

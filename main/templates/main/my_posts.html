@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/my_posts.css' %}" />
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+<body>
+    <div class="my-post-container_sy">
+        <div class="my-post-header_sy">
+            <a class="go-back-btn_sy" href="{% url 'main:mypage' %}">
+                <img src="{% static 'images/backicon.svg' %}" alt="뒤로가기아이콘">
+            </a>
+            <h1 class="my-post-title_sy">내가 쓴 글</h1>
+        </div>
+    
+        <div class="post-list_sy">
+            {% for post in posts %}
+            <a href="{% url 'posts:post_detail' post.id %}">
+                <div class="post-container_sy">
+                    <div class="post-image_sy">
+                        {% with post.images.all|first as image %}
+                            {% if image %}
+                                <img src="{{ image.image.url }}" alt="post image">
+                            {% else %}
+                                <img src="{% static 'images/test2.png' %}" alt="기본 이미지">
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                    <div class="post-item_sy">
+                        <h2 class="post-title_sy">{{ post.title }}</h2>
+                        <div class="post-first-info_sy">
+                            <div class="post-location_sy">
+                                {% if selected_building_name %}
+                                    {{ selected_building_name }}
+                                {% else %}
+                                    {{ post.building.name }}
+                                {% endif %}
+                            </div>
+                            <div class="post-second-info-sy">
+                                <div class="post-time_sy">
+                                    <svg class="{% if post.burning == 1 %}boosted-icon_sy{% endif %}" width="21" height="20" viewBox="0 0 21 20" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M10.5 0C9.18678 0 7.88642 0.258658 6.67317 0.761205C5.45991 1.26375 4.35752 2.00035 3.42893 2.92893C1.55357 4.8043 0.5 7.34784 0.5 10C0.5 12.6522 1.55357 15.1957 3.42893 17.0711C4.35752 17.9997 5.45991 18.7362 6.67317 19.2388C7.88642 19.7413 9.18678 20 10.5 20C13.1522 20 15.6957 18.9464 17.5711 17.0711C19.4464 15.1957 20.5 12.6522 20.5 10C20.5 8.68678 20.2413 7.38642 19.7388 6.17317C19.2362 4.95991 18.4997 3.85752 17.5711 2.92893C16.6425 2.00035 15.5401 1.26375 14.3268 0.761205C13.1136 0.258658 11.8132 0 10.5 0ZM14.7 14.2L9.5 11V5H11V10.2L15.5 12.9L14.7 14.2Z"
+                                                fill="#2A2A2A" />
+                                    </svg>
+                                    <p class="post-time-text_sy {% if post.burning == 1 %}boosted_time_sy{% endif %}">
+                                        +{{ post.amounts }}분
+                                    </p>
+                                </div>
+                                <div class="post-deadline_sy">{{ post.deadline|date:"m/d H:i" }}까지</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% empty %}
+            <p class = "my-posts-description">작성한 게시글이 없습니다</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static '/js/my_post.js' %}"></script>
+{% endblock %}

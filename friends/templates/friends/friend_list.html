@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/friend_list.css' %}" />
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+
+<body>
+    <div class="friend-list-container_sy">
+        <div class="friend-list-header_sy">
+            <a href="{% url 'main:home' %}">
+                <button class="go-back-btn_sy">
+                    <img src="{% static 'images/backicon.svg' %}" alt="뒤로가기아이콘">
+                </button>
+            </a>
+            <h1 class="friend-list-title_sy">친구 목록</h1>
+            <div class="search-btn_sy">
+                <a href="{% url 'friends:friend_search' %}">
+                    <button class="friend-search-btn_sy">
+                        <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M26.7444 29L16.5944 18.85C15.7889 19.4944 14.8625 20.0046 13.8153 20.3806C12.7681 20.7565 11.6537 20.9444 10.4722 20.9444C7.54537 20.9444 5.06856 19.9305 3.04178 17.9027C1.015 15.8748 0.00107493 13.398 8.5244e-07 10.4722C-0.00107322 7.54644 1.01285 5.06963 3.04178 3.04178C5.0707 1.01393 7.54752 0 10.4722 0C13.3969 0 15.8743 1.01393 17.9043 3.04178C19.9343 5.06963 20.9477 7.54644 20.9444 10.4722C20.9444 11.6537 20.7565 12.7681 20.3806 13.8153C20.0046 14.8625 19.4944 15.7889 18.85 16.5944L29 26.7444L26.7444 29ZM10.4722 17.7222C12.4861 17.7222 14.1982 17.0176 15.6084 15.6084C17.0187 14.1993 17.7233 12.4872 17.7222 10.4722C17.7211 8.45726 17.0166 6.74572 15.6084 5.33761C14.2003 3.9295 12.4883 3.22437 10.4722 3.22222C8.45619 3.22007 6.74465 3.9252 5.33761 5.33761C3.93058 6.75002 3.22545 8.46156 3.22222 10.4722C3.219 12.4829 3.92413 14.195 5.33761 15.6084C6.75109 17.0219 8.46263 17.7265 10.4722 17.7222Z"
+                                fill="white" />
+                        </svg>
+                    </button>
+                </a>
+                <!--받은 알림이랑 연결-->
+                <a href="{% url 'friends:friend_alarm' %}">
+                    {% if unread_notification_exists %}
+                    <img src="{% static 'images/alarm_exist.png' %}" alt="알림 있음" width="22" height="23" />
+                    {% else %}
+                    <img src="{% static 'images/alarm-no.png' %}" alt="알림 없음" width="22" height="23" />
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+
+        <div class="friend-list-content_sy">
+            {% for friend in friend_profiles %}
+            <div class="friend-card_sy">
+                <a href="{% url 'friends:other_profile' friend.user.id %}">
+                    <div class="friend-info_sy">
+                        {% if result.profile.image %}
+                        <img src="{{ result.profile.image.url }}" class="profile-img_sy" />
+                        {% else %}
+                        <img src="{% static 'images/post-list-default.png' %}" class="profile-img_sy" />
+                        {% endif %}
+                        <p class="nickname_sy">{{ friend.nickname }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static '/js/friend_list.js' %}"></script>
+{% endblock %}

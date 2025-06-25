@@ -1,0 +1,355 @@
+.post-detail-container_sy {
+    width: 390px;
+    height: auto;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+.post-detail-header_sy {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 16px 12px;
+}
+
+.go-back-btn_sy {
+    cursor: pointer;
+    padding: 8px;
+}
+
+.go-back-btn_sy svg {
+    width: 10px;
+    height: 16px;
+    flex-shrink: 0;
+    aspect-ratio: 5/8;
+}
+
+.complain-btn_sy {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.complain-btn_sy svg {
+    width: 18px;
+    height: 18px;
+    aspect-ratio: 1/1;
+    fill: #c75352;
+}
+
+.complain-btn_sy p {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.post-detail-content_sy {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-detail-image_sy {
+    width: 100%;
+    height: 390px;
+    overflow: hidden;
+}
+
+.post-detail-image_sy img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post-detail-image_sy {
+    width: 100%;
+    height: 390px;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-track_sy {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    height: 100%;
+}
+
+.carousel-image_sy {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transition: transform 0.5s ease-in-out;
+    border: none;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.carousel-btn.left {
+    left: 10px;
+}
+
+.carousel-btn.right {
+    right: 10px;
+}
+
+.user-info_sy {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 16px;
+}
+
+.profile-image_sy {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+.profile-image_sy img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-name_sy {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.line_sy {
+    width: 390px;
+    height: 0.5px;
+    background: #666;
+}
+
+.post-detail {
+    padding: 16px 16px;
+}
+
+.first-detail_sy {
+    display: flex;
+    align-items: flex-start;
+    gap: 46px;
+    padding-bottom: 8px;
+}
+
+.post-title_sy {
+    width: 264px;
+    flex-shrink: 0;
+    color: #000;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.post-time-text_sy {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.second-detail_sy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.third-detail_sy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-self: stretch;
+}
+
+.post-detail-time_sy {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.post-detail-time_sy p {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.post-detail-time_sy svg {
+    width: 18px;
+    height: 18px;
+    aspect-ratio: 1/1;
+}
+
+.status-button_sy {
+    display: flex;
+    padding: 5px 0px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    font-family: 'Pretendard Variable';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.status-blue_sy {
+    background: rgba(2, 83, 151, 0.84);
+    color: #fff;
+    padding: 5px;
+}
+
+.status-red_sy {
+    background: rgba(199, 83, 82, 0.78);
+    color: #fff;
+    padding: 5px;
+}
+
+.status-green_sy {
+    background: rgba(14, 133, 26, 0.69);
+    color: #fff;
+    padding: 5px;
+}
+
+.post-detail-location_sy {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-bottom: 24px;
+}
+
+.post-detail-location_sy svg {
+    width: 18px;
+    height: 18px;
+    aspect-ratio: 1/1;
+}
+
+.post-location_sy {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.fourth-detail_sy {
+    padding-bottom: 30px;
+}
+
+.fourth-detail_sy p {
+    color: #000;
+    font-family: 'Pretendard Variable';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.post-detail-footer_sy {
+    display: flex;
+    align-items: center;
+    padding: 16px 16px;
+    justify-content: space-around;
+}
+
+.post-liked_sy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.post-liked_sy svg {
+    width: 16px;
+    height: 20px;
+    aspect-ratio: 4/5;
+    stroke-width: 1px;
+    stroke: #000;
+}
+
+.post-liked-count_sy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.call-btn_sy {
+    display: flex;
+    width: 284px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    background: #025397;
+    color: #fff;
+    text-align: center;
+    font-family: 'Pretendard Variable';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.call-btn_sy.disabled {
+    background-color: #666;
+    cursor: default;
+}
+
+.manage-btn-wrapper_sy {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+}
+
+.edit-btn_sy,
+.delete-btn_sy {
+    display: flex;
+    width: 132px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    background: #025397;
+    color: #fff;
+    cursor: pointer;
+}
+
+.manage-btn_sy:disabled {
+    background-color: #666;
+    cursor: default;
+}
+
+.edit-btn_sy:disabled,
+.delete-btn_sy:disabled {
+    background: #666;
+    cursor: default;
+}

@@ -1,0 +1,177 @@
+.report-container_sy {
+    width: 390px;
+    height: 844px;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    background: #F6F8FA;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.report-header_sy {
+    display: flex;
+    height: 77px;
+    width: 390px;
+    padding: 24px 139px 24px 16px;
+    align-items: center;
+    border-bottom: 0.5px solid var(--N-4, #D9D9D9);
+    color: #FFF;
+    background: var(--P-1, #025397);
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.go-back-btn_sy {
+    width: 10px;
+    height: 16px;
+    aspect-ratio: 5/8;
+    fill: var(--N-1, #fff);
+    cursor: pointer;
+}
+
+.go-back-btn_sy svg {
+    width: 100%;
+    height: 100%;
+}
+
+.report-title_sy {
+    color: #fff;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0;
+}
+
+.report-content_sy {
+    display: flex;
+    width: 358px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+    top: 110px;
+    align-self: stretch;
+    flex-wrap: wrap;
+
+}
+
+.report-f1_sy {
+    display: flex;
+    height: 92px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.report-f2_sy {
+    display: flex;
+    height: 140px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+    ;
+}
+
+.report-f1-text_sy,
+.report-f2-text_sy {
+    color: var(--N-1, #2A2A2A);
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    align-self: stretch;
+}
+
+.report-f1-input_sy {
+    width: 100%;
+    height: 48px;
+    padding: 12px 16px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    background: #FFFFFF;
+    font-family: Pretendard;
+    font-size: 14px;
+    color: #2A2A2A;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.report-f1-input_sy:focus {
+    border-color: #025397;
+    box-shadow: 0 0 0 2px rgba(90, 123, 167, 0.1);
+}
+
+.report-f1-input_sy::placeholder {
+    color: #999999;
+}
+
+.report-f2-input_sy {
+    width: 100%;
+    height: 120px;
+    padding: 12px 16px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    background: #FFFFFF;
+    font-family: Pretendard;
+    font-size: 14px;
+    color: #2A2A2A;
+    outline: none;
+    resize: none;
+    box-sizing: border-box;
+}
+
+.report-f2-input_sy:focus {
+    border-color: #025397;
+    box-shadow: 0 0 0 2px rgba(90, 123, 167, 0.1);
+}
+
+.report-f2-input_sy::placeholder {
+    color: #999999;
+}
+
+.report-f1-count_sy,
+.report-f2-count_sy {
+    align-self: stretch;
+    color: var(--N-3, #8A8A8A);
+    text-align: right;
+    font-family: "Pretendard Variable";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+.report-content_sy button[type="submit"] {
+    display: flex;
+    padding: 15px 153px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 6px;
+    background: var(--N-2, #666);
+    color: #fff;
+    margin-top: 12px;
+}
+
+.report-content_sy button[type="submit"]:not(:disabled) {
+    background: #025397;
+    cursor: pointer;
+}
+
+.report-content_sy button[type="submit"]:disabled {
+    background: #666;
+    cursor: not-allowed;
+}
