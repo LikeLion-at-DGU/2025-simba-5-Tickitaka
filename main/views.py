@@ -24,7 +24,7 @@ def home(request):
     hours = total_minutes // 60
     minutes = total_minutes % 60
 
-    # burning = 1인 게시글 중에서 10개 랜덤 추출
+
     burning_posts = list(
         Post.objects.filter(
             burning=1,
