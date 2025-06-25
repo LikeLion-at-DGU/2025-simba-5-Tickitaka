@@ -119,15 +119,19 @@
 .home-total-time_sy p {
     display: flex;
     height: 88px;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     color: var(--P-1, #025397);
     text-align: center;
-    font-family: Nunito;
+    font-family: 'yg-jalnan';
     font-size: 60px;
     font-style: normal;
-    font-weight: 900;
+    font-weight: 400;
     line-height: normal;
+}
+
+.time-unit1_sy{
+    margin-right: 20px;
 }
 
 .line1_sy {
@@ -478,4 +482,3 @@
     left: 311px;
     padding: 5px;
 }
-
