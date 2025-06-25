@@ -368,9 +368,10 @@
 }
 
 .post-container_sy:hover {
-    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.12);
+    /*box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.12);*/
     background: #F6F8FA;
     cursor: pointer;
+    border: 0.8px solid #02539740;;;
 }
 
 .friend-boost-btn_sy button:hover, 
