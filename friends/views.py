@@ -110,7 +110,7 @@ def accept_friend_request(request, request_id):
           except FriendRequestNotification.DoesNotExist:
                pass
 
-     return redirect('friends:friend_search')
+     return redirect('friends:friend_list')
 
 # 친구 요청 거절
 @login_required
