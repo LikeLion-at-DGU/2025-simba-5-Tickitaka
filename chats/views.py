@@ -380,7 +380,7 @@ def process_review(request, post_id):
                 balance_after=post.helper.time_balance
             )
 
-        return redirect('posts:post_list')  # 후기 제출 후 메인으로 이동
+        return redirect('main:mypage')  # 후기 제출 후 메인으로 이동
 
     return render(request, 'chats/review.html', {'post': post})
 

@@ -3,6 +3,8 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+<link rel="stylesheet" href="{% static 'css/font.css' %}">
+
 
 <div class="home-container2_sy">
     <div class="home-container_sy">
@@ -10,7 +12,7 @@
             <div class="home-content1_sy">
                 <div class="home-header_sy">
                     <div class="home-logo_sy">
-                        <img src="{% static 'images/logo.png' %}" alt="Logo">    
+                        <img src="{% static 'images/logo.png' %}" alt="Logo">
                     </div>
                     <a href="{% url 'accounts:login' %}" class="logout-link_sy">
                         <div class="home-logout_sy">로그아웃</div>
@@ -23,7 +25,10 @@
                 <div class="home-about-time_sy">
                     <div class="home-total-time_sy">
                         <h2>모은 시간</h2>
-                        <p>{{ hours|stringformat:"02d" }}:{{ minutes|stringformat:"02d" }}:00</p>
+                        <p>
+                            <span class="time-number_sy">{{ hours }}</span><span class="time-unit1_sy">H </span>
+                            <span class="time-number_sy">{{ minutes }}</span><span class="time-unit_sy">M</span>
+                        </p>
                     </div>
                     <div class="line1_sy"></div>
                     <div class="home-time-btn_sy">
@@ -45,42 +50,42 @@
             <div class="home-content2_sy">
                 <a href="{% url 'friends:friend_list' %}" class="home-about-friend_sy-link_sy">
                     <div class="home-about-friend_sy">
-                        <img src="{% static 'images/friend.png' %}" alt="Friend">  
+                        <img src="{% static 'images/friend.png' %}" alt="Friend">
                         <p>친구</p>
                     </div>
                 </a>
                 {% if ongoing_post %}
-                    <a id="chat-link" href="{% url 'chats:chat_room' chatroom.id %}" class="home-in-progress-link_sy">
-                        <div class="home-in-progress_sy">
-                            <div class="home-in-progress-content_sy">
-                                <div class="home-in-progress-header_sy">
-                                    <img src="{% static 'images/in-progress.png' %}" alt="In Progress">
-                                    <h2>수행 중인 거래</h2>
-                                </div>
-                                <div class="home-in-progress-post_sy">
-                                    <div class="post-title_sy">{{ ongoing_post.title }}</div>
-                                    <div class="post-last-time_sy">
-                                        <span id="remaining-time" data-deadline="{{ deadline_timestamp }}"></span>
-                                        <p>남았어요</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                {% else %}
-                    <div class="home-in-progress_sy" style="cursor: default;">
+                <a id="chat-link" href="{% url 'chats:chat_room' chatroom.id %}" class="home-in-progress-link_sy">
+                    <div class="home-in-progress_sy">
                         <div class="home-in-progress-content_sy">
                             <div class="home-in-progress-header_sy">
                                 <img src="{% static 'images/in-progress.png' %}" alt="In Progress">
                                 <h2>수행 중인 거래</h2>
                             </div>
                             <div class="home-in-progress-post_sy">
-                                <div class="post-empty_sy">
-                                    지금 진행 중인 거래가 없어요. <br> 거래 목록에서 도움을 주고 받아보세요!
+                                <div class="post-title_sy">{{ ongoing_post.title }}</div>
+                                <div class="post-last-time_sy">
+                                    <span id="remaining-time" data-deadline="{{ deadline_timestamp }}"></span>
+                                    <p>남았어요</p>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </a>
+                {% else %}
+                <div class="home-in-progress_sy" style="cursor: default;">
+                    <div class="home-in-progress-content_sy">
+                        <div class="home-in-progress-header_sy">
+                            <img src="{% static 'images/in-progress.png' %}" alt="In Progress">
+                            <h2>수행 중인 거래</h2>
+                        </div>
+                        <div class="home-in-progress-post_sy">
+                            <div class="post-empty_sy">
+                                지금 진행 중인 거래가 없어요. <br> 거래 목록에서 도움을 주고 받아보세요!
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {% endif %}
             </div>
             <div class="home-content3_sy">
@@ -96,18 +101,21 @@
                                 <div class="post-content_sy">
                                     <div class="post-image_sy">
                                         {% with post.images.first as image %}
-                                            {% if image %}
-                                                <img src="{{ image.image.url }}" alt="" class="post-now-image_sy">
-                                            {% else %}
-                                                <img src="{% static 'images/post-list-default.png' %}" alt="기본 이미지">
-                                            {% endif %}
+                                        {% if image %}
+                                        <img src="{{ image.image.url }}" alt="" class="post-now-image_sy">
+                                        {% else %}
+                                        <img src="{% static 'images/post-list-default.png' %}" alt="기본 이미지">
+                                        {% endif %}
                                         {% endwith %}
                                     </div>
                                     <div class="post-item_sy">
                                         <div class="post-item-title_sy">{{ post.title }}</div>
                                         <div class="post-item-time_sy">
-                                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12 2.04199C10.6868 2.04199 9.38642 2.30065 8.17317 2.8032C6.95991 3.30574 5.85752 4.04234 4.92893 4.97092C3.05357 6.84629 2 9.38983 2 12.042C2 14.6942 3.05357 17.2377 4.92893 19.1131C5.85752 20.0416 6.95991 20.7782 8.17317 21.2808C9.38642 21.7833 10.6868 22.042 12 22.042C14.6522 22.042 17.1957 20.9884 19.0711 19.1131C20.9464 17.2377 22 14.6942 22 12.042C22 10.7288 21.7413 9.42841 21.2388 8.21516C20.7362 7.0019 19.9997 5.89951 19.0711 4.97092C18.1425 4.04234 17.0401 3.30574 15.8268 2.8032C14.6136 2.30065 13.3132 2.04199 12 2.04199ZM16.2 16.242L11 13.042V7.04199H12.5V12.242L17 14.942L16.2 16.242Z" fill="#C75352"/>
+                                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M12 2.04199C10.6868 2.04199 9.38642 2.30065 8.17317 2.8032C6.95991 3.30574 5.85752 4.04234 4.92893 4.97092C3.05357 6.84629 2 9.38983 2 12.042C2 14.6942 3.05357 17.2377 4.92893 19.1131C5.85752 20.0416 6.95991 20.7782 8.17317 21.2808C9.38642 21.7833 10.6868 22.042 12 22.042C14.6522 22.042 17.1957 20.9884 19.0711 19.1131C20.9464 17.2377 22 14.6942 22 12.042C22 10.7288 21.7413 9.42841 21.2388 8.21516C20.7362 7.0019 19.9997 5.89951 19.0711 4.97092C18.1425 4.04234 17.0401 3.30574 15.8268 2.8032C14.6136 2.30065 13.3132 2.04199 12 2.04199ZM16.2 16.242L11 13.042V7.04199H12.5V12.242L17 14.942L16.2 16.242Z"
+                                                    fill="#C75352" />
                                             </svg>
                                             <p>+{{ post.amounts }}분</p>
                                         </div>
@@ -116,40 +124,45 @@
                             </a>
                             {% endfor %}
                             {% for post in burning_posts %}
-                                {% if post.is_ongoing %}
-                                    <a href="{% url 'posts:post_detail' post.id %}" class="post-content-link_sy">
-                                        <div class="post-content_sy">
-                                            <div class="post-image_sy">
-                                                {% with post.images.first as image %}
-                                                    {% if image %}
-                                                        <img src="{{ image.image.url }}" alt="">
-                                                    {% else %}
-                                                        <img src="{% static 'images/post-list-default.png' %}" alt="기본 이미지">
-                                                    {% endif %}
-                                                {% endwith %}
-                                            </div>
-                                            <div class="post-item_sy">
-                                                <div class="post-item-title_sy">{{ post.title }}</div>
-                                                <div class="post-item-time_sy">
-                                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M12 2.04199C10.6868 2.04199 9.38642 2.30065 8.17317 2.8032C6.95991 3.30574 5.85752 4.04234 4.92893 4.97092C3.05357 6.84629 2 9.38983 2 12.042C2 14.6942 3.05357 17.2377 4.92893 19.1131C5.85752 20.0416 6.95991 20.7782 8.17317 21.2808C9.38642 21.7833 10.6868 22.042 12 22.042C14.6522 22.042 17.1957 20.9884 19.0711 19.1131C20.9464 17.2377 22 14.6942 22 12.042C22 10.7288 21.7413 9.42841 21.2388 8.21516C20.7362 7.0019 19.9997 5.89951 19.0711 4.97092C18.1425 4.04234 17.0401 3.30574 15.8268 2.8032C14.6136 2.30065 13.3132 2.04199 12 2.04199ZM16.2 16.242L11 13.042V7.04199H12.5V12.242L17 14.942L16.2 16.242Z" fill="#C75352"/>
-                                                    </svg>
-                                                    <p>+{{ post.amounts }}분</p>
-                                                </div>
-                                            </div>
+                            {% if post.is_ongoing %}
+                            <a href="{% url 'posts:post_detail' post.id %}" class="post-content-link_sy">
+                                <div class="post-content_sy">
+                                    <div class="post-image_sy">
+                                        {% with post.images.first as image %}
+                                        {% if image %}
+                                        <img src="{{ image.image.url }}" alt="">
+                                        {% else %}
+                                        <img src="{% static 'images/post-list-default.png' %}" alt="기본 이미지">
+                                        {% endif %}
+                                        {% endwith %}
+                                    </div>
+                                    <div class="post-item_sy">
+                                        <div class="post-item-title_sy">{{ post.title }}</div>
+                                        <div class="post-item-time_sy">
+                                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M12 2.04199C10.6868 2.04199 9.38642 2.30065 8.17317 2.8032C6.95991 3.30574 5.85752 4.04234 4.92893 4.97092C3.05357 6.84629 2 9.38983 2 12.042C2 14.6942 3.05357 17.2377 4.92893 19.1131C5.85752 20.0416 6.95991 20.7782 8.17317 21.2808C9.38642 21.7833 10.6868 22.042 12 22.042C14.6522 22.042 17.1957 20.9884 19.0711 19.1131C20.9464 17.2377 22 14.6942 22 12.042C22 10.7288 21.7413 9.42841 21.2388 8.21516C20.7362 7.0019 19.9997 5.89951 19.0711 4.97092C18.1425 4.04234 17.0401 3.30574 15.8268 2.8032C14.6136 2.30065 13.3132 2.04199 12 2.04199ZM16.2 16.242L11 13.042V7.04199H12.5V12.242L17 14.942L16.2 16.242Z"
+                                                    fill="#C75352" />
+                                            </svg>
+                                            <p>+{{ post.amounts }}분</p>
                                         </div>
-                                    </a>
-                                {% endif %}
+                                    </div>
+                                </div>
+                            </a>
+                            {% endif %}
                             {% endfor %}
                         </div>
                     </div>
                     <button class="to-right-btn_sy">
                         <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.071 6.33501L1.414 0.678005L0 2.092L4.95 7.04201L0 11.992L1.414 13.406L7.071 7.74901C7.25847 7.56148 7.36379 7.30717 7.36379 7.04201C7.36379 6.77684 7.25847 6.52253 7.071 6.33501Z" fill="#8A8A8A"/>
-                        </svg>                            
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M7.071 6.33501L1.414 0.678005L0 2.092L4.95 7.04201L0 11.992L1.414 13.406L7.071 7.74901C7.25847 7.56148 7.36379 7.30717 7.36379 7.04201C7.36379 6.77684 7.25847 6.52253 7.071 6.33501Z"
+                                fill="#8A8A8A" />
+                        </svg>
                     </button>
                 </div>
-            </div>          
+            </div>
         </div>
     </div>
 </div>

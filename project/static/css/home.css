@@ -14,8 +14,7 @@
     flex-shrink: 0;
     z-index: 1;
     position: relative;
-    background: var(--N-background, #F6F8FA);
-
+    background: var(--N-background, #f6f8fa);
 }
 
 .home-content_sy {
@@ -49,9 +48,9 @@
 }
 
 .home-logout_sy {
-    color: #FFF;
+    color: #fff;
     text-align: center;
-    font-family: "Pretendard Variable";
+    font-family: 'Pretendard Variable';
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -65,8 +64,8 @@
 }
 
 .home-description_sy h1 {
-    color: var(--N-5, #FFF);
-    font-family: "Pretendard Variable";
+    color: var(--N-5, #fff);
+    font-family: 'Pretendard Variable';
     font-size: 25px;
     font-style: normal;
     font-weight: 500;
@@ -90,7 +89,7 @@
     align-self: stretch;
     display: flex;
     border-radius: 20px;
-    background: #FFF;
+    background: #fff;
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
     flex-direction: column;
     justify-content: center;
@@ -119,21 +118,25 @@
 .home-total-time_sy p {
     display: flex;
     height: 88px;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     color: var(--P-1, #025397);
     text-align: center;
-    font-family: Nunito;
+    font-family: 'yg-jalnan';
     font-size: 60px;
     font-style: normal;
-    font-weight: 900;
+    font-weight: 400;
     line-height: normal;
+}
+
+.time-unit1_sy {
+    margin-right: 20px;
 }
 
 .line1_sy {
     width: 359px;
     height: 0.5px;
-    background: #D9D9D9;
+    background: #d9d9d9;
 }
 
 .home-time-btn_sy {
@@ -144,7 +147,6 @@
     justify-content: center;
     margin-top: 12px;
 }
-
 
 .home-time-btn1_sy,
 .home-time-btn2_sy {
@@ -166,8 +168,8 @@
     align-items: center;
     cursor: pointer;
     border-radius: 48px;
-    color: #086FC6;
-    background: #CBE6FD;
+    color: #086fc6;
+    background: #cbe6fd;
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
 }
 
@@ -186,7 +188,7 @@
     font-weight: 600;
     line-height: normal;
     align-self: stretch;
-    White-space: nowrap;
+    white-space: nowrap;
     display: flex;
     justify-content: center;
 }
@@ -206,7 +208,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 20px;
-    background: #FFF;
+    background: #fff;
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
 }
 
@@ -236,7 +238,7 @@
     align-items: flex-start;
     gap: 10px;
     border-radius: 20px;
-    background: #FFF;
+    background: #fff;
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
 }
 
@@ -262,7 +264,7 @@
 
 .home-in-progress-header_sy h2 {
     color: #4b4b4b;
-    font-family: "Pretendard Variable";
+    font-family: 'Pretendard Variable';
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
@@ -279,13 +281,16 @@
 
 .post-title_sy {
     color: #716c6c;
-    font-family: "Pretendard Variable";
+    font-family: 'Pretendard Variable';
     font-size: 12px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
     align-self: stretch;
     padding-left: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .post-last-time_sy {
@@ -300,8 +305,8 @@
     height: 28px;
     flex-direction: row;
     justify-content: center;
-    color: var(--N-1, #2A2A2A);
-    font-family: "Pretendard Variable";
+    color: var(--N-1, #2a2a2a);
+    font-family: 'Pretendard Variable';
     font-size: 25px;
     font-style: normal;
     font-weight: 500;
@@ -311,7 +316,7 @@
 
 .big-num {
     color: var(--N-1, #424141);
-    font-family: "Pretendard Variable";
+    font-family: 'Pretendard Variable';
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
@@ -330,7 +335,7 @@
 
 .post-last-time_sy p {
     color: #716c6c;
-    font-family: "Pretendard Variable";
+    font-family: 'Pretendard Variable';
     font-size: 12px;
     position: relative;
     top: -2px;
@@ -342,7 +347,7 @@
 .post-empty_sy {
     color: var(--N-2, #666);
     text-align: center;
-    font-family: "Pretendard Variable";
+    font-family: 'Pretendard Variable';
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -357,7 +362,7 @@
     gap: 10px;
     align-self: stretch;
     border-radius: 20px;
-    background: #FFF;
+    background: #fff;
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
     height: 127px;
 }
@@ -386,7 +391,7 @@
 .home-boost-post-title_sy h2 {
     color: #4b4b4b;
     text-align: center;
-    font-family: "Pretendard Variable";
+    font-family: 'Pretendard Variable';
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
@@ -426,7 +431,6 @@
     object-fit: contain;
 }
 
-
 .post-item_sy {
     display: flex;
     width: 208px;
@@ -436,8 +440,8 @@
 }
 
 .post-item-title_sy {
-    color: #2A2A2A;
-    font-family: "Pretendard Variable";
+    color: #2a2a2a;
+    font-family: 'Pretendard Variable';
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
@@ -457,11 +461,11 @@
     width: 24px;
     height: 24px;
     aspect-ratio: 1/1;
-    fill: #C75352;
+    fill: #c75352;
 }
 
 .post-item-time_sy p {
-    color: var(--Alert-1, #C75352);
+    color: var(--Alert-1, #c75352);
     font-family: Pretendard;
     font-size: 20px;
     font-style: normal;
@@ -478,4 +482,3 @@
     left: 311px;
     padding: 5px;
 }
-

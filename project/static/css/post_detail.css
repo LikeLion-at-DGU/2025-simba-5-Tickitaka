@@ -1,6 +1,6 @@
 .post-detail-container_sy {
     width: 390px;
-    height: 844px;
+    height: auto;
     display: flex;
     margin: 0 auto;
     flex-direction: column;
@@ -36,9 +36,8 @@
     width: 18px;
     height: 18px;
     aspect-ratio: 1/1;
-    fill:#C75352
+    fill: #c75352;
 }
-
 
 .complain-btn_sy p {
     color: #000;
@@ -100,14 +99,14 @@
 }
 
 .carousel-btn.right {
-    right: 10px; }
-
+    right: 10px;
+}
 
 .user-info_sy {
     display: flex;
     align-items: center;
-    gap:8px;
-    padding: 16px 16px;;
+    gap: 8px;
+    padding: 16px 16px;
 }
 
 .profile-image_sy {
@@ -122,7 +121,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-fit: contain;
 }
 
 .user-name_sy {
@@ -133,7 +131,6 @@
     font-weight: 700;
     line-height: normal;
 }
-
 
 .line_sy {
     width: 390px;
@@ -176,7 +173,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap:8px;
+    gap: 8px;
 }
 
 .third-detail_sy {
@@ -189,7 +186,7 @@
 .post-detail-time_sy {
     display: flex;
     align-items: center;
-    gap:4px;
+    gap: 4px;
 }
 
 .post-detail-time_sy p {
@@ -204,7 +201,7 @@
 .post-detail-time_sy svg {
     width: 18px;
     height: 18px;
-    aspect-ratio:1/1;
+    aspect-ratio: 1/1;
 }
 
 .status-button_sy {
@@ -214,7 +211,7 @@
     align-items: center;
     gap: 10px;
     text-align: center;
-    font-family: "Pretendard Variable";
+    font-family: 'Pretendard Variable';
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
@@ -223,33 +220,33 @@
 
 .status-blue_sy {
     background: rgba(2, 83, 151, 0.84);
-    color: #FFF;
+    color: #fff;
     padding: 5px;
 }
 
 .status-red_sy {
     background: rgba(199, 83, 82, 0.78);
-    color: #FFF;
+    color: #fff;
     padding: 5px;
 }
 
 .status-green_sy {
     background: rgba(14, 133, 26, 0.69);
-    color: #FFF;
+    color: #fff;
     padding: 5px;
 }
 
 .post-detail-location_sy {
     display: flex;
     align-items: center;
-    gap:4px;
+    gap: 4px;
     padding-bottom: 24px;
 }
 
 .post-detail-location_sy svg {
     width: 18px;
     height: 18px;
-    aspect-ratio:1/1;
+    aspect-ratio: 1/1;
 }
 
 .post-location_sy {
@@ -267,7 +264,7 @@
 
 .fourth-detail_sy p {
     color: #000;
-    font-family: "Pretendard Variable";
+    font-family: 'Pretendard Variable';
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -285,13 +282,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap:8px;
+    gap: 8px;
 }
 
 .post-liked_sy svg {
     width: 16px;
     height: 20px;
-    aspect-ratio:4/5;
+    aspect-ratio: 4/5;
     stroke-width: 1px;
     stroke: #000;
 }
@@ -300,7 +297,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap:8px;
+    gap: 8px;
 }
 
 .call-btn_sy {
@@ -312,9 +309,9 @@
     gap: 10px;
     border-radius: 6px;
     background: #025397;
-    color: #FFF;
+    color: #fff;
     text-align: center;
-    font-family: "Pretendard Variable";
+    font-family: 'Pretendard Variable';
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -323,7 +320,7 @@
 
 .call-btn_sy.disabled {
     background-color: #666;
-    cursor: default;; 
+    cursor: default;
 }
 
 .manage-btn-wrapper_sy {
@@ -342,7 +339,7 @@
     gap: 10px;
     border-radius: 6px;
     background: #025397;
-    color:#FFF;
+    color: #fff;
     cursor: pointer;
 }
 

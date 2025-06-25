@@ -4,7 +4,7 @@
     display: flex;
     margin: 0 auto;
     flex-direction: column;
-    background: #F6F8FA;
+    background: #f6f8fa;
     gap: 24px;
     padding-bottom: 32px;
 }
@@ -15,7 +15,7 @@
     width: 390px;
     padding: 24px 16.5px 24px 15.743px;
     align-items: center;
-    border-bottom: 0.5px solid var(--N-4, #D9D9D9);
+    border-bottom: 0.5px solid var(--N-4, #d9d9d9);
     background: var(--P-1, #025397);
     justify-content: space-between;
     align-items: center;
@@ -38,6 +38,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin-left: 34px;
 }
 
 .friend-list-content_sy {
@@ -59,7 +60,7 @@
     gap: 10px;
     align-self: stretch;
     border-radius: 6px;
-    background: #FAFAFA;
+    background: #fafafa;
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
     justify-content: space-between;
     align-self: stretch;
@@ -75,7 +76,6 @@
     width: 46px;
     height: 46px;
     border-radius: 50%;
-
 }
 
 .nickname_sy {
@@ -87,21 +87,44 @@
     line-height: normal;
 }
 
+/*
 .friend-search-btn_sy {
     position: relative;
-    left: 307px;
-    top: 410px;
+    z-index: 999;
     display: inline-flex;
     padding: 15px;
     align-items: center;
     gap: 10px;
     border-radius: 53px;
     background: #025397;
-}
+}*/
 
 .friend-search-btn_sy svg {
-    width: 29px;
-    height: 29px;
-    fill: var(--N-5, #FFF);
+    width: 22px;
+    height: 22px;
+    fill: var(--N-5, #fff);
     z-index: 100;
 }
+
+.search-btn_sy {
+    gap: 16px;
+    display: flex;
+}
+
+/*
+@media (max-width: 400px) {
+    .friend-search-btn_sy {
+        left: auto;
+        right: 23px;
+        top: auto;
+        bottom: 59px;
+    }
+}
+
+@media ((min-width: 400px) && (max-width: 1024px)) {
+    .friend-search-btn_sy {
+        left: 598px;
+        top: 692px;
+    }
+}
+*/
