@@ -1,46 +1,36 @@
 // chat_room.js
+// 여기부터 모달
 // 민감정보 버튼 클릭했을 때 뒷배경 어두워지면서 modal 뜨게 하기
 function openSensitiveModal() {
     document.getElementById("sensitiveModal_sw").style.display = "block";
     document.getElementById("modalBackdrop_sw").style.display = "block";
 }
-
 // 거래 요청 버튼 클릭했을 때 뒷배경 어두워지면서 startnotice 뜨게 하기
-
 function openStartNotice() {
-    document.getElementById("startNotice_sw").style.display = "flex";
+    document.getElementById("startModal_sw").style.display = "flex";
     document.getElementById("modalBackdrop_sw").style.display = "block";
 }
-
 // 완료 승인 버튼 클릭했을 때 뒷배경 어두워지면서 donenotice 뜨게 하기
-
 function openDoneNotice() {
     document.getElementById("doneNotice_sw").style.display = "flex";
     document.getElementById("modalBackdrop_sw").style.display = "block";
 }
-
 //   엑스 누르면 modal 닫게 하기
-// 엑스 말고 다른 곳 눌러도 닫히게 하기? 고민해보기
 function closeSensitiveModal() {
     document.getElementById("sensitiveModal_sw").style.display = "none";
     document.getElementById("modalBackdrop_sw").style.display = "none";
   }
-
-
 //   엑스나 아니요 누르면 startnotice 닫게 하기
-
 function closeStartNotice() {
     document.getElementById("startNotice_sw").style.display = "none";
     document.getElementById("modalBackdrop_sw").style.display = "none";
   }
-
   //   엑스나 거절 누르면 donenotice 닫게 하기
-
 function closeDoneNotice() {
     document.getElementById("doneNotice_sw").style.display = "none";
     document.getElementById("modalBackdrop_sw").style.display = "none";
   }
-
+// 여기까지 모달관련
 
 //사진 보내기
 document.addEventListener("DOMContentLoaded", function(){
@@ -58,10 +48,7 @@ document.addEventListener("DOMContentLoaded", function(){
   });
 });
 
-
-
-//여기부터 새로고침 관련
- 
+//여기부터 새로고침 스크롤, 채팅 수 보존
 const chatBox = document.querySelector(".chatBubblesFrameChatroom_sw");
 const sendBtn = document.getElementById("sendBtn_sw");
 const previousScrollRaw = sessionStorage.getItem("previousScroll");
@@ -167,10 +154,54 @@ window.addEventListener('DOMContentLoaded', () => {
 let isSendingImage = false;
 
 
-// 자동 새로고침 (입력 중 아닐 때만)
-setInterval(() => {
-  if (!isTyping) {
-    location.reload();
-  }
-}, 5000);
+// // 자동 새로고침 (입력 중 아닐 때만)
+// setInterval(() => {
+//   if (!isTyping) {
+//     location.reload();
+//   }
+// }, 5000);
+//  
+// 새로운 채팅이 있으면 맨 밑으로 내리기
+document.addEventListener('DOMContentLoaded', () => {
+  const chatBox      = document.querySelector('.chatBubblesFrameChatroom_sw');
+  const pollInterval = 3000;
+  let prevChildCount = chatBox.children.length;  // 처음 렌더링된 버블 개수
 
+  setInterval(async () => {
+    if (isTyping) return;
+
+    try {
+      const res  = await fetch(window.location.href, { cache: 'no-store' });
+      if (!res.ok) return;
+      const html = await res.text();
+      const doc  = new DOMParser().parseFromString(html, 'text/html');
+      const newChatEl = doc.querySelector('.chatBubblesFrameChatroom_sw');
+      if (!newChatEl) return;
+
+      // 새 렌더링된 전체 자식 엘리먼트
+      const newChildren = Array.from(newChatEl.children);
+      // 늘어난 부분만 취해서
+      const additions = newChildren.slice(prevChildCount);
+
+      additions.forEach(node => {
+        // 깊은 복사
+        const clone = node.cloneNode(true);
+        // 팝 애니메이션 클래스 추가
+        clone.classList.add('new-comment');
+        // 실제 채팅창에 append
+        chatBox.appendChild(clone);
+      });
+
+      // 새 메시지가 왔으면 맨 아래로 스크롤
+      if (additions.length > 0) {
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      // 상태 업데이트
+      prevChildCount = newChildren.length;
+
+    } catch (e) {
+      console.error('부분 fetch 에러:', e);
+    }
+  }, pollInterval);
+});
