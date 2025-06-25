@@ -88,9 +88,10 @@
 }
 
 .friend-search-btn_sy {
-    position: relative;
-    left: 307px;
-    top: 410px;
+    position: fixed;
+    left: 598px;
+    top: 692px;
+    z-index: 999;
     display: inline-flex;
     padding: 15px;
     align-items: center;
@@ -104,4 +105,13 @@
     height: 29px;
     fill: var(--N-5, #FFF);
     z-index: 100;
+}
+
+@media (max-width: 400px) {
+    .friend-search-btn_sy {
+        left: auto;
+        right: 23px;
+        top: auto;
+        bottom: 59px;
+    }
 }
