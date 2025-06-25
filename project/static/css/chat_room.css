@@ -15,7 +15,7 @@ button {
     margin: 0 auto;
     flex-direction: column;
     align-items: center;
-    background: #F6F8FA;
+    background: #f6f8fa;
 }
 
 .nicknameFrameChatroom_sw {
@@ -27,7 +27,6 @@ button {
     align-items: center;
     position: relative;
     background: #025397;
-
 }
 
 .backiconChatroom_sw {
@@ -47,11 +46,10 @@ button {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-
 }
 
 .nicknameChatroom_sw {
-    color: #FFF;
+    color: #fff;
     text-align: center;
 
     /* H1 */
@@ -63,7 +61,7 @@ button {
 }
 
 .reportTextChatroom_sw {
-    color: #FFF;
+    color: #fff;
     font-family: Pretendard;
     font-size: 12px;
     font-style: normal;
@@ -93,9 +91,9 @@ button {
     width: 390px;
     height: 93px;
     padding: 16px;
-    border-top: 0.5px solid #D9D9D9;
-    border-bottom: 0.5px solid #D9D9D9;
-    background: #FFF;
+    border-top: 0.5px solid #d9d9d9;
+    border-bottom: 0.5px solid #d9d9d9;
+    background: #fff;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -115,11 +113,10 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
 }
 
 .tradeTitleTextChatroom_sw {
-    color: #2A2A2A;
+    color: #2a2a2a;
     font-family: Pretendard;
     font-size: 12px;
     font-style: normal;
@@ -141,7 +138,7 @@ button {
     border-radius: 6px;
     text-align: center;
     background-color: #025397;
-    color: #FFFFFF;
+    color: #ffffff;
     font-family: Pretendard;
     font-size: 12px;
     font-style: normal;
@@ -150,14 +147,13 @@ button {
 }
 
 .disabledButtonChatroom_sw {
-
     cursor: default;
     width: 59px;
     height: 30px;
     border-radius: 6px;
     text-align: center;
     background-color: #666;
-    color: #FFFFFF;
+    color: #ffffff;
     font-family: Pretendard;
     font-size: 12px;
     font-style: normal;
@@ -184,7 +180,7 @@ button {
 }
 
 .chatBubblesFrameChatroom_sw::-webkit-scrollbar-thumb {
-    background: #8A8A8A;
+    background: #8a8a8a;
     border-radius: 3px;
 }
 
@@ -201,9 +197,9 @@ button {
     text-align: center;
     width: 363px;
     height: 48px;
-    background-color: #D9D9D9;
+    background-color: #d9d9d9;
     border-radius: 6px;
-    color: #2A2A2A;
+    color: #2a2a2a;
     text-align: center;
     font-family: Pretendard;
     font-size: 12px;
@@ -221,9 +217,9 @@ button {
     text-align: center;
     width: 363px;
     height: 34px;
-    background-color: #D9D9D9;
+    background-color: #d9d9d9;
     border-radius: 6px;
-    color: #2A2A2A;
+    color: #2a2a2a;
     text-align: center;
     font-family: Pretendard;
     font-size: 12px;
@@ -238,46 +234,46 @@ button {
 
 /* 채팅 띠용 */
 @keyframes smoothPop {
-  0% {
-    transform: translateY(10px) scale(0.95);
-    opacity: 0;
-  }
-  60% {
-    transform: translateY(-2px) scale(1.02);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(0) scale(1);
-  }
+    0% {
+        transform: translateY(10px) scale(0.95);
+        opacity: 0;
+    }
+    60% {
+        transform: translateY(-2px) scale(1.02);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+    }
 }
 
 .new-comment {
-  animation: smoothPop 0.4s ease-out;
+    animation: smoothPop 0.4s ease-out;
 }
 .with-tail {
-  position: relative;
+    position: relative;
 }
 
 .with-tail::after {
-  content: "";
-  position: absolute;
-  right: -12px;
-  bottom: 22px;
-  border-width: 0px 3px 10px 12px;
-  border-style: solid;
-  border-color: transparent transparent transparent #D9D9D9; /* 말풍선 배경색 */
+    content: '';
+    position: absolute;
+    right: -12px;
+    bottom: 22px;
+    border-width: 0px 3px 10px 12px;
+    border-style: solid;
+    border-color: transparent transparent transparent #ffefcf; /* 말풍선 배경색 */
 }
 .with-tail-left {
-  position: relative;
+    position: relative;
 }
 .with-tail-left::after {
-  content: "";
-  position: absolute;
-  left: -12px; /* 왼쪽으로 꼬리 빼기 */
-  bottom: 22px;
-  border-width: 0px 12px 10px 3px;
-  border-style: solid;
-  border-color: transparent #CBE6FD transparent transparent; /* 왼쪽만 색 */
+    content: '';
+    position: absolute;
+    left: -12px; /* 왼쪽으로 꼬리 빼기 */
+    bottom: 22px;
+    border-width: 0px 12px 10px 3px;
+    border-style: solid;
+    border-color: transparent #cbe6fd transparent transparent; /* 왼쪽만 색 */
 }
 
 .myBubbleChatroom_sw {
@@ -286,14 +282,12 @@ button {
     flex-direction: row;
     justify-content: flex-end;
     align-items: flex-end;
-
 }
-.sentPic_sw{
+.sentPic_sw {
     width: 200px;
     border-radius: 20px;
     margin-right: 15px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .myContentTextChatroom {
     word-wrap: break-word;
@@ -304,26 +298,24 @@ button {
     max-width: 246px;
     padding: 10px 10px;
     border-radius: 15px;
-    background: #D9D9D9;
+    background: #ffefcf;
     color: black;
-    font-family: "Pretendard Variable";
+    font-family: 'Pretendard Variable';
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .profileImgChatroom_sw {
     width: 46px;
     height: 46px;
-    border: 0.5px solid #D9D9D9;
+    border: 0.5px solid #d9d9d9;
     border-radius: 99px;
 }
 
 .opponentBubbleChatroom_sw {
-
     display: flex;
     gap: 8px;
     flex-direction: row;
@@ -340,9 +332,9 @@ button {
     max-width: 246px;
     padding: 10px 10px;
     border-radius: 15px;
-    background: #CBE6FD;
+    background: #cbe6fd;
     color: black;
-    font-family: "Pretendard Variable";
+    font-family: 'Pretendard Variable';
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -352,7 +344,7 @@ button {
 
 .timeTextChatroom {
     color: #666;
-    font-family: "Pretendard Variable";
+    font-family: 'Pretendard Variable';
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -381,8 +373,8 @@ button {
     min-height: 33px;
     padding: 6px 16px;
     border-radius: 6px;
-    border: 1px solid #D9D9D9;
-    background-color: #FFF;
+    border: 1px solid #d9d9d9;
+    background-color: #fff;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -399,7 +391,7 @@ button {
     justify-content: center;
     align-items: center;
     align-self: stretch;
-    color: #2A2A2A;
+    color: #2a2a2a;
     /* caption */
     font-family: Pretendard;
     font-size: 12px;
@@ -414,8 +406,8 @@ button {
     padding: 6px 16px;
     border-radius: 6px;
 
-    border: 1px solid #D9D9D9;
-    background-color: #D9D9D9;
+    border: 1px solid #d9d9d9;
+    background-color: #d9d9d9;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -432,14 +424,13 @@ button {
     justify-content: center;
     align-items: center;
     align-self: stretch;
-    color: #2A2A2A;
+    color: #2a2a2a;
     /* caption */
     font-family: Pretendard;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-
 }
 
 .iconSendChatroom_sw {
@@ -462,10 +453,9 @@ button {
     width: 358px;
     min-height: 121px;
     border-radius: 6px;
-    background-color: #FFF;
+    background-color: #fff;
     /* box_dropshadow */
-    box-shadow:
-        0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
 }
 
 .modalTitleBoxChatroom_sw {
@@ -514,7 +504,6 @@ button {
 }
 
 .modalTextBoxChatroom_sw {
-
     border-top: 0.5px solid #666;
     width: 358px;
     padding: 16px;
@@ -526,8 +515,7 @@ button {
 }
 
 .modalTextChatroom_sw {
-
-    color: #2A2A2A;
+    color: #2a2a2a;
     /* caption */
     font-family: Pretendard;
     font-size: 12px;
@@ -549,7 +537,6 @@ button {
     z-index: 999;
 }
 
-
 .startModalFrame_sw {
     width: 358px;
     height: 126px;
@@ -562,10 +549,9 @@ button {
     transform: translate(-50%, -50%);
     z-index: 1000;
     border-radius: 6px;
-    background-color: #FFF;
+    background-color: #fff;
     /* box_dropshadow */
-    box-shadow:
-        0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
 
     display: flex;
     flex-direction: column;
@@ -618,11 +604,11 @@ button {
     align-items: center;
     border-radius: 6px;
     background: #025397;
-    color: #FFF;
+    color: #fff;
     text-align: center;
 
     /* caption */
-    font-family: "Pretendard Variable";
+    font-family: 'Pretendard Variable';
     font-size: 12px;
     font-style: normal;
     font-weight: 400;

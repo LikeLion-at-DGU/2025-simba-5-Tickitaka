@@ -5,9 +5,9 @@
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
 
 <div class="pageAlignChatlist_sw">
-<!-- 헤더 -->
+    <!-- 헤더 -->
     <div class="headerFrameChatlist_sw">
-    <!-- 아직 메인 없음 -->
+        <!-- 아직 메인 없음 -->
         <a href="{% url 'main:home' %}">
             <button class="backiconChatlist_sw">
                 <img src="{% static 'images/backicon.svg' %}" alt="뒤로가기아이콘">
@@ -23,10 +23,10 @@
                 {% if profile.image %}
                 <img src="{{profile.image.url}}" class="profileCircle_sw" alt="프사">
                 {% else %}
-                <img src="{% static 'images/lionprofile.svg' %}" class="profileCircle_sw" alt="기본프사">
+                <img src="{% static 'images/post-list-default.png' %}" class="profileCircle_sw" alt="기본프사">
                 {% endif %}
                 <div class="nicknameMypage_sw">
-                {{profile.nickname}}    
+                    {{profile.nickname}}
                 </div>
             </div>
             <div class="editWrapperMypage_sw">
@@ -35,7 +35,7 @@
             </div>
         </a>
         <div class="menuBoxMypage_sw">
-            <a href="{% url 'main:my_posts' %}" class="aBoxMypage_sw" >
+            <a href="{% url 'main:my_posts' %}" class="aBoxMypage_sw">
                 <div class="aWrapperMypage_sw">
                     <img src="{% static 'images/paperMypage.svg' %}" alt="내가쓴글아이콘">
                     <p class="aTextMypage_sw">내가 쓴 글</p>
@@ -44,7 +44,7 @@
             </a>
 
             <div class="lineMypage_sw"></div>
-            <a href="{% url 'main:saved_posts' %}" class="aBoxMypage_sw" >
+            <a href="{% url 'main:saved_posts' %}" class="aBoxMypage_sw">
                 <div class="aWrapperMypage_sw">
                     <img src="{% static 'images/bookmarkMypage.svg' %}" alt="내가쓴글아이콘">
                     <p class="aTextMypage_sw">찜한 글</p>
@@ -53,16 +53,16 @@
             </a>
 
             <div class="lineMypage_sw"></div>
-            <a href="{% url 'main:time_history' %}" class="aBoxMypage_sw" >
+            <a href="{% url 'main:time_history' %}" class="aBoxMypage_sw">
                 <div class="aWrapperMypage_sw">
                     <img src="{% static 'images/timeMypage.svg' %}" alt="내가쓴글아이콘">
                     <p class="aTextMypage_sw">거래한 시간</p>
                 </div>
                 <img src="{% static 'images/goMypage.svg' %}" alt="오른쪽화살표아이콘">
             </a>
-            
+
             <div class="lineMypage_sw"></div>
-            <a href="{% url 'main:inquire' %}" class="aBoxMypage_sw" >
+            <a href="{% url 'main:inquire' %}" class="aBoxMypage_sw">
                 <div class="aWrapperMypage_sw">
                     <img src="{% static 'images/headphoneMypage.svg' %}" alt="내가쓴글아이콘">
                     <p class="aTextMypage_sw">1:1 문의하기</p>
@@ -71,7 +71,7 @@
             </a>
         </div>
     </div>
-    
+
 </div>
 
 {% endblock %}
