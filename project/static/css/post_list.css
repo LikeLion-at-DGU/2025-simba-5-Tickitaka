@@ -4,14 +4,14 @@
     display: flex;
     margin: 0 auto;
     overflow: hidden;
-    background-color: #F6F8FA;
+    background-color: #f6f8fa;
     padding-bottom: 32px;
 }
 
 .post-list-header_sy {
     position: fixed;
     height: 190px;
-    background-color: #F6F8FA;
+    background-color: #f6f8fa;
     z-index: 100;
     width: 390px;
 }
@@ -27,9 +27,9 @@
 }
 
 .post-list-title_sy {
-    color: #FFF;
+    color: #fff;
     text-align: center;
-    font-family: "Pretendard Variable";
+    font-family: 'Pretendard Variable';
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
@@ -43,7 +43,7 @@
     aspect-ratio: 7.36/12.73;
 }
 
-.post-list-second-header_sy{
+.post-list-second-header_sy {
     padding: 0px 16px;
 }
 
@@ -73,12 +73,12 @@
     font-family: Pretendard;
     font-size: 12px;
     font-style: normal;
-    White-space: nowrap;
+    white-space: nowrap;
     font-weight: 400;
     line-height: normal;
     border-radius: 30px;
     background: #ffffff;
-    border: 0.5px solid var(--N-3, #8A8A8A);
+    border: 0.5px solid var(--N-3, #8a8a8a);
 }
 
 .time-boost-btn_sy {
@@ -102,7 +102,7 @@
     line-height: normal;
     border-radius: 30px;
     background: #ffffff;
-    border: 0.5px solid var(--N-3, #8A8A8A);
+    border: 0.5px solid var(--N-3, #8a8a8a);
 }
 
 .friend-boost-btn_sy button.selected_sy {
@@ -147,14 +147,14 @@
     display: none;
     position: absolute;
     width: 140px;
-    height: 225px;
+    height: 462px;
     padding: 14px 16px;
     flex-direction: column;
     align-items: center;
     gap: 10px;
     flex-shrink: 0;
     border-radius: 6px;
-    background: #FAFAFA;
+    background: #fafafa;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -166,7 +166,7 @@
     padding: 10px;
     width: 100%;
     cursor: pointer;
-    color: #2A2A2A;
+    color: #2a2a2a;
     text-align: center;
     font-family: Pretendard;
     font-size: 12px;
@@ -176,7 +176,7 @@
 }
 
 .dropdown-content_sy :hover {
-    background-color: #DFE8EF;
+    background-color: #dfe8ef;
 }
 
 .category-line_sy {
@@ -241,7 +241,7 @@
     align-items: center;
     align-self: stretch;
     border-radius: 6px;
-    background: #FAFAFA;
+    background: #fafafa;
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
     align-items: center;
     gap: 18px;
@@ -333,7 +333,7 @@
 }
 
 .post-time-text_sy {
-    color: #2A2A2A;
+    color: #2a2a2a;
     font-family: Pretendard;
     font-size: 18px;
     font-style: normal;
@@ -342,11 +342,11 @@
 }
 
 .boosted_time_sy {
-    color: #C75352;
+    color: #c75352;
 }
 
 .boosted-icon_sy path {
-    fill: #C75352;
+    fill: #c75352;
 }
 
 .post-location_sy {
@@ -369,12 +369,12 @@
 
 .post-container_sy:hover {
     /*box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.12);*/
-    background: #F6F8FA;
+    background: #f6f8fa;
     cursor: pointer;
-    border: 0.8px solid #02539740;;;
+    border: 0.8px solid #02539740;
 }
 
-.friend-boost-btn_sy button:hover, 
+.friend-boost-btn_sy button:hover,
 .time-boost-btn_sy button:hover {
     background-color: #025397;
     color: #ffffff;
