@@ -286,13 +286,15 @@ button {
     flex-direction: row;
     justify-content: flex-end;
     align-items: flex-end;
-
+    padding-bottom: 3px;
 }
+
 .sentPic_sw{
     width: 200px;
     border-radius: 20px;
     margin-right: 15px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-left: 4px;
 
 }
 .myContentTextChatroom {
@@ -323,7 +325,7 @@ button {
 }
 
 .opponentBubbleChatroom_sw {
-
+    padding-bottom: 3px;
     display: flex;
     gap: 8px;
     flex-direction: row;

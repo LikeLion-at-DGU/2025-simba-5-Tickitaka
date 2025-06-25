@@ -137,18 +137,18 @@ async function fetchNewChats() {
       chatBox.appendChild(clone);
 
       const imgs = clone.querySelectorAll("img");
-  imgs.forEach(img => {
-    if (!img.complete) {
-      img.addEventListener("load", () => {
-        scrollLastBubbleIntoView();
+      imgs.forEach(img => {
+        if (!img.complete) {
+          img.addEventListener("load", () => {
+            scrollLastBubbleIntoView();
+          });
+        }
       });
-    }
-  });
-    });
+        });
 
-    if (additions.length) scrollLastBubbleIntoView();
-    prevChildCount = newChildren.length;
-  } catch (e) {
-    console.error("부분 fetch 에러:", e);
-  }
+      if (additions.length) scrollLastBubbleIntoView();
+      prevChildCount = newChildren.length;
+    } catch (e) {
+      console.error("부분 fetch 에러:", e);
+    }
 }
