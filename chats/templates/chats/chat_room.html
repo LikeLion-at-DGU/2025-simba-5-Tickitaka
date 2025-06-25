@@ -99,7 +99,9 @@
 <div id="postStatus_sw" style="display: none;":>{{ post.status }}</div>
 
 <!-- 여기부터 스크롤 -->
-    <div class="chatBubblesFrameChatroom_sw">
+    <div class="chatBubblesFrameChatroom_sw"
+      data-last-message-id="{{ last_comment.id|default:0 }}"
+>
         <div class="descriptionBubbleChatroom_sw">
             <p>채팅창은 5초에 한번씩 새로고침 됩니다.</p>
         </div>
@@ -236,7 +238,7 @@
 <!-- 여기까지 민감정보 모달 -->
 
  <!-- 여기서부터 거래 확인창 -->
-<div class="startModalFrame_sw" id="startNotice_sw" style="display: none;">
+<div class="startModalFrame_sw" id="startModal_sw" style="display: none;">
     <div class="startTitleBoxChatroom_sw">
         <p class="startTitleChatroom_sw">정말 거래를 진행하실 건가요?</p>
     <button id="closeModalBtn_sw" class="noStartChatroom_sw" onclick="closeStartNotice()">
