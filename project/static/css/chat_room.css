@@ -292,6 +292,8 @@ button {
     width: 200px;
     border-radius: 20px;
     margin-right: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 .myContentTextChatroom {
     word-wrap: break-word;
@@ -309,6 +311,8 @@ button {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 
 .profileImgChatroom_sw {
@@ -343,6 +347,7 @@ button {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .timeTextChatroom {
