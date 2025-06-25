@@ -33,16 +33,12 @@
                                 </div>
                                 <div class="alarm-btn_sy">
                                     <form method="POST"
-                                        action="{% url 'friends:accept_friend_request' notification.friend_request.id %}"
-                                        target="hidden-frame"
-                                        onsubmit="this.closest('.friend-card_sy').remove(); return true;">
+                                        action="{% url 'friends:accept_friend_request' notification.friend_request.id %}">
                                         {% csrf_token %}
                                         <button type="submit" class="accept-btn_sy">수락</button>
                                     </form>
                                     <form method="POST"
-                                        action="{% url 'friends:reject_friend_request' notification.friend_request.id %}"
-                                        target="hidden-frame"
-                                        onsubmit="this.closest('.friend-card_sy').remove(); return true;">
+                                        action="{% url 'friends:reject_friend_request' notification.friend_request.id %}">
                                         {% csrf_token %}
                                         <button type="submit" class="reject-btn_sy">거절</button>
                                     </form>
