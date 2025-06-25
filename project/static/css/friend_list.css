@@ -38,6 +38,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin-left: 34px;
 }
 
 .friend-list-content_sy {
@@ -87,21 +88,44 @@
     line-height: normal;
 }
 
+/*
 .friend-search-btn_sy {
     position: relative;
-    left: 307px;
-    top: 410px;
+    z-index: 999;
     display: inline-flex;
     padding: 15px;
     align-items: center;
     gap: 10px;
     border-radius: 53px;
     background: #025397;
-}
+}*/
 
 .friend-search-btn_sy svg {
-    width: 29px;
-    height: 29px;
+    width: 22px;
+    height: 22px;
     fill: var(--N-5, #FFF);
     z-index: 100;
 }
+
+.search-btn_sy {
+    gap: 16px;
+    display: flex;
+}
+
+/*
+@media (max-width: 400px) {
+    .friend-search-btn_sy {
+        left: auto;
+        right: 23px;
+        top: auto;
+        bottom: 59px;
+    }
+}
+
+@media ((min-width: 400px) && (max-width: 1024px)) {
+    .friend-search-btn_sy {
+        left: 598px;
+        top: 692px;
+    }
+}
+*/

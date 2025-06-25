@@ -3,6 +3,8 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+<link rel="stylesheet" href="{% static 'css/font.css' %}">
+
 
 <div class="home-container2_sy">
     <div class="home-container_sy">
@@ -23,7 +25,10 @@
                 <div class="home-about-time_sy">
                     <div class="home-total-time_sy">
                         <h2>모은 시간</h2>
-                        <p>{{ hours|stringformat:"02d" }}:{{ minutes|stringformat:"02d" }}:00</p>
+                        <p>
+                            <span class="time-number_sy">{{ hours }}</span><span class="time-unit1_sy">H </span>
+                            <span class="time-number_sy">{{ minutes }}</span><span class="time-unit_sy">M</span>
+                        </p>
                     </div>
                     <div class="line1_sy"></div>
                     <div class="home-time-btn_sy">
