@@ -57,8 +57,10 @@ def friend_search(request):
                     (models.Q(requester=profile, receiver=p) | models.Q(requester=p, receiver=profile))
                )
                status = friend_relation.status
+          
           except Friend.DoesNotExist:
                status = 'none'
+
 
           result_list.append({
                'profile': p,
@@ -82,6 +84,8 @@ def send_friend_request(request, receiver_id):
           (models.Q(requester=profile, receiver=receiver) | models.Q(requester=receiver, receiver=profile))
      ).exists():
           friend_request = Friend.objects.create(requester=profile, receiver=receiver, status='pending')
+          
+          
           FriendRequestNotification.objects.create(
                sender=profile,
                receiver=receiver,
@@ -96,17 +100,22 @@ def send_friend_request(request, receiver_id):
 # 친구 요청 수락
 @login_required
 def accept_friend_request(request, request_id):
+     
      friend_request = get_object_or_404(Friend, id=request_id, receiver=request.user.profile)
+
+     
 
      if friend_request.status == 'pending':
           friend_request.status = 'accepted'
           friend_request.save()
+          
 
      # 알림 읽음 처리
           try:
                notification = FriendRequestNotification.objects.get(friend_request=friend_request)
                notification.is_read = True
                notification.save()
+               
           except FriendRequestNotification.DoesNotExist:
                pass
 
